@@ -27,12 +27,14 @@ void QBeacon::setPosition(const QPoint &point) {
 }
 
 void QBeacon::setUniversalUniqueIdentifier(const QUuid &uuid) {
+    Q_ASSERT_X(!uuid.isNull(), __FUNCTION__, "Error: trying to set a null uuid");
     const std::string tmp = uuid.toString().toStdString();
     Beacon::setBeaconId(tmp);
     emit onUniversallyUniqueIdentifierChanged(uuid);
 }
 
 void QBeacon::setIdentifier(int id) {
+    Q_ASSERT_X(id > -1, __FUNCTION__, "Error: trying to set a negative identifier");
     Beacon::setLocationId(id);
     emit onIdentifierChanged(id);
 }

@@ -19,6 +19,7 @@ no_testing {
 
 testing {
     QT += testlib
+    SOURCES -= main.cpp
     TARGET = TestAcousticLPS
     DEFINES += "TESTING_ENABLED=1"
     INCLUDEPATH += $$PWD/dependencies/catch/include
