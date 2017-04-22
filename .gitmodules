@@ -1,0 +1,3 @@
+[submodule "Indoor-navigation-algorithms"]
+	path = /dependencies/Indoor-navigation-algorithms
+	url = ../../Navigine/Indoor-navigation-algorithms.git

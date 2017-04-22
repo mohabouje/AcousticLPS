@@ -19,7 +19,9 @@
 *.qbs.user
 *.qbs.user.*
 *.moc
+*.qmake.*
 moc_*.cpp
+moc_*.h
 qrc_*.cpp
 ui_*.h
 Makefile*
