@@ -8,6 +8,11 @@ SOURCES += \
     $$PWD/../dependencies/trilateration/navigation/trilateteration/src/trilateration.cpp \
     $$PWD/qbeacon.cpp
 
+
 # For quick include, add dependencies as dependency path.
 INCLUDEPATH += $$PWD/../dependencies/trilateration/navigation/trilateteration/src/
 DEPENDPATH +=  $$PWD/../dependencies/trilateration/navigation/trilateteration/src/
+
+testing {
+    SOURCES += $$PWD/test/qbeacontest.cpp
+}
