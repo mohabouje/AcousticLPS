@@ -1,6 +1,3 @@
-[submodule "Indoor-navigation-algorithms"]
-	path = /dependencies/Indoor-navigation-algorithms
-	url = ../../Navigine/Indoor-navigation-algorithms.git
 [submodule "dependencies/trilateration"]
 	path = dependencies/trilateration
 	url = https://github.com/Navigine/Indoor-navigation-algorithms
