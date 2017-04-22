@@ -6,21 +6,21 @@
 #include <QUuid>
 #include <beacon.h>
 
-class QBeacon : public QObject, Beacon {
-    Q_OBJECT
+class QBeacon : private Beacon {
 public:
-    explicit QBeacon(QObject *parent = 0);
-    QUuid universalUniqueIdentifier() const;
+    QBeacon();
+    static QBeacon createBeacon(const QPoint& position, int identifier = 0);
+
     QPoint position() const;
-    int identifier() const;
-public slots:
     void setPosition(const QPoint& point);
+
+    QUuid universalUniqueIdentifier() const;
     void setUniversalUniqueIdentifier(const QUuid& uuid);
+
+    int identifier() const;
     void setIdentifier(int id);
-signals:
-    void onUniversallyUniqueIdentifierChanged(const QUuid& uuid) const;
-    void onIdentifierChanged(int id) const;
-    void onPositionChanged(const QPoint& point) const;
+private:
+    friend class QMeasure;
 };
 
 #endif // QBEACON_H
