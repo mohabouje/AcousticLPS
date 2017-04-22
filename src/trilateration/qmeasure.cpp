@@ -26,7 +26,7 @@ void QMeasure::setBeacon(QBeacon *beacon) {
 }
 
 void QMeasure::setMeasure(double measure) {
-    Q_ASSERT_X(measure < 0, __FUNCTION__, "Error: negative measure estimated");
+    Q_ASSERT_X(measure > 0, __FUNCTION__, "Error: negative measure estimated");
     BeaconMeas::setDistance(measure);
 }
 

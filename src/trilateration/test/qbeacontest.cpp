@@ -1,6 +1,4 @@
 #include <trilateration/qbeacon.h>
-
-#include <QSignalSpy>
 #include <catch.hpp>
 SCENARIO( "Testing the correct behaviour of a beacon", "[QBeacon]" ) {
     GIVEN("A beacon with some properties") {

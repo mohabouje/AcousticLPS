@@ -19,5 +19,6 @@ DEPENDPATH +=  $$PWD/../dependencies/trilateration/navigation/trilateteration/sr
 
 testing {
     SOURCES += $$PWD/test/qbeacontest.cpp \
-        $$PWD/test/qtrilaterationtest.cpp
+        $$PWD/test/qtrilaterationtest.cpp \
+        $$PWD/test/qmeasuretest.cpp
 }
