@@ -1,3 +1,3 @@
-[submodule "dependencies/trilateration"]
-	path = dependencies/trilateration
+[submodule "src/dependencies/trilateration"]
+	path = src/dependencies/trilateration
 	url = https://github.com/mohabouje/Indoor-navigation-algorithms.git
