@@ -1,9 +1,3 @@
-INCLUDEPATH += $$PWD/../dependencies/uuid/include/boost
-DEPENDPATH +=  $$PWD/../dependencies/uuid/include/boost
-
-INCLUDEPATH += $$PWD/../dependencies/trilateration/navigation/trilateteration/src/
-DEPENDPATH +=  $$PWD/../dependencies/trilateration/navigation/trilateteration/src/
-
 HEADERS += \
     $$PWD/../dependencies/trilateration/navigation/trilateteration/src/beacon.h \
     $$PWD/../dependencies/trilateration/navigation/trilateteration/src/trilateration.h \
@@ -14,4 +8,6 @@ SOURCES += \
     $$PWD/../dependencies/trilateration/navigation/trilateteration/src/trilateration.cpp \
     $$PWD/qbeacon.cpp
 
-
+# For quick include, add dependencies as dependency path.
+INCLUDEPATH += $$PWD/../dependencies/trilateration/navigation/trilateteration/src/
+DEPENDPATH +=  $$PWD/../dependencies/trilateration/navigation/trilateteration/src/
