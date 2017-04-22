@@ -4,7 +4,7 @@
 #include <QObject>
 #include <trilateration.h>
 
-class QTrilateration : public QObject, private Trilateration
+class QTrilateration : public QObject, public Trilateration
 {
     Q_OBJECT
 public:

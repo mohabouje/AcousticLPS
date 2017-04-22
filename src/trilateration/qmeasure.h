@@ -3,10 +3,11 @@
 
 #include "qbeacon.h"
 
-class QMeasure : private BeaconMeas
+class QMeasure : public BeaconMeas
 {
 public:
     QMeasure();
+    static QMeasure createMeasure(QBeacon* beacon, double distance, double rssi);
     void setBeacon(QBeacon *beacon);
     QBeacon *getBeacon() const;
 

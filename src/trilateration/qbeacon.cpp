@@ -6,7 +6,7 @@ QBeacon::QBeacon() :
 
 }
 
-QBeacon QBeacon::createBeacon(const QPoint &position, int identifier) {
+QBeacon QBeacon::createBeacon(const QPointF &position, int identifier) {
     QBeacon beacon;
     beacon.setUniversalUniqueIdentifier(QUuid::createUuid());
     beacon.setPosition(position);
@@ -19,7 +19,7 @@ QUuid QBeacon::universalUniqueIdentifier() const {
     return QUuid(tmp);
 }
 
-QPoint QBeacon::position() const {
+QPointF QBeacon::position() const {
     return QPoint(Beacon::getX(), Beacon::getY());
 }
 
@@ -27,7 +27,7 @@ int QBeacon::identifier() const {
     return Beacon::getLocationId();
 }
 
-void QBeacon::setPosition(const QPoint &point) {
+void QBeacon::setPosition(const QPointF &point) {
     Beacon::setX(point.x());
     Beacon::setY(point.y());
 }

@@ -6,6 +6,14 @@ QMeasure::QMeasure() :
 
 }
 
+QMeasure QMeasure::createMeasure(QBeacon *beacon, double distance, double rssi) {
+    QMeasure measure;
+    measure.setBeacon(beacon);
+    measure.setMeasure(distance);
+    measure.setRSSI(rssi);
+    return measure;
+}
+
 double QMeasure::getMeasure() const {
     return BeaconMeas::getDistance();
 }
