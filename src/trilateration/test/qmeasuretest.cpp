@@ -15,14 +15,14 @@ SCENARIO( "Testing the correct behaviour of a given measure", "[QMeasure]" ) {
             }
         }
         WHEN("We set up a generic measure") {
-            const double distance = 50;
+            const Real distance = 50;
             measure.setMeasure(distance);
             THEN("it should be changed to the same") {
                 REQUIRE(measure.getMeasure() == distance);
             }
         }
         WHEN("We set up a generic RSSI") {
-            const double rssi = qrand();
+            const Real rssi = qrand();
             measure.setRSSI(rssi);
             THEN("it should be changed to the same") {
                 REQUIRE(measure.getRSSI() == rssi);

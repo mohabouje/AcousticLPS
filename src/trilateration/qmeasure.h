@@ -1,14 +1,14 @@
 #ifndef QMEASURE_H
 #define QMEASURE_H
-
+#include "config.h"
 #include "qbeacon.h"
 class QMeasure {
 public:
     QMeasure();
     static QMeasure createMeasure(const QBeacon* beacon, double distance, double rssi);
     inline const QBeacon *getBeacon() const { return _beacon; }
-    inline float getMeasure() const { return _measure; }
-    inline float getRSSI() const { return _rssi; }
+    inline Real getMeasure() const { return _measure; }
+    inline Real getRSSI() const { return _rssi; }
     inline bool operator<(const QMeasure& entry) const {
         return _measure < entry._measure;
     }
@@ -24,12 +24,12 @@ public:
         return !(*this == entry);
     }
     void setBeacon(const QBeacon *beacon);
-    void setMeasure(double measure);
-    void setRSSI(double rssi);
+    void setMeasure(Real measure);
+    void setRSSI(Real rssi);
 private:
-    const QBeacon*      _beacon;
-    double              _measure;
-    double              _rssi;
+    const QBeacon*          _beacon;
+    Real                    _measure;
+    Real                    _rssi;
 };
 
 inline uint qHash(const QMeasure &f) {

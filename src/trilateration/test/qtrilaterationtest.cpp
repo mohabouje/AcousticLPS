@@ -12,6 +12,25 @@
 #include <QTextStream>
 #include <catch.hpp>
 
+static Point getSolution(int testNumber) {
+    QVector<Point> solutions;
+    QFile file (":/solutions.txt");
+    const bool opened = file.open(QIODevice::ReadOnly);
+    if (opened) {
+        QTextStream in(&file);
+        while (!in.atEnd()) {
+            const QString line = in.readLine();
+            const QStringList coordinates = line.split("\t");
+            Point pos;
+            for (int i=QTrilateration::AxisX; i<QTrilateration::AxisCount; i++) {
+                pos(i) = QString(coordinates.at(i)).toFloat();
+            }
+            solutions.append(pos);
+        }
+    }
+    file.close();
+    return solutions.at(testNumber-1);
+}
 
 static QVector<Point> getBeaconsPosition() {
     QVector<Point> beaconPositions;
@@ -68,8 +87,9 @@ static QVector<QMeasure> getMeasure(const QVector<QBeacon>& beacons, const QVect
 
 SCENARIO("Testing the trilateration algorithm", "[QTrilateration]") {
     GIVEN("A set of beacons & experimental measures") {
+        const int testNumber = 3;
         const QVector<Point> beaconsPosition = getBeaconsPosition();
-        const QVector<float> measuresDistance = getExperimentalMeasure(":/testmeasures_2.txt");
+        const QVector<float> measuresDistance = getExperimentalMeasure(QString(":/testmeasures_%1.txt").arg(testNumber));
         const QVector<QBeacon> beacons = getBeacons(beaconsPosition);
         const QVector<QMeasure> measures = getMeasure(beacons, measuresDistance);
 
@@ -77,9 +97,14 @@ SCENARIO("Testing the trilateration algorithm", "[QTrilateration]") {
         QTrilateration* trilateration = new QTrilateration();
 
         WHEN("We set the experimental points") {
+            trilateration->setBeacons(beacons.toList().toSet());
             const bool error =  trilateration->setMeasures(measures);
             THEN("No error is returned") {
                 REQUIRE(!error);
+            }
+            AND_THEN("We have the same measures") {
+                REQUIRE(trilateration->beacons().size() == beacons.size());
+                REQUIRE(trilateration->measures().size() ==  measures.size());
             }
         }
 
@@ -92,7 +117,12 @@ SCENARIO("Testing the trilateration algorithm", "[QTrilateration]") {
                 REQUIRE(errorCode == QTrilateration::NoError);
             }
             AND_THEN("The estimated point is:") {
-
+                const Point point = getSolution(testNumber);
+                const Point sol = trilateration->estimatedPosition();
+                for (int i=QTrilateration::AxisX; i<QTrilateration::AxisZ; i++) {
+                    const Real relError = qAbs((point(i) - sol(i)) / point(i)) * 100;
+                    REQUIRE(relError < 1);
+                }
             }
         }
     }

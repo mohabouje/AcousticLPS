@@ -1,9 +1,8 @@
 #ifndef QBEACON_H
 #define QBEACON_H
+#include "config.h"
 
 #include <QUuid>
-#include <armadillo>
-typedef arma::vec::fixed<3> Point;
 class QBeacon {
 public:
     QBeacon();

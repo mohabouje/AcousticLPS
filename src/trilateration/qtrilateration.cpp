@@ -1,8 +1,5 @@
 #include "qtrilateration.h"
-#define ARMA_DONT_USE_WRAPPER
-#include <armadillo>
 #include <QDebug>
-using namespace arma;
 QTrilateration::QTrilateration()
 {
 
@@ -13,7 +10,7 @@ void QTrilateration::clear() {
     _measures.clear();
 }
 
-QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorithm algorithm) const {
+QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorithm algorithm) {
     if (_beacons.isEmpty()) return EmptyBeacons;
     if (_measures.isEmpty()) return EmptyMeasures;
 
@@ -21,8 +18,6 @@ QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorith
         switch (algorithm) {
         case LinearLeastSquares:
             return solveLinearLeastSquares();
-        case SingularValueDecomposition:
-            return solveSingularValueDecomposition();
         case NonLinearLeastSquares:
             return solveNonLinearLeastSquares();
         default:
@@ -32,7 +27,7 @@ QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorith
 }
 
 
-QTrilateration::Error QTrilateration::solveLinearLeastSquares() const {
+QTrilateration::Error QTrilateration::solveLinearLeastSquares() {
     const int measureCount = _measures.size();
     if (measureCount < MinimumRequiredMeasures) {
         qWarning() << "Not enought measures to use this algorithm.";
@@ -41,49 +36,38 @@ QTrilateration::Error QTrilateration::solveLinearLeastSquares() const {
 
     const int equationCount = measureCount - 1;
     const QMeasure& first = _measures.first();
-    const double refDistance = first.getMeasure();
+    const Real refDistance = first.getMeasure();
     const Point constraint = first.getBeacon()->position();
 
-    fmat A(equationCount, AxisCount, fill::zeros);
-    fvec b(equationCount, fill::zeros);
+    Matrix A(equationCount, AxisCount);
+    Vector b(equationCount);
     for (int i=0; i<equationCount; i++) {
-        const QMeasure& measure = _measures[i+1];
-        const Point coordinates = measure.getBeacon()->position();
-
-        const Point u = coordinates - constraint;
-        float d = 0.0;
+        const Point u = _measures[i+1].getBeacon()->position() - constraint;
+        Real d = 0.0;
         for (int j=AxisX; j<AxisCount; j++) {
-            float diff = u(j);
+            Real diff = u(j);
             A(i,j) = diff;
-            diff *= diff;
-            d += diff;
+            d += (diff *= diff);
+
         }
-
-
-
-        const double distance = measure.getMeasure();
+        const Real distance = _measures[i+1].getMeasure();
         b(i) = 0.5 * (refDistance*refDistance - distance*distance + d);
-        qInfo() << b(i);
     }
 
-    const fvec solution = solve(A, b);
-    const int size = solution.size();
-    for(int i=0; i<size; i++) {
-        qDebug() << (solution(i) + constraint(i));
+    const Vector solution = arma::solve(A, b) ;
+    for (int i=AxisX; i<AxisCount; i++) {
+        _estimatedPosition(i) = solution(i);
     }
+    _estimatedPosition += constraint;
     return NoError;
 }
-QTrilateration::Error QTrilateration::solveSingularValueDecomposition() const {
-    return NoError;
-}
-QTrilateration::Error QTrilateration::solveNonLinearLeastSquares() const {
+
+QTrilateration::Error QTrilateration::solveNonLinearLeastSquares() {
     return NoError;
 }
 
 
-Point QTrilateration::estimatedPosition() const {
-    return _estimatedPosition;
-}
+
 
 void QTrilateration::setBeacons(const QSet<QBeacon> &beacons) {
     _beacons = beacons;

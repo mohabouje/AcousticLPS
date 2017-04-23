@@ -18,11 +18,11 @@ void QMeasure::setBeacon(const QBeacon *beacon) {
     _beacon = beacon;
 }
 
-void QMeasure::setMeasure(double measure) {
+void QMeasure::setMeasure(Real measure) {
     Q_ASSERT_X(measure > 0, __FUNCTION__, "Error: negative measure estimated");
     _measure = measure;
 }
 
-void QMeasure::setRSSI(double rssi) {
+void QMeasure::setRSSI(Real rssi) {
     _rssi = rssi;
 }
