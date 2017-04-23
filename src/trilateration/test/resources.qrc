@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>testdata.txt</file>
+        <file>testmeasures_1.txt</file>
+        <file>testmeasures_2.txt</file>
+        <file>testmeasures_3.txt</file>
+        <file>solutions.txt</file>
     </qresource>
 </RCC>

@@ -7,22 +7,32 @@
 #include <QPair>
 #include <QFile>
 #include <QUrl>
+#include <QString>
+#include <QStringList>
 #include <QTextStream>
 #include <catch.hpp>
 SCENARIO("Testing the trilateration algorithm", "[QTrilateration]") {
     GIVEN("A set of beacons") {
+        QVector<Point> beaconPositions;
+
         QFile file (":/testdata.txt");
         const bool opened = file.open(QIODevice::ReadOnly);
         QTextStream in(&file);
         while (!in.atEnd()) {
           const QString line = in.readLine();
           const QStringList coordinates = line.split("\t");
-          foreach (const QString& coordinate, coordinates) {
-
+          REQUIRE(coordinates.size() == QTrilateration::AxisCount);
+          Point pos;
+          for (int i=QTrilateration::AxisX; i<QTrilateration::AxisCount; i++) {
+              bool ok = false;
+              pos(i) = QString(coordinates.at(i)).toFloat(&ok);
+              REQUIRE(ok);
           }
+          beaconPositions.append(pos);
         }
         file.close();
         REQUIRE(opened);
+        REQUIRE(!beaconPositions.isEmpty());
 
 
 
