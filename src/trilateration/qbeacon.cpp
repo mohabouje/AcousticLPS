@@ -9,7 +9,6 @@ QBeacon QBeacon::createBeacon(const Point &position, int identifier) {
     beacon.setUniversalUniqueIdentifier(QUuid::createUuid());
     beacon.setPosition(position);
     beacon.setIdentifier(identifier);
-    qInfo() << "Current uuid " << beacon.universalUniqueIdentifier();
     return beacon;
 }
 

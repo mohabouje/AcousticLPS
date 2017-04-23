@@ -5,10 +5,10 @@
 class QMeasure {
 public:
     QMeasure();
-    static QMeasure createMeasure(QBeacon* beacon, double distance, double rssi);
-    inline QBeacon *getBeacon() const { return _beacon; }
-    inline double getMeasure() const { return _measure; }
-    inline double getRSSI() const { return _rssi; }
+    static QMeasure createMeasure(const QBeacon* beacon, double distance, double rssi);
+    inline const QBeacon *getBeacon() const { return _beacon; }
+    inline float getMeasure() const { return _measure; }
+    inline float getRSSI() const { return _rssi; }
     inline bool operator<(const QMeasure& entry) const {
         return _measure < entry._measure;
     }
@@ -23,13 +23,13 @@ public:
     inline bool operator!=(const QMeasure& entry) const {
         return !(*this == entry);
     }
-    void setBeacon(QBeacon *beacon);
+    void setBeacon(const QBeacon *beacon);
     void setMeasure(double measure);
     void setRSSI(double rssi);
 private:
-    QBeacon*    _beacon;
-    double      _measure;
-    double      _rssi;
+    const QBeacon*      _beacon;
+    double              _measure;
+    double              _rssi;
 };
 
 inline uint qHash(const QMeasure &f) {

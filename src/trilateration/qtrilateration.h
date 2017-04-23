@@ -38,7 +38,7 @@ public:
     Point   estimatedPosition() const;
 
     void setBeacons(const QSet<QBeacon> &beacons);
-    void setMeasures(const QVector<QMeasure> &measures);
+    bool setMeasures(const QVector<QMeasure> &measures);
 
 private:
     Point             _estimatedPosition;

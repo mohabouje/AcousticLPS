@@ -34,7 +34,7 @@ private:
     int             _identifier;
 };
 
-inline bool operator ==(const Point& a, const Point& b) {
+ inline bool operator ==(const Point& a, const Point& b) {
     return a(0) == b(0) && a(1) == b(1) && a(2) == b(2);
 }
 

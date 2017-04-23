@@ -43,25 +43,34 @@ QTrilateration::Error QTrilateration::solveLinearLeastSquares() const {
     const QMeasure& first = _measures.first();
     const double refDistance = first.getMeasure();
     const Point constraint = first.getBeacon()->position();
-    mat A(equationCount, AxisCount, fill::zeros);
-    vec B(equationCount, fill::zeros);
 
+    fmat A(equationCount, AxisCount, fill::zeros);
+    fvec b(equationCount, fill::zeros);
     for (int i=0; i<equationCount; i++) {
         const QMeasure& measure = _measures[i+1];
         const Point coordinates = measure.getBeacon()->position();
 
-        double euclideanDistance = 0.0;
+        const Point u = coordinates - constraint;
+        float d = 0.0;
         for (int j=AxisX; j<AxisCount; j++) {
-            const double dif = coordinates(j) - constraint(j);
-            A(i,j) = dif;
-            euclideanDistance += dif*dif;
+            float diff = u(j);
+            A(i,j) = diff;
+            diff *= diff;
+            d += diff;
         }
 
+
+
         const double distance = measure.getMeasure();
-        B(i) = 0.5 * (refDistance*refDistance - distance*distance + euclideanDistance);
+        b(i) = 0.5 * (refDistance*refDistance - distance*distance + d);
+        qInfo() << b(i);
     }
 
-    const vec solution = solve(A, B);
+    const fvec solution = solve(A, b);
+    const int size = solution.size();
+    for(int i=0; i<size; i++) {
+        qDebug() << (solution(i) + constraint(i));
+    }
     return NoError;
 }
 QTrilateration::Error QTrilateration::solveSingularValueDecomposition() const {
@@ -80,16 +89,11 @@ void QTrilateration::setBeacons(const QSet<QBeacon> &beacons) {
     _beacons = beacons;
 }
 
-void QTrilateration::setMeasures(const QVector<QMeasure> &measures) {
+bool QTrilateration::setMeasures(const QVector<QMeasure> &measures) {
     _measures = measures;
     const bool removed = removeMeasuresFromUnknownBeacon();
-    if (removed) {
-        qWarning() << "Warning: got measures from unknown beacons";
-    }
     const bool duplicated = removeDuplicatedMeasures();
-    if (duplicated) {
-        qWarning() << "Warning: got different measures for the same beacon";
-    }
+    return removed || duplicated;
 }
 
 
