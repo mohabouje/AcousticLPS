@@ -22,9 +22,31 @@ QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorith
     if (_measures.isEmpty()) return EmptyMeasures;
     if (_measures.size() < MinimumRequiredMeasures) return NotEnoughtMeasure;
 
+    return [&, algorithm]() {
+        switch (algorithm) {
+        case LinearLeastSquares:
+            return solveLinearLeastSquares();
+        case SingularValueDecomposition:
+            return solveSingularValueDecomposition();
+        case NonLinearLeastSquares:
+            return solveNonLinearLeastSquares();
+        default:
+            return Unknown;
+        }
+    }();
+}
 
+
+QTrilateration::Error QTrilateration::solveLinearLeastSquares() const {
     return NoError;
 }
+QTrilateration::Error QTrilateration::solveSingularValueDecomposition() const {
+    return NoError;
+}
+QTrilateration::Error QTrilateration::solveNonLinearLeastSquares() const {
+    return NoError;
+}
+
 
 QPointF QTrilateration::estimatedPosition() const {
     return _estimatedPosition;

@@ -16,7 +16,8 @@ public:
         EmptyMeasures,
         EmptyBeacons,
         NotEnoughtMeasure,
-        InvalidSolution
+        InvalidSolution,
+        Unknown
     };
 
     enum Algorithm {
@@ -43,6 +44,9 @@ private:
 
     bool removeMeasuresFromUnknownBeacon();
     bool removeDuplicatedMeasures();
+    QTrilateration::Error solveNonLinearLeastSquares() const;
+    QTrilateration::Error solveSingularValueDecomposition() const;
+    QTrilateration::Error solveLinearLeastSquares() const;
 };
 
 #endif // QTRILATERATION_H
