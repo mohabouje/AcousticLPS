@@ -21,7 +21,7 @@ SCENARIO("Testing the trilateration algorithm", "[QTrilateration]") {
             DistanceRSSI(15.85, -86.41)
         };
 
-        std::vector<Beacon> beacons;
+       /*std::vector<Beacon> beacons;
         std::vector<BeaconMeas> measures;
         const int size = fixedPosition.size();
         for (int i=0; i<size; i++) {
@@ -30,7 +30,7 @@ SCENARIO("Testing the trilateration algorithm", "[QTrilateration]") {
             beacons.push_back(beacon);
             measures.push_back(measure);
         }
-        QTrilateration* trilateration = new QTrilateration(Q_NULLPTR);
+        QTrilateration* trilateration = new QTrilateration();
         trilateration->fillLocationBeacons(beacons);
         trilateration->updateMeasurements(measures);
 
@@ -44,6 +44,6 @@ SCENARIO("Testing the trilateration algorithm", "[QTrilateration]") {
             AND_THEN("The estimated point is:") {
 
             }
-        }
+        }*/
     }
 }
