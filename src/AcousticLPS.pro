@@ -39,7 +39,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Using Armadillo + OpenBlas for ALgebra operation
 # How to install?  => http://www.uio.no/studier/emner/matnat/fys/FYS4411/v13/guides/installing-armadillo/
-LIBS += -llapack -lblas -larmadillo
+LIBS += -llapack
+LIBS += -lblas
+LIBS += -larmadillo
+
+# Using Ceres for Non Linear Squares solution
+# How to install? install manually tar.gz & then install libceres-dev ubuntu package
+LIBS += -lceres
+INCLUDEPATH += "/usr/include/eigen3/"
 
 # Include de different submodules
 include("./trilateration/trilateration.pri")

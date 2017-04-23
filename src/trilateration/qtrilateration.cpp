@@ -1,4 +1,7 @@
 #include "qtrilateration.h"
+
+#include <ceres/ceres.h>
+#include <ceres/solver.h>
 #include <QDebug>
 QTrilateration::QTrilateration()
 {
@@ -48,7 +51,6 @@ QTrilateration::Error QTrilateration::solveLinearLeastSquares() {
             Real diff = u(j);
             A(i,j) = diff;
             d += (diff *= diff);
-
         }
         const Real distance = _measures[i+1].getMeasure();
         b(i) = 0.5 * (refDistance*refDistance - distance*distance + d);
@@ -64,7 +66,8 @@ QTrilateration::Error QTrilateration::solveLinearLeastSquares() {
 }
 
 QTrilateration::Error QTrilateration::solveNonLinearLeastSquares() {
-
+    ceres::Solver::Options options;
+    ceres::Solver::Summary summary;
 
     return NoError;
 }
