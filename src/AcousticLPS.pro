@@ -37,7 +37,9 @@ FORMS    += mainwindow.ui
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-
+# Using Armadillo + OpenBlas for ALgebra operation
+# How to install?  => http://www.uio.no/studier/emner/matnat/fys/FYS4411/v13/guides/installing-armadillo/
+LIBS += -llapack -lblas -larmadillo
 
 # Include de different submodules
 include("./trilateration/trilateration.pri")
