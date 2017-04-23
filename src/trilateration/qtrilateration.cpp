@@ -54,15 +54,18 @@ QTrilateration::Error QTrilateration::solveLinearLeastSquares() {
         b(i) = 0.5 * (refDistance*refDistance - distance*distance + d);
     }
 
-    const Vector solution = arma::solve(A, b) ;
+    Vector solution;
+    const bool findSolution = arma::solve(solution, A, b) ;
     for (int i=AxisX; i<AxisCount; i++) {
         _estimatedPosition(i) = solution(i);
     }
     _estimatedPosition += constraint;
-    return NoError;
+    return findSolution ? NoError : NotSolution;
 }
 
 QTrilateration::Error QTrilateration::solveNonLinearLeastSquares() {
+
+
     return NoError;
 }
 

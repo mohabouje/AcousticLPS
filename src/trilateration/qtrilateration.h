@@ -9,7 +9,7 @@
 
 class QTrilateration  {
 public:
-    enum Error { NoError = 0, EmptyMeasures, EmptyBeacons, NotEnoughtMeasure, Unknown };
+    enum Error { NoError = 0, EmptyMeasures, EmptyBeacons, NotEnoughtMeasure, NotSolution, Unknown };
     enum CartesianCoordinates { AxisX = 0, AxisY, AxisZ, AxisCount };
     enum Algorithm { LinearLeastSquares = 0, NonLinearLeastSquares };
     static constexpr int MinimumRequiredMeasures{4};
