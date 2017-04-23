@@ -19,6 +19,7 @@ public:
     };
 
     QTrilateration();
+    void clear();
 
     Error   calculatePosition() const;
     QPointF estimatedPosition() const;
@@ -30,7 +31,9 @@ private:
     QPointF         _estimatedPosition;
     QSet<QBeacon>   _beacons;
     QVector<QMeasure>  _measures;
-    QTrilateration::Error removeDuplicatedMeasures();
+
+    Error removeDuplicatedMeasures();
+    bool removeMeasuresFromUnknownBeacon();
 };
 
 #endif // QTRILATERATION_H
