@@ -1,7 +1,8 @@
 #include "qtrilateration.h"
+#define ARMA_DONT_USE_WRAPPER
 #include <armadillo>
-using namespace arma;
 #include <QDebug>
+using namespace arma;
 QTrilateration::QTrilateration()
 {
 
