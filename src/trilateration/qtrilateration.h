@@ -13,27 +13,36 @@ class QTrilateration : public Trilateration
 public:
     enum Error {
         NoError = 0,
-        EmptyBufferData,
-        InvalidBeacon,
-        NotFound
+        EmptyMeasures,
+        EmptyBeacons,
+        NotEnoughtMeasure,
+        InvalidSolution
+    };
+
+    enum Algorithm {
+        LinearLeastSquares = 0,
+        SingularValueDecomposition,
+        NonLinearLeastSquares
     };
 
     QTrilateration();
     void clear();
 
-    Error   calculatePosition() const;
+    Error   calculatePosition(Algorithm algorithm = LinearLeastSquares) const;
     QPointF estimatedPosition() const;
 
     void setBeacons(const QSet<QBeacon> &beacons);
     void setMeasures(const QVector<QMeasure> &measures);
 
 private:
-    QPointF         _estimatedPosition;
-    QSet<QBeacon>   _beacons;
-    QVector<QMeasure>  _measures;
+    QPointF             _estimatedPosition;
+    QSet<QBeacon>       _beacons;
+    QVector<QMeasure>   _measures;
 
-    Error removeDuplicatedMeasures();
+    static const int MinimumRequiredMeasures{3};
+
     bool removeMeasuresFromUnknownBeacon();
+    bool removeDuplicatedMeasures();
 };
 
 #endif // QTRILATERATION_H

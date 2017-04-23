@@ -17,7 +17,12 @@ void QTrilateration::clear() {
     _measures.clear();
 }
 
-QTrilateration::Error QTrilateration::calculatePosition() const {
+QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorithm algorithm) const {
+    if (_beacons.isEmpty()) return EmptyBeacons;
+    if (_measures.isEmpty()) return EmptyMeasures;
+    if (_measures.size() < MinimumRequiredMeasures) return NotEnoughtMeasure;
+
+
     return NoError;
 }
 
@@ -34,6 +39,10 @@ void QTrilateration::setMeasures(const QVector<QMeasure> &measures) {
     const bool removed = removeMeasuresFromUnknownBeacon();
     if (removed) {
         qWarning() << "Warning: got measures from unknown beacons";
+    }
+    const bool duplicated = removeDuplicatedMeasures();
+    if (duplicated) {
+        qWarning() << "Warning: got different measures for the same beacon";
     }
 }
 
@@ -54,11 +63,8 @@ bool QTrilateration::removeMeasuresFromUnknownBeacon() {
 }
 
 
-QTrilateration::Error QTrilateration::removeDuplicatedMeasures() {
-    if (_measures.isEmpty() || _beacons.isEmpty()) {
-        return EmptyBufferData;
-    }
-
+bool QTrilateration::removeDuplicatedMeasures() {
+    bool duplicated = false;
     foreach (const QBeacon& beacon, _beacons) {
         double distance = 0.0, rssi = 0.0;
         const int measureCount = std::count_if(_measures.begin(), _measures.end(), [&](const QMeasure& measure){
@@ -70,10 +76,11 @@ QTrilateration::Error QTrilateration::removeDuplicatedMeasures() {
             return equal;
         });
         if (measureCount > 1) {
+            duplicated = true;
             distance /= measureCount;
             rssi /= measureCount;
 
-            auto comparator = [beacon](const QMeasure& measure) {
+            static auto comparator = [beacon](const QMeasure& measure) {
                 return beacon == *measure.getBeacon();
             };
 
@@ -85,5 +92,5 @@ QTrilateration::Error QTrilateration::removeDuplicatedMeasures() {
             _measures.erase(iterator, _measures.end());
         }
     }
-    return NoError;
+    return duplicated;
 }
