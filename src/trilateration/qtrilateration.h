@@ -6,10 +6,8 @@
 
 #include <QSet>
 #include <QVector>
-#include <trilateration.h>
 
-class QTrilateration : public Trilateration
-{
+class QTrilateration  {
 public:
     enum Error {
         NoError = 0,

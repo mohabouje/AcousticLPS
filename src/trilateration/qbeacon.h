@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QPointF>
 #include <QUuid>
-#include <beacon.h>
 
 class QBeacon {
 public:
