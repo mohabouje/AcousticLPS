@@ -24,21 +24,29 @@ public:
         NonLinearLeastSquares
     };
 
+    enum CartesianCoordinates {
+        AxisX = 0,
+        AxisY,
+        AxisZ,
+        AxisCount
+    };
+
     QTrilateration();
     void clear();
 
     Error   calculatePosition(Algorithm algorithm = LinearLeastSquares) const;
-    QPointF estimatedPosition() const;
+    Point   estimatedPosition() const;
 
     void setBeacons(const QSet<QBeacon> &beacons);
     void setMeasures(const QVector<QMeasure> &measures);
 
 private:
-    QPointF             _estimatedPosition;
+    Point             _estimatedPosition;
     QSet<QBeacon>       _beacons;
     QVector<QMeasure>   _measures;
 
-    static const int MinimumRequiredMeasures{3};
+    static constexpr int MinimumRequiredMeasures{4};
+    static constexpr double DefaultHeight{0.0};
 
     bool removeMeasuresFromUnknownBeacon();
     bool removeDuplicatedMeasures();

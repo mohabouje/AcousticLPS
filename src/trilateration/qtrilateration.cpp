@@ -16,7 +16,6 @@ void QTrilateration::clear() {
 QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorithm algorithm) const {
     if (_beacons.isEmpty()) return EmptyBeacons;
     if (_measures.isEmpty()) return EmptyMeasures;
-    if (_measures.size() < MinimumRequiredMeasures) return NotEnoughtMeasure;
 
     return [&, algorithm]() {
         switch (algorithm) {
@@ -34,27 +33,35 @@ QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorith
 
 
 QTrilateration::Error QTrilateration::solveLinearLeastSquares() const {
-    mat A(5, 5, fill::randu);
-    double x = A(1,2);
+    const int measureCount = _measures.size();
+    if (measureCount < MinimumRequiredMeasures) {
+        qWarning() << "Not enought measures to use this algorithm.";
+        return NotEnoughtMeasure;
+    }
 
-    mat B = A + A;
-    mat C = A * B;
-    mat D = A % B;
+    const int equationCount = measureCount - 1;
+    const QMeasure& first = _measures.first();
+    const double refDistance = first.getMeasure();
+    const Point constraint = first.getBeacon()->position();
+    mat A(equationCount, AxisCount, fill::zeros);
+    vec B(equationCount, fill::zeros);
 
-    cx_mat X(A,B);
+    for (int i=0; i<equationCount; i++) {
+        const QMeasure& measure = _measures[i+1];
+        const Point coordinates = measure.getBeacon()->position();
 
-    B.zeros();
-    B.set_size(10,10);
-    B.ones(5,6);
+        double euclideanDistance = 0.0;
+        for (int j=AxisX; j<AxisCount; j++) {
+            const double dif = coordinates(j) - constraint(j);
+            A(i,j) = dif;
+            euclideanDistance += dif*dif;
+        }
 
-    B.print("B:");
+        const double distance = measure.getMeasure();
+        B(i) = 0.5 * (refDistance*refDistance - distance*distance + euclideanDistance);
+    }
 
-    mat::fixed<5,6> F;
-
-    double aux_mem[24];
-    mat H(&aux_mem[0], 4, 6, false);  // use auxiliary memory
-
-
+    const vec solution = solve(A, B);
     return NoError;
 }
 QTrilateration::Error QTrilateration::solveSingularValueDecomposition() const {
@@ -65,7 +72,7 @@ QTrilateration::Error QTrilateration::solveNonLinearLeastSquares() const {
 }
 
 
-QPointF QTrilateration::estimatedPosition() const {
+Point QTrilateration::estimatedPosition() const {
     return _estimatedPosition;
 }
 
@@ -85,11 +92,6 @@ void QTrilateration::setMeasures(const QVector<QMeasure> &measures) {
     }
 }
 
-inline bool operator ==(QBeacon& a, QBeacon& b) {
-    return a.identifier() == b.identifier()
-            && a.position() == b.position()
-            && a.universalUniqueIdentifier() == b.universalUniqueIdentifier();
-}
 
 bool QTrilateration::removeMeasuresFromUnknownBeacon() {
     auto iterator = std::remove_if(_measures.begin(), _measures.end(), [&](const QMeasure& measure){

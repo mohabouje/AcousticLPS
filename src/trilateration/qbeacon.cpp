@@ -1,19 +1,20 @@
 #include "qbeacon.h"
-
+#include <QDebug>
 QBeacon::QBeacon() {
 
 }
 
-QBeacon QBeacon::createBeacon(const QPointF &position, int identifier) {
+QBeacon QBeacon::createBeacon(const Point &position, int identifier) {
     QBeacon beacon;
     beacon.setUniversalUniqueIdentifier(QUuid::createUuid());
     beacon.setPosition(position);
     beacon.setIdentifier(identifier);
+    qInfo() << "Current uuid " << beacon.universalUniqueIdentifier();
     return beacon;
 }
 
 
-void QBeacon::setPosition(const QPointF &point) {
+void QBeacon::setPosition(const Point &point) {
     _position = point;
 }
 

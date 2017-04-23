@@ -18,7 +18,7 @@ SCENARIO( "Testing the correct behaviour of a beacon", "[QBeacon]" ) {
             }
         }
         WHEN("We set up a generic position") {
-            const QPoint point(qrand(), qrand());
+            const Point point = {0., 1., 2.};
             beacon.setPosition(point);
             THEN("it should be changed to the same") {
                 REQUIRE(beacon.position() == point);
