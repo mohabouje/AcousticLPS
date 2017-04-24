@@ -1,8 +1,6 @@
 #include "qmeasure.h"
 
-QMeasure::QMeasure()
-{
-
+QMeasure::QMeasure() {
 }
 
 QMeasure QMeasure::createMeasure(const QBeacon *beacon, double distance, double rssi) {

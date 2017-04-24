@@ -8,8 +8,8 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 CONFIG += c++11
-#CONFIG += no_testing
-CONFIG += testing
+CONFIG += no_testing
+#CONFIG += testing
 
 
 no_testing {
@@ -41,4 +41,7 @@ LIBS += -llapack -lblas -larmadillo
 
 # Include de different submodules
 include("./trilateration/trilateration.pri")
+
+RESOURCES += \
+    images.qrc
 
