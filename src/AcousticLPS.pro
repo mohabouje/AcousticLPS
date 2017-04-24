@@ -41,6 +41,7 @@ LIBS += -llapack -lblas -larmadillo
 
 # Include de different submodules
 include("./trilateration/trilateration.pri")
+include("./gui/gui.pri")
 
 RESOURCES += \
     images.qrc

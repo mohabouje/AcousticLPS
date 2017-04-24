@@ -432,5 +432,6 @@
         <file>resources/icons/worldwide-1.png</file>
         <file>resources/icons/zoom-in.png</file>
         <file>resources/icons/zoom-out.png</file>
+        <file>resources/icons/drawer.png</file>
     </qresource>
 </RCC>
