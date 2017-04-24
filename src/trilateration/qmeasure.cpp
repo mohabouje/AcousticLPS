@@ -3,6 +3,16 @@
 QMeasure::QMeasure() {
 }
 
+QMeasure::QMeasure(const QMeasure &measure) {
+    _beacon = measure._beacon;
+    _measure = measure._measure;
+    _rssi = measure._rssi;
+}
+
+QMeasure::~QMeasure() {
+    _beacon = nullptr;
+}
+
 QMeasure QMeasure::createMeasure(const QBeacon *beacon, double distance, double rssi) {
     QMeasure measure;
     measure.setBeacon(beacon);

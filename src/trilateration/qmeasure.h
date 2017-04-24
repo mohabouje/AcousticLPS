@@ -2,9 +2,12 @@
 #define QMEASURE_H
 #include "config.h"
 #include "qbeacon.h"
+#include <QMetaType>
 class QMeasure {
 public:
     QMeasure();
+    QMeasure(const QMeasure& measure);
+    ~QMeasure();
     static QMeasure createMeasure(const QBeacon* beacon, double distance, double rssi);
     inline const QBeacon *getBeacon() const { return _beacon; }
     inline Real getMeasure() const { return _measure; }
@@ -31,6 +34,8 @@ private:
     Real                    _measure;
     Real                    _rssi;
 };
+
+Q_DECLARE_METATYPE(QMeasure)
 
 inline uint qHash(const QMeasure &f) {
     return qHash(f.getBeacon()->universalUniqueIdentifier());
