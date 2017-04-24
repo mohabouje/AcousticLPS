@@ -1,7 +1,4 @@
 #include "qtrilateration.h"
-
-#include <ceres/ceres.h>
-#include <ceres/solver.h>
 #include <QDebug>
 QTrilateration::QTrilateration()
 {
@@ -66,9 +63,6 @@ QTrilateration::Error QTrilateration::solveLinearLeastSquares() {
 }
 
 QTrilateration::Error QTrilateration::solveNonLinearLeastSquares() {
-    ceres::Solver::Options options;
-    ceres::Solver::Summary summary;
-
     return NoError;
 }
 
