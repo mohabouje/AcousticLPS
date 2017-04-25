@@ -3,48 +3,48 @@
 #include "config.h"
 #include <QMetaType>
 #include <QUuid>
+#include <QVector3D>
+
+#include <model/model.pb.h>
 class QBeacon {
 public:
     QBeacon();
-    QBeacon(const QBeacon& beacon);
-    ~QBeacon();
     static QBeacon createBeacon(const Point& position, int identifier = 0);
-    inline Point position() const { return _position; }
-    inline QUuid universalUniqueIdentifier() const { return _uuid; }
-    inline int identifier() const { return _identifier; }
-    inline QString name() const { return _name; }
-    inline Real SNR() const { return _SNR; }
+    inline QUuid universalUniqueIdentifier() const {  return QUuid(QString::fromStdString(_beacon->uuid())); }
+    inline int identifier() const { return _beacon->id(); }
+    inline QString name() const { return QString::fromStdString(_beacon->name()); }
+    inline Real SNR() const { return _beacon->snr(); }
+    inline Position position() const {
+        Point* pos = _beacon->mutable_point();
+        return Position({pos->x(), pos->y(), pos->z()});
+    }
     inline bool operator==(const QBeacon& beacon) const {
-        return _identifier == beacon._identifier
-                && _uuid == beacon._uuid;
+        return _beacon->id() == beacon._beacon->id()
+                && _beacon->uuid() == beacon._beacon->uuid();
     }
     inline bool operator!=(const QBeacon& beacon) const {
         return !(*this == beacon);
     }
     inline bool operator<(const QBeacon& beacon) const {
-        return _identifier < beacon._identifier
-                || _uuid < beacon._uuid;
+        return _beacon->id() < beacon._beacon->id()
+                && _beacon->uuid() < beacon._beacon->uuid();
     }
     inline bool operator>(const QBeacon& beacon) const {
         return !(*this < beacon);
     }
-    void setPosition(const Point& point);
+    void setPosition(const Position& point);
     void setUniversalUniqueIdentifier(const QUuid& uuid);
     void setIdentifier(int id);
     void setName(const QString &name);
     void setSNR(const Real &SNR);
 
 private:
-    Point           _position{0,0,0};
-    QUuid           _uuid;
-    int             _identifier{0};
-    Real            _SNR{0};
-    QString         _name;
+    Beacon*         _beacon;
 };
 Q_DECLARE_METATYPE(QBeacon)
 
 inline bool operator ==(const Point& a, const Point& b) {
-    return a(0) == b(0) && a(1) == b(1) && a(2) == b(2);
+    return a.x() == b.x() && a.y() == b.y() && a.z() == b.z();
 }
 
 inline uint qHash(const QBeacon &f) {

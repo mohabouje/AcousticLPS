@@ -1,8 +1,8 @@
 #ifndef HELPER_H
 #define HELPER_H
 
-#include <trilateration/qbeacon.h>
-#include <trilateration/qmeasure.h>
+#include <model/qbeacon.h>
+#include <model/qmeasure.h>
 #include <QModelIndex>
 #include <QIcon>
 

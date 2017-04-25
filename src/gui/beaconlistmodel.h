@@ -1,6 +1,6 @@
 #ifndef BEACONLISTMODEL_H
 #define BEACONLISTMODEL_H
-#include <trilateration/qbeacon.h>
+#include <model/qbeacon.h>
 #include <QAbstractListModel>
 class BeaconListModel : public QAbstractListModel
 {

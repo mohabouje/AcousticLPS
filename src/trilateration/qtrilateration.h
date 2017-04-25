@@ -1,8 +1,8 @@
 #ifndef QTRILATERATION_H
 #define QTRILATERATION_H
 
-#include "qbeacon.h"
-#include "qmeasure.h"
+#include <model/qbeacon.h>
+#include <model/qmeasure.h>
 
 #include <QSet>
 #include <QVector>
@@ -15,7 +15,7 @@ public:
     static constexpr int MinimumRequiredMeasures{4};
 
     QTrilateration();
-    inline Point   estimatedPosition() const { return _estimatedPosition; }
+    inline Position  estimatedPosition() const { return _estimatedPosition; }
     inline const QSet<QBeacon> beacons() const { return _beacons; }
     inline const QVector<QMeasure> measures() const { return _measures; }
 
@@ -24,9 +24,9 @@ public:
     void setBeacons(const QSet<QBeacon> &beacons);
     bool setMeasures(const QVector<QMeasure> &measures);
 private:
-    Point             _estimatedPosition;
-    QSet<QBeacon>       _beacons;
-    QVector<QMeasure>   _measures;
+    Position                _estimatedPosition;
+    QSet<QBeacon>           _beacons;
+    QVector<QMeasure>       _measures;
 
     bool removeMeasuresFromUnknownBeacon();
     bool removeDuplicatedMeasures();

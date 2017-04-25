@@ -1,6 +1,5 @@
 #include "beaconfiltermodel.h"
 #include "helper.h"
-#include <trilateration/qbeacon.h>
 #include <QModelIndex>
 BeaconFilterModel::BeaconFilterModel(QObject *parent) : QSortFilterProxyModel(parent)
 {

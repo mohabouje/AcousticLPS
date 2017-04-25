@@ -37,12 +37,12 @@ QTrilateration::Error QTrilateration::solveLinearLeastSquares() {
     const int equationCount = measureCount - 1;
     const QMeasure& first = _measures.first();
     const Real refDistance = first.getMeasure();
-    const Point constraint = first.getBeacon()->position();
+    const Position constraint = first.getBeacon()->position();
 
     Matrix A(equationCount, AxisCount);
     Vector b(equationCount);
     for (int i=0; i<equationCount; i++) {
-        const Point u = _measures[i+1].getBeacon()->position() - constraint;
+        const Position u = _measures[i+1].getBeacon()->position() - constraint;
         Real d = 0.0;
         for (int j=AxisX; j<AxisCount; j++) {
             Real diff = u(j);

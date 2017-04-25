@@ -12,7 +12,7 @@ static constexpr int CoordinatesCount{3};
 using Real = float;
 using Vector = arma::fvec;
 using Matrix = arma::fmat;
-using Point = arma::vec::fixed<CoordinatesCount>;
+using Position = arma::vec::fixed<CoordinatesCount>;
 #endif
 
 

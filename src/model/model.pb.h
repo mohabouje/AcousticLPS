@@ -239,26 +239,26 @@ class Point : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required uint32 x = 1;
+  // required float x = 1;
   inline bool has_x() const;
   inline void clear_x();
   static const int kXFieldNumber = 1;
-  inline ::google::protobuf::uint32 x() const;
-  inline void set_x(::google::protobuf::uint32 value);
+  inline float x() const;
+  inline void set_x(float value);
 
-  // required uint32 y = 2;
+  // required float y = 2;
   inline bool has_y() const;
   inline void clear_y();
   static const int kYFieldNumber = 2;
-  inline ::google::protobuf::uint32 y() const;
-  inline void set_y(::google::protobuf::uint32 value);
+  inline float y() const;
+  inline void set_y(float value);
 
-  // required uint32 z = 3;
+  // required float z = 3;
   inline bool has_z() const;
   inline void clear_z();
   static const int kZFieldNumber = 3;
-  inline ::google::protobuf::uint32 z() const;
-  inline void set_z(::google::protobuf::uint32 value);
+  inline float z() const;
+  inline void set_z(float value);
 
   // optional string name = 4;
   inline bool has_name() const;
@@ -287,10 +287,10 @@ class Point : public ::google::protobuf::Message {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::google::protobuf::uint32 x_;
-  ::google::protobuf::uint32 y_;
+  float x_;
+  float y_;
   ::std::string* name_;
-  ::google::protobuf::uint32 z_;
+  float z_;
   friend void  protobuf_AddDesc_model_2eproto();
   friend void protobuf_AssignDesc_model_2eproto();
   friend void protobuf_ShutdownFile_model_2eproto();
@@ -668,7 +668,7 @@ Code::mutable_data() {
 
 // Point
 
-// required uint32 x = 1;
+// required float x = 1;
 inline bool Point::has_x() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -679,20 +679,20 @@ inline void Point::clear_has_x() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Point::clear_x() {
-  x_ = 0u;
+  x_ = 0;
   clear_has_x();
 }
-inline ::google::protobuf::uint32 Point::x() const {
+inline float Point::x() const {
   // @@protoc_insertion_point(field_get:Point.x)
   return x_;
 }
-inline void Point::set_x(::google::protobuf::uint32 value) {
+inline void Point::set_x(float value) {
   set_has_x();
   x_ = value;
   // @@protoc_insertion_point(field_set:Point.x)
 }
 
-// required uint32 y = 2;
+// required float y = 2;
 inline bool Point::has_y() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -703,20 +703,20 @@ inline void Point::clear_has_y() {
   _has_bits_[0] &= ~0x00000002u;
 }
 inline void Point::clear_y() {
-  y_ = 0u;
+  y_ = 0;
   clear_has_y();
 }
-inline ::google::protobuf::uint32 Point::y() const {
+inline float Point::y() const {
   // @@protoc_insertion_point(field_get:Point.y)
   return y_;
 }
-inline void Point::set_y(::google::protobuf::uint32 value) {
+inline void Point::set_y(float value) {
   set_has_y();
   y_ = value;
   // @@protoc_insertion_point(field_set:Point.y)
 }
 
-// required uint32 z = 3;
+// required float z = 3;
 inline bool Point::has_z() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -727,14 +727,14 @@ inline void Point::clear_has_z() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void Point::clear_z() {
-  z_ = 0u;
+  z_ = 0;
   clear_has_z();
 }
-inline ::google::protobuf::uint32 Point::z() const {
+inline float Point::z() const {
   // @@protoc_insertion_point(field_get:Point.z)
   return z_;
 }
-inline void Point::set_z(::google::protobuf::uint32 value) {
+inline void Point::set_z(float value) {
   set_has_z();
   z_ = value;
   // @@protoc_insertion_point(field_set:Point.z)

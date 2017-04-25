@@ -161,8 +161,8 @@ void protobuf_AddDesc_model_2eproto() {
     "\n\013model.proto\"i\n\004Code\022\030\n\004type\030\001 \002(\0162\n.Co"
     "de.Type\022\r\n\005order\030\002 \002(\r\022\014\n\004data\030\003 \003(\002\"*\n\004"
     "Type\022\010\n\004Gold\020\000\022\n\n\006Kasami\020\001\022\014\n\010Hadamard\020\002"
-    "\"6\n\005Point\022\t\n\001x\030\001 \002(\r\022\t\n\001y\030\002 \002(\r\022\t\n\001z\030\003 \002"
-    "(\r\022\014\n\004name\030\004 \001(\t\"i\n\006Beacon\022\n\n\002id\030\001 \002(\r\022\014"
+    "\"6\n\005Point\022\t\n\001x\030\001 \002(\002\022\t\n\001y\030\002 \002(\002\022\t\n\001z\030\003 \002"
+    "(\002\022\014\n\004name\030\004 \001(\t\"i\n\006Beacon\022\n\n\002id\030\001 \002(\r\022\014"
     "\n\004uuid\030\002 \002(\t\022\013\n\003snr\030\003 \002(\002\022\025\n\005point\030\004 \002(\013"
     "2\006.Point\022\023\n\004code\030\005 \002(\0132\005.Code\022\014\n\004name\030\006 "
     "\001(\t\"f\n\014Environement\022\n\n\002id\030\001 \002(\r\022\014\n\004name\030"
@@ -562,9 +562,9 @@ Point::Point(const Point& from)
 void Point::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  x_ = 0u;
-  y_ = 0u;
-  z_ = 0u;
+  x_ = 0;
+  y_ = 0;
+  z_ = 0;
   name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -616,7 +616,7 @@ void Point::Clear() {
 
   if (_has_bits_[0 / 32] & 15) {
     ZR_(x_, y_);
-    z_ = 0u;
+    z_ = 0;
     if (has_name()) {
       if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         name_->clear();
@@ -641,41 +641,41 @@ bool Point::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 x = 1;
+      // required float x = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 13) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &x_)));
           set_has_x();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_y;
+        if (input->ExpectTag(21)) goto parse_y;
         break;
       }
 
-      // required uint32 y = 2;
+      // required float y = 2;
       case 2: {
-        if (tag == 16) {
+        if (tag == 21) {
          parse_y:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &y_)));
           set_has_y();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_z;
+        if (input->ExpectTag(29)) goto parse_z;
         break;
       }
 
-      // required uint32 z = 3;
+      // required float z = 3;
       case 3: {
-        if (tag == 24) {
+        if (tag == 29) {
          parse_z:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &z_)));
           set_has_z();
         } else {
@@ -727,19 +727,19 @@ failure:
 void Point::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Point)
-  // required uint32 x = 1;
+  // required float x = 1;
   if (has_x()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->x(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(1, this->x(), output);
   }
 
-  // required uint32 y = 2;
+  // required float y = 2;
   if (has_y()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->y(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(2, this->y(), output);
   }
 
-  // required uint32 z = 3;
+  // required float z = 3;
   if (has_z()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->z(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(3, this->z(), output);
   }
 
   // optional string name = 4;
@@ -762,19 +762,19 @@ void Point::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Point::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:Point)
-  // required uint32 x = 1;
+  // required float x = 1;
   if (has_x()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->x(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(1, this->x(), target);
   }
 
-  // required uint32 y = 2;
+  // required float y = 2;
   if (has_y()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->y(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(2, this->y(), target);
   }
 
-  // required uint32 z = 3;
+  // required float z = 3;
   if (has_z()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->z(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(3, this->z(), target);
   }
 
   // optional string name = 4;
@@ -800,25 +800,19 @@ int Point::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required uint32 x = 1;
+    // required float x = 1;
     if (has_x()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->x());
+      total_size += 1 + 4;
     }
 
-    // required uint32 y = 2;
+    // required float y = 2;
     if (has_y()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->y());
+      total_size += 1 + 4;
     }
 
-    // required uint32 z = 3;
+    // required float z = 3;
     if (has_z()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->z());
+      total_size += 1 + 4;
     }
 
     // optional string name = 4;
