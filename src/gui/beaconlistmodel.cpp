@@ -26,9 +26,9 @@ QVariant BeaconListModel::data(const QModelIndex &index, int role) const {
     if (column == StateColumn && role == Qt::DecorationRole) {
         return QVariant::fromValue<QIcon>(SIGNAL_OFF_ICON);
     } else if (column == NameColumn && role == Qt::DisplayRole) {
-        return QVariant::fromValue<QString>(beacon.name());
+        return QVariant::fromValue<QString>(beacon->name());
     } else if (column == SNRColumn && role == Qt::DisplayRole) {
-        return QVariant::fromValue<QString>(QString::number(beacon.SNR()));
+        return QVariant::fromValue<QString>(QString::number(beacon->SNR()));
     } else if (role == Qt::UserRole) {
         return QVariant::fromValue<QBeacon>(beacon);
     } else {

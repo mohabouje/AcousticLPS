@@ -13,7 +13,7 @@ QMeasure::~QMeasure() {
     _beacon = nullptr;
 }
 
-QMeasure QMeasure::createMeasure(const QBeacon *beacon, double distance, double rssi) {
+QMeasure QMeasure::createMeasure(const QBeacon& beacon, double distance, double rssi) {
     QMeasure measure;
     measure.setBeacon(beacon);
     measure.setMeasure(distance);
@@ -21,8 +21,8 @@ QMeasure QMeasure::createMeasure(const QBeacon *beacon, double distance, double 
     return measure;
 }
 
-void QMeasure::setBeacon(const QBeacon *beacon) {
-    Q_ASSERT_X(beacon, __FUNCTION__, "Error: null ptr for measure");
+void QMeasure::setBeacon(const QBeacon& beacon) {
+    Q_ASSERT_X(!beacon.isNull(), __FUNCTION__, "Error: null ptr for measure");
     _beacon = beacon;
 }
 

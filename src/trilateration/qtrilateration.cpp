@@ -83,7 +83,7 @@ bool QTrilateration::setMeasures(const QVector<QMeasure> &measures) {
 
 bool QTrilateration::removeMeasuresFromUnknownBeacon() {
     auto iterator = std::remove_if(_measures.begin(), _measures.end(), [&](const QMeasure& measure){
-        const QBeacon beacon = *measure.getBeacon();
+        const QBeacon beacon = measure.getBeacon();
         return !_beacons.contains(beacon);
     });
     const bool somethingRemoved = iterator != _measures.end();
@@ -97,7 +97,7 @@ bool QTrilateration::removeDuplicatedMeasures() {
     foreach (const QBeacon& beacon, _beacons) {
         double distance = 0.0, rssi = 0.0;
         const int measureCount = std::count_if(_measures.begin(), _measures.end(), [&](const QMeasure& measure){
-            const bool equal = (*measure.getBeacon() == beacon);
+            const bool equal = (measure.getBeacon() == beacon);
             if (equal) {
                 distance += measure.getMeasure();
                 rssi += measure.getRSSI();
@@ -110,7 +110,7 @@ bool QTrilateration::removeDuplicatedMeasures() {
             rssi /= measureCount;
 
             static auto comparator = [beacon](const QMeasure& measure) {
-                return beacon == *measure.getBeacon();
+                return beacon == measure.getBeacon();
             };
 
             QVector<QMeasure>::iterator iterator = std::find_if(_measures.begin(), _measures.end(), comparator);

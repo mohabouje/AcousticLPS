@@ -12,7 +12,7 @@ bool BeaconFilterModel::filterAcceptsRow(int source_row, const QModelIndex &sour
     const QVariant data =  index.data(Qt::UserRole);
     if (data.canConvert<QBeacon>()) {
         const QBeacon beacon = data.value<QBeacon>();
-        return beacon.name().contains(_nameFilter);
+        return beacon->name().contains(_nameFilter);
     }
     return false;
 }
@@ -22,13 +22,13 @@ bool BeaconFilterModel::lessThan(const QModelIndex &source_right, const QModelIn
     const QBeacon leftBeacon = Gui::qBeaconFromQModelIndex(source_left);
     switch (_currentSort) {
     case SortByUuid:
-        return rightBeacon.universalUniqueIdentifier() < leftBeacon.universalUniqueIdentifier();
+        return rightBeacon->universalUniqueIdentifier() < leftBeacon->universalUniqueIdentifier();
     case SortByName:
-        return rightBeacon.name() < leftBeacon.name();
+        return rightBeacon->name() < leftBeacon->name();
     case SortByIdentifier:
-        return rightBeacon.identifier() < leftBeacon.identifier();
+        return rightBeacon->identifier() < leftBeacon->identifier();
     case SortBySNR:
-        return rightBeacon.SNR() < leftBeacon.SNR();
+        return rightBeacon->SNR() < leftBeacon->SNR();
     default:
        return true;
     }

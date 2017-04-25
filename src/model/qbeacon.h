@@ -3,13 +3,14 @@
 #include "config.h"
 #include <QMetaType>
 #include <QUuid>
-#include <QVector3D>
+#include <QSharedPointer>
 
 #include <model/model.pb.h>
-class QBeacon {
+
+class BeaconWrapper {
 public:
-    QBeacon();
-    static QBeacon createBeacon(const Point& position, int identifier = 0);
+    BeaconWrapper() {}
+    BeaconWrapper(Beacon* beacon);
     inline QUuid universalUniqueIdentifier() const {  return QUuid(QString::fromStdString(_beacon->uuid())); }
     inline int identifier() const { return _beacon->id(); }
     inline QString name() const { return QString::fromStdString(_beacon->name()); }
@@ -18,18 +19,18 @@ public:
         Point* pos = _beacon->mutable_point();
         return Position({pos->x(), pos->y(), pos->z()});
     }
-    inline bool operator==(const QBeacon& beacon) const {
+    inline bool operator==(const BeaconWrapper& beacon) const {
         return _beacon->id() == beacon._beacon->id()
                 && _beacon->uuid() == beacon._beacon->uuid();
     }
-    inline bool operator!=(const QBeacon& beacon) const {
+    inline bool operator!=(const BeaconWrapper& beacon) const {
         return !(*this == beacon);
     }
-    inline bool operator<(const QBeacon& beacon) const {
+    inline bool operator<(const BeaconWrapper& beacon) const {
         return _beacon->id() < beacon._beacon->id()
                 && _beacon->uuid() < beacon._beacon->uuid();
     }
-    inline bool operator>(const QBeacon& beacon) const {
+    inline bool operator>(const BeaconWrapper& beacon) const {
         return !(*this < beacon);
     }
     void setPosition(const Position& point);
@@ -41,6 +42,7 @@ public:
 private:
     Beacon*         _beacon;
 };
+typedef QSharedPointer<BeaconWrapper> QBeacon;
 Q_DECLARE_METATYPE(QBeacon)
 
 inline bool operator ==(const Point& a, const Point& b) {
@@ -48,7 +50,7 @@ inline bool operator ==(const Point& a, const Point& b) {
 }
 
 inline uint qHash(const QBeacon &f) {
-    return qHash(f.universalUniqueIdentifier());
+    return qHash(f->universalUniqueIdentifier());
 }
 
 #endif // QBEACON_H

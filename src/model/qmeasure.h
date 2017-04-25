@@ -8,8 +8,8 @@ public:
     QMeasure();
     QMeasure(const QMeasure& measure);
     ~QMeasure();
-    static QMeasure createMeasure(const QBeacon* beacon, double distance, double rssi);
-    inline const QBeacon *getBeacon() const { return _beacon; }
+    static QMeasure createMeasure(const QBeacon& beacon, double distance, double rssi);
+    inline QBeacon getBeacon() const { return _beacon; }
     inline Real getMeasure() const { return _measure; }
     inline Real getRSSI() const { return _rssi; }
     inline bool operator<(const QMeasure& entry) const {
@@ -26,13 +26,13 @@ public:
     inline bool operator!=(const QMeasure& entry) const {
         return !(*this == entry);
     }
-    void setBeacon(const QBeacon *beacon);
+    void setBeacon(const QBeacon& beacon);
     void setMeasure(Real measure);
     void setRSSI(Real rssi);
 private:
-    const QBeacon*          _beacon;
-    Real                    _measure;
-    Real                    _rssi;
+    QBeacon         _beacon;
+    Real            _measure;
+    Real            _rssi;
 };
 
 Q_DECLARE_METATYPE(QMeasure)
