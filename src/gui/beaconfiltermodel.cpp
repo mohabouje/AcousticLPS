@@ -7,6 +7,7 @@ BeaconFilterModel::BeaconFilterModel(QObject *parent) : QSortFilterProxyModel(pa
 
 }
 
+
 bool BeaconFilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const {
     const QModelIndex index = sourceModel()->index(source_row, 0, source_parent);
     const QVariant data =  index.data(Qt::UserRole);

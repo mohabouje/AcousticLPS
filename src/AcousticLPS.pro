@@ -44,12 +44,13 @@ LIBS += -llapack -lblas -larmadillo
 
 # Using QWT to mathematical graphics.
 LIBS += -L$$PWD/../../../../../../usr/local/qwt-6.1.3/lib/ -lqwt
-INCLUDEPATH += $$PWD/../../../../../../usr/local/qwt-6.1.3include
+INCLUDEPATH += $$PWD/../../../../../../usr/local/qwt-6.1.3/include
 DEPENDPATH += $$PWD/../../../../../../usr/local/qwt-6.1.3/include
 CONFIG += qwt
 
 # Using protocol buffers to export/import configurations.
 LIBS += -lprotobuf
+QMAKE_CFLAGS += protobuf
 
 # Include de different submodules
 include("./trilateration/trilateration.pri")

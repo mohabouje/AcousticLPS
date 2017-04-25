@@ -1,7 +1,7 @@
 HEADERS += \
     $$PWD/model.pb.h \
-    $$PWD/datamodel.h
+    $$PWD/qenvironement.h
 
 SOURCES += \
     $$PWD/model.pb.cc \
-    $$PWD/datamodel.cpp
+    $$PWD/qenvironement.cpp

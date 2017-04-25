@@ -79,7 +79,7 @@ void protobuf_AssignDesc_model_2eproto() {
       sizeof(Point));
   Beacon_descriptor_ = file->message_type(2);
   static const int Beacon_offsets_[6] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, identifier_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, uuid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, snr_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, point_),
@@ -99,8 +99,8 @@ void protobuf_AssignDesc_model_2eproto() {
       sizeof(Beacon));
   Environement_descriptor_ = file->message_type(3);
   static const int Environement_offsets_[5] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, identifier_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, uuid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, id_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, latitude_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, longitud_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, beacons_),
@@ -162,13 +162,12 @@ void protobuf_AddDesc_model_2eproto() {
     "de.Type\022\r\n\005order\030\002 \002(\r\022\014\n\004data\030\003 \003(\002\"*\n\004"
     "Type\022\010\n\004Gold\020\000\022\n\n\006Kasami\020\001\022\014\n\010Hadamard\020\002"
     "\"6\n\005Point\022\t\n\001x\030\001 \002(\r\022\t\n\001y\030\002 \002(\r\022\t\n\001z\030\003 \002"
-    "(\r\022\014\n\004name\030\004 \001(\t\"q\n\006Beacon\022\022\n\nidentifier"
-    "\030\001 \002(\r\022\014\n\004uuid\030\002 \002(\t\022\013\n\003snr\030\003 \002(\002\022\025\n\005poi"
-    "nt\030\004 \002(\0132\006.Point\022\023\n\004code\030\005 \002(\0132\005.Code\022\014\n"
-    "\004name\030\006 \001(\t\"n\n\014Environement\022\022\n\nidentifie"
-    "r\030\001 \002(\r\022\014\n\004uuid\030\002 \002(\t\022\020\n\010latitude\030\003 \002(\t\022"
-    "\020\n\010longitud\030\004 \002(\t\022\030\n\007beacons\030\005 \003(\0132\007.Bea"
-    "con", 403);
+    "(\r\022\014\n\004name\030\004 \001(\t\"i\n\006Beacon\022\n\n\002id\030\001 \002(\r\022\014"
+    "\n\004uuid\030\002 \002(\t\022\013\n\003snr\030\003 \002(\002\022\025\n\005point\030\004 \002(\013"
+    "2\006.Point\022\023\n\004code\030\005 \002(\0132\005.Code\022\014\n\004name\030\006 "
+    "\001(\t\"f\n\014Environement\022\n\n\002id\030\001 \002(\r\022\014\n\004name\030"
+    "\002 \002(\t\022\020\n\010latitude\030\003 \002(\t\022\020\n\010longitud\030\004 \002("
+    "\t\022\030\n\007beacons\030\005 \003(\0132\007.Beacon", 387);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "model.proto", &protobuf_RegisterTypes);
   Code::default_instance_ = new Code();
@@ -914,7 +913,7 @@ void Point::Swap(Point* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Beacon::kIdentifierFieldNumber;
+const int Beacon::kIdFieldNumber;
 const int Beacon::kUuidFieldNumber;
 const int Beacon::kSnrFieldNumber;
 const int Beacon::kPointFieldNumber;
@@ -943,7 +942,7 @@ Beacon::Beacon(const Beacon& from)
 void Beacon::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  identifier_ = 0u;
+  id_ = 0u;
   uuid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   snr_ = 0;
   point_ = NULL;
@@ -1003,7 +1002,7 @@ void Beacon::Clear() {
   } while (0)
 
   if (_has_bits_[0 / 32] & 63) {
-    ZR_(identifier_, snr_);
+    ZR_(id_, snr_);
     if (has_uuid()) {
       if (uuid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         uuid_->clear();
@@ -1039,13 +1038,13 @@ bool Beacon::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 identifier = 1;
+      // required uint32 id = 1;
       case 1: {
         if (tag == 8) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &identifier_)));
-          set_has_identifier();
+                 input, &id_)));
+          set_has_id();
         } else {
           goto handle_unusual;
         }
@@ -1153,9 +1152,9 @@ failure:
 void Beacon::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Beacon)
-  // required uint32 identifier = 1;
-  if (has_identifier()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->identifier(), output);
+  // required uint32 id = 1;
+  if (has_id()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
   }
 
   // required string uuid = 2;
@@ -1205,9 +1204,9 @@ void Beacon::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Beacon::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:Beacon)
-  // required uint32 identifier = 1;
-  if (has_identifier()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->identifier(), target);
+  // required uint32 id = 1;
+  if (has_id()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->id(), target);
   }
 
   // required string uuid = 2;
@@ -1263,11 +1262,11 @@ int Beacon::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required uint32 identifier = 1;
-    if (has_identifier()) {
+    // required uint32 id = 1;
+    if (has_id()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->identifier());
+          this->id());
     }
 
     // required string uuid = 2;
@@ -1330,8 +1329,8 @@ void Beacon::MergeFrom(const ::google::protobuf::Message& from) {
 void Beacon::MergeFrom(const Beacon& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_identifier()) {
-      set_identifier(from.identifier());
+    if (from.has_id()) {
+      set_id(from.id());
     }
     if (from.has_uuid()) {
       set_uuid(from.uuid());
@@ -1378,7 +1377,7 @@ bool Beacon::IsInitialized() const {
 
 void Beacon::Swap(Beacon* other) {
   if (other != this) {
-    std::swap(identifier_, other->identifier_);
+    std::swap(id_, other->id_);
     std::swap(uuid_, other->uuid_);
     std::swap(snr_, other->snr_);
     std::swap(point_, other->point_);
@@ -1402,8 +1401,8 @@ void Beacon::Swap(Beacon* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Environement::kIdentifierFieldNumber;
-const int Environement::kUuidFieldNumber;
+const int Environement::kIdFieldNumber;
+const int Environement::kNameFieldNumber;
 const int Environement::kLatitudeFieldNumber;
 const int Environement::kLongitudFieldNumber;
 const int Environement::kBeaconsFieldNumber;
@@ -1428,8 +1427,8 @@ Environement::Environement(const Environement& from)
 void Environement::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  identifier_ = 0u;
-  uuid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  id_ = 0u;
+  name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   latitude_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   longitud_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1441,8 +1440,8 @@ Environement::~Environement() {
 }
 
 void Environement::SharedDtor() {
-  if (uuid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete uuid_;
+  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete name_;
   }
   if (latitude_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete latitude_;
@@ -1477,10 +1476,10 @@ Environement* Environement::New() const {
 
 void Environement::Clear() {
   if (_has_bits_[0 / 32] & 15) {
-    identifier_ = 0u;
-    if (has_uuid()) {
-      if (uuid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        uuid_->clear();
+    id_ = 0u;
+    if (has_name()) {
+      if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        name_->clear();
       }
     }
     if (has_latitude()) {
@@ -1509,30 +1508,30 @@ bool Environement::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint32 identifier = 1;
+      // required uint32 id = 1;
       case 1: {
         if (tag == 8) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &identifier_)));
-          set_has_identifier();
+                 input, &id_)));
+          set_has_id();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_uuid;
+        if (input->ExpectTag(18)) goto parse_name;
         break;
       }
 
-      // required string uuid = 2;
+      // required string name = 2;
       case 2: {
         if (tag == 18) {
-         parse_uuid:
+         parse_name:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_uuid()));
+                input, this->mutable_name()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->uuid().data(), this->uuid().length(),
+            this->name().data(), this->name().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
-            "uuid");
+            "name");
         } else {
           goto handle_unusual;
         }
@@ -1613,19 +1612,19 @@ failure:
 void Environement::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Environement)
-  // required uint32 identifier = 1;
-  if (has_identifier()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->identifier(), output);
+  // required uint32 id = 1;
+  if (has_id()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
   }
 
-  // required string uuid = 2;
-  if (has_uuid()) {
+  // required string name = 2;
+  if (has_name()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->uuid().data(), this->uuid().length(),
+      this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "uuid");
+      "name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->uuid(), output);
+      2, this->name(), output);
   }
 
   // required string latitude = 3;
@@ -1664,20 +1663,20 @@ void Environement::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Environement::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:Environement)
-  // required uint32 identifier = 1;
-  if (has_identifier()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->identifier(), target);
+  // required uint32 id = 1;
+  if (has_id()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->id(), target);
   }
 
-  // required string uuid = 2;
-  if (has_uuid()) {
+  // required string name = 2;
+  if (has_name()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->uuid().data(), this->uuid().length(),
+      this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "uuid");
+      "name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->uuid(), target);
+        2, this->name(), target);
   }
 
   // required string latitude = 3;
@@ -1721,18 +1720,18 @@ int Environement::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required uint32 identifier = 1;
-    if (has_identifier()) {
+    // required uint32 id = 1;
+    if (has_id()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->identifier());
+          this->id());
     }
 
-    // required string uuid = 2;
-    if (has_uuid()) {
+    // required string name = 2;
+    if (has_name()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->uuid());
+          this->name());
     }
 
     // required string latitude = 3;
@@ -1785,11 +1784,11 @@ void Environement::MergeFrom(const Environement& from) {
   GOOGLE_CHECK_NE(&from, this);
   beacons_.MergeFrom(from.beacons_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_identifier()) {
-      set_identifier(from.identifier());
+    if (from.has_id()) {
+      set_id(from.id());
     }
-    if (from.has_uuid()) {
-      set_uuid(from.uuid());
+    if (from.has_name()) {
+      set_name(from.name());
     }
     if (from.has_latitude()) {
       set_latitude(from.latitude());
@@ -1822,8 +1821,8 @@ bool Environement::IsInitialized() const {
 
 void Environement::Swap(Environement* other) {
   if (other != this) {
-    std::swap(identifier_, other->identifier_);
-    std::swap(uuid_, other->uuid_);
+    std::swap(id_, other->id_);
+    std::swap(name_, other->name_);
     std::swap(latitude_, other->latitude_);
     std::swap(longitud_, other->longitud_);
     beacons_.Swap(&other->beacons_);

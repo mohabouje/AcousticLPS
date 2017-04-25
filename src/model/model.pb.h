@@ -353,12 +353,12 @@ class Beacon : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required uint32 identifier = 1;
-  inline bool has_identifier() const;
-  inline void clear_identifier();
-  static const int kIdentifierFieldNumber = 1;
-  inline ::google::protobuf::uint32 identifier() const;
-  inline void set_identifier(::google::protobuf::uint32 value);
+  // required uint32 id = 1;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 id() const;
+  inline void set_id(::google::protobuf::uint32 value);
 
   // required string uuid = 2;
   inline bool has_uuid() const;
@@ -411,8 +411,8 @@ class Beacon : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:Beacon)
  private:
-  inline void set_has_identifier();
-  inline void clear_has_identifier();
+  inline void set_has_id();
+  inline void clear_has_id();
   inline void set_has_uuid();
   inline void clear_has_uuid();
   inline void set_has_snr();
@@ -429,7 +429,7 @@ class Beacon : public ::google::protobuf::Message {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::std::string* uuid_;
-  ::google::protobuf::uint32 identifier_;
+  ::google::protobuf::uint32 id_;
   float snr_;
   ::Point* point_;
   ::Code* code_;
@@ -496,24 +496,24 @@ class Environement : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required uint32 identifier = 1;
-  inline bool has_identifier() const;
-  inline void clear_identifier();
-  static const int kIdentifierFieldNumber = 1;
-  inline ::google::protobuf::uint32 identifier() const;
-  inline void set_identifier(::google::protobuf::uint32 value);
+  // required uint32 id = 1;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 id() const;
+  inline void set_id(::google::protobuf::uint32 value);
 
-  // required string uuid = 2;
-  inline bool has_uuid() const;
-  inline void clear_uuid();
-  static const int kUuidFieldNumber = 2;
-  inline const ::std::string& uuid() const;
-  inline void set_uuid(const ::std::string& value);
-  inline void set_uuid(const char* value);
-  inline void set_uuid(const char* value, size_t size);
-  inline ::std::string* mutable_uuid();
-  inline ::std::string* release_uuid();
-  inline void set_allocated_uuid(::std::string* uuid);
+  // required string name = 2;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 2;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  inline ::std::string* release_name();
+  inline void set_allocated_name(::std::string* name);
 
   // required string latitude = 3;
   inline bool has_latitude() const;
@@ -553,10 +553,10 @@ class Environement : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:Environement)
  private:
-  inline void set_has_identifier();
-  inline void clear_has_identifier();
-  inline void set_has_uuid();
-  inline void clear_has_uuid();
+  inline void set_has_id();
+  inline void clear_has_id();
+  inline void set_has_name();
+  inline void clear_has_name();
   inline void set_has_latitude();
   inline void clear_has_latitude();
   inline void set_has_longitud();
@@ -566,11 +566,11 @@ class Environement : public ::google::protobuf::Message {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
-  ::std::string* uuid_;
+  ::std::string* name_;
   ::std::string* latitude_;
   ::std::string* longitud_;
   ::google::protobuf::RepeatedPtrField< ::Beacon > beacons_;
-  ::google::protobuf::uint32 identifier_;
+  ::google::protobuf::uint32 id_;
   friend void  protobuf_AddDesc_model_2eproto();
   friend void protobuf_AssignDesc_model_2eproto();
   friend void protobuf_ShutdownFile_model_2eproto();
@@ -820,28 +820,28 @@ inline void Point::set_allocated_name(::std::string* name) {
 
 // Beacon
 
-// required uint32 identifier = 1;
-inline bool Beacon::has_identifier() const {
+// required uint32 id = 1;
+inline bool Beacon::has_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Beacon::set_has_identifier() {
+inline void Beacon::set_has_id() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void Beacon::clear_has_identifier() {
+inline void Beacon::clear_has_id() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void Beacon::clear_identifier() {
-  identifier_ = 0u;
-  clear_has_identifier();
+inline void Beacon::clear_id() {
+  id_ = 0u;
+  clear_has_id();
 }
-inline ::google::protobuf::uint32 Beacon::identifier() const {
-  // @@protoc_insertion_point(field_get:Beacon.identifier)
-  return identifier_;
+inline ::google::protobuf::uint32 Beacon::id() const {
+  // @@protoc_insertion_point(field_get:Beacon.id)
+  return id_;
 }
-inline void Beacon::set_identifier(::google::protobuf::uint32 value) {
-  set_has_identifier();
-  identifier_ = value;
-  // @@protoc_insertion_point(field_set:Beacon.identifier)
+inline void Beacon::set_id(::google::protobuf::uint32 value) {
+  set_has_id();
+  id_ = value;
+  // @@protoc_insertion_point(field_set:Beacon.id)
 }
 
 // required string uuid = 2;
@@ -1106,104 +1106,104 @@ inline void Beacon::set_allocated_name(::std::string* name) {
 
 // Environement
 
-// required uint32 identifier = 1;
-inline bool Environement::has_identifier() const {
+// required uint32 id = 1;
+inline bool Environement::has_id() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Environement::set_has_identifier() {
+inline void Environement::set_has_id() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void Environement::clear_has_identifier() {
+inline void Environement::clear_has_id() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void Environement::clear_identifier() {
-  identifier_ = 0u;
-  clear_has_identifier();
+inline void Environement::clear_id() {
+  id_ = 0u;
+  clear_has_id();
 }
-inline ::google::protobuf::uint32 Environement::identifier() const {
-  // @@protoc_insertion_point(field_get:Environement.identifier)
-  return identifier_;
+inline ::google::protobuf::uint32 Environement::id() const {
+  // @@protoc_insertion_point(field_get:Environement.id)
+  return id_;
 }
-inline void Environement::set_identifier(::google::protobuf::uint32 value) {
-  set_has_identifier();
-  identifier_ = value;
-  // @@protoc_insertion_point(field_set:Environement.identifier)
+inline void Environement::set_id(::google::protobuf::uint32 value) {
+  set_has_id();
+  id_ = value;
+  // @@protoc_insertion_point(field_set:Environement.id)
 }
 
-// required string uuid = 2;
-inline bool Environement::has_uuid() const {
+// required string name = 2;
+inline bool Environement::has_name() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void Environement::set_has_uuid() {
+inline void Environement::set_has_name() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void Environement::clear_has_uuid() {
+inline void Environement::clear_has_name() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void Environement::clear_uuid() {
-  if (uuid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    uuid_->clear();
+inline void Environement::clear_name() {
+  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_->clear();
   }
-  clear_has_uuid();
+  clear_has_name();
 }
-inline const ::std::string& Environement::uuid() const {
-  // @@protoc_insertion_point(field_get:Environement.uuid)
-  return *uuid_;
+inline const ::std::string& Environement::name() const {
+  // @@protoc_insertion_point(field_get:Environement.name)
+  return *name_;
 }
-inline void Environement::set_uuid(const ::std::string& value) {
-  set_has_uuid();
-  if (uuid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    uuid_ = new ::std::string;
+inline void Environement::set_name(const ::std::string& value) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_ = new ::std::string;
   }
-  uuid_->assign(value);
-  // @@protoc_insertion_point(field_set:Environement.uuid)
+  name_->assign(value);
+  // @@protoc_insertion_point(field_set:Environement.name)
 }
-inline void Environement::set_uuid(const char* value) {
-  set_has_uuid();
-  if (uuid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    uuid_ = new ::std::string;
+inline void Environement::set_name(const char* value) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_ = new ::std::string;
   }
-  uuid_->assign(value);
-  // @@protoc_insertion_point(field_set_char:Environement.uuid)
+  name_->assign(value);
+  // @@protoc_insertion_point(field_set_char:Environement.name)
 }
-inline void Environement::set_uuid(const char* value, size_t size) {
-  set_has_uuid();
-  if (uuid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    uuid_ = new ::std::string;
+inline void Environement::set_name(const char* value, size_t size) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_ = new ::std::string;
   }
-  uuid_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Environement.uuid)
+  name_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:Environement.name)
 }
-inline ::std::string* Environement::mutable_uuid() {
-  set_has_uuid();
-  if (uuid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    uuid_ = new ::std::string;
+inline ::std::string* Environement::mutable_name() {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    name_ = new ::std::string;
   }
-  // @@protoc_insertion_point(field_mutable:Environement.uuid)
-  return uuid_;
+  // @@protoc_insertion_point(field_mutable:Environement.name)
+  return name_;
 }
-inline ::std::string* Environement::release_uuid() {
-  clear_has_uuid();
-  if (uuid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+inline ::std::string* Environement::release_name() {
+  clear_has_name();
+  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     return NULL;
   } else {
-    ::std::string* temp = uuid_;
-    uuid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    ::std::string* temp = name_;
+    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
     return temp;
   }
 }
-inline void Environement::set_allocated_uuid(::std::string* uuid) {
-  if (uuid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete uuid_;
+inline void Environement::set_allocated_name(::std::string* name) {
+  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete name_;
   }
-  if (uuid) {
-    set_has_uuid();
-    uuid_ = uuid;
+  if (name) {
+    set_has_name();
+    name_ = name;
   } else {
-    clear_has_uuid();
-    uuid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    clear_has_name();
+    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
-  // @@protoc_insertion_point(field_set_allocated:Environement.uuid)
+  // @@protoc_insertion_point(field_set_allocated:Environement.name)
 }
 
 // required string latitude = 3;

@@ -1,4 +1,5 @@
 #include "beaconlistmodel.h"
+#include "helper.h"
 
 BeaconListModel::BeaconListModel(QObject *parent) : QAbstractListModel(parent) {
 
@@ -20,13 +21,17 @@ void BeaconListModel::insert(const QList<QBeacon> &beacons) {
 
 QVariant BeaconListModel::data(const QModelIndex &index, int role) const {
     const int row = index.row();
+    const int column = index.column();
     const QBeacon beacon = _beacons.at(row);
-    switch (role) {
-    case Qt::DisplayRole:
-        return QVariant::fromValue<QString>(beacon.universalUniqueIdentifier().toString());
-    case Qt::UserRole:
+    if (column == StateColumn && role == Qt::DecorationRole) {
+        return QVariant::fromValue<QIcon>(SIGNAL_OFF_ICON);
+    } else if (column == NameColumn && role == Qt::DisplayRole) {
+        return QVariant::fromValue<QString>(beacon.name());
+    } else if (column == SNRColumn && role == Qt::DisplayRole) {
+        return QVariant::fromValue<QString>(QString::number(beacon.SNR()));
+    } else if (role == Qt::UserRole) {
         return QVariant::fromValue<QBeacon>(beacon);
-    default:
+    } else {
         return QVariant();
     }
 }

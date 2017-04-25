@@ -18,7 +18,7 @@ message Point {
 }
 
 message Beacon {
-	required uint32	identifier = 1;
+	required uint32	id = 1;
  	required string uuid = 2;
 	required float  snr = 3;
 	required Point  point = 4;
@@ -28,8 +28,8 @@ message Beacon {
 
 
 message Environement {
-	required uint32 identifier = 1;
-	required string uuid = 2;
+	required uint32 id = 1;
+	required string name = 2;
 	required string	latitude = 3;
 	required string longitud = 4;
 	repeated Beacon beacons = 5;
