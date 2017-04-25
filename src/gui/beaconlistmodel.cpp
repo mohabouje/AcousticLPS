@@ -1,28 +1,18 @@
 #include "beaconlistmodel.h"
 #include "helper.h"
+#include <model/qenvironement.h>
 
 BeaconListModel::BeaconListModel(QObject *parent) : QAbstractListModel(parent) {
 
 }
 
-bool BeaconListModel::remove(const QBeacon &beacon) {
-    return _beacons.removeAll(beacon) > 0;
-}
-
-void BeaconListModel::insert(const QBeacon &beacon) {
-    if (!_beacons.contains(beacon)) {
-        _beacons.append(beacon);
-    }
-}
-
-void BeaconListModel::insert(const QList<QBeacon> &beacons) {
-    _beacons += beacons;
+int BeaconListModel::rowCount(const QModelIndex &) const {
+    return QEnvironement::instance()->beaconsCount();
 }
 
 QVariant BeaconListModel::data(const QModelIndex &index, int role) const {
-    const int row = index.row();
     const int column = index.column();
-    const QBeacon beacon = _beacons.at(row);
+    const QBeacon beacon = QEnvironement::instance()->beacon(index.row());
     if (column == StateColumn && role == Qt::DecorationRole) {
         return QVariant::fromValue<QIcon>(SIGNAL_OFF_ICON);
     } else if (column == NameColumn && role == Qt::DisplayRole) {

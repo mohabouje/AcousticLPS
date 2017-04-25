@@ -9,10 +9,23 @@ QEnvironement *QEnvironement::instance(QObject *parent) {
     return _instance;
 }
 
+QBeacon QEnvironement::beacon(int index) {
+    Beacon* beacon = _environement->mutable_beacons(index);
+    const QUuid uuid(QString::fromStdString(beacon->uuid()));
+    if (_wrappedBeacons.contains(uuid)) {
+        return _wrappedBeacons.value(uuid);
+    }
+    const QBeacon shared(new BeaconWrapper(beacon));
+    _wrappedBeacons.insert(uuid, shared);
+    return shared;
+}
+
+
 QEnvironement::QEnvironement(QObject *parent) : QObject(parent) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 }
 
 QEnvironement::~QEnvironement() {
     _environement->Clear();
+    _wrappedBeacons.clear();
 }
