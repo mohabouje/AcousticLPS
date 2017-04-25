@@ -60,11 +60,10 @@ void protobuf_AssignDesc_model_2eproto() {
       sizeof(Code));
   Code_Type_descriptor_ = Code_descriptor_->enum_type(0);
   Point_descriptor_ = file->message_type(1);
-  static const int Point_offsets_[4] = {
+  static const int Point_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, x_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, y_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, z_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, name_),
   };
   Point_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -98,12 +97,15 @@ void protobuf_AssignDesc_model_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Beacon));
   Environement_descriptor_ = file->message_type(3);
-  static const int Environement_offsets_[5] = {
+  static const int Environement_offsets_[8] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, latitude_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, longitud_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, beacons_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, width_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, length_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, height_),
   };
   Environement_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -161,13 +163,14 @@ void protobuf_AddDesc_model_2eproto() {
     "\n\013model.proto\"i\n\004Code\022\030\n\004type\030\001 \002(\0162\n.Co"
     "de.Type\022\r\n\005order\030\002 \002(\r\022\014\n\004data\030\003 \003(\002\"*\n\004"
     "Type\022\010\n\004Gold\020\000\022\n\n\006Kasami\020\001\022\014\n\010Hadamard\020\002"
-    "\"6\n\005Point\022\t\n\001x\030\001 \002(\002\022\t\n\001y\030\002 \002(\002\022\t\n\001z\030\003 \002"
-    "(\002\022\014\n\004name\030\004 \001(\t\"i\n\006Beacon\022\n\n\002id\030\001 \002(\r\022\014"
-    "\n\004uuid\030\002 \002(\t\022\013\n\003snr\030\003 \002(\002\022\025\n\005point\030\004 \002(\013"
-    "2\006.Point\022\023\n\004code\030\005 \002(\0132\005.Code\022\014\n\004name\030\006 "
-    "\001(\t\"f\n\014Environement\022\n\n\002id\030\001 \002(\r\022\014\n\004name\030"
-    "\002 \002(\t\022\020\n\010latitude\030\003 \002(\t\022\020\n\010longitud\030\004 \002("
-    "\t\022\030\n\007beacons\030\005 \003(\0132\007.Beacon", 387);
+    "\"(\n\005Point\022\t\n\001x\030\001 \002(\002\022\t\n\001y\030\002 \002(\002\022\t\n\001z\030\003 \002"
+    "(\002\"i\n\006Beacon\022\n\n\002id\030\001 \002(\r\022\014\n\004uuid\030\002 \002(\t\022\013"
+    "\n\003snr\030\003 \002(\002\022\025\n\005point\030\004 \002(\0132\006.Point\022\023\n\004co"
+    "de\030\005 \002(\0132\005.Code\022\014\n\004name\030\006 \001(\t\"\225\001\n\014Enviro"
+    "nement\022\n\n\002id\030\001 \002(\r\022\014\n\004name\030\002 \002(\t\022\020\n\010lati"
+    "tude\030\003 \002(\t\022\020\n\010longitud\030\004 \002(\t\022\030\n\007beacons\030"
+    "\005 \003(\0132\007.Beacon\022\r\n\005width\030\006 \002(\002\022\016\n\006length\030"
+    "\007 \002(\002\022\016\n\006height\030\010 \002(\002", 421);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "model.proto", &protobuf_RegisterTypes);
   Code::default_instance_ = new Code();
@@ -540,7 +543,6 @@ void Code::Swap(Code* other) {
 const int Point::kXFieldNumber;
 const int Point::kYFieldNumber;
 const int Point::kZFieldNumber;
-const int Point::kNameFieldNumber;
 #endif  // !_MSC_VER
 
 Point::Point()
@@ -560,12 +562,10 @@ Point::Point(const Point& from)
 }
 
 void Point::SharedCtor() {
-  ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
   x_ = 0;
   y_ = 0;
   z_ = 0;
-  name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -575,9 +575,6 @@ Point::~Point() {
 }
 
 void Point::SharedDtor() {
-  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete name_;
-  }
   if (this != default_instance_) {
   }
 }
@@ -614,15 +611,7 @@ void Point::Clear() {
     ::memset(&first, 0, n);                                \
   } while (0)
 
-  if (_has_bits_[0 / 32] & 15) {
-    ZR_(x_, y_);
-    z_ = 0;
-    if (has_name()) {
-      if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        name_->clear();
-      }
-    }
-  }
+  ZR_(x_, z_);
 
 #undef OFFSET_OF_FIELD_
 #undef ZR_
@@ -681,23 +670,6 @@ bool Point::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_name;
-        break;
-      }
-
-      // optional string name = 4;
-      case 4: {
-        if (tag == 34) {
-         parse_name:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_name()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->name().data(), this->name().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "name");
-        } else {
-          goto handle_unusual;
-        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -742,16 +714,6 @@ void Point::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteFloat(3, this->z(), output);
   }
 
-  // optional string name = 4;
-  if (has_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "name");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->name(), output);
-  }
-
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -775,17 +737,6 @@ void Point::SerializeWithCachedSizes(
   // required float z = 3;
   if (has_z()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(3, this->z(), target);
-  }
-
-  // optional string name = 4;
-  if (has_name()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "name");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->name(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -813,13 +764,6 @@ int Point::ByteSize() const {
     // required float z = 3;
     if (has_z()) {
       total_size += 1 + 4;
-    }
-
-    // optional string name = 4;
-    if (has_name()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name());
     }
 
   }
@@ -858,9 +802,6 @@ void Point::MergeFrom(const Point& from) {
     if (from.has_z()) {
       set_z(from.z());
     }
-    if (from.has_name()) {
-      set_name(from.name());
-    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -888,7 +829,6 @@ void Point::Swap(Point* other) {
     std::swap(x_, other->x_);
     std::swap(y_, other->y_);
     std::swap(z_, other->z_);
-    std::swap(name_, other->name_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -1400,6 +1340,9 @@ const int Environement::kNameFieldNumber;
 const int Environement::kLatitudeFieldNumber;
 const int Environement::kLongitudFieldNumber;
 const int Environement::kBeaconsFieldNumber;
+const int Environement::kWidthFieldNumber;
+const int Environement::kLengthFieldNumber;
+const int Environement::kHeightFieldNumber;
 #endif  // !_MSC_VER
 
 Environement::Environement()
@@ -1425,6 +1368,9 @@ void Environement::SharedCtor() {
   name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   latitude_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   longitud_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  width_ = 0;
+  length_ = 0;
+  height_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1469,8 +1415,19 @@ Environement* Environement::New() const {
 }
 
 void Environement::Clear() {
-  if (_has_bits_[0 / 32] & 15) {
-    id_ = 0u;
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
+  &reinterpret_cast<Environement*>(16)->f) - \
+   reinterpret_cast<char*>(16))
+
+#define ZR_(first, last) do {                              \
+    size_t f = OFFSET_OF_FIELD_(first);                    \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
+    ::memset(&first, 0, n);                                \
+  } while (0)
+
+  if (_has_bits_[0 / 32] & 239) {
+    ZR_(id_, width_);
+    ZR_(length_, height_);
     if (has_name()) {
       if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         name_->clear();
@@ -1487,6 +1444,10 @@ void Environement::Clear() {
       }
     }
   }
+
+#undef OFFSET_OF_FIELD_
+#undef ZR_
+
   beacons_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -1577,6 +1538,51 @@ bool Environement::MergePartialFromCodedStream(
           goto handle_unusual;
         }
         if (input->ExpectTag(42)) goto parse_beacons;
+        if (input->ExpectTag(53)) goto parse_width;
+        break;
+      }
+
+      // required float width = 6;
+      case 6: {
+        if (tag == 53) {
+         parse_width:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &width_)));
+          set_has_width();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(61)) goto parse_length;
+        break;
+      }
+
+      // required float length = 7;
+      case 7: {
+        if (tag == 61) {
+         parse_length:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &length_)));
+          set_has_length();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(69)) goto parse_height;
+        break;
+      }
+
+      // required float height = 8;
+      case 8: {
+        if (tag == 69) {
+         parse_height:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &height_)));
+          set_has_height();
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -1647,6 +1653,21 @@ void Environement::SerializeWithCachedSizes(
       5, this->beacons(i), output);
   }
 
+  // required float width = 6;
+  if (has_width()) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(6, this->width(), output);
+  }
+
+  // required float length = 7;
+  if (has_length()) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(7, this->length(), output);
+  }
+
+  // required float height = 8;
+  if (has_height()) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(8, this->height(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1702,6 +1723,21 @@ void Environement::SerializeWithCachedSizes(
         5, this->beacons(i), target);
   }
 
+  // required float width = 6;
+  if (has_width()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(6, this->width(), target);
+  }
+
+  // required float length = 7;
+  if (has_length()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(7, this->length(), target);
+  }
+
+  // required float height = 8;
+  if (has_height()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(8, this->height(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -1740,6 +1776,21 @@ int Environement::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->longitud());
+    }
+
+    // required float width = 6;
+    if (has_width()) {
+      total_size += 1 + 4;
+    }
+
+    // required float length = 7;
+    if (has_length()) {
+      total_size += 1 + 4;
+    }
+
+    // required float height = 8;
+    if (has_height()) {
+      total_size += 1 + 4;
     }
 
   }
@@ -1790,6 +1841,15 @@ void Environement::MergeFrom(const Environement& from) {
     if (from.has_longitud()) {
       set_longitud(from.longitud());
     }
+    if (from.has_width()) {
+      set_width(from.width());
+    }
+    if (from.has_length()) {
+      set_length(from.length());
+    }
+    if (from.has_height()) {
+      set_height(from.height());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -1807,7 +1867,7 @@ void Environement::CopyFrom(const Environement& from) {
 }
 
 bool Environement::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
+  if ((_has_bits_[0] & 0x000000ef) != 0x000000ef) return false;
 
   if (!::google::protobuf::internal::AllAreInitialized(this->beacons())) return false;
   return true;
@@ -1820,6 +1880,9 @@ void Environement::Swap(Environement* other) {
     std::swap(latitude_, other->latitude_);
     std::swap(longitud_, other->longitud_);
     beacons_.Swap(&other->beacons_);
+    std::swap(width_, other->width_);
+    std::swap(length_, other->length_);
+    std::swap(height_, other->height_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

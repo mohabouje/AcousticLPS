@@ -105,6 +105,7 @@
      <string>Edit</string>
     </property>
     <addaction name="separator"/>
+    <addaction name="actionEnvironement"/>
     <addaction name="actionPreferences"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -337,6 +338,15 @@
    </property>
    <property name="text">
     <string>Beacons</string>
+   </property>
+  </action>
+  <action name="actionEnvironement">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/resources/icons/edit-1.png</normaloff>:/resources/icons/edit-1.png</iconset>
+   </property>
+   <property name="text">
+    <string>Environement</string>
    </property>
   </action>
  </widget>

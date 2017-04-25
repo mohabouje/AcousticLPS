@@ -9,6 +9,11 @@ QEnvironement *QEnvironement::instance(QObject *parent) {
     return _instance;
 }
 
+QBeacon QEnvironement::addBeacon() {
+    _environement->add_beacons();
+    return beacon(beaconsCount() - 1);
+}
+
 QBeacon QEnvironement::beacon(int index) {
     Beacon* beacon = _environement->mutable_beacons(index);
     const QUuid uuid(QString::fromStdString(beacon->uuid()));

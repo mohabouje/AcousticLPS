@@ -80,11 +80,25 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QToolButton" name="editBeacons">
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../images.qrc">
+          <normaloff>:/resources/icons/edit-1.png</normaloff>:/resources/icons/edit-1.png</iconset>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
    <item>
-    <widget class="QListWidget" name="listWidget"/>
+    <widget class="QTableView" name="tableView"/>
    </item>
   </layout>
  </widget>

@@ -260,18 +260,6 @@ class Point : public ::google::protobuf::Message {
   inline float z() const;
   inline void set_z(float value);
 
-  // optional string name = 4;
-  inline bool has_name() const;
-  inline void clear_name();
-  static const int kNameFieldNumber = 4;
-  inline const ::std::string& name() const;
-  inline void set_name(const ::std::string& value);
-  inline void set_name(const char* value);
-  inline void set_name(const char* value, size_t size);
-  inline ::std::string* mutable_name();
-  inline ::std::string* release_name();
-  inline void set_allocated_name(::std::string* name);
-
   // @@protoc_insertion_point(class_scope:Point)
  private:
   inline void set_has_x();
@@ -280,8 +268,6 @@ class Point : public ::google::protobuf::Message {
   inline void clear_has_y();
   inline void set_has_z();
   inline void clear_has_z();
-  inline void set_has_name();
-  inline void clear_has_name();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -289,7 +275,6 @@ class Point : public ::google::protobuf::Message {
   mutable int _cached_size_;
   float x_;
   float y_;
-  ::std::string* name_;
   float z_;
   friend void  protobuf_AddDesc_model_2eproto();
   friend void protobuf_AssignDesc_model_2eproto();
@@ -551,6 +536,27 @@ class Environement : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::Beacon >*
       mutable_beacons();
 
+  // required float width = 6;
+  inline bool has_width() const;
+  inline void clear_width();
+  static const int kWidthFieldNumber = 6;
+  inline float width() const;
+  inline void set_width(float value);
+
+  // required float length = 7;
+  inline bool has_length() const;
+  inline void clear_length();
+  static const int kLengthFieldNumber = 7;
+  inline float length() const;
+  inline void set_length(float value);
+
+  // required float height = 8;
+  inline bool has_height() const;
+  inline void clear_height();
+  static const int kHeightFieldNumber = 8;
+  inline float height() const;
+  inline void set_height(float value);
+
   // @@protoc_insertion_point(class_scope:Environement)
  private:
   inline void set_has_id();
@@ -561,6 +567,12 @@ class Environement : public ::google::protobuf::Message {
   inline void clear_has_latitude();
   inline void set_has_longitud();
   inline void clear_has_longitud();
+  inline void set_has_width();
+  inline void clear_has_width();
+  inline void set_has_length();
+  inline void clear_has_length();
+  inline void set_has_height();
+  inline void clear_has_height();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -568,9 +580,12 @@ class Environement : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::std::string* name_;
   ::std::string* latitude_;
+  ::google::protobuf::uint32 id_;
+  float width_;
   ::std::string* longitud_;
   ::google::protobuf::RepeatedPtrField< ::Beacon > beacons_;
-  ::google::protobuf::uint32 id_;
+  float length_;
+  float height_;
   friend void  protobuf_AddDesc_model_2eproto();
   friend void protobuf_AssignDesc_model_2eproto();
   friend void protobuf_ShutdownFile_model_2eproto();
@@ -738,82 +753,6 @@ inline void Point::set_z(float value) {
   set_has_z();
   z_ = value;
   // @@protoc_insertion_point(field_set:Point.z)
-}
-
-// optional string name = 4;
-inline bool Point::has_name() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void Point::set_has_name() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void Point::clear_has_name() {
-  _has_bits_[0] &= ~0x00000008u;
-}
-inline void Point::clear_name() {
-  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_->clear();
-  }
-  clear_has_name();
-}
-inline const ::std::string& Point::name() const {
-  // @@protoc_insertion_point(field_get:Point.name)
-  return *name_;
-}
-inline void Point::set_name(const ::std::string& value) {
-  set_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_ = new ::std::string;
-  }
-  name_->assign(value);
-  // @@protoc_insertion_point(field_set:Point.name)
-}
-inline void Point::set_name(const char* value) {
-  set_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_ = new ::std::string;
-  }
-  name_->assign(value);
-  // @@protoc_insertion_point(field_set_char:Point.name)
-}
-inline void Point::set_name(const char* value, size_t size) {
-  set_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_ = new ::std::string;
-  }
-  name_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Point.name)
-}
-inline ::std::string* Point::mutable_name() {
-  set_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    name_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:Point.name)
-  return name_;
-}
-inline ::std::string* Point::release_name() {
-  clear_has_name();
-  if (name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = name_;
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void Point::set_allocated_name(::std::string* name) {
-  if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete name_;
-  }
-  if (name) {
-    set_has_name();
-    name_ = name;
-  } else {
-    clear_has_name();
-    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:Point.name)
 }
 
 // -------------------------------------------------------------------
@@ -1386,6 +1325,78 @@ inline ::google::protobuf::RepeatedPtrField< ::Beacon >*
 Environement::mutable_beacons() {
   // @@protoc_insertion_point(field_mutable_list:Environement.beacons)
   return &beacons_;
+}
+
+// required float width = 6;
+inline bool Environement::has_width() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void Environement::set_has_width() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void Environement::clear_has_width() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void Environement::clear_width() {
+  width_ = 0;
+  clear_has_width();
+}
+inline float Environement::width() const {
+  // @@protoc_insertion_point(field_get:Environement.width)
+  return width_;
+}
+inline void Environement::set_width(float value) {
+  set_has_width();
+  width_ = value;
+  // @@protoc_insertion_point(field_set:Environement.width)
+}
+
+// required float length = 7;
+inline bool Environement::has_length() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void Environement::set_has_length() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void Environement::clear_has_length() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void Environement::clear_length() {
+  length_ = 0;
+  clear_has_length();
+}
+inline float Environement::length() const {
+  // @@protoc_insertion_point(field_get:Environement.length)
+  return length_;
+}
+inline void Environement::set_length(float value) {
+  set_has_length();
+  length_ = value;
+  // @@protoc_insertion_point(field_set:Environement.length)
+}
+
+// required float height = 8;
+inline bool Environement::has_height() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void Environement::set_has_height() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void Environement::clear_has_height() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void Environement::clear_height() {
+  height_ = 0;
+  clear_has_height();
+}
+inline float Environement::height() const {
+  // @@protoc_insertion_point(field_get:Environement.height)
+  return height_;
+}
+inline void Environement::set_height(float value) {
+  set_has_height();
+  height_ = value;
+  // @@protoc_insertion_point(field_set:Environement.height)
 }
 
 

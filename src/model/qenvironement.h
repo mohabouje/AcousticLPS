@@ -15,6 +15,7 @@ public:
     inline QString longitude() const { return QString::fromStdString(_environement->longitud()); }
     inline int beaconsCount() const { return _environement->beacons_size(); }
 
+    QBeacon addBeacon();
     QBeacon beacon(int index);
 private:
     explicit QEnvironement(QObject *parent = 0);

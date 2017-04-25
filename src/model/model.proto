@@ -14,7 +14,6 @@ message Point {
 	required float x = 1;
 	required float y = 2;
 	required float z = 3;
-	optional string name = 4;
 }
 
 message Beacon {
@@ -33,5 +32,7 @@ message Environement {
 	required string	latitude = 3;
 	required string longitud = 4;
 	repeated Beacon beacons = 5;
-
+	required float width = 6;
+	required float length = 7;
+	required float height = 8;
 }

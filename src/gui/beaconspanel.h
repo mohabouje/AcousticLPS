@@ -1,6 +1,9 @@
 #ifndef BEACONSPANEL_H
 #define BEACONSPANEL_H
 
+#include "beaconfiltermodel.h"
+#include "beaconlistmodel.h"
+
 #include <QWidget>
 
 namespace Ui {
@@ -14,9 +17,10 @@ class BeaconsPanel : public QWidget
 public:
     explicit BeaconsPanel(QWidget *parent = 0);
     ~BeaconsPanel();
-
 private:
     Ui::BeaconsPanel *ui;
+    BeaconListModel*    _sourceModel;
+    BeaconFilterModel*  _filterModel;
 };
 
 #endif // BEACONSPANEL_H
