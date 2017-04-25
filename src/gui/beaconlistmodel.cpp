@@ -17,7 +17,7 @@ QVariant BeaconListModel::headerData(int section, Qt::Orientation orientation, i
 
     switch (section) {
     case StateColumn:
-        return tr("State");
+        return tr("");
     case SNRColumn:
         return tr("SNR");
     case NameColumn:
@@ -44,7 +44,7 @@ QVariant BeaconListModel::data(const QModelIndex &index, int role) const {
     const int column = index.column();
     const QBeacon beacon = QEnvironement::instance()->beacon(row);
     if (column == StateColumn && role == Qt::DecorationRole) {
-        return QVariant::fromValue<QIcon>(SIGNAL_OFF_ICON);
+        return QVariant::fromValue<QIcon>(beacon->isEnabled() ? SIGNAL_ON_ICON : SIGNAL_OFF_ICON);
     } else if (column == SNRColumn && role == Qt::DisplayRole) {
         return QVariant::fromValue<QString>(QString::number(beacon->SNR()));
     } else if (column == NameColumn && role == Qt::DisplayRole) {

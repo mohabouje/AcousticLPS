@@ -77,12 +77,13 @@ void protobuf_AssignDesc_model_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Point));
   Beacon_descriptor_ = file->message_type(2);
-  static const int Beacon_offsets_[6] = {
+  static const int Beacon_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, uuid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, snr_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, point_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, code_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, enabled_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, name_),
   };
   Beacon_reflection_ =
@@ -164,13 +165,13 @@ void protobuf_AddDesc_model_2eproto() {
     "de.Type\022\r\n\005order\030\002 \002(\r\022\014\n\004data\030\003 \003(\002\"*\n\004"
     "Type\022\010\n\004Gold\020\000\022\n\n\006Kasami\020\001\022\014\n\010Hadamard\020\002"
     "\"(\n\005Point\022\t\n\001x\030\001 \002(\002\022\t\n\001y\030\002 \002(\002\022\t\n\001z\030\003 \002"
-    "(\002\"i\n\006Beacon\022\n\n\002id\030\001 \002(\r\022\014\n\004uuid\030\002 \002(\t\022\013"
+    "(\002\"z\n\006Beacon\022\n\n\002id\030\001 \002(\r\022\014\n\004uuid\030\002 \002(\t\022\013"
     "\n\003snr\030\003 \002(\002\022\025\n\005point\030\004 \002(\0132\006.Point\022\023\n\004co"
-    "de\030\005 \002(\0132\005.Code\022\014\n\004name\030\006 \001(\t\"\225\001\n\014Enviro"
-    "nement\022\n\n\002id\030\001 \002(\r\022\014\n\004name\030\002 \002(\t\022\020\n\010lati"
-    "tude\030\003 \002(\t\022\020\n\010longitud\030\004 \002(\t\022\030\n\007beacons\030"
-    "\005 \003(\0132\007.Beacon\022\r\n\005width\030\006 \002(\002\022\016\n\006length\030"
-    "\007 \002(\002\022\016\n\006height\030\010 \002(\002", 421);
+    "de\030\005 \002(\0132\005.Code\022\017\n\007enabled\030\006 \002(\010\022\014\n\004name"
+    "\030\007 \001(\t\"\225\001\n\014Environement\022\n\n\002id\030\001 \002(\r\022\014\n\004n"
+    "ame\030\002 \002(\t\022\020\n\010latitude\030\003 \002(\t\022\020\n\010longitud\030"
+    "\004 \002(\t\022\030\n\007beacons\030\005 \003(\0132\007.Beacon\022\r\n\005width"
+    "\030\006 \002(\002\022\016\n\006length\030\007 \002(\002\022\016\n\006height\030\010 \002(\002", 438);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "model.proto", &protobuf_RegisterTypes);
   Code::default_instance_ = new Code();
@@ -852,6 +853,7 @@ const int Beacon::kUuidFieldNumber;
 const int Beacon::kSnrFieldNumber;
 const int Beacon::kPointFieldNumber;
 const int Beacon::kCodeFieldNumber;
+const int Beacon::kEnabledFieldNumber;
 const int Beacon::kNameFieldNumber;
 #endif  // !_MSC_VER
 
@@ -881,6 +883,7 @@ void Beacon::SharedCtor() {
   snr_ = 0;
   point_ = NULL;
   code_ = NULL;
+  enabled_ = false;
   name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -935,7 +938,7 @@ void Beacon::Clear() {
     ::memset(&first, 0, n);                                \
   } while (0)
 
-  if (_has_bits_[0 / 32] & 63) {
+  if (_has_bits_[0 / 32] & 127) {
     ZR_(id_, snr_);
     if (has_uuid()) {
       if (uuid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -948,6 +951,7 @@ void Beacon::Clear() {
     if (has_code()) {
       if (code_ != NULL) code_->::Code::Clear();
     }
+    enabled_ = false;
     if (has_name()) {
       if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         name_->clear();
@@ -1040,13 +1044,28 @@ bool Beacon::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(50)) goto parse_name;
+        if (input->ExpectTag(48)) goto parse_enabled;
         break;
       }
 
-      // optional string name = 6;
+      // required bool enabled = 6;
       case 6: {
-        if (tag == 50) {
+        if (tag == 48) {
+         parse_enabled:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &enabled_)));
+          set_has_enabled();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(58)) goto parse_name;
+        break;
+      }
+
+      // optional string name = 7;
+      case 7: {
+        if (tag == 58) {
          parse_name:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_name()));
@@ -1118,14 +1137,19 @@ void Beacon::SerializeWithCachedSizes(
       5, this->code(), output);
   }
 
-  // optional string name = 6;
+  // required bool enabled = 6;
+  if (has_enabled()) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(6, this->enabled(), output);
+  }
+
+  // optional string name = 7;
   if (has_name()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE,
       "name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      6, this->name(), output);
+      7, this->name(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1173,7 +1197,12 @@ void Beacon::SerializeWithCachedSizes(
         5, this->code(), target);
   }
 
-  // optional string name = 6;
+  // required bool enabled = 6;
+  if (has_enabled()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(6, this->enabled(), target);
+  }
+
+  // optional string name = 7;
   if (has_name()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), this->name().length(),
@@ -1181,7 +1210,7 @@ void Beacon::SerializeWithCachedSizes(
       "name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        6, this->name(), target);
+        7, this->name(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1229,7 +1258,12 @@ int Beacon::ByteSize() const {
           this->code());
     }
 
-    // optional string name = 6;
+    // required bool enabled = 6;
+    if (has_enabled()) {
+      total_size += 1 + 1;
+    }
+
+    // optional string name = 7;
     if (has_name()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1278,6 +1312,9 @@ void Beacon::MergeFrom(const Beacon& from) {
     if (from.has_code()) {
       mutable_code()->::Code::MergeFrom(from.code());
     }
+    if (from.has_enabled()) {
+      set_enabled(from.enabled());
+    }
     if (from.has_name()) {
       set_name(from.name());
     }
@@ -1298,7 +1335,7 @@ void Beacon::CopyFrom(const Beacon& from) {
 }
 
 bool Beacon::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f) return false;
 
   if (has_point()) {
     if (!this->point().IsInitialized()) return false;
@@ -1316,6 +1353,7 @@ void Beacon::Swap(Beacon* other) {
     std::swap(snr_, other->snr_);
     std::swap(point_, other->point_);
     std::swap(code_, other->code_);
+    std::swap(enabled_, other->enabled_);
     std::swap(name_, other->name_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);

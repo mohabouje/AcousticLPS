@@ -14,16 +14,16 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
     ui->setupUi(this);
 
 
-    _filterModel->setSourceModel(_sourceModel);
-    ui->beaconList->resizeColumnsToContents();
-    ui->beaconList->setModel(_filterModel);
-    ui->beaconList->horizontalHeader()->setStretchLastSection(true);
-    ui->beaconList->horizontalHeader()->setStretchLastSection(true);
-    ui->beaconList->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    ui->beaconList->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->beaconList->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->beaconList->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->beaconList->setShowGrid(false);
+    filterModel()->setSourceModel(sourceModel());
+    tableList()->resizeColumnsToContents();
+    tableList()->setModel(filterModel());
+    tableList()->horizontalHeader()->setStretchLastSection(true);
+    tableList()->horizontalHeader()->setStretchLastSection(true);
+    tableList()->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    tableList()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tableList()->setSelectionMode(QAbstractItemView::SingleSelection);
+    tableList()->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tableList()->setShowGrid(false);
 
     connect(ui->stackedWidget, &QStackedWidget::currentChanged, [&](int row) {
         ui->backButton->setEnabled(row == BeaconsEditor);
@@ -67,8 +67,13 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
         beacon->setName(name);
         beacon->setPosition(position);
         beacon->setUniversalUniqueIdentifier(uuid);
-        _filterModel->invalidate();
-        _sourceModel->dataChanged(QModelIndex(), QModelIndex());
+        filterModel()->invalidate();
+
+        ui->beaconName->clear();
+        ui->beaconPosition->clear();
+        ui->beaconUUID->clear();
+
+        ui->nameEdit->setFocus();
     });
 
     ui->stackedWidget->setCurrentIndex(EnvironementEditor);
@@ -82,5 +87,9 @@ QEnvironementEditor::~QEnvironementEditor() {
 
 void QEnvironementEditor::setCurrentStep(QEnvironementEditor::Steps step) {
     ui->stackedWidget->setCurrentIndex(step);
+}
+
+QTableView* QEnvironementEditor::tableList() const {
+    return ui->beaconList;
 }
 

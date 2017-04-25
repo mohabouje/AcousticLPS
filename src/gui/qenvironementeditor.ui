@@ -434,6 +434,21 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>nameEdit</tabstop>
+  <tabstop>latitudeEdit</tabstop>
+  <tabstop>longitudeEdit</tabstop>
+  <tabstop>backButton</tabstop>
+  <tabstop>beaconName</tabstop>
+  <tabstop>beaconPosition</tabstop>
+  <tabstop>beaconUUID</tabstop>
+  <tabstop>uuidGenerator</tabstop>
+  <tabstop>addButton</tabstop>
+  <tabstop>removeButton</tabstop>
+  <tabstop>editButton</tabstop>
+  <tabstop>beaconList</tabstop>
+  <tabstop>nextButton</tabstop>
+ </tabstops>
  <resources>
   <include location="../images.qrc"/>
  </resources>

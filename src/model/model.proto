@@ -22,7 +22,8 @@ message Beacon {
 	required float  snr = 3;
 	required Point  point = 4;
 	required Code   code = 5;	
-	optional string name = 6;
+	required bool  enabled = 6;
+	optional string name = 7;
 }
 
 

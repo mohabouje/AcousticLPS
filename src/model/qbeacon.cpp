@@ -26,3 +26,7 @@ void BeaconWrapper::setName(const QString &name) {
 void BeaconWrapper::setSNR(const Real &SNR) {
     _beacon->set_snr(SNR);
 }
+
+void BeaconWrapper::setEnabled(bool state) {
+    _beacon->set_enabled(state);
+}

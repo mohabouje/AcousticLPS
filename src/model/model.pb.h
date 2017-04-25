@@ -382,10 +382,17 @@ class Beacon : public ::google::protobuf::Message {
   inline ::Code* release_code();
   inline void set_allocated_code(::Code* code);
 
-  // optional string name = 6;
+  // required bool enabled = 6;
+  inline bool has_enabled() const;
+  inline void clear_enabled();
+  static const int kEnabledFieldNumber = 6;
+  inline bool enabled() const;
+  inline void set_enabled(bool value);
+
+  // optional string name = 7;
   inline bool has_name() const;
   inline void clear_name();
-  static const int kNameFieldNumber = 6;
+  static const int kNameFieldNumber = 7;
   inline const ::std::string& name() const;
   inline void set_name(const ::std::string& value);
   inline void set_name(const char* value);
@@ -406,6 +413,8 @@ class Beacon : public ::google::protobuf::Message {
   inline void clear_has_point();
   inline void set_has_code();
   inline void clear_has_code();
+  inline void set_has_enabled();
+  inline void clear_has_enabled();
   inline void set_has_name();
   inline void clear_has_name();
 
@@ -419,6 +428,7 @@ class Beacon : public ::google::protobuf::Message {
   ::Point* point_;
   ::Code* code_;
   ::std::string* name_;
+  bool enabled_;
   friend void  protobuf_AddDesc_model_2eproto();
   friend void protobuf_AssignDesc_model_2eproto();
   friend void protobuf_ShutdownFile_model_2eproto();
@@ -965,15 +975,39 @@ inline void Beacon::set_allocated_code(::Code* code) {
   // @@protoc_insertion_point(field_set_allocated:Beacon.code)
 }
 
-// optional string name = 6;
-inline bool Beacon::has_name() const {
+// required bool enabled = 6;
+inline bool Beacon::has_enabled() const {
   return (_has_bits_[0] & 0x00000020u) != 0;
 }
-inline void Beacon::set_has_name() {
+inline void Beacon::set_has_enabled() {
   _has_bits_[0] |= 0x00000020u;
 }
-inline void Beacon::clear_has_name() {
+inline void Beacon::clear_has_enabled() {
   _has_bits_[0] &= ~0x00000020u;
+}
+inline void Beacon::clear_enabled() {
+  enabled_ = false;
+  clear_has_enabled();
+}
+inline bool Beacon::enabled() const {
+  // @@protoc_insertion_point(field_get:Beacon.enabled)
+  return enabled_;
+}
+inline void Beacon::set_enabled(bool value) {
+  set_has_enabled();
+  enabled_ = value;
+  // @@protoc_insertion_point(field_set:Beacon.enabled)
+}
+
+// optional string name = 7;
+inline bool Beacon::has_name() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void Beacon::set_has_name() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void Beacon::clear_has_name() {
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void Beacon::clear_name() {
   if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {

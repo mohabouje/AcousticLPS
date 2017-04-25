@@ -15,6 +15,7 @@ public:
     inline int identifier() const { return _beacon->id(); }
     inline QString name() const { return QString::fromStdString(_beacon->name()); }
     inline Real SNR() const { return _beacon->snr(); }
+    inline bool isEnabled() const { return _beacon->enabled();}
     inline Position position() const {
         Point* pos = _beacon->mutable_point();
         return Position({pos->x(), pos->y(), pos->z()});
@@ -38,7 +39,7 @@ public:
     void setIdentifier(int id);
     void setName(const QString &name);
     void setSNR(const Real &SNR);
-
+    void setEnabled(bool state);
 private:
     Beacon*         _beacon;
 };

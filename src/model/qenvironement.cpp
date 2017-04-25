@@ -10,7 +10,8 @@ QEnvironement *QEnvironement::instance(QObject *parent) {
 }
 
 QBeacon QEnvironement::addBeacon() {
-    _environement->add_beacons();
+    Beacon* b = _environement->add_beacons();
+    b->set_enabled(true);
     return beacon(beaconsCount() - 1);
 }
 

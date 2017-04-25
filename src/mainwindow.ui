@@ -135,7 +135,6 @@
     <addaction name="actionTrack"/>
     <addaction name="actionEstimate"/>
     <addaction name="separator"/>
-    <addaction name="actionBeacons"/>
     <addaction name="actionFilter"/>
    </widget>
    <addaction name="menuFile"/>
@@ -184,7 +183,6 @@
    <addaction name="actionTrack"/>
    <addaction name="separator"/>
    <addaction name="actionFilter"/>
-   <addaction name="actionBeacons"/>
    <addaction name="actionPreferences"/>
   </widget>
   <action name="actionOpen">
@@ -329,15 +327,6 @@
    </property>
    <property name="text">
     <string>Filter</string>
-   </property>
-  </action>
-  <action name="actionBeacons">
-   <property name="icon">
-    <iconset resource="images.qrc">
-     <normaloff>:/resources/icons/wifi-1.png</normaloff>:/resources/icons/wifi-1.png</iconset>
-   </property>
-   <property name="text">
-    <string>Beacons</string>
    </property>
   </action>
   <action name="actionEnvironement">
