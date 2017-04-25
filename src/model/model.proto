@@ -1,13 +1,13 @@
-syntax = "proto3";
+syntax = "proto2";
 message Code {
 	enum Type { 
 		Gold = 0;
 		Kasami = 1;
 		Hadamard = 2;
 	} 
-	required Type	type;
-	required uint32 order;
-	repeated float  data;
+	required Type	type = 1;
+	required uint32 order = 2;
+	repeated float  data = 3;
 }
 
 message Point {
@@ -19,11 +19,11 @@ message Point {
 
 message Beacon {
 	required uint32	identifier = 1;
- 	required string uuid = 3;
-	required float  snr = 4;
-	required Point  point = 5;
-	required Code   code = 4;	
-	optional string name = 2;
+ 	required string uuid = 2;
+	required float  snr = 3;
+	required Point  point = 4;
+	required Code   code = 5;	
+	optional string name = 6;
 }
 
 
