@@ -10,6 +10,7 @@ TEMPLATE = app
 CONFIG += c++11
 CONFIG += no_testing
 #CONFIG += testing
+DEFINES += QT_DEPRECATED_WARNINGS
 
 
 no_testing {
@@ -33,26 +34,28 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-DEFINES += QT_DEPRECATED_WARNINGS
+RESOURCES += \
+    images.qrc
+
 
 # Using Armadillo + OpenBlas for ALgebra operation
 # How to install?  => http://www.uio.no/studier/emner/matnat/fys/FYS4411/v13/guides/installing-armadillo/
 LIBS += -llapack -lblas -larmadillo
 
 # Using QWT to mathematical graphics.
-QWT_PATH = $$PWD/../../../../../../usr/local/qwt-6.1.3
-unix:!macx: LIBS += -L{QWT_PATH}/lib/ -lqwt
-INCLUDEPATH += {QWT_PATH}/include
-DEPENDPATH += {QWT_PATH}/include
+LIBS += -L$$PWD/../../../../../../usr/local/qwt-6.1.3/lib/ -lqwt
+INCLUDEPATH += $$PWD/../../../../../../usr/local/qwt-6.1.3include
+DEPENDPATH += $$PWD/../../../../../../usr/local/qwt-6.1.3/include
 CONFIG += qwt
 
+# Using protocol buffers to export/import configurations.
+LIBS += -lprotobuf
 
 # Include de different submodules
 include("./trilateration/trilateration.pri")
 include("./gui/gui.pri")
+include("./model/model.pri")
 
-RESOURCES += \
-    images.qrc
 
 
 
