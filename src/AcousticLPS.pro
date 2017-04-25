@@ -39,10 +39,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # How to install?  => http://www.uio.no/studier/emner/matnat/fys/FYS4411/v13/guides/installing-armadillo/
 LIBS += -llapack -lblas -larmadillo
 
+# Using QWT to mathematical graphics.
+QWT_PATH = $$PWD/../../../../../../usr/local/qwt-6.1.3
+unix:!macx: LIBS += -L{QWT_PATH}/lib/ -lqwt
+INCLUDEPATH += {QWT_PATH}/include
+DEPENDPATH += {QWT_PATH}/include
+CONFIG += qwt
+
+
 # Include de different submodules
 include("./trilateration/trilateration.pri")
 include("./gui/gui.pri")
 
 RESOURCES += \
     images.qrc
+
+
 
