@@ -17,6 +17,10 @@ public:
 
     QBeacon addBeacon();
     QBeacon beacon(int index);
+
+public:
+    bool loadEnvironementFromFile(const QString& filename = QString());
+    bool saveEnvironementInFile(const QString& filename = QString()) const;
 private:
     explicit QEnvironement(QObject *parent = 0);
     ~QEnvironement();

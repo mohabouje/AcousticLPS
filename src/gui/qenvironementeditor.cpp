@@ -1,5 +1,6 @@
 #include "qenvironementeditor.h"
 #include "ui_qenvironementeditor.h"
+#include "helper.h"
 #include <model/qenvironement.h>
 #include <QMessageBox>
 #include <QUuid>
@@ -50,22 +51,14 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
             return;
         }
 
-        QString point = ui->beaconPosition->text();
-        point = point.remove('(');
-        point = point.remove(')');
-        const QStringList values = point.split(',');
-        Position position;
-        const int size = values.size();
-        for (int i=0; i<size; i++) {
-            position(i) = QString(values.at(i)).toFloat();
-        }
-
         const QString uuidString = ui->beaconUUID->text();
-        const QUuid uuid(uuidString);
-
+        const bool introduced = Gui::validateUuid(uuidString);
+        if (!introduced) {
+            QMessageBox::warning(this, "Empty UUID", "Using an aleatory generated uuid");
+        }
+        const QUuid uuid = introduced ? QUuid(uuidString) : QUuid::createUuid();
         const QBeacon beacon = QEnvironement::instance()->addBeacon();
         beacon->setName(name);
-        beacon->setPosition(position);
         beacon->setUniversalUniqueIdentifier(uuid);
         filterModel()->invalidate();
 

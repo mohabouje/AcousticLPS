@@ -4,6 +4,10 @@
 #define ARMA_DONT_USE_WRAPPER
 #include <armadillo>
 
+#define ENVIRONEMENT_FORMAT   ".envi"
+#define ENVIRONEMENT_FILENAME "environement" ENVIRONEMENT_FORMAT
+
+
 #ifdef DOUBLE_PRECISION
 
 

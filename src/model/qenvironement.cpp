@@ -1,5 +1,10 @@
 #include "qenvironement.h"
+#include "modelhelper.h"
 
+#include <sstream>
+#include <QSaveFile>
+#include <QFile>
+#include <QDebug>
 QEnvironement *QEnvironement::_instance = Q_NULLPTR;
 QEnvironement *QEnvironement::instance(QObject *parent) {
     if (_instance == Q_NULLPTR) {
@@ -24,6 +29,32 @@ QBeacon QEnvironement::beacon(int index) {
     const QBeacon shared(new BeaconWrapper(beacon));
     _wrappedBeacons.insert(uuid, shared);
     return shared;
+}
+
+bool QEnvironement::loadEnvironementFromFile(const QString &filename) {
+    static const QString defaultPath = ModelHelper::defaultDocumentsFolder() + ENVIRONEMENT_FILENAME;
+    QFile file(filename.isEmpty() ? defaultPath : filename);
+    if (file.exists() && file.open(QIODevice::ReadOnly)) {
+        const QByteArray data = file.readAll();
+        file.close();
+        _environement->Clear();
+        return _environement->ParseFromArray(data, data.size());
+    }
+    return false;
+}
+
+bool QEnvironement::saveEnvironementInFile(const QString &filename) const {
+    static const QString defaultPath = ModelHelper::defaultDocumentsFolder() + ENVIRONEMENT_FILENAME;
+    QSaveFile file(filename.isEmpty() ? defaultPath : filename);
+    if (file.open(QIODevice::WriteOnly)) {
+        std::ostringstream out;
+        _environement->SerializeToOstream(&out);
+        const QByteArray data(out.str().c_str());
+        if (file.write(data) > -1) {
+            return file.commit();
+        }
+    }
+    return false;
 }
 
 
