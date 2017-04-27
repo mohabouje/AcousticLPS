@@ -39,10 +39,13 @@ RESOURCES += \
 
 
 # Using Armadillo + OpenBlas for ALgebra operation
+# How to install?  => http://www.uio.no/studier/emner/matnat/fys/FYS4411/v13/guides/installing-armadillo/
 LIBS += -llapack -lblas -larmadillo
 
 # Using QWT to mathematical graphics.
-LIBS += -lqwt
+LIBS += -L$$PWD/../../../../../../usr/local/qwt-6.1.3/lib/ -lqwt
+INCLUDEPATH += $$PWD/../../../../../../usr/local/qwt-6.1.3/include
+DEPENDPATH += $$PWD/../../../../../../usr/local/qwt-6.1.3/include
 CONFIG += qwt
 
 # Using protocol buffers to export/import configurations.
