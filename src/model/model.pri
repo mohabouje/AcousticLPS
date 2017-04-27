@@ -11,6 +11,3 @@ SOURCES += \
     $$PWD/qbeacon.cpp \
     $$PWD/qmeasure.cpp \
     $$PWD/modelhelper.cpp
-
-DISTFILES += \
-    $$PWD/model.proto

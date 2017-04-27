@@ -16,212 +16,190 @@
 #include <google/protobuf/reflection_ops.h>
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
+class CodeDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Code> {
+} _Code_default_instance_;
+class PointDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Point> {
+} _Point_default_instance_;
+class BeaconDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Beacon> {
+} _Beacon_default_instance_;
+class EnvironementDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Environement> {
+} _Environement_default_instance_;
+
+namespace protobuf_model_2eproto {
+
 
 namespace {
 
-const ::google::protobuf::Descriptor* Code_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  Code_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* Code_Type_descriptor_ = NULL;
-const ::google::protobuf::Descriptor* Point_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  Point_reflection_ = NULL;
-const ::google::protobuf::Descriptor* Beacon_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  Beacon_reflection_ = NULL;
-const ::google::protobuf::Descriptor* Environement_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  Environement_reflection_ = NULL;
+::google::protobuf::Metadata file_level_metadata[4];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
 
 }  // namespace
 
+const ::google::protobuf::uint32 TableStruct::offsets[] = {
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Code, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Code, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Code, type_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Code, order_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Code, data_),
+  0,
+  1,
+  ~0u,
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, x_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, y_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, z_),
+  0,
+  1,
+  2,
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, uuid_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, snr_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, point_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, code_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, enabled_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, name_),
+  4,
+  0,
+  5,
+  2,
+  3,
+  6,
+  1,
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, name_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, latitude_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, longitud_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, beacons_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, width_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, length_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, height_),
+  3,
+  0,
+  1,
+  2,
+  ~0u,
+  4,
+  5,
+  6,
+};
 
-void protobuf_AssignDesc_model_2eproto() GOOGLE_ATTRIBUTE_COLD;
-void protobuf_AssignDesc_model_2eproto() {
-  protobuf_AddDesc_model_2eproto();
-  const ::google::protobuf::FileDescriptor* file =
-    ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
-      "model.proto");
-  GOOGLE_CHECK(file != NULL);
-  Code_descriptor_ = file->message_type(0);
-  static const int Code_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Code, type_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Code, order_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Code, data_),
-  };
-  Code_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      Code_descriptor_,
-      Code::internal_default_instance(),
-      Code_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(Code),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Code, _internal_metadata_));
-  Code_Type_descriptor_ = Code_descriptor_->enum_type(0);
-  Point_descriptor_ = file->message_type(1);
-  static const int Point_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, x_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, y_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, z_),
-  };
-  Point_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      Point_descriptor_,
-      Point::internal_default_instance(),
-      Point_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(Point),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, _internal_metadata_));
-  Beacon_descriptor_ = file->message_type(2);
-  static const int Beacon_offsets_[7] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, id_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, uuid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, snr_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, point_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, code_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, enabled_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, name_),
-  };
-  Beacon_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      Beacon_descriptor_,
-      Beacon::internal_default_instance(),
-      Beacon_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(Beacon),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Beacon, _internal_metadata_));
-  Environement_descriptor_ = file->message_type(3);
-  static const int Environement_offsets_[8] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, id_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, name_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, latitude_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, longitud_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, beacons_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, width_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, length_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, height_),
-  };
-  Environement_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      Environement_descriptor_,
-      Environement::internal_default_instance(),
-      Environement_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(Environement),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, _internal_metadata_));
-}
+static const ::google::protobuf::internal::MigrationSchema schemas[] = {
+  { 0, 7, sizeof(Code)},
+  { 10, 17, sizeof(Point)},
+  { 20, 31, sizeof(Beacon)},
+  { 38, 50, sizeof(Environement)},
+};
+
+static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_Code_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_Point_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_Beacon_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_Environement_default_instance_),
+};
 
 namespace {
 
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);
+void protobuf_AssignDescriptors() {
+  AddDescriptors();
+  ::google::protobuf::MessageFactory* factory = NULL;
+  AssignDescriptors(
+      "model.proto", schemas, file_default_instances, TableStruct::offsets, factory,
+      file_level_metadata, file_level_enum_descriptors, NULL);
+}
+
 void protobuf_AssignDescriptorsOnce() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_AssignDescriptors_once_,
-                 &protobuf_AssignDesc_model_2eproto);
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &protobuf_AssignDescriptors);
 }
 
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      Code_descriptor_, Code::internal_default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      Point_descriptor_, Point::internal_default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      Beacon_descriptor_, Beacon::internal_default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      Environement_descriptor_, Environement::internal_default_instance());
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 4);
 }
 
 }  // namespace
 
-void protobuf_ShutdownFile_model_2eproto() {
-  Code_default_instance_.Shutdown();
-  delete Code_reflection_;
-  Point_default_instance_.Shutdown();
-  delete Point_reflection_;
-  Beacon_default_instance_.Shutdown();
-  delete Beacon_reflection_;
-  Environement_default_instance_.Shutdown();
-  delete Environement_reflection_;
+void TableStruct::Shutdown() {
+  _Code_default_instance_.Shutdown();
+  delete file_level_metadata[0].reflection;
+  _Point_default_instance_.Shutdown();
+  delete file_level_metadata[1].reflection;
+  _Beacon_default_instance_.Shutdown();
+  delete file_level_metadata[2].reflection;
+  _Environement_default_instance_.Shutdown();
+  delete file_level_metadata[3].reflection;
 }
 
-void protobuf_InitDefaults_model_2eproto_impl() {
+void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  Code_default_instance_.DefaultConstruct();
-  Point_default_instance_.DefaultConstruct();
-  ::google::protobuf::internal::GetEmptyString();
-  Beacon_default_instance_.DefaultConstruct();
-  ::google::protobuf::internal::GetEmptyString();
-  Environement_default_instance_.DefaultConstruct();
-  Code_default_instance_.get_mutable()->InitAsDefaultInstance();
-  Point_default_instance_.get_mutable()->InitAsDefaultInstance();
-  Beacon_default_instance_.get_mutable()->InitAsDefaultInstance();
-  Environement_default_instance_.get_mutable()->InitAsDefaultInstance();
+  ::google::protobuf::internal::InitProtobufDefaults();
+  _Code_default_instance_.DefaultConstruct();
+  _Point_default_instance_.DefaultConstruct();
+  _Beacon_default_instance_.DefaultConstruct();
+  _Environement_default_instance_.DefaultConstruct();
+  _Beacon_default_instance_.get_mutable()->point_ = const_cast< ::Point*>(
+      ::Point::internal_default_instance());
+  _Beacon_default_instance_.get_mutable()->code_ = const_cast< ::Code*>(
+      ::Code::internal_default_instance());
 }
 
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_InitDefaults_model_2eproto_once_);
-void protobuf_InitDefaults_model_2eproto() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_InitDefaults_model_2eproto_once_,
-                 &protobuf_InitDefaults_model_2eproto_impl);
+void InitDefaults() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &TableStruct::InitDefaultsImpl);
 }
-void protobuf_AddDesc_model_2eproto_impl() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  protobuf_InitDefaults_model_2eproto();
+void AddDescriptorsImpl() {
+  InitDefaults();
+  static const char descriptor[] = {
+      "\n\013model.proto\"i\n\004Code\022\030\n\004type\030\001 \002(\0162\n.Co"
+      "de.Type\022\r\n\005order\030\002 \002(\r\022\014\n\004data\030\003 \003(\002\"*\n\004"
+      "Type\022\010\n\004Gold\020\000\022\n\n\006Kasami\020\001\022\014\n\010Hadamard\020\002"
+      "\"(\n\005Point\022\t\n\001x\030\001 \002(\002\022\t\n\001y\030\002 \002(\002\022\t\n\001z\030\003 \002"
+      "(\002\"z\n\006Beacon\022\n\n\002id\030\001 \002(\r\022\014\n\004uuid\030\002 \002(\t\022\013"
+      "\n\003snr\030\003 \002(\002\022\025\n\005point\030\004 \002(\0132\006.Point\022\023\n\004co"
+      "de\030\005 \002(\0132\005.Code\022\017\n\007enabled\030\006 \002(\010\022\014\n\004name"
+      "\030\007 \001(\t\"\225\001\n\014Environement\022\n\n\002id\030\001 \002(\r\022\014\n\004n"
+      "ame\030\002 \002(\t\022\020\n\010latitude\030\003 \002(\t\022\020\n\010longitud\030"
+      "\004 \002(\t\022\030\n\007beacons\030\005 \003(\0132\007.Beacon\022\r\n\005width"
+      "\030\006 \002(\002\022\016\n\006length\030\007 \002(\002\022\016\n\006height\030\010 \002(\002"
+  };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\013model.proto\"i\n\004Code\022\030\n\004type\030\001 \001(\0162\n.Co"
-    "de.Type\022\r\n\005order\030\002 \001(\r\022\014\n\004data\030\003 \003(\002\"*\n\004"
-    "Type\022\010\n\004Gold\020\000\022\n\n\006Kasami\020\001\022\014\n\010Hadamard\020\002"
-    "\"(\n\005Point\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n\001z\030\003 \001"
-    "(\002\"z\n\006Beacon\022\n\n\002id\030\001 \001(\r\022\014\n\004uuid\030\002 \001(\t\022\013"
-    "\n\003snr\030\003 \001(\002\022\025\n\005point\030\004 \001(\0132\006.Point\022\023\n\004co"
-    "de\030\005 \001(\0132\005.Code\022\017\n\007enabled\030\006 \001(\010\022\014\n\004name"
-    "\030\007 \001(\t\"\225\001\n\014Environement\022\n\n\002id\030\001 \001(\r\022\014\n\004n"
-    "ame\030\002 \001(\t\022\020\n\010latitude\030\003 \001(\t\022\020\n\010longitud\030"
-    "\004 \001(\t\022\030\n\007beacons\030\005 \003(\0132\007.Beacon\022\r\n\005width"
-    "\030\006 \001(\002\022\016\n\006length\030\007 \001(\002\022\016\n\006height\030\010 \001(\002b\006"
-    "proto3", 446);
+      descriptor, 438);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "model.proto", &protobuf_RegisterTypes);
-  ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_model_2eproto);
+  ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
 }
 
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AddDesc_model_2eproto_once_);
-void protobuf_AddDesc_model_2eproto() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_AddDesc_model_2eproto_once_,
-                 &protobuf_AddDesc_model_2eproto_impl);
+void AddDescriptors() {
+  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
+  ::google::protobuf::GoogleOnceInit(&once, &AddDescriptorsImpl);
 }
 // Force AddDescriptors() to be called at static initialization time.
-struct StaticDescriptorInitializer_model_2eproto {
-  StaticDescriptorInitializer_model_2eproto() {
-    protobuf_AddDesc_model_2eproto();
+struct StaticDescriptorInitializer {
+  StaticDescriptorInitializer() {
+    AddDescriptors();
   }
-} static_descriptor_initializer_model_2eproto_;
+} static_descriptor_initializer;
 
-namespace {
-
-static void MergeFromFail(int line) GOOGLE_ATTRIBUTE_COLD GOOGLE_ATTRIBUTE_NORETURN;
-static void MergeFromFail(int line) {
-  ::google::protobuf::internal::MergeFromFail(__FILE__, line);
-}
-
-}  // namespace
-
-
-// ===================================================================
+}  // namespace protobuf_model_2eproto
 
 const ::google::protobuf::EnumDescriptor* Code_Type_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Code_Type_descriptor_;
+  protobuf_model_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_model_2eproto::file_level_enum_descriptors[0];
 }
 bool Code_Type_IsValid(int value) {
   switch (value) {
@@ -242,6 +220,9 @@ const Code_Type Code::Type_MIN;
 const Code_Type Code::Type_MAX;
 const int Code::Type_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+// ===================================================================
+
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Code::kTypeFieldNumber;
 const int Code::kOrderFieldNumber;
@@ -250,26 +231,29 @@ const int Code::kDataFieldNumber;
 
 Code::Code()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (this != internal_default_instance()) protobuf_InitDefaults_model_2eproto();
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_model_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:Code)
 }
-
-void Code::InitAsDefaultInstance() {
-}
-
 Code::Code(const Code& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  UnsafeMergeFrom(from);
+      _internal_metadata_(NULL),
+      _has_bits_(from._has_bits_),
+      _cached_size_(0),
+      data_(from.data_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&type_, &from.type_,
+    reinterpret_cast<char*>(&order_) -
+    reinterpret_cast<char*>(&type_) + sizeof(order_));
   // @@protoc_insertion_point(copy_constructor:Code)
 }
 
 void Code::SharedCtor() {
+  _cached_size_ = 0;
   ::memset(&type_, 0, reinterpret_cast<char*>(&order_) -
     reinterpret_cast<char*>(&type_) + sizeof(order_));
-  _cached_size_ = 0;
 }
 
 Code::~Code() {
@@ -286,16 +270,14 @@ void Code::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* Code::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Code_descriptor_;
+  protobuf_model_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_model_2eproto::file_level_metadata[0].descriptor;
 }
 
 const Code& Code::default_instance() {
-  protobuf_InitDefaults_model_2eproto();
+  protobuf_model_2eproto::InitDefaults();
   return *internal_default_instance();
 }
-
-::google::protobuf::internal::ExplicitlyConstructed<Code> Code_default_instance_;
 
 Code* Code::New(::google::protobuf::Arena* arena) const {
   Code* n = new Code;
@@ -307,28 +289,13 @@ Code* Code::New(::google::protobuf::Arena* arena) const {
 
 void Code::Clear() {
 // @@protoc_insertion_point(message_clear_start:Code)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(Code, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<Code*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&(first), 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(type_, order_);
-
-#undef ZR_HELPER_
-#undef ZR_
-
   data_.Clear();
+  if (_has_bits_[0 / 32] & 3u) {
+    ::memset(&type_, 0, reinterpret_cast<char*>(&order_) -
+      reinterpret_cast<char*>(&type_) + sizeof(order_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
 }
 
 bool Code::MergePartialFromCodedStream(
@@ -337,55 +304,54 @@ bool Code::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:Code)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .Code.Type type = 1;
+      // required .Code.Type type = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 8u) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          set_type(static_cast< ::Code_Type >(value));
+          if (::Code_Type_IsValid(value)) {
+            set_type(static_cast< ::Code_Type >(value));
+          } else {
+            mutable_unknown_fields()->AddVarint(1, value);
+          }
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_order;
         break;
       }
 
-      // optional uint32 order = 2;
+      // required uint32 order = 2;
       case 2: {
-        if (tag == 16) {
-         parse_order:
-
+        if (tag == 16u) {
+          set_has_order();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &order_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_data;
         break;
       }
 
       // repeated float data = 3;
       case 3: {
-        if (tag == 26) {
-         parse_data:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitive<
+        if (tag == 29u) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 1, 29u, input, this->mutable_data())));
+        } else if (tag == 26u) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, this->mutable_data())));
-        } else if (tag == 29) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitiveNoInline<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 1, 26, input, this->mutable_data())));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -396,7 +362,8 @@ bool Code::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -413,93 +380,106 @@ failure:
 void Code::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Code)
-  // optional .Code.Type type = 1;
-  if (this->type() != 0) {
+  // required .Code.Type type = 1;
+  if (has_type()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->type(), output);
   }
 
-  // optional uint32 order = 2;
-  if (this->order() != 0) {
+  // required uint32 order = 2;
+  if (has_order()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->order(), output);
   }
 
   // repeated float data = 3;
-  if (this->data_size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteTag(3, ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED, output);
-    output->WriteVarint32(_data_cached_byte_size_);
-  }
   for (int i = 0; i < this->data_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloatNoTag(
-      this->data(i), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(
+      3, this->data(i), output);
   }
 
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
   // @@protoc_insertion_point(serialize_end:Code)
 }
 
 ::google::protobuf::uint8* Code::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:Code)
-  // optional .Code.Type type = 1;
-  if (this->type() != 0) {
+  // required .Code.Type type = 1;
+  if (has_type()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->type(), target);
   }
 
-  // optional uint32 order = 2;
-  if (this->order() != 0) {
+  // required uint32 order = 2;
+  if (has_order()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->order(), target);
   }
 
   // repeated float data = 3;
-  if (this->data_size() > 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteTagToArray(
-      3,
-      ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED,
-      target);
-    target = ::google::protobuf::io::CodedOutputStream::WriteVarint32ToArray(
-      _data_cached_byte_size_, target);
-  }
   for (int i = 0; i < this->data_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteFloatNoTagToArray(this->data(i), target);
+      WriteFloatToArray(3, this->data(i), target);
   }
 
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:Code)
   return target;
 }
 
-size_t Code::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Code)
+size_t Code::RequiredFieldsByteSizeFallback() const {
+// @@protoc_insertion_point(required_fields_byte_size_fallback_start:Code)
   size_t total_size = 0;
 
-  // optional .Code.Type type = 1;
-  if (this->type() != 0) {
+  if (has_type()) {
+    // required .Code.Type type = 1;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
   }
 
-  // optional uint32 order = 2;
-  if (this->order() != 0) {
+  if (has_order()) {
+    // required uint32 order = 2;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->order());
   }
 
+  return total_size;
+}
+size_t Code::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Code)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  if (((_has_bits_[0] & 0x00000003) ^ 0x00000003) == 0) {  // All required fields are present.
+    // required .Code.Type type = 1;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
+
+    // required uint32 order = 2;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->order());
+
+  } else {
+    total_size += RequiredFieldsByteSizeFallback();
+  }
   // repeated float data = 3;
   {
-    size_t data_size = 0;
     unsigned int count = this->data_size();
-    data_size = 4UL * count;
-    if (data_size > 0) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(data_size);
-    }
-    int cached_size = ::google::protobuf::internal::ToCachedSize(data_size);
-    GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-    _data_cached_byte_size_ = cached_size;
-    GOOGLE_SAFE_CONCURRENT_WRITES_END();
+    size_t data_size = 4UL * count;
+    total_size += 1 *
+                  ::google::protobuf::internal::FromIntSize(this->data_size());
     total_size += data_size;
   }
 
@@ -512,7 +492,7 @@ size_t Code::ByteSizeLong() const {
 
 void Code::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:Code)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
   const Code* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const Code>(
           &from);
@@ -521,27 +501,22 @@ void Code::MergeFrom(const ::google::protobuf::Message& from) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
   // @@protoc_insertion_point(generalized_merge_from_cast_success:Code)
-    UnsafeMergeFrom(*source);
+    MergeFrom(*source);
   }
 }
 
 void Code::MergeFrom(const Code& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:Code)
-  if (GOOGLE_PREDICT_TRUE(&from != this)) {
-    UnsafeMergeFrom(from);
-  } else {
-    MergeFromFail(__LINE__);
-  }
-}
-
-void Code::UnsafeMergeFrom(const Code& from) {
-  GOOGLE_DCHECK(&from != this);
-  data_.UnsafeMergeFrom(from.data_);
-  if (from.type() != 0) {
-    set_type(from.type());
-  }
-  if (from.order() != 0) {
-    set_order(from.order());
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  data_.MergeFrom(from.data_);
+  if (from._has_bits_[0 / 32] & 3u) {
+    if (from.has_type()) {
+      set_type(from.type());
+    }
+    if (from.has_order()) {
+      set_order(from.order());
+    }
   }
 }
 
@@ -556,11 +531,11 @@ void Code::CopyFrom(const Code& from) {
 // @@protoc_insertion_point(class_specific_copy_from_start:Code)
   if (&from == this) return;
   Clear();
-  UnsafeMergeFrom(from);
+  MergeFrom(from);
 }
 
 bool Code::IsInitialized() const {
-
+  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
   return true;
 }
 
@@ -569,48 +544,67 @@ void Code::Swap(Code* other) {
   InternalSwap(other);
 }
 void Code::InternalSwap(Code* other) {
+  data_.UnsafeArenaSwap(&other->data_);
   std::swap(type_, other->type_);
   std::swap(order_, other->order_);
-  data_.UnsafeArenaSwap(&other->data_);
+  std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata Code::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Code_descriptor_;
-  metadata.reflection = Code_reflection_;
-  return metadata;
+  protobuf_model_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_model_2eproto::file_level_metadata[0];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Code
 
-// optional .Code.Type type = 1;
+// required .Code.Type type = 1;
+bool Code::has_type() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+void Code::set_has_type() {
+  _has_bits_[0] |= 0x00000001u;
+}
+void Code::clear_has_type() {
+  _has_bits_[0] &= ~0x00000001u;
+}
 void Code::clear_type() {
   type_ = 0;
+  clear_has_type();
 }
 ::Code_Type Code::type() const {
   // @@protoc_insertion_point(field_get:Code.type)
   return static_cast< ::Code_Type >(type_);
 }
 void Code::set_type(::Code_Type value) {
-  
+  assert(::Code_Type_IsValid(value));
+  set_has_type();
   type_ = value;
   // @@protoc_insertion_point(field_set:Code.type)
 }
 
-// optional uint32 order = 2;
+// required uint32 order = 2;
+bool Code::has_order() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+void Code::set_has_order() {
+  _has_bits_[0] |= 0x00000002u;
+}
+void Code::clear_has_order() {
+  _has_bits_[0] &= ~0x00000002u;
+}
 void Code::clear_order() {
   order_ = 0u;
+  clear_has_order();
 }
 ::google::protobuf::uint32 Code::order() const {
   // @@protoc_insertion_point(field_get:Code.order)
   return order_;
 }
 void Code::set_order(::google::protobuf::uint32 value) {
-  
+  set_has_order();
   order_ = value;
   // @@protoc_insertion_point(field_set:Code.order)
 }
@@ -645,9 +639,6 @@ Code::mutable_data() {
   return &data_;
 }
 
-inline const Code* Code::internal_default_instance() {
-  return &Code_default_instance_.get();
-}
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
@@ -660,26 +651,28 @@ const int Point::kZFieldNumber;
 
 Point::Point()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (this != internal_default_instance()) protobuf_InitDefaults_model_2eproto();
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_model_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:Point)
 }
-
-void Point::InitAsDefaultInstance() {
-}
-
 Point::Point(const Point& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  UnsafeMergeFrom(from);
+      _internal_metadata_(NULL),
+      _has_bits_(from._has_bits_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&x_, &from.x_,
+    reinterpret_cast<char*>(&z_) -
+    reinterpret_cast<char*>(&x_) + sizeof(z_));
   // @@protoc_insertion_point(copy_constructor:Point)
 }
 
 void Point::SharedCtor() {
+  _cached_size_ = 0;
   ::memset(&x_, 0, reinterpret_cast<char*>(&z_) -
     reinterpret_cast<char*>(&x_) + sizeof(z_));
-  _cached_size_ = 0;
 }
 
 Point::~Point() {
@@ -696,16 +689,14 @@ void Point::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* Point::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Point_descriptor_;
+  protobuf_model_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_model_2eproto::file_level_metadata[1].descriptor;
 }
 
 const Point& Point::default_instance() {
-  protobuf_InitDefaults_model_2eproto();
+  protobuf_model_2eproto::InitDefaults();
   return *internal_default_instance();
 }
-
-::google::protobuf::internal::ExplicitlyConstructed<Point> Point_default_instance_;
 
 Point* Point::New(::google::protobuf::Arena* arena) const {
   Point* n = new Point;
@@ -717,27 +708,12 @@ Point* Point::New(::google::protobuf::Arena* arena) const {
 
 void Point::Clear() {
 // @@protoc_insertion_point(message_clear_start:Point)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(Point, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<Point*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&(first), 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(x_, z_);
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  if (_has_bits_[0 / 32] & 7u) {
+    ::memset(&x_, 0, reinterpret_cast<char*>(&z_) -
+      reinterpret_cast<char*>(&x_) + sizeof(z_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
 }
 
 bool Point::MergePartialFromCodedStream(
@@ -746,51 +722,46 @@ bool Point::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:Point)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional float x = 1;
+      // required float x = 1;
       case 1: {
-        if (tag == 13) {
-
+        if (tag == 13u) {
+          set_has_x();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &x_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(21)) goto parse_y;
         break;
       }
 
-      // optional float y = 2;
+      // required float y = 2;
       case 2: {
-        if (tag == 21) {
-         parse_y:
-
+        if (tag == 21u) {
+          set_has_y();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &y_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(29)) goto parse_z;
         break;
       }
 
-      // optional float z = 3;
+      // required float z = 3;
       case 3: {
-        if (tag == 29) {
-         parse_z:
-
+        if (tag == 29u) {
+          set_has_z();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &z_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -801,7 +772,8 @@ bool Point::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -818,66 +790,98 @@ failure:
 void Point::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Point)
-  // optional float x = 1;
-  if (this->x() != 0) {
+  // required float x = 1;
+  if (has_x()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(1, this->x(), output);
   }
 
-  // optional float y = 2;
-  if (this->y() != 0) {
+  // required float y = 2;
+  if (has_y()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(2, this->y(), output);
   }
 
-  // optional float z = 3;
-  if (this->z() != 0) {
+  // required float z = 3;
+  if (has_z()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(3, this->z(), output);
   }
 
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
   // @@protoc_insertion_point(serialize_end:Point)
 }
 
 ::google::protobuf::uint8* Point::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:Point)
-  // optional float x = 1;
-  if (this->x() != 0) {
+  // required float x = 1;
+  if (has_x()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(1, this->x(), target);
   }
 
-  // optional float y = 2;
-  if (this->y() != 0) {
+  // required float y = 2;
+  if (has_y()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(2, this->y(), target);
   }
 
-  // optional float z = 3;
-  if (this->z() != 0) {
+  // required float z = 3;
+  if (has_z()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(3, this->z(), target);
   }
 
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:Point)
   return target;
 }
 
+size_t Point::RequiredFieldsByteSizeFallback() const {
+// @@protoc_insertion_point(required_fields_byte_size_fallback_start:Point)
+  size_t total_size = 0;
+
+  if (has_x()) {
+    // required float x = 1;
+    total_size += 1 + 4;
+  }
+
+  if (has_y()) {
+    // required float y = 2;
+    total_size += 1 + 4;
+  }
+
+  if (has_z()) {
+    // required float z = 3;
+    total_size += 1 + 4;
+  }
+
+  return total_size;
+}
 size_t Point::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Point)
   size_t total_size = 0;
 
-  // optional float x = 1;
-  if (this->x() != 0) {
-    total_size += 1 + 4;
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
   }
-
-  // optional float y = 2;
-  if (this->y() != 0) {
+  if (((_has_bits_[0] & 0x00000007) ^ 0x00000007) == 0) {  // All required fields are present.
+    // required float x = 1;
     total_size += 1 + 4;
-  }
 
-  // optional float z = 3;
-  if (this->z() != 0) {
+    // required float y = 2;
     total_size += 1 + 4;
-  }
 
+    // required float z = 3;
+    total_size += 1 + 4;
+
+  } else {
+    total_size += RequiredFieldsByteSizeFallback();
+  }
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -887,7 +891,7 @@ size_t Point::ByteSizeLong() const {
 
 void Point::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:Point)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
   const Point* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const Point>(
           &from);
@@ -896,29 +900,24 @@ void Point::MergeFrom(const ::google::protobuf::Message& from) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
   // @@protoc_insertion_point(generalized_merge_from_cast_success:Point)
-    UnsafeMergeFrom(*source);
+    MergeFrom(*source);
   }
 }
 
 void Point::MergeFrom(const Point& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:Point)
-  if (GOOGLE_PREDICT_TRUE(&from != this)) {
-    UnsafeMergeFrom(from);
-  } else {
-    MergeFromFail(__LINE__);
-  }
-}
-
-void Point::UnsafeMergeFrom(const Point& from) {
-  GOOGLE_DCHECK(&from != this);
-  if (from.x() != 0) {
-    set_x(from.x());
-  }
-  if (from.y() != 0) {
-    set_y(from.y());
-  }
-  if (from.z() != 0) {
-    set_z(from.z());
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._has_bits_[0 / 32] & 7u) {
+    if (from.has_x()) {
+      set_x(from.x());
+    }
+    if (from.has_y()) {
+      set_y(from.y());
+    }
+    if (from.has_z()) {
+      set_z(from.z());
+    }
   }
 }
 
@@ -933,11 +932,11 @@ void Point::CopyFrom(const Point& from) {
 // @@protoc_insertion_point(class_specific_copy_from_start:Point)
   if (&from == this) return;
   Clear();
-  UnsafeMergeFrom(from);
+  MergeFrom(from);
 }
 
 bool Point::IsInitialized() const {
-
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
   return true;
 }
 
@@ -949,66 +948,91 @@ void Point::InternalSwap(Point* other) {
   std::swap(x_, other->x_);
   std::swap(y_, other->y_);
   std::swap(z_, other->z_);
+  std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata Point::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Point_descriptor_;
-  metadata.reflection = Point_reflection_;
-  return metadata;
+  protobuf_model_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_model_2eproto::file_level_metadata[1];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Point
 
-// optional float x = 1;
+// required float x = 1;
+bool Point::has_x() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+void Point::set_has_x() {
+  _has_bits_[0] |= 0x00000001u;
+}
+void Point::clear_has_x() {
+  _has_bits_[0] &= ~0x00000001u;
+}
 void Point::clear_x() {
   x_ = 0;
+  clear_has_x();
 }
 float Point::x() const {
   // @@protoc_insertion_point(field_get:Point.x)
   return x_;
 }
 void Point::set_x(float value) {
-  
+  set_has_x();
   x_ = value;
   // @@protoc_insertion_point(field_set:Point.x)
 }
 
-// optional float y = 2;
+// required float y = 2;
+bool Point::has_y() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+void Point::set_has_y() {
+  _has_bits_[0] |= 0x00000002u;
+}
+void Point::clear_has_y() {
+  _has_bits_[0] &= ~0x00000002u;
+}
 void Point::clear_y() {
   y_ = 0;
+  clear_has_y();
 }
 float Point::y() const {
   // @@protoc_insertion_point(field_get:Point.y)
   return y_;
 }
 void Point::set_y(float value) {
-  
+  set_has_y();
   y_ = value;
   // @@protoc_insertion_point(field_set:Point.y)
 }
 
-// optional float z = 3;
+// required float z = 3;
+bool Point::has_z() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+void Point::set_has_z() {
+  _has_bits_[0] |= 0x00000004u;
+}
+void Point::clear_has_z() {
+  _has_bits_[0] &= ~0x00000004u;
+}
 void Point::clear_z() {
   z_ = 0;
+  clear_has_z();
 }
 float Point::z() const {
   // @@protoc_insertion_point(field_get:Point.z)
   return z_;
 }
 void Point::set_z(float value) {
-  
+  set_has_z();
   z_ = value;
   // @@protoc_insertion_point(field_set:Point.z)
 }
 
-inline const Point* Point::internal_default_instance() {
-  return &Point_default_instance_.get();
-}
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
@@ -1025,34 +1049,48 @@ const int Beacon::kNameFieldNumber;
 
 Beacon::Beacon()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (this != internal_default_instance()) protobuf_InitDefaults_model_2eproto();
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_model_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:Beacon)
 }
-
-void Beacon::InitAsDefaultInstance() {
-  point_ = const_cast< ::Point*>(
-      ::Point::internal_default_instance());
-  code_ = const_cast< ::Code*>(
-      ::Code::internal_default_instance());
-}
-
 Beacon::Beacon(const Beacon& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  UnsafeMergeFrom(from);
+      _internal_metadata_(NULL),
+      _has_bits_(from._has_bits_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_uuid()) {
+    uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
+  }
+  name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_name()) {
+    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+  if (from.has_point()) {
+    point_ = new ::Point(*from.point_);
+  } else {
+    point_ = NULL;
+  }
+  if (from.has_code()) {
+    code_ = new ::Code(*from.code_);
+  } else {
+    code_ = NULL;
+  }
+  ::memcpy(&id_, &from.id_,
+    reinterpret_cast<char*>(&enabled_) -
+    reinterpret_cast<char*>(&id_) + sizeof(enabled_));
   // @@protoc_insertion_point(copy_constructor:Beacon)
 }
 
 void Beacon::SharedCtor() {
+  _cached_size_ = 0;
   uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  point_ = NULL;
-  code_ = NULL;
-  ::memset(&id_, 0, reinterpret_cast<char*>(&enabled_) -
-    reinterpret_cast<char*>(&id_) + sizeof(enabled_));
-  _cached_size_ = 0;
+  ::memset(&point_, 0, reinterpret_cast<char*>(&enabled_) -
+    reinterpret_cast<char*>(&point_) + sizeof(enabled_));
 }
 
 Beacon::~Beacon() {
@@ -1063,8 +1101,10 @@ Beacon::~Beacon() {
 void Beacon::SharedDtor() {
   uuid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (this != &Beacon_default_instance_.get()) {
+  if (this != internal_default_instance()) {
     delete point_;
+  }
+  if (this != internal_default_instance()) {
     delete code_;
   }
 }
@@ -1075,16 +1115,14 @@ void Beacon::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* Beacon::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Beacon_descriptor_;
+  protobuf_model_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_model_2eproto::file_level_metadata[2].descriptor;
 }
 
 const Beacon& Beacon::default_instance() {
-  protobuf_InitDefaults_model_2eproto();
+  protobuf_model_2eproto::InitDefaults();
   return *internal_default_instance();
 }
-
-::google::protobuf::internal::ExplicitlyConstructed<Beacon> Beacon_default_instance_;
 
 Beacon* Beacon::New(::google::protobuf::Arena* arena) const {
   Beacon* n = new Beacon;
@@ -1096,33 +1134,30 @@ Beacon* Beacon::New(::google::protobuf::Arena* arena) const {
 
 void Beacon::Clear() {
 // @@protoc_insertion_point(message_clear_start:Beacon)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(Beacon, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<Beacon*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&(first), 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(id_, enabled_);
-  uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (GetArenaNoVirtual() == NULL && point_ != NULL) delete point_;
-  point_ = NULL;
-  if (GetArenaNoVirtual() == NULL && code_ != NULL) delete code_;
-  code_ = NULL;
-  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-
-#undef ZR_HELPER_
-#undef ZR_
-
+  if (_has_bits_[0 / 32] & 15u) {
+    if (has_uuid()) {
+      GOOGLE_DCHECK(!uuid_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*uuid_.UnsafeRawStringPointer())->clear();
+    }
+    if (has_name()) {
+      GOOGLE_DCHECK(!name_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*name_.UnsafeRawStringPointer())->clear();
+    }
+    if (has_point()) {
+      GOOGLE_DCHECK(point_ != NULL);
+      point_->::Point::Clear();
+    }
+    if (has_code()) {
+      GOOGLE_DCHECK(code_ != NULL);
+      code_->::Code::Clear();
+    }
+  }
+  if (_has_bits_[0 / 32] & 112u) {
+    ::memset(&id_, 0, reinterpret_cast<char*>(&enabled_) -
+      reinterpret_cast<char*>(&id_) + sizeof(enabled_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
 }
 
 bool Beacon::MergePartialFromCodedStream(
@@ -1131,111 +1166,98 @@ bool Beacon::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:Beacon)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional uint32 id = 1;
+      // required uint32 id = 1;
       case 1: {
-        if (tag == 8) {
-
+        if (tag == 8u) {
+          set_has_id();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &id_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_uuid;
         break;
       }
 
-      // optional string uuid = 2;
+      // required string uuid = 2;
       case 2: {
-        if (tag == 18) {
-         parse_uuid:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_uuid()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->uuid().data(), this->uuid().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "Beacon.uuid"));
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "Beacon.uuid");
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(29)) goto parse_snr;
         break;
       }
 
-      // optional float snr = 3;
+      // required float snr = 3;
       case 3: {
-        if (tag == 29) {
-         parse_snr:
-
+        if (tag == 29u) {
+          set_has_snr();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &snr_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_point;
         break;
       }
 
-      // optional .Point point = 4;
+      // required .Point point = 4;
       case 4: {
-        if (tag == 34) {
-         parse_point:
+        if (tag == 34u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_point()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_code;
         break;
       }
 
-      // optional .Code code = 5;
+      // required .Code code = 5;
       case 5: {
-        if (tag == 42) {
-         parse_code:
+        if (tag == 42u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_code()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(48)) goto parse_enabled;
         break;
       }
 
-      // optional bool enabled = 6;
+      // required bool enabled = 6;
       case 6: {
-        if (tag == 48) {
-         parse_enabled:
-
+        if (tag == 48u) {
+          set_has_enabled();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &enabled_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(58)) goto parse_name;
         break;
       }
 
       // optional string name = 7;
       case 7: {
-        if (tag == 58) {
-         parse_name:
+        if (tag == 58u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_name()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->name().data(), this->name().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "Beacon.name"));
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "Beacon.name");
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1246,7 +1268,8 @@ bool Beacon::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -1263,159 +1286,208 @@ failure:
 void Beacon::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Beacon)
-  // optional uint32 id = 1;
-  if (this->id() != 0) {
+  // required uint32 id = 1;
+  if (has_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
   }
 
-  // optional string uuid = 2;
-  if (this->uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // required string uuid = 2;
+  if (has_uuid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->uuid().data(), this->uuid().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Beacon.uuid");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       2, this->uuid(), output);
   }
 
-  // optional float snr = 3;
-  if (this->snr() != 0) {
+  // required float snr = 3;
+  if (has_snr()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(3, this->snr(), output);
   }
 
-  // optional .Point point = 4;
-  if (this->has_point()) {
+  // required .Point point = 4;
+  if (has_point()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       4, *this->point_, output);
   }
 
-  // optional .Code code = 5;
-  if (this->has_code()) {
+  // required .Code code = 5;
+  if (has_code()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       5, *this->code_, output);
   }
 
-  // optional bool enabled = 6;
-  if (this->enabled() != 0) {
+  // required bool enabled = 6;
+  if (has_enabled()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(6, this->enabled(), output);
   }
 
   // optional string name = 7;
-  if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  if (has_name()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Beacon.name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       7, this->name(), output);
   }
 
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
   // @@protoc_insertion_point(serialize_end:Beacon)
 }
 
 ::google::protobuf::uint8* Beacon::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:Beacon)
-  // optional uint32 id = 1;
-  if (this->id() != 0) {
+  // required uint32 id = 1;
+  if (has_id()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->id(), target);
   }
 
-  // optional string uuid = 2;
-  if (this->uuid().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // required string uuid = 2;
+  if (has_uuid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->uuid().data(), this->uuid().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Beacon.uuid");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->uuid(), target);
   }
 
-  // optional float snr = 3;
-  if (this->snr() != 0) {
+  // required float snr = 3;
+  if (has_snr()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(3, this->snr(), target);
   }
 
-  // optional .Point point = 4;
-  if (this->has_point()) {
+  // required .Point point = 4;
+  if (has_point()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
         4, *this->point_, false, target);
   }
 
-  // optional .Code code = 5;
-  if (this->has_code()) {
+  // required .Code code = 5;
+  if (has_code()) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
         5, *this->code_, false, target);
   }
 
-  // optional bool enabled = 6;
-  if (this->enabled() != 0) {
+  // required bool enabled = 6;
+  if (has_enabled()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(6, this->enabled(), target);
   }
 
   // optional string name = 7;
-  if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  if (has_name()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Beacon.name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         7, this->name(), target);
   }
 
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:Beacon)
   return target;
 }
 
-size_t Beacon::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Beacon)
+size_t Beacon::RequiredFieldsByteSizeFallback() const {
+// @@protoc_insertion_point(required_fields_byte_size_fallback_start:Beacon)
   size_t total_size = 0;
 
-  // optional uint32 id = 1;
-  if (this->id() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->id());
-  }
-
-  // optional string uuid = 2;
-  if (this->uuid().size() > 0) {
+  if (has_uuid()) {
+    // required string uuid = 2;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->uuid());
   }
 
-  // optional float snr = 3;
-  if (this->snr() != 0) {
-    total_size += 1 + 4;
-  }
-
-  // optional .Point point = 4;
-  if (this->has_point()) {
+  if (has_point()) {
+    // required .Point point = 4;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->point_);
   }
 
-  // optional .Code code = 5;
-  if (this->has_code()) {
+  if (has_code()) {
+    // required .Code code = 5;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->code_);
   }
 
-  // optional bool enabled = 6;
-  if (this->enabled() != 0) {
+  if (has_id()) {
+    // required uint32 id = 1;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->id());
+  }
+
+  if (has_snr()) {
+    // required float snr = 3;
+    total_size += 1 + 4;
+  }
+
+  if (has_enabled()) {
+    // required bool enabled = 6;
     total_size += 1 + 1;
   }
 
+  return total_size;
+}
+size_t Beacon::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Beacon)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  if (((_has_bits_[0] & 0x0000007d) ^ 0x0000007d) == 0) {  // All required fields are present.
+    // required string uuid = 2;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->uuid());
+
+    // required .Point point = 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->point_);
+
+    // required .Code code = 5;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->code_);
+
+    // required uint32 id = 1;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->id());
+
+    // required float snr = 3;
+    total_size += 1 + 4;
+
+    // required bool enabled = 6;
+    total_size += 1 + 1;
+
+  } else {
+    total_size += RequiredFieldsByteSizeFallback();
+  }
   // optional string name = 7;
-  if (this->name().size() > 0) {
+  if (has_name()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->name());
@@ -1430,7 +1502,7 @@ size_t Beacon::ByteSizeLong() const {
 
 void Beacon::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:Beacon)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
   const Beacon* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const Beacon>(
           &from);
@@ -1439,43 +1511,38 @@ void Beacon::MergeFrom(const ::google::protobuf::Message& from) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
   // @@protoc_insertion_point(generalized_merge_from_cast_success:Beacon)
-    UnsafeMergeFrom(*source);
+    MergeFrom(*source);
   }
 }
 
 void Beacon::MergeFrom(const Beacon& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:Beacon)
-  if (GOOGLE_PREDICT_TRUE(&from != this)) {
-    UnsafeMergeFrom(from);
-  } else {
-    MergeFromFail(__LINE__);
-  }
-}
-
-void Beacon::UnsafeMergeFrom(const Beacon& from) {
-  GOOGLE_DCHECK(&from != this);
-  if (from.id() != 0) {
-    set_id(from.id());
-  }
-  if (from.uuid().size() > 0) {
-
-    uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
-  }
-  if (from.snr() != 0) {
-    set_snr(from.snr());
-  }
-  if (from.has_point()) {
-    mutable_point()->::Point::MergeFrom(from.point());
-  }
-  if (from.has_code()) {
-    mutable_code()->::Code::MergeFrom(from.code());
-  }
-  if (from.enabled() != 0) {
-    set_enabled(from.enabled());
-  }
-  if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._has_bits_[0 / 32] & 127u) {
+    if (from.has_uuid()) {
+      set_has_uuid();
+      uuid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.uuid_);
+    }
+    if (from.has_name()) {
+      set_has_name();
+      name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+    }
+    if (from.has_point()) {
+      mutable_point()->::Point::MergeFrom(from.point());
+    }
+    if (from.has_code()) {
+      mutable_code()->::Code::MergeFrom(from.code());
+    }
+    if (from.has_id()) {
+      set_id(from.id());
+    }
+    if (from.has_snr()) {
+      set_snr(from.snr());
+    }
+    if (from.has_enabled()) {
+      set_enabled(from.enabled());
+    }
   }
 }
 
@@ -1490,11 +1557,17 @@ void Beacon::CopyFrom(const Beacon& from) {
 // @@protoc_insertion_point(class_specific_copy_from_start:Beacon)
   if (&from == this) return;
   Clear();
-  UnsafeMergeFrom(from);
+  MergeFrom(from);
 }
 
 bool Beacon::IsInitialized() const {
-
+  if ((_has_bits_[0] & 0x0000007d) != 0x0000007d) return false;
+  if (has_point()) {
+    if (!this->point_->IsInitialized()) return false;
+  }
+  if (has_code()) {
+    if (!this->code_->IsInitialized()) return false;
+  }
   return true;
 }
 
@@ -1503,107 +1576,149 @@ void Beacon::Swap(Beacon* other) {
   InternalSwap(other);
 }
 void Beacon::InternalSwap(Beacon* other) {
-  std::swap(id_, other->id_);
   uuid_.Swap(&other->uuid_);
-  std::swap(snr_, other->snr_);
+  name_.Swap(&other->name_);
   std::swap(point_, other->point_);
   std::swap(code_, other->code_);
+  std::swap(id_, other->id_);
+  std::swap(snr_, other->snr_);
   std::swap(enabled_, other->enabled_);
-  name_.Swap(&other->name_);
+  std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata Beacon::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Beacon_descriptor_;
-  metadata.reflection = Beacon_reflection_;
-  return metadata;
+  protobuf_model_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_model_2eproto::file_level_metadata[2];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Beacon
 
-// optional uint32 id = 1;
+// required uint32 id = 1;
+bool Beacon::has_id() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+void Beacon::set_has_id() {
+  _has_bits_[0] |= 0x00000010u;
+}
+void Beacon::clear_has_id() {
+  _has_bits_[0] &= ~0x00000010u;
+}
 void Beacon::clear_id() {
   id_ = 0u;
+  clear_has_id();
 }
 ::google::protobuf::uint32 Beacon::id() const {
   // @@protoc_insertion_point(field_get:Beacon.id)
   return id_;
 }
 void Beacon::set_id(::google::protobuf::uint32 value) {
-  
+  set_has_id();
   id_ = value;
   // @@protoc_insertion_point(field_set:Beacon.id)
 }
 
-// optional string uuid = 2;
+// required string uuid = 2;
+bool Beacon::has_uuid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+void Beacon::set_has_uuid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+void Beacon::clear_has_uuid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
 void Beacon::clear_uuid() {
   uuid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_uuid();
 }
 const ::std::string& Beacon::uuid() const {
   // @@protoc_insertion_point(field_get:Beacon.uuid)
-  return uuid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return uuid_.GetNoArena();
 }
 void Beacon::set_uuid(const ::std::string& value) {
-  
+  set_has_uuid();
   uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:Beacon.uuid)
 }
+#if LANG_CXX11
+void Beacon::set_uuid(::std::string&& value) {
+  set_has_uuid();
+  uuid_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Beacon.uuid)
+}
+#endif
 void Beacon::set_uuid(const char* value) {
-  
+  set_has_uuid();
   uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:Beacon.uuid)
 }
 void Beacon::set_uuid(const char* value, size_t size) {
-  
+  set_has_uuid();
   uuid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:Beacon.uuid)
 }
 ::std::string* Beacon::mutable_uuid() {
-  
+  set_has_uuid();
   // @@protoc_insertion_point(field_mutable:Beacon.uuid)
   return uuid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* Beacon::release_uuid() {
   // @@protoc_insertion_point(field_release:Beacon.uuid)
-  
+  clear_has_uuid();
   return uuid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void Beacon::set_allocated_uuid(::std::string* uuid) {
   if (uuid != NULL) {
-    
+    set_has_uuid();
   } else {
-    
+    clear_has_uuid();
   }
   uuid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), uuid);
   // @@protoc_insertion_point(field_set_allocated:Beacon.uuid)
 }
 
-// optional float snr = 3;
+// required float snr = 3;
+bool Beacon::has_snr() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+void Beacon::set_has_snr() {
+  _has_bits_[0] |= 0x00000020u;
+}
+void Beacon::clear_has_snr() {
+  _has_bits_[0] &= ~0x00000020u;
+}
 void Beacon::clear_snr() {
   snr_ = 0;
+  clear_has_snr();
 }
 float Beacon::snr() const {
   // @@protoc_insertion_point(field_get:Beacon.snr)
   return snr_;
 }
 void Beacon::set_snr(float value) {
-  
+  set_has_snr();
   snr_ = value;
   // @@protoc_insertion_point(field_set:Beacon.snr)
 }
 
-// optional .Point point = 4;
+// required .Point point = 4;
 bool Beacon::has_point() const {
-  return this != internal_default_instance() && point_ != NULL;
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+void Beacon::set_has_point() {
+  _has_bits_[0] |= 0x00000004u;
+}
+void Beacon::clear_has_point() {
+  _has_bits_[0] &= ~0x00000004u;
 }
 void Beacon::clear_point() {
-  if (GetArenaNoVirtual() == NULL && point_ != NULL) delete point_;
-  point_ = NULL;
+  if (point_ != NULL) point_->::Point::Clear();
+  clear_has_point();
 }
 const ::Point& Beacon::point() const {
   // @@protoc_insertion_point(field_get:Beacon.point)
@@ -1611,7 +1726,7 @@ const ::Point& Beacon::point() const {
                          : *::Point::internal_default_instance();
 }
 ::Point* Beacon::mutable_point() {
-  
+  set_has_point();
   if (point_ == NULL) {
     point_ = new ::Point;
   }
@@ -1620,7 +1735,7 @@ const ::Point& Beacon::point() const {
 }
 ::Point* Beacon::release_point() {
   // @@protoc_insertion_point(field_release:Beacon.point)
-  
+  clear_has_point();
   ::Point* temp = point_;
   point_ = NULL;
   return temp;
@@ -1629,20 +1744,26 @@ void Beacon::set_allocated_point(::Point* point) {
   delete point_;
   point_ = point;
   if (point) {
-    
+    set_has_point();
   } else {
-    
+    clear_has_point();
   }
   // @@protoc_insertion_point(field_set_allocated:Beacon.point)
 }
 
-// optional .Code code = 5;
+// required .Code code = 5;
 bool Beacon::has_code() const {
-  return this != internal_default_instance() && code_ != NULL;
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+void Beacon::set_has_code() {
+  _has_bits_[0] |= 0x00000008u;
+}
+void Beacon::clear_has_code() {
+  _has_bits_[0] &= ~0x00000008u;
 }
 void Beacon::clear_code() {
-  if (GetArenaNoVirtual() == NULL && code_ != NULL) delete code_;
-  code_ = NULL;
+  if (code_ != NULL) code_->::Code::Clear();
+  clear_has_code();
 }
 const ::Code& Beacon::code() const {
   // @@protoc_insertion_point(field_get:Beacon.code)
@@ -1650,7 +1771,7 @@ const ::Code& Beacon::code() const {
                          : *::Code::internal_default_instance();
 }
 ::Code* Beacon::mutable_code() {
-  
+  set_has_code();
   if (code_ == NULL) {
     code_ = new ::Code;
   }
@@ -1659,7 +1780,7 @@ const ::Code& Beacon::code() const {
 }
 ::Code* Beacon::release_code() {
   // @@protoc_insertion_point(field_release:Beacon.code)
-  
+  clear_has_code();
   ::Code* temp = code_;
   code_ = NULL;
   return temp;
@@ -1668,74 +1789,99 @@ void Beacon::set_allocated_code(::Code* code) {
   delete code_;
   code_ = code;
   if (code) {
-    
+    set_has_code();
   } else {
-    
+    clear_has_code();
   }
   // @@protoc_insertion_point(field_set_allocated:Beacon.code)
 }
 
-// optional bool enabled = 6;
+// required bool enabled = 6;
+bool Beacon::has_enabled() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+void Beacon::set_has_enabled() {
+  _has_bits_[0] |= 0x00000040u;
+}
+void Beacon::clear_has_enabled() {
+  _has_bits_[0] &= ~0x00000040u;
+}
 void Beacon::clear_enabled() {
   enabled_ = false;
+  clear_has_enabled();
 }
 bool Beacon::enabled() const {
   // @@protoc_insertion_point(field_get:Beacon.enabled)
   return enabled_;
 }
 void Beacon::set_enabled(bool value) {
-  
+  set_has_enabled();
   enabled_ = value;
   // @@protoc_insertion_point(field_set:Beacon.enabled)
 }
 
 // optional string name = 7;
+bool Beacon::has_name() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+void Beacon::set_has_name() {
+  _has_bits_[0] |= 0x00000002u;
+}
+void Beacon::clear_has_name() {
+  _has_bits_[0] &= ~0x00000002u;
+}
 void Beacon::clear_name() {
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_name();
 }
 const ::std::string& Beacon::name() const {
   // @@protoc_insertion_point(field_get:Beacon.name)
-  return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return name_.GetNoArena();
 }
 void Beacon::set_name(const ::std::string& value) {
-  
+  set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:Beacon.name)
 }
+#if LANG_CXX11
+void Beacon::set_name(::std::string&& value) {
+  set_has_name();
+  name_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Beacon.name)
+}
+#endif
 void Beacon::set_name(const char* value) {
-  
+  set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:Beacon.name)
 }
 void Beacon::set_name(const char* value, size_t size) {
-  
+  set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:Beacon.name)
 }
 ::std::string* Beacon::mutable_name() {
-  
+  set_has_name();
   // @@protoc_insertion_point(field_mutable:Beacon.name)
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* Beacon::release_name() {
   // @@protoc_insertion_point(field_release:Beacon.name)
-  
+  clear_has_name();
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void Beacon::set_allocated_name(::std::string* name) {
   if (name != NULL) {
-    
+    set_has_name();
   } else {
-    
+    clear_has_name();
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
   // @@protoc_insertion_point(field_set_allocated:Beacon.name)
 }
 
-inline const Beacon* Beacon::internal_default_instance() {
-  return &Beacon_default_instance_.get();
-}
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
@@ -1753,29 +1899,44 @@ const int Environement::kHeightFieldNumber;
 
 Environement::Environement()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (this != internal_default_instance()) protobuf_InitDefaults_model_2eproto();
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_model_2eproto::InitDefaults();
+  }
   SharedCtor();
   // @@protoc_insertion_point(constructor:Environement)
 }
-
-void Environement::InitAsDefaultInstance() {
-}
-
 Environement::Environement(const Environement& from)
   : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  UnsafeMergeFrom(from);
+      _internal_metadata_(NULL),
+      _has_bits_(from._has_bits_),
+      _cached_size_(0),
+      beacons_(from.beacons_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_name()) {
+    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+  latitude_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_latitude()) {
+    latitude_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.latitude_);
+  }
+  longitud_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.has_longitud()) {
+    longitud_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.longitud_);
+  }
+  ::memcpy(&id_, &from.id_,
+    reinterpret_cast<char*>(&height_) -
+    reinterpret_cast<char*>(&id_) + sizeof(height_));
   // @@protoc_insertion_point(copy_constructor:Environement)
 }
 
 void Environement::SharedCtor() {
+  _cached_size_ = 0;
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   latitude_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   longitud_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&id_, 0, reinterpret_cast<char*>(&height_) -
     reinterpret_cast<char*>(&id_) + sizeof(height_));
-  _cached_size_ = 0;
 }
 
 Environement::~Environement() {
@@ -1795,16 +1956,14 @@ void Environement::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
 const ::google::protobuf::Descriptor* Environement::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Environement_descriptor_;
+  protobuf_model_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_model_2eproto::file_level_metadata[3].descriptor;
 }
 
 const Environement& Environement::default_instance() {
-  protobuf_InitDefaults_model_2eproto();
+  protobuf_model_2eproto::InitDefaults();
   return *internal_default_instance();
 }
-
-::google::protobuf::internal::ExplicitlyConstructed<Environement> Environement_default_instance_;
 
 Environement* Environement::New(::google::protobuf::Arena* arena) const {
   Environement* n = new Environement;
@@ -1816,31 +1975,27 @@ Environement* Environement::New(::google::protobuf::Arena* arena) const {
 
 void Environement::Clear() {
 // @@protoc_insertion_point(message_clear_start:Environement)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(Environement, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<Environement*>(16)->f)
-#endif
-
-#define ZR_(first, last) do {\
-  ::memset(&(first), 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
-
-  ZR_(id_, height_);
-  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  latitude_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  longitud_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-
-#undef ZR_HELPER_
-#undef ZR_
-
   beacons_.Clear();
+  if (_has_bits_[0 / 32] & 7u) {
+    if (has_name()) {
+      GOOGLE_DCHECK(!name_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*name_.UnsafeRawStringPointer())->clear();
+    }
+    if (has_latitude()) {
+      GOOGLE_DCHECK(!latitude_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*latitude_.UnsafeRawStringPointer())->clear();
+    }
+    if (has_longitud()) {
+      GOOGLE_DCHECK(!longitud_.IsDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited()));
+      (*longitud_.UnsafeRawStringPointer())->clear();
+    }
+  }
+  if (_has_bits_[0 / 32] & 120u) {
+    ::memset(&id_, 0, reinterpret_cast<char*>(&height_) -
+      reinterpret_cast<char*>(&id_) + sizeof(height_));
+  }
+  _has_bits_.Clear();
+  _internal_metadata_.Clear();
 }
 
 bool Environement::MergePartialFromCodedStream(
@@ -1849,134 +2004,117 @@ bool Environement::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:Environement)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional uint32 id = 1;
+      // required uint32 id = 1;
       case 1: {
-        if (tag == 8) {
-
+        if (tag == 8u) {
+          set_has_id();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &id_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_name;
         break;
       }
 
-      // optional string name = 2;
+      // required string name = 2;
       case 2: {
-        if (tag == 18) {
-         parse_name:
+        if (tag == 18u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_name()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->name().data(), this->name().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "Environement.name"));
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "Environement.name");
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_latitude;
         break;
       }
 
-      // optional string latitude = 3;
+      // required string latitude = 3;
       case 3: {
-        if (tag == 26) {
-         parse_latitude:
+        if (tag == 26u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_latitude()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->latitude().data(), this->latitude().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "Environement.latitude"));
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "Environement.latitude");
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_longitud;
         break;
       }
 
-      // optional string longitud = 4;
+      // required string longitud = 4;
       case 4: {
-        if (tag == 34) {
-         parse_longitud:
+        if (tag == 34u) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_longitud()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->longitud().data(), this->longitud().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "Environement.longitud"));
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "Environement.longitud");
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_beacons;
         break;
       }
 
       // repeated .Beacon beacons = 5;
       case 5: {
-        if (tag == 42) {
-         parse_beacons:
+        if (tag == 42u) {
           DO_(input->IncrementRecursionDepth());
-         parse_loop_beacons:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
                 input, add_beacons()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_loop_beacons;
         input->UnsafeDecrementRecursionDepth();
-        if (input->ExpectTag(53)) goto parse_width;
         break;
       }
 
-      // optional float width = 6;
+      // required float width = 6;
       case 6: {
-        if (tag == 53) {
-         parse_width:
-
+        if (tag == 53u) {
+          set_has_width();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &width_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(61)) goto parse_length;
         break;
       }
 
-      // optional float length = 7;
+      // required float length = 7;
       case 7: {
-        if (tag == 61) {
-         parse_length:
-
+        if (tag == 61u) {
+          set_has_length();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &length_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(69)) goto parse_height;
         break;
       }
 
-      // optional float height = 8;
+      // required float height = 8;
       case 8: {
-        if (tag == 69) {
-         parse_height:
-
+        if (tag == 69u) {
+          set_has_height();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
                  input, &height_)));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1987,7 +2125,8 @@ bool Environement::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -2004,36 +2143,36 @@ failure:
 void Environement::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Environement)
-  // optional uint32 id = 1;
-  if (this->id() != 0) {
+  // required uint32 id = 1;
+  if (has_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->id(), output);
   }
 
-  // optional string name = 2;
-  if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // required string name = 2;
+  if (has_name()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Environement.name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       2, this->name(), output);
   }
 
-  // optional string latitude = 3;
-  if (this->latitude().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // required string latitude = 3;
+  if (has_latitude()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->latitude().data(), this->latitude().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Environement.latitude");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       3, this->latitude(), output);
   }
 
-  // optional string longitud = 4;
-  if (this->longitud().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // required string longitud = 4;
+  if (has_longitud()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->longitud().data(), this->longitud().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Environement.longitud");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       4, this->longitud(), output);
@@ -2045,60 +2184,64 @@ void Environement::SerializeWithCachedSizes(
       5, this->beacons(i), output);
   }
 
-  // optional float width = 6;
-  if (this->width() != 0) {
+  // required float width = 6;
+  if (has_width()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(6, this->width(), output);
   }
 
-  // optional float length = 7;
-  if (this->length() != 0) {
+  // required float length = 7;
+  if (has_length()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(7, this->length(), output);
   }
 
-  // optional float height = 8;
-  if (this->height() != 0) {
+  // required float height = 8;
+  if (has_height()) {
     ::google::protobuf::internal::WireFormatLite::WriteFloat(8, this->height(), output);
   }
 
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
   // @@protoc_insertion_point(serialize_end:Environement)
 }
 
 ::google::protobuf::uint8* Environement::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+  (void)deterministic;  // Unused
   // @@protoc_insertion_point(serialize_to_array_start:Environement)
-  // optional uint32 id = 1;
-  if (this->id() != 0) {
+  // required uint32 id = 1;
+  if (has_id()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->id(), target);
   }
 
-  // optional string name = 2;
-  if (this->name().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // required string name = 2;
+  if (has_name()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Environement.name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->name(), target);
   }
 
-  // optional string latitude = 3;
-  if (this->latitude().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // required string latitude = 3;
+  if (has_latitude()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->latitude().data(), this->latitude().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Environement.latitude");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         3, this->latitude(), target);
   }
 
-  // optional string longitud = 4;
-  if (this->longitud().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+  // required string longitud = 4;
+  if (has_longitud()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
       this->longitud().data(), this->longitud().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
       "Environement.longitud");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
@@ -2112,72 +2255,120 @@ void Environement::SerializeWithCachedSizes(
         5, this->beacons(i), false, target);
   }
 
-  // optional float width = 6;
-  if (this->width() != 0) {
+  // required float width = 6;
+  if (has_width()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(6, this->width(), target);
   }
 
-  // optional float length = 7;
-  if (this->length() != 0) {
+  // required float length = 7;
+  if (has_length()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(7, this->length(), target);
   }
 
-  // optional float height = 8;
-  if (this->height() != 0) {
+  // required float height = 8;
+  if (has_height()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(8, this->height(), target);
   }
 
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
   // @@protoc_insertion_point(serialize_to_array_end:Environement)
   return target;
 }
 
-size_t Environement::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Environement)
+size_t Environement::RequiredFieldsByteSizeFallback() const {
+// @@protoc_insertion_point(required_fields_byte_size_fallback_start:Environement)
   size_t total_size = 0;
 
-  // optional uint32 id = 1;
-  if (this->id() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->id());
-  }
-
-  // optional string name = 2;
-  if (this->name().size() > 0) {
+  if (has_name()) {
+    // required string name = 2;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->name());
   }
 
-  // optional string latitude = 3;
-  if (this->latitude().size() > 0) {
+  if (has_latitude()) {
+    // required string latitude = 3;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->latitude());
   }
 
-  // optional string longitud = 4;
-  if (this->longitud().size() > 0) {
+  if (has_longitud()) {
+    // required string longitud = 4;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->longitud());
   }
 
-  // optional float width = 6;
-  if (this->width() != 0) {
+  if (has_id()) {
+    // required uint32 id = 1;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->id());
+  }
+
+  if (has_width()) {
+    // required float width = 6;
     total_size += 1 + 4;
   }
 
-  // optional float length = 7;
-  if (this->length() != 0) {
+  if (has_length()) {
+    // required float length = 7;
     total_size += 1 + 4;
   }
 
-  // optional float height = 8;
-  if (this->height() != 0) {
+  if (has_height()) {
+    // required float height = 8;
     total_size += 1 + 4;
   }
 
+  return total_size;
+}
+size_t Environement::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Environement)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  if (((_has_bits_[0] & 0x0000007f) ^ 0x0000007f) == 0) {  // All required fields are present.
+    // required string name = 2;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->name());
+
+    // required string latitude = 3;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->latitude());
+
+    // required string longitud = 4;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->longitud());
+
+    // required uint32 id = 1;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->id());
+
+    // required float width = 6;
+    total_size += 1 + 4;
+
+    // required float length = 7;
+    total_size += 1 + 4;
+
+    // required float height = 8;
+    total_size += 1 + 4;
+
+  } else {
+    total_size += RequiredFieldsByteSizeFallback();
+  }
   // repeated .Beacon beacons = 5;
   {
     unsigned int count = this->beacons_size();
@@ -2198,7 +2389,7 @@ size_t Environement::ByteSizeLong() const {
 
 void Environement::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:Environement)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_DCHECK_NE(&from, this);
   const Environement* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const Environement>(
           &from);
@@ -2207,45 +2398,40 @@ void Environement::MergeFrom(const ::google::protobuf::Message& from) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
   // @@protoc_insertion_point(generalized_merge_from_cast_success:Environement)
-    UnsafeMergeFrom(*source);
+    MergeFrom(*source);
   }
 }
 
 void Environement::MergeFrom(const Environement& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:Environement)
-  if (GOOGLE_PREDICT_TRUE(&from != this)) {
-    UnsafeMergeFrom(from);
-  } else {
-    MergeFromFail(__LINE__);
-  }
-}
-
-void Environement::UnsafeMergeFrom(const Environement& from) {
-  GOOGLE_DCHECK(&from != this);
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
   beacons_.MergeFrom(from.beacons_);
-  if (from.id() != 0) {
-    set_id(from.id());
-  }
-  if (from.name().size() > 0) {
-
-    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
-  }
-  if (from.latitude().size() > 0) {
-
-    latitude_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.latitude_);
-  }
-  if (from.longitud().size() > 0) {
-
-    longitud_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.longitud_);
-  }
-  if (from.width() != 0) {
-    set_width(from.width());
-  }
-  if (from.length() != 0) {
-    set_length(from.length());
-  }
-  if (from.height() != 0) {
-    set_height(from.height());
+  if (from._has_bits_[0 / 32] & 127u) {
+    if (from.has_name()) {
+      set_has_name();
+      name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+    }
+    if (from.has_latitude()) {
+      set_has_latitude();
+      latitude_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.latitude_);
+    }
+    if (from.has_longitud()) {
+      set_has_longitud();
+      longitud_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.longitud_);
+    }
+    if (from.has_id()) {
+      set_id(from.id());
+    }
+    if (from.has_width()) {
+      set_width(from.width());
+    }
+    if (from.has_length()) {
+      set_length(from.length());
+    }
+    if (from.has_height()) {
+      set_height(from.height());
+    }
   }
 }
 
@@ -2260,11 +2446,12 @@ void Environement::CopyFrom(const Environement& from) {
 // @@protoc_insertion_point(class_specific_copy_from_start:Environement)
   if (&from == this) return;
   Clear();
-  UnsafeMergeFrom(from);
+  MergeFrom(from);
 }
 
 bool Environement::IsInitialized() const {
-
+  if ((_has_bits_[0] & 0x0000007f) != 0x0000007f) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->beacons())) return false;
   return true;
 }
 
@@ -2273,170 +2460,232 @@ void Environement::Swap(Environement* other) {
   InternalSwap(other);
 }
 void Environement::InternalSwap(Environement* other) {
-  std::swap(id_, other->id_);
+  beacons_.UnsafeArenaSwap(&other->beacons_);
   name_.Swap(&other->name_);
   latitude_.Swap(&other->latitude_);
   longitud_.Swap(&other->longitud_);
-  beacons_.UnsafeArenaSwap(&other->beacons_);
+  std::swap(id_, other->id_);
   std::swap(width_, other->width_);
   std::swap(length_, other->length_);
   std::swap(height_, other->height_);
+  std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata Environement::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Environement_descriptor_;
-  metadata.reflection = Environement_reflection_;
-  return metadata;
+  protobuf_model_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_model_2eproto::file_level_metadata[3];
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Environement
 
-// optional uint32 id = 1;
+// required uint32 id = 1;
+bool Environement::has_id() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+void Environement::set_has_id() {
+  _has_bits_[0] |= 0x00000008u;
+}
+void Environement::clear_has_id() {
+  _has_bits_[0] &= ~0x00000008u;
+}
 void Environement::clear_id() {
   id_ = 0u;
+  clear_has_id();
 }
 ::google::protobuf::uint32 Environement::id() const {
   // @@protoc_insertion_point(field_get:Environement.id)
   return id_;
 }
 void Environement::set_id(::google::protobuf::uint32 value) {
-  
+  set_has_id();
   id_ = value;
   // @@protoc_insertion_point(field_set:Environement.id)
 }
 
-// optional string name = 2;
+// required string name = 2;
+bool Environement::has_name() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+void Environement::set_has_name() {
+  _has_bits_[0] |= 0x00000001u;
+}
+void Environement::clear_has_name() {
+  _has_bits_[0] &= ~0x00000001u;
+}
 void Environement::clear_name() {
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_name();
 }
 const ::std::string& Environement::name() const {
   // @@protoc_insertion_point(field_get:Environement.name)
-  return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return name_.GetNoArena();
 }
 void Environement::set_name(const ::std::string& value) {
-  
+  set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:Environement.name)
 }
+#if LANG_CXX11
+void Environement::set_name(::std::string&& value) {
+  set_has_name();
+  name_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Environement.name)
+}
+#endif
 void Environement::set_name(const char* value) {
-  
+  set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:Environement.name)
 }
 void Environement::set_name(const char* value, size_t size) {
-  
+  set_has_name();
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:Environement.name)
 }
 ::std::string* Environement::mutable_name() {
-  
+  set_has_name();
   // @@protoc_insertion_point(field_mutable:Environement.name)
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* Environement::release_name() {
   // @@protoc_insertion_point(field_release:Environement.name)
-  
+  clear_has_name();
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void Environement::set_allocated_name(::std::string* name) {
   if (name != NULL) {
-    
+    set_has_name();
   } else {
-    
+    clear_has_name();
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
   // @@protoc_insertion_point(field_set_allocated:Environement.name)
 }
 
-// optional string latitude = 3;
+// required string latitude = 3;
+bool Environement::has_latitude() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+void Environement::set_has_latitude() {
+  _has_bits_[0] |= 0x00000002u;
+}
+void Environement::clear_has_latitude() {
+  _has_bits_[0] &= ~0x00000002u;
+}
 void Environement::clear_latitude() {
   latitude_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_latitude();
 }
 const ::std::string& Environement::latitude() const {
   // @@protoc_insertion_point(field_get:Environement.latitude)
-  return latitude_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return latitude_.GetNoArena();
 }
 void Environement::set_latitude(const ::std::string& value) {
-  
+  set_has_latitude();
   latitude_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:Environement.latitude)
 }
+#if LANG_CXX11
+void Environement::set_latitude(::std::string&& value) {
+  set_has_latitude();
+  latitude_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Environement.latitude)
+}
+#endif
 void Environement::set_latitude(const char* value) {
-  
+  set_has_latitude();
   latitude_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:Environement.latitude)
 }
 void Environement::set_latitude(const char* value, size_t size) {
-  
+  set_has_latitude();
   latitude_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:Environement.latitude)
 }
 ::std::string* Environement::mutable_latitude() {
-  
+  set_has_latitude();
   // @@protoc_insertion_point(field_mutable:Environement.latitude)
   return latitude_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* Environement::release_latitude() {
   // @@protoc_insertion_point(field_release:Environement.latitude)
-  
+  clear_has_latitude();
   return latitude_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void Environement::set_allocated_latitude(::std::string* latitude) {
   if (latitude != NULL) {
-    
+    set_has_latitude();
   } else {
-    
+    clear_has_latitude();
   }
   latitude_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), latitude);
   // @@protoc_insertion_point(field_set_allocated:Environement.latitude)
 }
 
-// optional string longitud = 4;
+// required string longitud = 4;
+bool Environement::has_longitud() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+void Environement::set_has_longitud() {
+  _has_bits_[0] |= 0x00000004u;
+}
+void Environement::clear_has_longitud() {
+  _has_bits_[0] &= ~0x00000004u;
+}
 void Environement::clear_longitud() {
   longitud_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_longitud();
 }
 const ::std::string& Environement::longitud() const {
   // @@protoc_insertion_point(field_get:Environement.longitud)
-  return longitud_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return longitud_.GetNoArena();
 }
 void Environement::set_longitud(const ::std::string& value) {
-  
+  set_has_longitud();
   longitud_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:Environement.longitud)
 }
+#if LANG_CXX11
+void Environement::set_longitud(::std::string&& value) {
+  set_has_longitud();
+  longitud_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:Environement.longitud)
+}
+#endif
 void Environement::set_longitud(const char* value) {
-  
+  set_has_longitud();
   longitud_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:Environement.longitud)
 }
 void Environement::set_longitud(const char* value, size_t size) {
-  
+  set_has_longitud();
   longitud_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:Environement.longitud)
 }
 ::std::string* Environement::mutable_longitud() {
-  
+  set_has_longitud();
   // @@protoc_insertion_point(field_mutable:Environement.longitud)
   return longitud_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* Environement::release_longitud() {
   // @@protoc_insertion_point(field_release:Environement.longitud)
-  
+  clear_has_longitud();
   return longitud_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void Environement::set_allocated_longitud(::std::string* longitud) {
   if (longitud != NULL) {
-    
+    set_has_longitud();
   } else {
-    
+    clear_has_longitud();
   }
   longitud_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), longitud);
   // @@protoc_insertion_point(field_set_allocated:Environement.longitud)
@@ -2472,51 +2721,78 @@ Environement::beacons() const {
   return beacons_;
 }
 
-// optional float width = 6;
+// required float width = 6;
+bool Environement::has_width() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+void Environement::set_has_width() {
+  _has_bits_[0] |= 0x00000010u;
+}
+void Environement::clear_has_width() {
+  _has_bits_[0] &= ~0x00000010u;
+}
 void Environement::clear_width() {
   width_ = 0;
+  clear_has_width();
 }
 float Environement::width() const {
   // @@protoc_insertion_point(field_get:Environement.width)
   return width_;
 }
 void Environement::set_width(float value) {
-  
+  set_has_width();
   width_ = value;
   // @@protoc_insertion_point(field_set:Environement.width)
 }
 
-// optional float length = 7;
+// required float length = 7;
+bool Environement::has_length() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+void Environement::set_has_length() {
+  _has_bits_[0] |= 0x00000020u;
+}
+void Environement::clear_has_length() {
+  _has_bits_[0] &= ~0x00000020u;
+}
 void Environement::clear_length() {
   length_ = 0;
+  clear_has_length();
 }
 float Environement::length() const {
   // @@protoc_insertion_point(field_get:Environement.length)
   return length_;
 }
 void Environement::set_length(float value) {
-  
+  set_has_length();
   length_ = value;
   // @@protoc_insertion_point(field_set:Environement.length)
 }
 
-// optional float height = 8;
+// required float height = 8;
+bool Environement::has_height() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+void Environement::set_has_height() {
+  _has_bits_[0] |= 0x00000040u;
+}
+void Environement::clear_has_height() {
+  _has_bits_[0] &= ~0x00000040u;
+}
 void Environement::clear_height() {
   height_ = 0;
+  clear_has_height();
 }
 float Environement::height() const {
   // @@protoc_insertion_point(field_get:Environement.height)
   return height_;
 }
 void Environement::set_height(float value) {
-  
+  set_has_height();
   height_ = value;
   // @@protoc_insertion_point(field_set:Environement.height)
 }
 
-inline const Environement* Environement::internal_default_instance() {
-  return &Environement_default_instance_.get();
-}
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)
