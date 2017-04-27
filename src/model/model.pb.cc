@@ -98,11 +98,12 @@ void protobuf_AssignDesc_model_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Beacon));
   Environement_descriptor_ = file->message_type(3);
-  static const int Environement_offsets_[8] = {
+  static const int Environement_offsets_[9] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, latitude_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, longitud_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, longitude_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, altitude_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, beacons_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, width_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Environement, length_),
@@ -168,10 +169,11 @@ void protobuf_AddDesc_model_2eproto() {
     "(\002\"z\n\006Beacon\022\n\n\002id\030\001 \002(\r\022\014\n\004uuid\030\002 \002(\t\022\013"
     "\n\003snr\030\003 \002(\002\022\025\n\005point\030\004 \002(\0132\006.Point\022\023\n\004co"
     "de\030\005 \002(\0132\005.Code\022\017\n\007enabled\030\006 \002(\010\022\014\n\004name"
-    "\030\007 \001(\t\"\225\001\n\014Environement\022\n\n\002id\030\001 \002(\r\022\014\n\004n"
-    "ame\030\002 \002(\t\022\020\n\010latitude\030\003 \002(\t\022\020\n\010longitud\030"
-    "\004 \002(\t\022\030\n\007beacons\030\005 \003(\0132\007.Beacon\022\r\n\005width"
-    "\030\006 \002(\002\022\016\n\006length\030\007 \002(\002\022\016\n\006height\030\010 \002(\002", 438);
+    "\030\007 \001(\t\"\250\001\n\014Environement\022\n\n\002id\030\001 \002(\r\022\014\n\004n"
+    "ame\030\002 \002(\t\022\020\n\010latitude\030\003 \002(\002\022\021\n\tlongitude"
+    "\030\004 \002(\002\022\020\n\010altitude\030\005 \002(\002\022\030\n\007beacons\030\006 \003("
+    "\0132\007.Beacon\022\r\n\005width\030\007 \002(\002\022\016\n\006length\030\010 \002("
+    "\002\022\016\n\006height\030\t \002(\002", 457);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "model.proto", &protobuf_RegisterTypes);
   Code::default_instance_ = new Code();
@@ -1376,7 +1378,8 @@ void Beacon::Swap(Beacon* other) {
 const int Environement::kIdFieldNumber;
 const int Environement::kNameFieldNumber;
 const int Environement::kLatitudeFieldNumber;
-const int Environement::kLongitudFieldNumber;
+const int Environement::kLongitudeFieldNumber;
+const int Environement::kAltitudeFieldNumber;
 const int Environement::kBeaconsFieldNumber;
 const int Environement::kWidthFieldNumber;
 const int Environement::kLengthFieldNumber;
@@ -1404,8 +1407,9 @@ void Environement::SharedCtor() {
   _cached_size_ = 0;
   id_ = 0u;
   name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  latitude_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  longitud_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  latitude_ = 0;
+  longitude_ = 0;
+  altitude_ = 0;
   width_ = 0;
   length_ = 0;
   height_ = 0;
@@ -1420,12 +1424,6 @@ Environement::~Environement() {
 void Environement::SharedDtor() {
   if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete name_;
-  }
-  if (latitude_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete latitude_;
-  }
-  if (longitud_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete longitud_;
   }
   if (this != default_instance_) {
   }
@@ -1463,25 +1461,16 @@ void Environement::Clear() {
     ::memset(&first, 0, n);                                \
   } while (0)
 
-  if (_has_bits_[0 / 32] & 239) {
-    ZR_(id_, width_);
-    ZR_(length_, height_);
+  if (_has_bits_[0 / 32] & 223) {
+    ZR_(id_, altitude_);
+    ZR_(width_, length_);
     if (has_name()) {
       if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         name_->clear();
       }
     }
-    if (has_latitude()) {
-      if (latitude_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        latitude_->clear();
-      }
-    }
-    if (has_longitud()) {
-      if (longitud_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-        longitud_->clear();
-      }
-    }
   }
+  height_ = 0;
 
 #undef OFFSET_OF_FIELD_
 #undef ZR_
@@ -1528,61 +1517,72 @@ bool Environement::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_latitude;
+        if (input->ExpectTag(29)) goto parse_latitude;
         break;
       }
 
-      // required string latitude = 3;
+      // required float latitude = 3;
       case 3: {
-        if (tag == 26) {
+        if (tag == 29) {
          parse_latitude:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_latitude()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->latitude().data(), this->latitude().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "latitude");
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &latitude_)));
+          set_has_latitude();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_longitud;
+        if (input->ExpectTag(37)) goto parse_longitude;
         break;
       }
 
-      // required string longitud = 4;
+      // required float longitude = 4;
       case 4: {
-        if (tag == 34) {
-         parse_longitud:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_longitud()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->longitud().data(), this->longitud().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "longitud");
+        if (tag == 37) {
+         parse_longitude:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &longitude_)));
+          set_has_longitude();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_beacons;
+        if (input->ExpectTag(45)) goto parse_altitude;
         break;
       }
 
-      // repeated .Beacon beacons = 5;
+      // required float altitude = 5;
       case 5: {
-        if (tag == 42) {
+        if (tag == 45) {
+         parse_altitude:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
+                 input, &altitude_)));
+          set_has_altitude();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(50)) goto parse_beacons;
+        break;
+      }
+
+      // repeated .Beacon beacons = 6;
+      case 6: {
+        if (tag == 50) {
          parse_beacons:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                 input, add_beacons()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_beacons;
-        if (input->ExpectTag(53)) goto parse_width;
+        if (input->ExpectTag(50)) goto parse_beacons;
+        if (input->ExpectTag(61)) goto parse_width;
         break;
       }
 
-      // required float width = 6;
-      case 6: {
-        if (tag == 53) {
+      // required float width = 7;
+      case 7: {
+        if (tag == 61) {
          parse_width:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
@@ -1591,13 +1591,13 @@ bool Environement::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(61)) goto parse_length;
+        if (input->ExpectTag(69)) goto parse_length;
         break;
       }
 
-      // required float length = 7;
-      case 7: {
-        if (tag == 61) {
+      // required float length = 8;
+      case 8: {
+        if (tag == 69) {
          parse_length:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
@@ -1606,13 +1606,13 @@ bool Environement::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(69)) goto parse_height;
+        if (input->ExpectTag(77)) goto parse_height;
         break;
       }
 
-      // required float height = 8;
-      case 8: {
-        if (tag == 69) {
+      // required float height = 9;
+      case 9: {
+        if (tag == 77) {
          parse_height:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
@@ -1665,45 +1665,40 @@ void Environement::SerializeWithCachedSizes(
       2, this->name(), output);
   }
 
-  // required string latitude = 3;
+  // required float latitude = 3;
   if (has_latitude()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->latitude().data(), this->latitude().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "latitude");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->latitude(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(3, this->latitude(), output);
   }
 
-  // required string longitud = 4;
-  if (has_longitud()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->longitud().data(), this->longitud().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "longitud");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->longitud(), output);
+  // required float longitude = 4;
+  if (has_longitude()) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(4, this->longitude(), output);
   }
 
-  // repeated .Beacon beacons = 5;
+  // required float altitude = 5;
+  if (has_altitude()) {
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(5, this->altitude(), output);
+  }
+
+  // repeated .Beacon beacons = 6;
   for (int i = 0; i < this->beacons_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      5, this->beacons(i), output);
+      6, this->beacons(i), output);
   }
 
-  // required float width = 6;
+  // required float width = 7;
   if (has_width()) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(6, this->width(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(7, this->width(), output);
   }
 
-  // required float length = 7;
+  // required float length = 8;
   if (has_length()) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(7, this->length(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(8, this->length(), output);
   }
 
-  // required float height = 8;
+  // required float height = 9;
   if (has_height()) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(8, this->height(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFloat(9, this->height(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1732,48 +1727,41 @@ void Environement::SerializeWithCachedSizes(
         2, this->name(), target);
   }
 
-  // required string latitude = 3;
+  // required float latitude = 3;
   if (has_latitude()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->latitude().data(), this->latitude().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "latitude");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->latitude(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(3, this->latitude(), target);
   }
 
-  // required string longitud = 4;
-  if (has_longitud()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->longitud().data(), this->longitud().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "longitud");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->longitud(), target);
+  // required float longitude = 4;
+  if (has_longitude()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(4, this->longitude(), target);
   }
 
-  // repeated .Beacon beacons = 5;
+  // required float altitude = 5;
+  if (has_altitude()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(5, this->altitude(), target);
+  }
+
+  // repeated .Beacon beacons = 6;
   for (int i = 0; i < this->beacons_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        5, this->beacons(i), target);
+        6, this->beacons(i), target);
   }
 
-  // required float width = 6;
+  // required float width = 7;
   if (has_width()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(6, this->width(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(7, this->width(), target);
   }
 
-  // required float length = 7;
+  // required float length = 8;
   if (has_length()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(7, this->length(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(8, this->length(), target);
   }
 
-  // required float height = 8;
+  // required float height = 9;
   if (has_height()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(8, this->height(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(9, this->height(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1802,37 +1790,40 @@ int Environement::ByteSize() const {
           this->name());
     }
 
-    // required string latitude = 3;
+    // required float latitude = 3;
     if (has_latitude()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->latitude());
+      total_size += 1 + 4;
     }
 
-    // required string longitud = 4;
-    if (has_longitud()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->longitud());
+    // required float longitude = 4;
+    if (has_longitude()) {
+      total_size += 1 + 4;
     }
 
-    // required float width = 6;
+    // required float altitude = 5;
+    if (has_altitude()) {
+      total_size += 1 + 4;
+    }
+
+    // required float width = 7;
     if (has_width()) {
       total_size += 1 + 4;
     }
 
-    // required float length = 7;
+    // required float length = 8;
     if (has_length()) {
       total_size += 1 + 4;
     }
 
-    // required float height = 8;
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    // required float height = 9;
     if (has_height()) {
       total_size += 1 + 4;
     }
 
   }
-  // repeated .Beacon beacons = 5;
+  // repeated .Beacon beacons = 6;
   total_size += 1 * this->beacons_size();
   for (int i = 0; i < this->beacons_size(); i++) {
     total_size +=
@@ -1876,8 +1867,11 @@ void Environement::MergeFrom(const Environement& from) {
     if (from.has_latitude()) {
       set_latitude(from.latitude());
     }
-    if (from.has_longitud()) {
-      set_longitud(from.longitud());
+    if (from.has_longitude()) {
+      set_longitude(from.longitude());
+    }
+    if (from.has_altitude()) {
+      set_altitude(from.altitude());
     }
     if (from.has_width()) {
       set_width(from.width());
@@ -1885,6 +1879,8 @@ void Environement::MergeFrom(const Environement& from) {
     if (from.has_length()) {
       set_length(from.length());
     }
+  }
+  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     if (from.has_height()) {
       set_height(from.height());
     }
@@ -1905,7 +1901,7 @@ void Environement::CopyFrom(const Environement& from) {
 }
 
 bool Environement::IsInitialized() const {
-  if ((_has_bits_[0] & 0x000000ef) != 0x000000ef) return false;
+  if ((_has_bits_[0] & 0x000001df) != 0x000001df) return false;
 
   if (!::google::protobuf::internal::AllAreInitialized(this->beacons())) return false;
   return true;
@@ -1916,7 +1912,8 @@ void Environement::Swap(Environement* other) {
     std::swap(id_, other->id_);
     std::swap(name_, other->name_);
     std::swap(latitude_, other->latitude_);
-    std::swap(longitud_, other->longitud_);
+    std::swap(longitude_, other->longitude_);
+    std::swap(altitude_, other->altitude_);
     beacons_.Swap(&other->beacons_);
     std::swap(width_, other->width_);
     std::swap(length_, other->length_);

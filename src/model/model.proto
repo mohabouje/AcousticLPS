@@ -30,10 +30,11 @@ message Beacon {
 message Environement {
 	required uint32 id = 1;
 	required string name = 2;
-	required string	latitude = 3;
-	required string longitud = 4;
-	repeated Beacon beacons = 5;
-	required float width = 6;
-	required float length = 7;
-	required float height = 8;
+	required float	latitude = 3;
+	required float  longitude = 4;
+	required float	altitude = 5;	
+	repeated Beacon beacons = 6;
+	required float width = 7;
+	required float length = 8;
+	required float height = 9;
 }

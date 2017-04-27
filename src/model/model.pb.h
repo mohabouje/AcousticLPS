@@ -510,34 +510,31 @@ class Environement : public ::google::protobuf::Message {
   inline ::std::string* release_name();
   inline void set_allocated_name(::std::string* name);
 
-  // required string latitude = 3;
+  // required float latitude = 3;
   inline bool has_latitude() const;
   inline void clear_latitude();
   static const int kLatitudeFieldNumber = 3;
-  inline const ::std::string& latitude() const;
-  inline void set_latitude(const ::std::string& value);
-  inline void set_latitude(const char* value);
-  inline void set_latitude(const char* value, size_t size);
-  inline ::std::string* mutable_latitude();
-  inline ::std::string* release_latitude();
-  inline void set_allocated_latitude(::std::string* latitude);
+  inline float latitude() const;
+  inline void set_latitude(float value);
 
-  // required string longitud = 4;
-  inline bool has_longitud() const;
-  inline void clear_longitud();
-  static const int kLongitudFieldNumber = 4;
-  inline const ::std::string& longitud() const;
-  inline void set_longitud(const ::std::string& value);
-  inline void set_longitud(const char* value);
-  inline void set_longitud(const char* value, size_t size);
-  inline ::std::string* mutable_longitud();
-  inline ::std::string* release_longitud();
-  inline void set_allocated_longitud(::std::string* longitud);
+  // required float longitude = 4;
+  inline bool has_longitude() const;
+  inline void clear_longitude();
+  static const int kLongitudeFieldNumber = 4;
+  inline float longitude() const;
+  inline void set_longitude(float value);
 
-  // repeated .Beacon beacons = 5;
+  // required float altitude = 5;
+  inline bool has_altitude() const;
+  inline void clear_altitude();
+  static const int kAltitudeFieldNumber = 5;
+  inline float altitude() const;
+  inline void set_altitude(float value);
+
+  // repeated .Beacon beacons = 6;
   inline int beacons_size() const;
   inline void clear_beacons();
-  static const int kBeaconsFieldNumber = 5;
+  static const int kBeaconsFieldNumber = 6;
   inline const ::Beacon& beacons(int index) const;
   inline ::Beacon* mutable_beacons(int index);
   inline ::Beacon* add_beacons();
@@ -546,24 +543,24 @@ class Environement : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::Beacon >*
       mutable_beacons();
 
-  // required float width = 6;
+  // required float width = 7;
   inline bool has_width() const;
   inline void clear_width();
-  static const int kWidthFieldNumber = 6;
+  static const int kWidthFieldNumber = 7;
   inline float width() const;
   inline void set_width(float value);
 
-  // required float length = 7;
+  // required float length = 8;
   inline bool has_length() const;
   inline void clear_length();
-  static const int kLengthFieldNumber = 7;
+  static const int kLengthFieldNumber = 8;
   inline float length() const;
   inline void set_length(float value);
 
-  // required float height = 8;
+  // required float height = 9;
   inline bool has_height() const;
   inline void clear_height();
-  static const int kHeightFieldNumber = 8;
+  static const int kHeightFieldNumber = 9;
   inline float height() const;
   inline void set_height(float value);
 
@@ -575,8 +572,10 @@ class Environement : public ::google::protobuf::Message {
   inline void clear_has_name();
   inline void set_has_latitude();
   inline void clear_has_latitude();
-  inline void set_has_longitud();
-  inline void clear_has_longitud();
+  inline void set_has_longitude();
+  inline void clear_has_longitude();
+  inline void set_has_altitude();
+  inline void clear_has_altitude();
   inline void set_has_width();
   inline void clear_has_width();
   inline void set_has_length();
@@ -589,11 +588,12 @@ class Environement : public ::google::protobuf::Message {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::std::string* name_;
-  ::std::string* latitude_;
   ::google::protobuf::uint32 id_;
-  float width_;
-  ::std::string* longitud_;
+  float latitude_;
+  float longitude_;
+  float altitude_;
   ::google::protobuf::RepeatedPtrField< ::Beacon > beacons_;
+  float width_;
   float length_;
   float height_;
   friend void  protobuf_AddDesc_model_2eproto();
@@ -1179,7 +1179,7 @@ inline void Environement::set_allocated_name(::std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:Environement.name)
 }
 
-// required string latitude = 3;
+// required float latitude = 3;
 inline bool Environement::has_latitude() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
@@ -1190,148 +1190,68 @@ inline void Environement::clear_has_latitude() {
   _has_bits_[0] &= ~0x00000004u;
 }
 inline void Environement::clear_latitude() {
-  if (latitude_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    latitude_->clear();
-  }
+  latitude_ = 0;
   clear_has_latitude();
 }
-inline const ::std::string& Environement::latitude() const {
+inline float Environement::latitude() const {
   // @@protoc_insertion_point(field_get:Environement.latitude)
-  return *latitude_;
-}
-inline void Environement::set_latitude(const ::std::string& value) {
-  set_has_latitude();
-  if (latitude_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    latitude_ = new ::std::string;
-  }
-  latitude_->assign(value);
-  // @@protoc_insertion_point(field_set:Environement.latitude)
-}
-inline void Environement::set_latitude(const char* value) {
-  set_has_latitude();
-  if (latitude_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    latitude_ = new ::std::string;
-  }
-  latitude_->assign(value);
-  // @@protoc_insertion_point(field_set_char:Environement.latitude)
-}
-inline void Environement::set_latitude(const char* value, size_t size) {
-  set_has_latitude();
-  if (latitude_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    latitude_ = new ::std::string;
-  }
-  latitude_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Environement.latitude)
-}
-inline ::std::string* Environement::mutable_latitude() {
-  set_has_latitude();
-  if (latitude_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    latitude_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:Environement.latitude)
   return latitude_;
 }
-inline ::std::string* Environement::release_latitude() {
-  clear_has_latitude();
-  if (latitude_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = latitude_;
-    latitude_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void Environement::set_allocated_latitude(::std::string* latitude) {
-  if (latitude_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete latitude_;
-  }
-  if (latitude) {
-    set_has_latitude();
-    latitude_ = latitude;
-  } else {
-    clear_has_latitude();
-    latitude_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:Environement.latitude)
+inline void Environement::set_latitude(float value) {
+  set_has_latitude();
+  latitude_ = value;
+  // @@protoc_insertion_point(field_set:Environement.latitude)
 }
 
-// required string longitud = 4;
-inline bool Environement::has_longitud() const {
+// required float longitude = 4;
+inline bool Environement::has_longitude() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
-inline void Environement::set_has_longitud() {
+inline void Environement::set_has_longitude() {
   _has_bits_[0] |= 0x00000008u;
 }
-inline void Environement::clear_has_longitud() {
+inline void Environement::clear_has_longitude() {
   _has_bits_[0] &= ~0x00000008u;
 }
-inline void Environement::clear_longitud() {
-  if (longitud_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    longitud_->clear();
-  }
-  clear_has_longitud();
+inline void Environement::clear_longitude() {
+  longitude_ = 0;
+  clear_has_longitude();
 }
-inline const ::std::string& Environement::longitud() const {
-  // @@protoc_insertion_point(field_get:Environement.longitud)
-  return *longitud_;
+inline float Environement::longitude() const {
+  // @@protoc_insertion_point(field_get:Environement.longitude)
+  return longitude_;
 }
-inline void Environement::set_longitud(const ::std::string& value) {
-  set_has_longitud();
-  if (longitud_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    longitud_ = new ::std::string;
-  }
-  longitud_->assign(value);
-  // @@protoc_insertion_point(field_set:Environement.longitud)
-}
-inline void Environement::set_longitud(const char* value) {
-  set_has_longitud();
-  if (longitud_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    longitud_ = new ::std::string;
-  }
-  longitud_->assign(value);
-  // @@protoc_insertion_point(field_set_char:Environement.longitud)
-}
-inline void Environement::set_longitud(const char* value, size_t size) {
-  set_has_longitud();
-  if (longitud_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    longitud_ = new ::std::string;
-  }
-  longitud_->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Environement.longitud)
-}
-inline ::std::string* Environement::mutable_longitud() {
-  set_has_longitud();
-  if (longitud_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    longitud_ = new ::std::string;
-  }
-  // @@protoc_insertion_point(field_mutable:Environement.longitud)
-  return longitud_;
-}
-inline ::std::string* Environement::release_longitud() {
-  clear_has_longitud();
-  if (longitud_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    return NULL;
-  } else {
-    ::std::string* temp = longitud_;
-    longitud_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-    return temp;
-  }
-}
-inline void Environement::set_allocated_longitud(::std::string* longitud) {
-  if (longitud_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
-    delete longitud_;
-  }
-  if (longitud) {
-    set_has_longitud();
-    longitud_ = longitud;
-  } else {
-    clear_has_longitud();
-    longitud_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  }
-  // @@protoc_insertion_point(field_set_allocated:Environement.longitud)
+inline void Environement::set_longitude(float value) {
+  set_has_longitude();
+  longitude_ = value;
+  // @@protoc_insertion_point(field_set:Environement.longitude)
 }
 
-// repeated .Beacon beacons = 5;
+// required float altitude = 5;
+inline bool Environement::has_altitude() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void Environement::set_has_altitude() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void Environement::clear_has_altitude() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void Environement::clear_altitude() {
+  altitude_ = 0;
+  clear_has_altitude();
+}
+inline float Environement::altitude() const {
+  // @@protoc_insertion_point(field_get:Environement.altitude)
+  return altitude_;
+}
+inline void Environement::set_altitude(float value) {
+  set_has_altitude();
+  altitude_ = value;
+  // @@protoc_insertion_point(field_set:Environement.altitude)
+}
+
+// repeated .Beacon beacons = 6;
 inline int Environement::beacons_size() const {
   return beacons_.size();
 }
@@ -1361,15 +1281,15 @@ Environement::mutable_beacons() {
   return &beacons_;
 }
 
-// required float width = 6;
+// required float width = 7;
 inline bool Environement::has_width() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void Environement::set_has_width() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void Environement::clear_has_width() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void Environement::clear_width() {
   width_ = 0;
@@ -1385,15 +1305,15 @@ inline void Environement::set_width(float value) {
   // @@protoc_insertion_point(field_set:Environement.width)
 }
 
-// required float length = 7;
+// required float length = 8;
 inline bool Environement::has_length() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000080u) != 0;
 }
 inline void Environement::set_has_length() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000080u;
 }
 inline void Environement::clear_has_length() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline void Environement::clear_length() {
   length_ = 0;
@@ -1409,15 +1329,15 @@ inline void Environement::set_length(float value) {
   // @@protoc_insertion_point(field_set:Environement.length)
 }
 
-// required float height = 8;
+// required float height = 9;
 inline bool Environement::has_height() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
+  return (_has_bits_[0] & 0x00000100u) != 0;
 }
 inline void Environement::set_has_height() {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000100u;
 }
 inline void Environement::clear_has_height() {
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000100u;
 }
 inline void Environement::clear_height() {
   height_ = 0;

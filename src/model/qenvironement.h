@@ -4,6 +4,7 @@
 
 #include <QMap>
 #include <QObject>
+#include <QGeoCoordinate>
 #include <model/model.pb.h>
 class QEnvironement : public QObject
 {
@@ -11,10 +12,12 @@ class QEnvironement : public QObject
 public:
     static QEnvironement* instance(QObject *parent = Q_NULLPTR);
     inline QString name() const { return QString::fromStdString(_environement->name()); }
-    inline QString latitude() const { return QString::fromStdString(_environement->latitude()); }
-    inline QString longitude() const { return QString::fromStdString(_environement->longitud()); }
+    inline Real latitude() const { return _environement->latitude(); }
+    inline Real longitude() const { return _environement->longitude(); }
+    inline Real  altitude() const { return _environement->altitude(); }
     inline int beaconsCount() const { return _environement->beacons_size(); }
 
+    QGeoCoordinate coordinate() const;
     QBeacon addBeacon();
     bool    removeBeacon(const QBeacon& beacon);
     QBeacon beacon(int index);
