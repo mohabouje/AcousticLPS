@@ -14,13 +14,6 @@ QEnvironement *QEnvironement::instance(QObject *parent) {
     return _instance;
 }
 
-QGeoCoordinate QEnvironement::coordinate() const {
-    return QGeoCoordinate(_environement->latitude(),
-                          _environement->longitude(),
-                          _environement->altitude()
-                          );
-}
-
 QEnvironement::QEnvironement(QObject *parent) : QObject(parent) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 }

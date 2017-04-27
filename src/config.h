@@ -4,6 +4,11 @@
 #define ARMA_DONT_USE_WRAPPER
 #include <armadillo>
 
+#define APP_NAME            "Acoustic LPS"
+#define APP_VERSION         "0.0"
+#define ORGANIZATION_DOMAIN "www.ugr.es"
+#define ORGANIZATION_NAME   "Universidad de Granada"
+
 #define ENVIRONEMENT_FORMAT   ".envi"
 #define ENVIRONEMENT_FILENAME "environement" ENVIRONEMENT_FORMAT
 

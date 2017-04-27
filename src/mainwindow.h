@@ -15,6 +15,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void initUi();
+    void loadUi();
+    void saveUi();
 protected slots:
     void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 private:

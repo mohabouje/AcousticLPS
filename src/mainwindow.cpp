@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QSettings>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -18,6 +19,15 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     ui->setupUi(this);
+    loadUi();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::initUi() {
     connect(ui->actionEnvironement, &QAction::triggered, [&](bool) {
         QEnvironementEditor editor;
         editor.exec();
@@ -48,16 +58,36 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
+void MainWindow::loadUi() {
+    QSettings settings;
+    settings.beginGroup("UI");
+    restoreGeometry(settings.value("geometry", saveGeometry()).toByteArray());
+    restoreState(settings.value("state", saveState()).toByteArray());
+    ui->verticalSplitter->restoreState(
+                settings.value("vSplitter", ui->verticalSplitter->saveState())
+                .toByteArray());
+    ui->horizontalSplitter->restoreState(
+                settings.value("hSplitter", ui->horizontalSplitter->saveState())
+                .toByteArray());
+    settings.endGroup();
 }
 
+void MainWindow::saveUi() {
+    QSettings settings;
+    settings.beginGroup("UI");
+    settings.setValue("geometry", saveGeometry());
+    settings.setValue("state", saveState());
+    settings.setValue("vSplitter", ui->verticalSplitter->saveState());
+    settings.setValue("hSplitter", ui->horizontalSplitter->saveState());
+    settings.endGroup();
+    settings.sync();
+}
 
 void MainWindow::closeEvent(QCloseEvent *event) {
     if (!QEnvironement::instance()->saveEnvironementInFile()) {
         qWarning() << "Error: could not save the current data model";
     }
+    saveUi();
     QMainWindow::closeEvent(event);
 }
 

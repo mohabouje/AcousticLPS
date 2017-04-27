@@ -4,7 +4,6 @@
 
 #include <QMap>
 #include <QObject>
-#include <QGeoCoordinate>
 #include <model/model.pb.h>
 class QEnvironement : public QObject
 {
@@ -17,7 +16,6 @@ public:
     inline Real  altitude() const { return _environement->altitude(); }
     inline int beaconsCount() const { return _environement->beacons_size(); }
 
-    QGeoCoordinate coordinate() const;
     QBeacon addBeacon();
     bool    removeBeacon(const QBeacon& beacon);
     QBeacon beacon(int index);
