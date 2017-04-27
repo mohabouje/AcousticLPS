@@ -33,7 +33,6 @@ void protobuf_AssignDesc_model_2eproto();
 void protobuf_ShutdownFile_model_2eproto();
 
 class Code;
-class Point;
 class Beacon;
 class Environement;
 
@@ -186,105 +185,6 @@ class Code : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class Point : public ::google::protobuf::Message {
- public:
-  Point();
-  virtual ~Point();
-
-  Point(const Point& from);
-
-  inline Point& operator=(const Point& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const Point& default_instance();
-
-  void Swap(Point* other);
-
-  // implements Message ----------------------------------------------
-
-  Point* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Point& from);
-  void MergeFrom(const Point& from);
-  void Clear();
-  bool IsInitialized() const;
-
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const;
-  public:
-  ::google::protobuf::Metadata GetMetadata() const;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // required float x = 1;
-  inline bool has_x() const;
-  inline void clear_x();
-  static const int kXFieldNumber = 1;
-  inline float x() const;
-  inline void set_x(float value);
-
-  // required float y = 2;
-  inline bool has_y() const;
-  inline void clear_y();
-  static const int kYFieldNumber = 2;
-  inline float y() const;
-  inline void set_y(float value);
-
-  // required float z = 3;
-  inline bool has_z() const;
-  inline void clear_z();
-  static const int kZFieldNumber = 3;
-  inline float z() const;
-  inline void set_z(float value);
-
-  // @@protoc_insertion_point(class_scope:Point)
- private:
-  inline void set_has_x();
-  inline void clear_has_x();
-  inline void set_has_y();
-  inline void clear_has_y();
-  inline void set_has_z();
-  inline void clear_has_z();
-
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-
-  ::google::protobuf::uint32 _has_bits_[1];
-  mutable int _cached_size_;
-  float x_;
-  float y_;
-  float z_;
-  friend void  protobuf_AddDesc_model_2eproto();
-  friend void protobuf_AssignDesc_model_2eproto();
-  friend void protobuf_ShutdownFile_model_2eproto();
-
-  void InitAsDefaultInstance();
-  static Point* default_instance_;
-};
-// -------------------------------------------------------------------
-
 class Beacon : public ::google::protobuf::Message {
  public:
   Beacon();
@@ -364,35 +264,26 @@ class Beacon : public ::google::protobuf::Message {
   inline float snr() const;
   inline void set_snr(float value);
 
-  // required .Point point = 4;
-  inline bool has_point() const;
-  inline void clear_point();
-  static const int kPointFieldNumber = 4;
-  inline const ::Point& point() const;
-  inline ::Point* mutable_point();
-  inline ::Point* release_point();
-  inline void set_allocated_point(::Point* point);
-
-  // required .Code code = 5;
+  // required .Code code = 4;
   inline bool has_code() const;
   inline void clear_code();
-  static const int kCodeFieldNumber = 5;
+  static const int kCodeFieldNumber = 4;
   inline const ::Code& code() const;
   inline ::Code* mutable_code();
   inline ::Code* release_code();
   inline void set_allocated_code(::Code* code);
 
-  // required bool enabled = 6;
+  // required bool enabled = 5;
   inline bool has_enabled() const;
   inline void clear_enabled();
-  static const int kEnabledFieldNumber = 6;
+  static const int kEnabledFieldNumber = 5;
   inline bool enabled() const;
   inline void set_enabled(bool value);
 
-  // optional string name = 7;
+  // optional string name = 6;
   inline bool has_name() const;
   inline void clear_name();
-  static const int kNameFieldNumber = 7;
+  static const int kNameFieldNumber = 6;
   inline const ::std::string& name() const;
   inline void set_name(const ::std::string& value);
   inline void set_name(const char* value);
@@ -400,6 +291,27 @@ class Beacon : public ::google::protobuf::Message {
   inline ::std::string* mutable_name();
   inline ::std::string* release_name();
   inline void set_allocated_name(::std::string* name);
+
+  // required float x = 7;
+  inline bool has_x() const;
+  inline void clear_x();
+  static const int kXFieldNumber = 7;
+  inline float x() const;
+  inline void set_x(float value);
+
+  // required float y = 8;
+  inline bool has_y() const;
+  inline void clear_y();
+  static const int kYFieldNumber = 8;
+  inline float y() const;
+  inline void set_y(float value);
+
+  // required float z = 9;
+  inline bool has_z() const;
+  inline void clear_z();
+  static const int kZFieldNumber = 9;
+  inline float z() const;
+  inline void set_z(float value);
 
   // @@protoc_insertion_point(class_scope:Beacon)
  private:
@@ -409,14 +321,18 @@ class Beacon : public ::google::protobuf::Message {
   inline void clear_has_uuid();
   inline void set_has_snr();
   inline void clear_has_snr();
-  inline void set_has_point();
-  inline void clear_has_point();
   inline void set_has_code();
   inline void clear_has_code();
   inline void set_has_enabled();
   inline void clear_has_enabled();
   inline void set_has_name();
   inline void clear_has_name();
+  inline void set_has_x();
+  inline void clear_has_x();
+  inline void set_has_y();
+  inline void clear_has_y();
+  inline void set_has_z();
+  inline void clear_has_z();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -425,10 +341,12 @@ class Beacon : public ::google::protobuf::Message {
   ::std::string* uuid_;
   ::google::protobuf::uint32 id_;
   float snr_;
-  ::Point* point_;
   ::Code* code_;
   ::std::string* name_;
   bool enabled_;
+  float x_;
+  float y_;
+  float z_;
   friend void  protobuf_AddDesc_model_2eproto();
   friend void protobuf_AssignDesc_model_2eproto();
   friend void protobuf_ShutdownFile_model_2eproto();
@@ -491,14 +409,7 @@ class Environement : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required uint32 id = 1;
-  inline bool has_id() const;
-  inline void clear_id();
-  static const int kIdFieldNumber = 1;
-  inline ::google::protobuf::uint32 id() const;
-  inline void set_id(::google::protobuf::uint32 value);
-
-  // required string name = 2;
+  // optional string name = 2;
   inline bool has_name() const;
   inline void clear_name();
   static const int kNameFieldNumber = 2;
@@ -510,21 +421,21 @@ class Environement : public ::google::protobuf::Message {
   inline ::std::string* release_name();
   inline void set_allocated_name(::std::string* name);
 
-  // required float latitude = 3;
+  // optional float latitude = 3;
   inline bool has_latitude() const;
   inline void clear_latitude();
   static const int kLatitudeFieldNumber = 3;
   inline float latitude() const;
   inline void set_latitude(float value);
 
-  // required float longitude = 4;
+  // optional float longitude = 4;
   inline bool has_longitude() const;
   inline void clear_longitude();
   static const int kLongitudeFieldNumber = 4;
   inline float longitude() const;
   inline void set_longitude(float value);
 
-  // required float altitude = 5;
+  // optional float altitude = 5;
   inline bool has_altitude() const;
   inline void clear_altitude();
   static const int kAltitudeFieldNumber = 5;
@@ -543,21 +454,21 @@ class Environement : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::Beacon >*
       mutable_beacons();
 
-  // required float width = 7;
+  // optional float width = 7;
   inline bool has_width() const;
   inline void clear_width();
   static const int kWidthFieldNumber = 7;
   inline float width() const;
   inline void set_width(float value);
 
-  // required float length = 8;
+  // optional float length = 8;
   inline bool has_length() const;
   inline void clear_length();
   static const int kLengthFieldNumber = 8;
   inline float length() const;
   inline void set_length(float value);
 
-  // required float height = 9;
+  // optional float height = 9;
   inline bool has_height() const;
   inline void clear_height();
   static const int kHeightFieldNumber = 9;
@@ -566,8 +477,6 @@ class Environement : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:Environement)
  private:
-  inline void set_has_id();
-  inline void clear_has_id();
   inline void set_has_name();
   inline void clear_has_name();
   inline void set_has_latitude();
@@ -588,11 +497,10 @@ class Environement : public ::google::protobuf::Message {
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
   ::std::string* name_;
-  ::google::protobuf::uint32 id_;
   float latitude_;
   float longitude_;
-  float altitude_;
   ::google::protobuf::RepeatedPtrField< ::Beacon > beacons_;
+  float altitude_;
   float width_;
   float length_;
   float height_;
@@ -687,82 +595,6 @@ inline ::google::protobuf::RepeatedField< float >*
 Code::mutable_data() {
   // @@protoc_insertion_point(field_mutable_list:Code.data)
   return &data_;
-}
-
-// -------------------------------------------------------------------
-
-// Point
-
-// required float x = 1;
-inline bool Point::has_x() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void Point::set_has_x() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void Point::clear_has_x() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void Point::clear_x() {
-  x_ = 0;
-  clear_has_x();
-}
-inline float Point::x() const {
-  // @@protoc_insertion_point(field_get:Point.x)
-  return x_;
-}
-inline void Point::set_x(float value) {
-  set_has_x();
-  x_ = value;
-  // @@protoc_insertion_point(field_set:Point.x)
-}
-
-// required float y = 2;
-inline bool Point::has_y() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void Point::set_has_y() {
-  _has_bits_[0] |= 0x00000002u;
-}
-inline void Point::clear_has_y() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline void Point::clear_y() {
-  y_ = 0;
-  clear_has_y();
-}
-inline float Point::y() const {
-  // @@protoc_insertion_point(field_get:Point.y)
-  return y_;
-}
-inline void Point::set_y(float value) {
-  set_has_y();
-  y_ = value;
-  // @@protoc_insertion_point(field_set:Point.y)
-}
-
-// required float z = 3;
-inline bool Point::has_z() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void Point::set_has_z() {
-  _has_bits_[0] |= 0x00000004u;
-}
-inline void Point::clear_has_z() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline void Point::clear_z() {
-  z_ = 0;
-  clear_has_z();
-}
-inline float Point::z() const {
-  // @@protoc_insertion_point(field_get:Point.z)
-  return z_;
-}
-inline void Point::set_z(float value) {
-  set_has_z();
-  z_ = value;
-  // @@protoc_insertion_point(field_set:Point.z)
 }
 
 // -------------------------------------------------------------------
@@ -893,56 +725,15 @@ inline void Beacon::set_snr(float value) {
   // @@protoc_insertion_point(field_set:Beacon.snr)
 }
 
-// required .Point point = 4;
-inline bool Beacon::has_point() const {
+// required .Code code = 4;
+inline bool Beacon::has_code() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
-inline void Beacon::set_has_point() {
+inline void Beacon::set_has_code() {
   _has_bits_[0] |= 0x00000008u;
 }
-inline void Beacon::clear_has_point() {
-  _has_bits_[0] &= ~0x00000008u;
-}
-inline void Beacon::clear_point() {
-  if (point_ != NULL) point_->::Point::Clear();
-  clear_has_point();
-}
-inline const ::Point& Beacon::point() const {
-  // @@protoc_insertion_point(field_get:Beacon.point)
-  return point_ != NULL ? *point_ : *default_instance_->point_;
-}
-inline ::Point* Beacon::mutable_point() {
-  set_has_point();
-  if (point_ == NULL) point_ = new ::Point;
-  // @@protoc_insertion_point(field_mutable:Beacon.point)
-  return point_;
-}
-inline ::Point* Beacon::release_point() {
-  clear_has_point();
-  ::Point* temp = point_;
-  point_ = NULL;
-  return temp;
-}
-inline void Beacon::set_allocated_point(::Point* point) {
-  delete point_;
-  point_ = point;
-  if (point) {
-    set_has_point();
-  } else {
-    clear_has_point();
-  }
-  // @@protoc_insertion_point(field_set_allocated:Beacon.point)
-}
-
-// required .Code code = 5;
-inline bool Beacon::has_code() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void Beacon::set_has_code() {
-  _has_bits_[0] |= 0x00000010u;
-}
 inline void Beacon::clear_has_code() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void Beacon::clear_code() {
   if (code_ != NULL) code_->::Code::Clear();
@@ -975,15 +766,15 @@ inline void Beacon::set_allocated_code(::Code* code) {
   // @@protoc_insertion_point(field_set_allocated:Beacon.code)
 }
 
-// required bool enabled = 6;
+// required bool enabled = 5;
 inline bool Beacon::has_enabled() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void Beacon::set_has_enabled() {
-  _has_bits_[0] |= 0x00000020u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void Beacon::clear_has_enabled() {
-  _has_bits_[0] &= ~0x00000020u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void Beacon::clear_enabled() {
   enabled_ = false;
@@ -999,15 +790,15 @@ inline void Beacon::set_enabled(bool value) {
   // @@protoc_insertion_point(field_set:Beacon.enabled)
 }
 
-// optional string name = 7;
+// optional string name = 6;
 inline bool Beacon::has_name() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void Beacon::set_has_name() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void Beacon::clear_has_name() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void Beacon::clear_name() {
   if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -1075,43 +866,91 @@ inline void Beacon::set_allocated_name(::std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:Beacon.name)
 }
 
+// required float x = 7;
+inline bool Beacon::has_x() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void Beacon::set_has_x() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void Beacon::clear_has_x() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void Beacon::clear_x() {
+  x_ = 0;
+  clear_has_x();
+}
+inline float Beacon::x() const {
+  // @@protoc_insertion_point(field_get:Beacon.x)
+  return x_;
+}
+inline void Beacon::set_x(float value) {
+  set_has_x();
+  x_ = value;
+  // @@protoc_insertion_point(field_set:Beacon.x)
+}
+
+// required float y = 8;
+inline bool Beacon::has_y() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void Beacon::set_has_y() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void Beacon::clear_has_y() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void Beacon::clear_y() {
+  y_ = 0;
+  clear_has_y();
+}
+inline float Beacon::y() const {
+  // @@protoc_insertion_point(field_get:Beacon.y)
+  return y_;
+}
+inline void Beacon::set_y(float value) {
+  set_has_y();
+  y_ = value;
+  // @@protoc_insertion_point(field_set:Beacon.y)
+}
+
+// required float z = 9;
+inline bool Beacon::has_z() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void Beacon::set_has_z() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void Beacon::clear_has_z() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void Beacon::clear_z() {
+  z_ = 0;
+  clear_has_z();
+}
+inline float Beacon::z() const {
+  // @@protoc_insertion_point(field_get:Beacon.z)
+  return z_;
+}
+inline void Beacon::set_z(float value) {
+  set_has_z();
+  z_ = value;
+  // @@protoc_insertion_point(field_set:Beacon.z)
+}
+
 // -------------------------------------------------------------------
 
 // Environement
 
-// required uint32 id = 1;
-inline bool Environement::has_id() const {
+// optional string name = 2;
+inline bool Environement::has_name() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Environement::set_has_id() {
+inline void Environement::set_has_name() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void Environement::clear_has_id() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void Environement::clear_id() {
-  id_ = 0u;
-  clear_has_id();
-}
-inline ::google::protobuf::uint32 Environement::id() const {
-  // @@protoc_insertion_point(field_get:Environement.id)
-  return id_;
-}
-inline void Environement::set_id(::google::protobuf::uint32 value) {
-  set_has_id();
-  id_ = value;
-  // @@protoc_insertion_point(field_set:Environement.id)
-}
-
-// required string name = 2;
-inline bool Environement::has_name() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-inline void Environement::set_has_name() {
-  _has_bits_[0] |= 0x00000002u;
-}
 inline void Environement::clear_has_name() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void Environement::clear_name() {
   if (name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -1179,15 +1018,15 @@ inline void Environement::set_allocated_name(::std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:Environement.name)
 }
 
-// required float latitude = 3;
+// optional float latitude = 3;
 inline bool Environement::has_latitude() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000002u) != 0;
 }
 inline void Environement::set_has_latitude() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000002u;
 }
 inline void Environement::clear_has_latitude() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void Environement::clear_latitude() {
   latitude_ = 0;
@@ -1203,15 +1042,15 @@ inline void Environement::set_latitude(float value) {
   // @@protoc_insertion_point(field_set:Environement.latitude)
 }
 
-// required float longitude = 4;
+// optional float longitude = 4;
 inline bool Environement::has_longitude() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void Environement::set_has_longitude() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void Environement::clear_has_longitude() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void Environement::clear_longitude() {
   longitude_ = 0;
@@ -1227,15 +1066,15 @@ inline void Environement::set_longitude(float value) {
   // @@protoc_insertion_point(field_set:Environement.longitude)
 }
 
-// required float altitude = 5;
+// optional float altitude = 5;
 inline bool Environement::has_altitude() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void Environement::set_has_altitude() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void Environement::clear_has_altitude() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void Environement::clear_altitude() {
   altitude_ = 0;
@@ -1281,15 +1120,15 @@ Environement::mutable_beacons() {
   return &beacons_;
 }
 
-// required float width = 7;
+// optional float width = 7;
 inline bool Environement::has_width() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void Environement::set_has_width() {
-  _has_bits_[0] |= 0x00000040u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void Environement::clear_has_width() {
-  _has_bits_[0] &= ~0x00000040u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void Environement::clear_width() {
   width_ = 0;
@@ -1305,15 +1144,15 @@ inline void Environement::set_width(float value) {
   // @@protoc_insertion_point(field_set:Environement.width)
 }
 
-// required float length = 8;
+// optional float length = 8;
 inline bool Environement::has_length() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
+  return (_has_bits_[0] & 0x00000040u) != 0;
 }
 inline void Environement::set_has_length() {
-  _has_bits_[0] |= 0x00000080u;
+  _has_bits_[0] |= 0x00000040u;
 }
 inline void Environement::clear_has_length() {
-  _has_bits_[0] &= ~0x00000080u;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void Environement::clear_length() {
   length_ = 0;
@@ -1329,15 +1168,15 @@ inline void Environement::set_length(float value) {
   // @@protoc_insertion_point(field_set:Environement.length)
 }
 
-// required float height = 9;
+// optional float height = 9;
 inline bool Environement::has_height() const {
-  return (_has_bits_[0] & 0x00000100u) != 0;
+  return (_has_bits_[0] & 0x00000080u) != 0;
 }
 inline void Environement::set_has_height() {
-  _has_bits_[0] |= 0x00000100u;
+  _has_bits_[0] |= 0x00000080u;
 }
 inline void Environement::clear_has_height() {
-  _has_bits_[0] &= ~0x00000100u;
+  _has_bits_[0] &= ~0x00000080u;
 }
 inline void Environement::clear_height() {
   height_ = 0;

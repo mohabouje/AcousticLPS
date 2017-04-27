@@ -39,10 +39,6 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
         ui->stackedWidget->setCurrentIndex(EnvironementEditor);
     });
 
-    connect(ui->uuidGenerator, &QToolButton::released, [&]() {
-        const QUuid uuid = QUuid::createUuid();
-        ui->beaconUUID->setText(uuid.toString());
-    });
 
     connect(ui->addButton, &QToolButton::released, [&]() {
         const QString name = ui->beaconName->text();
@@ -51,22 +47,12 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
             return;
         }
 
-        const QString uuidString = ui->beaconUUID->text();
-        const bool introduced = Gui::validateUuid(uuidString);
-        if (!introduced) {
-            QMessageBox::warning(this, "Empty UUID", "Using an aleatory generated uuid");
-        }
-        const QUuid uuid = introduced ? QUuid(uuidString) : QUuid::createUuid();
+        const QUuid uuid = QUuid::createUuid();
         const QBeacon beacon = QEnvironement::instance()->addBeacon();
         beacon->setName(name);
         beacon->setUniversalUniqueIdentifier(uuid);
         filterModel()->invalidate();
-
-        ui->beaconName->clear();
-        ui->beaconPosition->clear();
-        ui->beaconUUID->clear();
-
-        ui->nameEdit->setFocus();
+        clearInputText();
     });
 
     ui->stackedWidget->setCurrentIndex(EnvironementEditor);
@@ -80,6 +66,11 @@ QEnvironementEditor::~QEnvironementEditor() {
 
 void QEnvironementEditor::setCurrentStep(QEnvironementEditor::Steps step) {
     ui->stackedWidget->setCurrentIndex(step);
+}
+
+void QEnvironementEditor::clearInputText() {
+    ui->beaconName->clear();
+    ui->beaconPosition->clear();
 }
 
 QTableView* QEnvironementEditor::tableList() const {

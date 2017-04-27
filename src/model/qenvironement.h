@@ -17,8 +17,8 @@ public:
     inline int beaconsCount() const { return _environement->beacons_size(); }
 
     QBeacon addBeacon();
-    bool    removeBeacon(const QBeacon& beacon);
-    QBeacon beacon(int index);
+    bool    removeBeacon(const QBeacon& beaconAt);
+    QBeacon beaconAt(int index);
 
 public:
     bool loadEnvironementFromFile(const QString& filename = QString());

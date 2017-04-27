@@ -16,6 +16,10 @@ QEnvironement *QEnvironement::instance(QObject *parent) {
 
 QEnvironement::QEnvironement(QObject *parent) : QObject(parent) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+    _environement->set_width(100);
+    _environement->set_height(100);
+    _environement->set_length(100);
 }
 
 QEnvironement::~QEnvironement() {
@@ -25,9 +29,14 @@ QEnvironement::~QEnvironement() {
 
 
 QBeacon QEnvironement::addBeacon() {
-    Beacon* b = _environement->add_beacons();
-    b->set_enabled(true);
-    return beacon(beaconsCount() - 1);
+    Beacon* beacon = _environement->add_beacons();
+    beacon->set_uuid(QUuid::createUuid().toString().toStdString());
+    beacon->set_enabled(true);
+    beacon->set_snr(0);
+    beacon->set_x(0);
+    beacon->set_y(0);
+    beacon->set_z(0);
+    return beaconAt(_environement->beacons_size() - 1);
 }
 
 bool QEnvironement::removeBeacon(const QBeacon &beacon) {
@@ -39,7 +48,7 @@ bool QEnvironement::removeBeacon(const QBeacon &beacon) {
     return false;
 }
 
-QBeacon QEnvironement::beacon(int index) {
+QBeacon QEnvironement::beaconAt(int index) {
     Beacon* beacon = _environement->mutable_beacons(index);
     const QUuid uuid(QString::fromStdString(beacon->uuid()));
     if (_wrappedBeacons.contains(uuid)) {
@@ -63,6 +72,10 @@ bool QEnvironement::loadEnvironementFromFile(const QString &filename) {
 }
 
 bool QEnvironement::saveEnvironementInFile(const QString &filename) const {
+    if (!_environement->IsInitialized()) {
+        return false;
+    }
+
     static const QString defaultPath = ModelHelper::defaultDocumentsFolder() + ENVIRONEMENT_FILENAME;
     QSaveFile file(filename.isEmpty() ? defaultPath : filename);
     if (file.open(QIODevice::WriteOnly)) {

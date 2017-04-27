@@ -21,6 +21,7 @@ public:
     ~QEnvironementEditor();
 public slots:
     void setCurrentStep(Steps step);
+    void clearInputText();
 private:
     Ui::QEnvironementEditor *ui;
 

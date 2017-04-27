@@ -10,31 +10,27 @@ message Code {
 	repeated float  data = 3;
 }
 
-message Point {
-	required float x = 1;
-	required float y = 2;
-	required float z = 3;
-}
 
 message Beacon {
 	required uint32	id = 1;
  	required string uuid = 2;
 	required float  snr = 3;
-	required Point  point = 4;
-	required Code   code = 5;	
-	required bool  enabled = 6;
-	optional string name = 7;
+	required Code   code = 4;	
+	required bool  enabled = 5;
+	optional string name = 6;
+	required float x = 7;
+	required float y = 8;
+	required float z = 9;
 }
 
 
 message Environement {
-	required uint32 id = 1;
-	required string name = 2;
-	required float	latitude = 3;
-	required float  longitude = 4;
-	required float	altitude = 5;	
+	optional string name = 2;
+	optional float	latitude = 3;
+	optional float  longitude = 4;
+	optional float	altitude = 5;	
 	repeated Beacon beacons = 6;
-	required float width = 7;
-	required float length = 8;
-	required float height = 9;
+	optional float width = 7;
+	optional float length = 8;
+	optional float height = 9;
 }

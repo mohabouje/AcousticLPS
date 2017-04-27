@@ -5,10 +5,9 @@ BeaconWrapper::BeaconWrapper(Beacon* beacon) : _beacon(beacon) {
 }
 
 void BeaconWrapper::setPosition(const Position &point) {
-    Point* local = _beacon->mutable_point();
-    local->set_x(point(0));
-    local->set_y(point(1));
-    local->set_z(point(2));
+    _beacon->set_x(point(0));
+    _beacon->set_y(point(1));
+    _beacon->set_z(point(2));
 }
 
 void BeaconWrapper::setUniversalUniqueIdentifier(const QUuid &uuid) {

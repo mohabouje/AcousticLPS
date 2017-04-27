@@ -17,8 +17,7 @@ public:
     inline Real SNR() const { return _beacon->snr(); }
     inline bool isEnabled() const { return _beacon->enabled();}
     inline Position position() const {
-        Point* pos = _beacon->mutable_point();
-        return Position({pos->x(), pos->y(), pos->z()});
+        return Position({_beacon->x(), _beacon->y(), _beacon->z()});
     }
     inline bool operator==(const BeaconWrapper& beacon) const {
         return _beacon->id() == beacon._beacon->id()
@@ -49,9 +48,6 @@ private:
 typedef QSharedPointer<BeaconWrapper> QBeacon;
 Q_DECLARE_METATYPE(QBeacon)
 
-inline bool operator ==(const Point& a, const Point& b) {
-    return a.x() == b.x() && a.y() == b.y() && a.z() == b.z();
-}
 
 inline uint qHash(const QBeacon &f) {
     return qHash(f->universalUniqueIdentifier());

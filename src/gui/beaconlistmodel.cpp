@@ -42,7 +42,7 @@ QVariant BeaconListModel::data(const QModelIndex &index, int role) const {
     }
 
     const int column = index.column();
-    const QBeacon beacon = QEnvironement::instance()->beacon(row);
+    const QBeacon beacon = QEnvironement::instance()->beaconAt(row);
     if (column == StateColumn && role == Qt::DecorationRole) {
         return QVariant::fromValue<QIcon>(beacon->isEnabled() ? SIGNAL_ON_ICON : SIGNAL_OFF_ICON);
     } else if (column == SNRColumn && role == Qt::DisplayRole) {
