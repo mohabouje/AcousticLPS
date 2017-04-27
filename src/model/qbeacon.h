@@ -41,7 +41,10 @@ public:
     void setSNR(const Real &SNR);
     void setEnabled(bool state);
 private:
+    friend class QEnvironement;
+
     Beacon*         _beacon;
+    inline Beacon* pointer() const { return _beacon; }
 };
 typedef QSharedPointer<BeaconWrapper> QBeacon;
 Q_DECLARE_METATYPE(QBeacon)

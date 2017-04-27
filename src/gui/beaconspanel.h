@@ -21,6 +21,9 @@ private:
     Ui::BeaconsPanel *ui;
     BeaconListModel*    _sourceModel;
     BeaconFilterModel*  _filterModel;
+
+    inline BeaconListModel*   sourceModel() const { return _sourceModel; }
+    inline BeaconFilterModel* filterModel() const { return _filterModel; }
 };
 
 #endif // BEACONSPANEL_H

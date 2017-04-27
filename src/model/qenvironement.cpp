@@ -14,10 +14,29 @@ QEnvironement *QEnvironement::instance(QObject *parent) {
     return _instance;
 }
 
+QEnvironement::QEnvironement(QObject *parent) : QObject(parent) {
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
+}
+
+QEnvironement::~QEnvironement() {
+    _environement->Clear();
+    _wrappedBeacons.clear();
+}
+
+
 QBeacon QEnvironement::addBeacon() {
     Beacon* b = _environement->add_beacons();
     b->set_enabled(true);
     return beacon(beaconsCount() - 1);
+}
+
+bool QEnvironement::removeBeacon(const QBeacon &beacon) {
+    if (beacon) {
+        Beacon* pointer = qSharedPointerDynamicCast<BeaconWrapper>(beacon)->pointer();
+        // remove;
+        return true;
+    }
+    return false;
 }
 
 QBeacon QEnvironement::beacon(int index) {
@@ -58,11 +77,3 @@ bool QEnvironement::saveEnvironementInFile(const QString &filename) const {
 }
 
 
-QEnvironement::QEnvironement(QObject *parent) : QObject(parent) {
-    GOOGLE_PROTOBUF_VERIFY_VERSION;
-}
-
-QEnvironement::~QEnvironement() {
-    _environement->Clear();
-    _wrappedBeacons.clear();
-}

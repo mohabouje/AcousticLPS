@@ -5,6 +5,8 @@
 
 #include <QMenu>
 
+#include <model/qenvironement.h>
+
 BeaconsPanel::BeaconsPanel(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::BeaconsPanel),
@@ -38,6 +40,11 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
             menu.addAction(beacon->isEnabled() ? tr("Disable") : tr("Enable"),[&, beacon](){
                 const bool isEnabled = beacon->isEnabled();
                 beacon->setEnabled(!isEnabled);
+                filterModel()->invalidate();
+            });
+            menu.addAction(tr("Remove"), [&, beacon]() {
+                QEnvironement::instance()->removeBeacon(beacon);
+                filterModel()->invalidate();
             });
             menu.exec(ui->tableView->viewport()->mapToGlobal(point));
         }
