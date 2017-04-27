@@ -1,39 +1,39 @@
-syntax = "proto2";
+syntax = "proto3";
 message Code {
 	enum Type { 
 		Gold = 0;
 		Kasami = 1;
 		Hadamard = 2;
 	} 
-	required Type	type = 1;
-	required uint32 order = 2;
+        Type	type = 1;
+        uint32 order = 2;
 	repeated float  data = 3;
 }
 
 message Point {
-	required float x = 1;
-	required float y = 2;
-	required float z = 3;
+        float x = 1;
+        float y = 2;
+        float z = 3;
 }
 
 message Beacon {
-	required uint32	id = 1;
- 	required string uuid = 2;
-	required float  snr = 3;
-	required Point  point = 4;
-	required Code   code = 5;	
-	required bool  enabled = 6;
-	optional string name = 7;
+        uint32	id = 1;
+        string uuid = 2;
+        float  snr = 3;
+        Point  point = 4;
+        Code   code = 5;
+        bool  enabled = 6;
+        string name = 7;
 }
 
 
 message Environement {
-	required uint32 id = 1;
-	required string name = 2;
-	required string	latitude = 3;
-	required string longitud = 4;
+        uint32 id = 1;
+        string name = 2;
+        string	latitude = 3;
+        string longitud = 4;
 	repeated Beacon beacons = 5;
-	required float width = 6;
-	required float length = 7;
-	required float height = 8;
+        float width = 6;
+        float length = 7;
+        float height = 8;
 }
