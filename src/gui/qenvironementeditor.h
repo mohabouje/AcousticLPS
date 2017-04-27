@@ -17,11 +17,7 @@ class QEnvironementEditor : public QDialog
 
 public:
     explicit QEnvironementEditor(QWidget *parent = 0);
-    enum Steps { EnvironementEditor = 0, BeaconsEditor };
     ~QEnvironementEditor();
-public slots:
-    void setCurrentStep(Steps step);
-    void clearInputText();
 private:
     Ui::QEnvironementEditor *ui;
 

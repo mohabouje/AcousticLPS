@@ -27,7 +27,6 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
 
     connect(ui->editBeacons, &QToolButton::released, [&](){
         QEnvironementEditor dialog;
-        dialog.setCurrentStep(QEnvironementEditor::BeaconsEditor);
         dialog.exec();
         _filterModel->invalidate();
     });

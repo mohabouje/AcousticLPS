@@ -435,5 +435,8 @@
         <file>resources/icons/drawer.png</file>
         <file>resources/icons/antenna_off.png</file>
         <file>resources/icons/antenna_on.png</file>
+        <file>resources/icons/arrow-down.png</file>
+        <file>resources/icons/arrow-up.png</file>
+        <file>resources/icons/satellite.png</file>
     </qresource>
 </RCC>

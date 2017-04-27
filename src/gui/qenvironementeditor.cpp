@@ -26,19 +26,6 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
     tableList()->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tableList()->setShowGrid(false);
 
-    connect(ui->stackedWidget, &QStackedWidget::currentChanged, [&](int row) {
-        ui->backButton->setEnabled(row == BeaconsEditor);
-        ui->nextButton->setEnabled(row == EnvironementEditor);
-    });
-
-    connect(ui->nextButton, &QToolButton::released, [&](){
-        ui->stackedWidget->setCurrentIndex(BeaconsEditor);
-    });
-
-    connect(ui->backButton,  &QToolButton::released, [&](){
-        ui->stackedWidget->setCurrentIndex(EnvironementEditor);
-    });
-
 
     connect(ui->addButton, &QToolButton::released, [&]() {
         const QString name = ui->beaconName->text();
@@ -47,15 +34,20 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
             return;
         }
 
-        const QUuid uuid = QUuid::createUuid();
         const QBeacon beacon = QEnvironement::instance()->addBeacon();
         beacon->setName(name);
-        beacon->setUniversalUniqueIdentifier(uuid);
         filterModel()->invalidate();
-        clearInputText();
+        ui->beaconName->clear();
+        ui->beaconPosition->clear();
+        ui->beaconName->setFocus();
     });
 
-    ui->stackedWidget->setCurrentIndex(EnvironementEditor);
+    connect(tableList()->selectionModel(), &QItemSelectionModel::currentChanged, [&](const QModelIndex& current, const QModelIndex& previous){
+        Q_UNUSED(previous);
+        ui->upButton->setEnabled(current.isValid());
+        ui->downButton->setEnabled(current.isValid());
+    });
+
 }
 
 QEnvironementEditor::~QEnvironementEditor() {
@@ -64,14 +56,6 @@ QEnvironementEditor::~QEnvironementEditor() {
     delete _filterModel;
 }
 
-void QEnvironementEditor::setCurrentStep(QEnvironementEditor::Steps step) {
-    ui->stackedWidget->setCurrentIndex(step);
-}
-
-void QEnvironementEditor::clearInputText() {
-    ui->beaconName->clear();
-    ui->beaconPosition->clear();
-}
 
 QTableView* QEnvironementEditor::tableList() const {
     return ui->beaconList;
