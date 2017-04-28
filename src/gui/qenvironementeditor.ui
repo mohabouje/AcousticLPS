@@ -251,7 +251,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QwtPlot" name="environementPlot" native="true"/>
+       <widget class="BeaconsChart" name="beaconsChart" native="true"/>
       </item>
       <item>
        <widget class="QGroupBox" name="groupBox">
@@ -338,15 +338,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QwtPlot</class>
-   <extends>QWidget</extends>
-   <header>qwt_plot.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>BeaconsPanel</class>
    <extends>QWidget</extends>
    <header>gui/beaconspanel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BeaconsChart</class>
+   <extends>QWidget</extends>
+   <header>gui/beaconschart.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
