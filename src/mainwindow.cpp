@@ -33,6 +33,7 @@ void MainWindow::initUi() {
     connect(ui->actionEnvironement, &QAction::triggered, [&](bool) {
         QEnvironementEditor editor;
         editor.exec();
+        ui->beaconsPanel->invalidate();
     });
 
     connect(ui->actionOpen, &QAction::triggered, [&](bool) {
