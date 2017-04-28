@@ -53,7 +53,7 @@ LIBS += -lprotobuf
 QMAKE_CFLAGS += protobuf
 
 # Include de different submodules
-include("./trilateration/trilateration.pri")
+include("./math/math.pri")
 include("./gui/gui.pri")
 include("./model/model.pri")
 
