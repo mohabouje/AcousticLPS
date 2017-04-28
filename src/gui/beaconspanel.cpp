@@ -19,11 +19,13 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
     ui->tableView->setModel(filterModel());
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->tableView->horizontalHeader()->setSectionsClickable(true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tableView->setShowGrid(false);
+    ui->tableView->setSortingEnabled(true);
 
     connect(ui->tableView, &QTableView::customContextMenuRequested, [&](const QPoint& point) {
         const QModelIndex index = ui->tableView->indexAt(point);
@@ -43,6 +45,11 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
             });
             menu.exec(ui->tableView->viewport()->mapToGlobal(point));
         }
+    });
+
+    connect(ui->tableView->horizontalHeader(), &QHeaderView::sectionClicked, [&](int section) {
+        const BeaconFilterModel::SortType sort = static_cast<BeaconFilterModel::SortType>(section);
+        filterModel()->setSort(sort);
     });
 }
 

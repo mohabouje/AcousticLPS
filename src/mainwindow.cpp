@@ -37,11 +37,15 @@ void MainWindow::initUi() {
     });
 
     connect(ui->actionOpen, &QAction::triggered, [&](bool) {
-        const QString fileName = QFileDialog::getOpenFileName(this,
-                tr("Open Environement File"), "", QString("Environement (*%1)").arg(ENVIRONEMENT_FORMAT));
-        if (!fileName.isEmpty()) {
-            if (!QEnvironementInstance->loadEnvironementFromFile(fileName)) {
-                QMessageBox::information(this, tr("Unable to open file"), "The file is corrupted");
+        const QMessageBox::StandardButton result = QMessageBox::question(this, "Load an environement", "Do you want to discard the current environement & load a new one? "
+                                                                "All changes not saved previously will be lost.");
+        if (result == QMessageBox::Yes) {
+            const QString fileName = QFileDialog::getOpenFileName(this,
+                    tr("Open Environement File"), "", QString("Environement (*%1)").arg(ENVIRONEMENT_FORMAT));
+            if (!fileName.isEmpty()) {
+                if (!QEnvironementInstance->loadEnvironementFromFile(fileName)) {
+                    QMessageBox::information(this, tr("Unable to open file"), "The file is corrupted");
+                }
             }
         }
     });
@@ -59,6 +63,19 @@ void MainWindow::initUi() {
             }
         }
     });
+
+    connect(ui->actionNew, &QAction::triggered, [&](bool) {
+        const QMessageBox::StandardButton result = QMessageBox::question(this, "Create a new environement", "Do you want to discard the current environement & create a new one? "
+                                                                "All changes not saved previously will be lost.");
+        if (result == QMessageBox::Yes) {
+            QEnvironementInstance->clear();
+            QEnvironementInstance->saveEnvironementInFile();
+            invalidate();
+        }
+    });
+
+    connect(ui->actionQuit, SIGNAL(triggered(bool)), this, SLOT(close()));
+
 }
 
 void MainWindow::loadUi() {
@@ -84,6 +101,10 @@ void MainWindow::saveUi() {
     settings.setValue("hSplitter", ui->horizontalSplitter->saveState());
     settings.endGroup();
     settings.sync();
+}
+
+void MainWindow::invalidate() {
+    ui->beaconsPanel->invalidate();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {

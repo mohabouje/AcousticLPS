@@ -19,6 +19,7 @@ private slots:
     void initUi();
     void loadUi();
     void saveUi();
+    void invalidate();
 protected slots:
     void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 private:

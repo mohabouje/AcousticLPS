@@ -23,7 +23,8 @@ public:
     void setLength(Real value);
     void setWidth(Real value);
     void setHeight(Real value);
-public:
+    void clear();
+    void init();
     bool loadEnvironementFromFile(const QString& filename = QString());
     bool saveEnvironementInFile(const QString& filename = QString()) const;
 private:

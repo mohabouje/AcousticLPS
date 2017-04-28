@@ -6,6 +6,16 @@ BeaconFilterModel::BeaconFilterModel(QObject *parent) : QSortFilterProxyModel(pa
 
 }
 
+void BeaconFilterModel::setSort(const BeaconFilterModel::SortType &Sort) {
+    _currentSort = Sort;
+    invalidate();
+}
+
+void BeaconFilterModel::setNameFilter(const QString &nameFilter) {
+    _nameFilter = nameFilter;
+    invalidate();
+}
+
 
 bool BeaconFilterModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const {
     const QModelIndex index = sourceModel()->index(source_row, 0, source_parent);
@@ -21,14 +31,12 @@ bool BeaconFilterModel::lessThan(const QModelIndex &source_right, const QModelIn
     const QBeacon rightBeacon = Gui::qBeaconFromQModelIndex(source_right);
     const QBeacon leftBeacon = Gui::qBeaconFromQModelIndex(source_left);
     switch (_currentSort) {
-    case SortByUuid:
-        return rightBeacon->universalUniqueIdentifier() < leftBeacon->universalUniqueIdentifier();
-    case SortByName:
-        return rightBeacon->name() < leftBeacon->name();
-    case SortByIdentifier:
-        return rightBeacon->identifier() < leftBeacon->identifier();
+    case SortByEnableState:
+        return rightBeacon->isEnabled() < leftBeacon->isEnabled();
     case SortBySNR:
         return rightBeacon->SNR() < leftBeacon->SNR();
+    case SortByName:
+        return rightBeacon->name() < leftBeacon->name();
     default:
        return true;
     }

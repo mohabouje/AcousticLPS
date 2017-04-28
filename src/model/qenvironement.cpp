@@ -14,9 +14,9 @@ QEnvironement::QEnvironement() {
 }
 
 QEnvironement::~QEnvironement() {
-    _environement->Clear();
-    _wrappedBeacons.clear();
+    clear();
 }
+
 
 
 QBeacon QEnvironement::addBeacon() {
@@ -66,6 +66,12 @@ void QEnvironement::setWidth(Real value) {
 void QEnvironement::setHeight(Real value) {
     _environement->set_height(value);
 }
+
+void QEnvironement::clear() {
+    _environement->Clear();
+    _wrappedBeacons.clear();
+}
+
 
 bool QEnvironement::loadEnvironementFromFile(const QString &filename) {
     static const QString defaultPath = ModelHelper::defaultDocumentsFolder() + ENVIRONEMENT_FILENAME;
