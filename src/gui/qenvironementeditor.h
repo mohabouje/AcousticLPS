@@ -4,8 +4,10 @@
 #include "beaconfiltermodel.h"
 #include "beaconlistmodel.h"
 
+#include <qwt_plot_curve.h>
+#include <qwt_symbol.h>
 #include <QDialog>
-#include <qtableview.h>
+#include <QTableView>
 
 namespace Ui {
 class QEnvironementEditor;
@@ -23,10 +25,14 @@ private:
 
     BeaconListModel*    _sourceModel;
     BeaconFilterModel*  _filterModel;
-
+    QwtPlotCurve*       _dataPlot{new QwtPlotCurve("Beacons")};
+    QwtSymbol*          _dataSymbol{new QwtSymbol()};
     inline BeaconListModel* sourceModel() const { return _sourceModel; }
     inline BeaconFilterModel* filterModel() const { return _filterModel; }
     QTableView *tableList() const;
+
+    void initUi();
+    void repaintEnvironement();
 };
 
 
