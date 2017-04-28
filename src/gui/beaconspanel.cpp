@@ -42,7 +42,7 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
                 filterModel()->invalidate();
             });
             menu.addAction(tr("Remove"), [&, beacon]() {
-                QEnvironement::instance()->removeBeacon(beacon);
+                QEnvironementInstance->removeBeacon(beacon);
                 filterModel()->invalidate();
             });
             menu.exec(ui->tableView->viewport()->mapToGlobal(point));

@@ -5,23 +5,12 @@
 #include <QSaveFile>
 #include <QFile>
 #include <QDebug>
-QEnvironement *QEnvironement::_instance = Q_NULLPTR;
-QEnvironement *QEnvironement::instance(QObject *parent) {
-    if (_instance == Q_NULLPTR) {
-        _instance = new QEnvironement(parent);
-        Q_ASSERT_X(_instance, __FUNCTION__, "Error during instance creation");
-    }
-    return _instance;
-}
 
-QEnvironement::QEnvironement(QObject *parent) : QObject(parent) {
+QEnvironement::QEnvironement() {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
-    qDebug() << DefaultHeight << DefaultWidth << DefaultWidth;
     _environement->set_width(DefaultWidth);
     _environement->set_height(DefaultHeight);
     _environement->set_length(DefaultLength);
-
-    qDebug() << width() << height() << length();
 }
 
 QEnvironement::~QEnvironement() {
@@ -61,13 +50,24 @@ QBeacon QEnvironement::beaconAt(int index) {
     return shared;
 }
 
+void QEnvironement::setLength(Real value) {
+    _environement->set_length(value);
+}
+
+void QEnvironement::setWidth(Real value) {
+    _environement->set_width(value);
+}
+
+void QEnvironement::setHeight(Real value) {
+    _environement->set_height(value);
+}
+
 bool QEnvironement::loadEnvironementFromFile(const QString &filename) {
     static const QString defaultPath = ModelHelper::defaultDocumentsFolder() + ENVIRONEMENT_FILENAME;
     QFile file(filename.isEmpty() ? defaultPath : filename);
     if (file.exists() && file.open(QIODevice::ReadOnly)) {
         const QByteArray data = file.readAll();
         file.close();
-        _environement->Clear();
         return _environement->ParseFromArray(data, data.size());
     }
     return false;

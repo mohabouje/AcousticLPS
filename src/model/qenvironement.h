@@ -1,18 +1,16 @@
 #ifndef DATAMODEL_H
 #define DATAMODEL_H
 #include "qbeacon.h"
+#include <util/singleton.h>
 
 #include <QMap>
 #include <QObject>
 #include <model/model.pb.h>
-class QEnvironement : public QObject
+class QEnvironement
 {
-    Q_OBJECT
 public:
-    static QEnvironement* instance(QObject *parent = Q_NULLPTR);
-
-
-
+    QEnvironement();
+    ~QEnvironement();
     inline QString name() const { return QString::fromStdString(_environement->name()); }
     inline Real length() const { return _environement->length(); }
     inline Real width() const { return _environement->width(); }
@@ -22,21 +20,18 @@ public:
     QBeacon addBeacon();
     QBeacon beaconAt(int index);
 
-    void setLength(Real value) { _environement->set_length(value); }
-    void setWidth(Real value) { _environement->set_width(value); }
-    void setHeight(Real value) { _environement->set_height(value); }
+    void setLength(Real value);
+    void setWidth(Real value);
+    void setHeight(Real value);
 public:
     bool loadEnvironementFromFile(const QString& filename = QString());
     bool saveEnvironementInFile(const QString& filename = QString()) const;
 private:
-    explicit QEnvironement(QObject *parent = 0);
-    ~QEnvironement();
     static constexpr Real DefaultWidth{10.0};
     static constexpr Real DefaultHeight{3.0};
     static constexpr Real DefaultLength{10.0};
-    static QEnvironement*   _instance;
     Environement*           _environement{new Environement};
     QMap<QUuid, QBeacon>    _wrappedBeacons;
 };
-
+#define QEnvironementInstance Singleton<QEnvironement>::instance()
 #endif // DATAMODEL_H

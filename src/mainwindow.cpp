@@ -13,10 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    const bool loaded = QEnvironement::instance()->loadEnvironementFromFile();
+    /*
+    const bool loaded = QEnvironementInstance->loadEnvironementFromFile();
     if (!loaded) {
         qWarning() << "Error: we could not restore the last saved environement";
-    }
+    }*/
 
     ui->setupUi(this);
     loadUi();
@@ -37,7 +38,7 @@ void MainWindow::initUi() {
         const QString fileName = QFileDialog::getOpenFileName(this,
                 tr("Open Environement File"), "", QString("Environement (*%1)").arg(ENVIRONEMENT_FORMAT));
         if (!fileName.isEmpty()) {
-            if (!QEnvironement::instance()->loadEnvironementFromFile(fileName)) {
+            if (!QEnvironementInstance->loadEnvironementFromFile(fileName)) {
                 QMessageBox::information(this, tr("Unable to open file"), "The file is corrupted");
             }
         }
@@ -51,7 +52,7 @@ void MainWindow::initUi() {
             fileName += ENVIRONEMENT_FORMAT;
 
         if (!fileName.isEmpty()) {
-            if (!QEnvironement::instance()->saveEnvironementInFile(fileName)) {
+            if (!QEnvironementInstance->saveEnvironementInFile(fileName)) {
                 QMessageBox::information(this, tr("Unable to open file"), "The file is corrupted");
             }
         }
@@ -84,7 +85,7 @@ void MainWindow::saveUi() {
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
-    if (!QEnvironement::instance()->saveEnvironementInFile()) {
+    if (!QEnvironementInstance->saveEnvironementInFile()) {
         qWarning() << "Error: could not save the current data model";
     }
     saveUi();

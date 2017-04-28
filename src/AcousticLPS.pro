@@ -56,7 +56,7 @@ QMAKE_CFLAGS += protobuf
 include("./math/math.pri")
 include("./gui/gui.pri")
 include("./model/model.pri")
-
+include("./util/util.pri")
 
 
 
