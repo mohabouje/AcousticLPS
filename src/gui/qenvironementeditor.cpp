@@ -9,52 +9,38 @@
 
 QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::QEnvironementEditor),
-    _sourceModel(new BeaconListModel(parent)),
-    _filterModel(new BeaconFilterModel(parent))
+    ui(new Ui::QEnvironementEditor)
 {
     ui->setupUi(this);
-
-
-    filterModel()->setSourceModel(sourceModel());
-    tableList()->resizeColumnsToContents();
-    tableList()->setModel(filterModel());
-    tableList()->horizontalHeader()->setStretchLastSection(true);
-    tableList()->horizontalHeader()->setStretchLastSection(true);
-    tableList()->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    tableList()->setSelectionBehavior(QAbstractItemView::SelectRows);
-    tableList()->setSelectionMode(QAbstractItemView::SingleSelection);
-    tableList()->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    tableList()->setShowGrid(false);
-
     initUi();
-
-
 }
 
 void QEnvironementEditor::initUi() {
-    ui->widthValue->setValue(QEnvironementInstance->width());
-    ui->lengthValue->setValue(QEnvironementInstance->length());
-    ui->heightValue->setValue(QEnvironementInstance->height());
 
-    _dataSymbol->setStyle(QwtSymbol::Ellipse);
-    _dataSymbol->setPen(Qt::red);
-    _dataSymbol->setBrush(QBrush(Qt::red));
-    _dataSymbol->setSize(QSize(20, 20));
-    _dataPlot->setStyle(QwtPlotCurve::NoCurve);
-    _dataPlot->setSymbol(_dataSymbol);
-    _dataPlot->attach(ui->environementPlot);
+    _disabledSymbol->setStyle(QwtSymbol::Ellipse);
+    _disabledSymbol->setPen(Qt::black);
+    _disabledSymbol->setBrush(QBrush(Qt::gray));
+    _disabledSymbol->setSize(QSize(15, 15));
+    _disabledBeacons->setStyle(QwtPlotCurve::NoCurve);
+    _disabledBeacons->setSymbol(_disabledSymbol);
+    _disabledBeacons->attach(ui->environementPlot);
+
+    _enabledSymbol->setStyle(QwtSymbol::Ellipse);
+    _enabledSymbol->setPen(Qt::black);
+    _enabledSymbol->setBrush(QBrush(Qt::cyan));
+    _enabledSymbol->setSize(QSize(15, 15));
+    _enabledBeacons->setStyle(QwtPlotCurve::NoCurve);
+    _enabledBeacons->setSymbol(_enabledSymbol);
+    _enabledBeacons->attach(ui->environementPlot);
 
     ui->environementPlot->setAxisAutoScale(QwtPlot::xBottom, false);
     ui->environementPlot->setAxisAutoScale(QwtPlot::yLeft, false);
     ui->environementPlot->setAxisScale(QwtPlot::xBottom, 0, QEnvironementInstance->width());
     ui->environementPlot->setAxisScale(QwtPlot::yLeft, 0, QEnvironementInstance->width());
 
-    connect(tableList()->selectionModel(), &QItemSelectionModel::currentChanged, [&](const QModelIndex& current, const QModelIndex& previous){
-        Q_UNUSED(previous);
-        ui->upButton->setEnabled(current.isValid());
-        ui->downButton->setEnabled(current.isValid());
-    });
+    ui->widthValue->setValue(QEnvironementInstance->width());
+    ui->lengthValue->setValue(QEnvironementInstance->length());
+    ui->heightValue->setValue(QEnvironementInstance->height());
 
     connect(ui->heightValue, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value){
         QEnvironementInstance->setHeight(value);
@@ -65,12 +51,14 @@ void QEnvironementEditor::initUi() {
         QEnvironementInstance->setWidth(value);
         ui->xValue->setMaximum(value);
         ui->environementPlot->setAxisScale(QwtPlot::xBottom, 0, value);
+        ui->environementPlot->replot();
     });
 
     connect(ui->lengthValue, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value){
         QEnvironementInstance->setLength(value);
         ui->yValue->setMaximum(value);
         ui->environementPlot->setAxisScale(QwtPlot::yLeft, 0, value);
+        ui->environementPlot->replot();
     });
 
     connect(ui->addButton, &QToolButton::released, [&]() {
@@ -85,39 +73,47 @@ void QEnvironementEditor::initUi() {
         beacon->setPosition(Position({ui->xValue->value(),
                                       ui->yValue->value(),
                                       ui->zValue->value()}));
-        filterModel()->invalidate();
         ui->beaconName->clear();
         ui->xValue->setValue(0);
         ui->yValue->setValue(0);
         ui->zValue->setValue(0);
-        ui->beaconName->setFocus();
+        beaconsPanel()->invalidate();
+        repaintEnvironement();
+    });
+
+    connect(beaconsPanel(), &BeaconsPanel::beaconEdited, [&](const QBeacon& beacon){
+        Q_UNUSED(beacon);
         repaintEnvironement();
     });
 }
 
 void QEnvironementEditor::repaintEnvironement() {
     const int N = QEnvironementInstance->beaconsCount();
-    QVector<double> x(N, 0);
-    QVector<double> y(N, 0);
+    QVector<double> xEnabled, yEnabled, xDisabled, yDisabled;
     QPolygonF points;
     for (int i=0; i<N; i++) {
         const QBeacon beacon = QEnvironementInstance->beaconAt(i);
         const Position point = beacon->position();
-        x[i] = point(0);
-        y[i] = point(1);
+        if (beacon->isEnabled()) {
+            xEnabled.append(point(0));
+            yEnabled.append(point(1));
+        } else {
+            xDisabled.append(point(0));
+            yDisabled.append(point(1));
+        }
     }
-    _dataPlot->setSamples(x, y);
+    _enabledBeacons->setSamples(xEnabled, yEnabled);
+    _disabledBeacons->setSamples(xDisabled, yDisabled);
     ui->environementPlot->replot();
 }
 
 QEnvironementEditor::~QEnvironementEditor() {
-    delete _sourceModel;
-    delete _filterModel;
+    delete _enabledBeacons;
+    delete _enabledSymbol;
     delete ui;
 }
 
-
-QTableView* QEnvironementEditor::tableList() const {
-    return ui->beaconList;
+BeaconsPanel *QEnvironementEditor::beaconsPanel() const {
+    return ui->beaconsPanel;
 }
 

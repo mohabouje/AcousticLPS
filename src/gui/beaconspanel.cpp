@@ -15,8 +15,8 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    _filterModel->setSourceModel(_sourceModel);
-    ui->tableView->setModel(_filterModel);
+    filterModel()->setSourceModel(sourceModel());
+    ui->tableView->setModel(filterModel());
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -24,12 +24,6 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tableView->setShowGrid(false);
-
-    connect(ui->editBeacons, &QToolButton::released, [&](){
-        QEnvironementEditor dialog;
-        dialog.exec();
-        _filterModel->invalidate();
-    });
 
     connect(ui->tableView, &QTableView::customContextMenuRequested, [&](const QPoint& point) {
         const QModelIndex index = ui->tableView->indexAt(point);
@@ -39,10 +33,12 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
             menu.addAction(beacon->isEnabled() ? tr("Disable") : tr("Enable"),[&, beacon](){
                 const bool isEnabled = beacon->isEnabled();
                 beacon->setEnabled(!isEnabled);
+                emit beaconEdited(beacon);
                 filterModel()->invalidate();
             });
             menu.addAction(tr("Remove"), [&, beacon]() {
                 QEnvironementInstance->removeBeacon(beacon);
+                emit beaconEdited(beacon);
                 filterModel()->invalidate();
             });
             menu.exec(ui->tableView->viewport()->mapToGlobal(point));
@@ -55,4 +51,8 @@ BeaconsPanel::~BeaconsPanel()
     delete ui;
     delete _sourceModel;
     delete _filterModel;
+}
+
+void BeaconsPanel::invalidate() {
+    filterModel()->invalidate();
 }

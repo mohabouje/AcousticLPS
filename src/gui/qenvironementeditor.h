@@ -1,8 +1,8 @@
 #ifndef QENVIRONEMENTEDITOR_H
 #define QENVIRONEMENTEDITOR_H
 
-#include "beaconfiltermodel.h"
-#include "beaconlistmodel.h"
+
+#include "beaconspanel.h"
 
 #include <qwt_plot_curve.h>
 #include <qwt_symbol.h>
@@ -20,19 +20,17 @@ class QEnvironementEditor : public QDialog
 public:
     explicit QEnvironementEditor(QWidget *parent = 0);
     ~QEnvironementEditor();
+private slots:
+    void repaintEnvironement();
+    void initUi();
 private:
     Ui::QEnvironementEditor *ui;
+    QwtPlotCurve*   _enabledBeacons{new QwtPlotCurve()};
+    QwtPlotCurve*   _disabledBeacons{new QwtPlotCurve()};
+    QwtSymbol*      _enabledSymbol{new QwtSymbol};
+    QwtSymbol*      _disabledSymbol{new QwtSymbol};
 
-    BeaconListModel*    _sourceModel;
-    BeaconFilterModel*  _filterModel;
-    QwtPlotCurve*       _dataPlot{new QwtPlotCurve("Beacons")};
-    QwtSymbol*          _dataSymbol{new QwtSymbol()};
-    inline BeaconListModel* sourceModel() const { return _sourceModel; }
-    inline BeaconFilterModel* filterModel() const { return _filterModel; }
-    QTableView *tableList() const;
-
-    void initUi();
-    void repaintEnvironement();
+    BeaconsPanel* beaconsPanel() const;
 };
 
 

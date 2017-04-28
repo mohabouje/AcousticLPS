@@ -1,6 +1,7 @@
 #ifndef BEACONSPANEL_H
 #define BEACONSPANEL_H
 
+#include <model/qbeacon.h>
 #include "beaconfiltermodel.h"
 #include "beaconlistmodel.h"
 
@@ -17,6 +18,10 @@ class BeaconsPanel : public QWidget
 public:
     explicit BeaconsPanel(QWidget *parent = 0);
     ~BeaconsPanel();
+public slots:
+    void invalidate();
+signals:
+    void beaconEdited(const QBeacon &beacon);
 private:
     Ui::BeaconsPanel *ui;
     BeaconListModel*    _sourceModel;
