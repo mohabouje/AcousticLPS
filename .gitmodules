@@ -1,3 +1,6 @@
 [submodule "src/dependencies/catch"]
 	path = src/dependencies/catch
 	url = https://github.com/philsquared/Catch.git
+[submodule "qBreakpad"]
+	path = qBreakpad
+	url = ../../buzzySmile/qBreakpad.git
