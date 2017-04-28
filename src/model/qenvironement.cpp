@@ -27,7 +27,12 @@ QBeacon QEnvironement::addBeacon() {
     beacon->set_x(0);
     beacon->set_y(0);
     beacon->set_z(0);
-    return beaconAt(_environement->beacons_size() - 1);
+    beacon->set_id(_environement->beacons_size() - 1);
+    Code* code = beacon->mutable_code();
+    code->set_type(Code::Gold);
+    code->set_order(10);
+
+    return beaconAt(beacon->id());
 }
 
 bool QEnvironement::removeBeacon(const QBeacon &beacon) {
@@ -66,24 +71,20 @@ bool QEnvironement::loadEnvironementFromFile(const QString &filename) {
     static const QString defaultPath = ModelHelper::defaultDocumentsFolder() + ENVIRONEMENT_FILENAME;
     QFile file(filename.isEmpty() ? defaultPath : filename);
     if (file.exists() && file.open(QIODevice::ReadOnly)) {
-        const QByteArray data = file.readAll();
+        const QByteArray array = file.readAll();
         file.close();
-        return _environement->ParseFromArray(data, data.size());
+        if (!array.isEmpty()) {
+            return _environement->ParseFromArray(array.data(), array.size());
+        }
     }
     return false;
 }
 
 bool QEnvironement::saveEnvironementInFile(const QString &filename) const {
-    if (!_environement->IsInitialized()) {
-        return false;
-    }
-
     static const QString defaultPath = ModelHelper::defaultDocumentsFolder() + ENVIRONEMENT_FILENAME;
     QSaveFile file(filename.isEmpty() ? defaultPath : filename);
     if (file.open(QIODevice::WriteOnly)) {
-        std::ostringstream out;
-        _environement->SerializeToOstream(&out);
-        const QByteArray data(out.str().c_str());
+        const QByteArray data(_environement->SerializeAsString().c_str(), _environement->ByteSize());
         if (file.write(data) > -1) {
             return file.commit();
         }

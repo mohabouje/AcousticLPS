@@ -13,11 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    /*
+
     const bool loaded = QEnvironementInstance->loadEnvironementFromFile();
     if (!loaded) {
         qWarning() << "Error: we could not restore the last saved environement";
-    }*/
+    }
 
     ui->setupUi(this);
     initUi();
