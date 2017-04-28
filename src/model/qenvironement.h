@@ -10,22 +10,30 @@ class QEnvironement : public QObject
     Q_OBJECT
 public:
     static QEnvironement* instance(QObject *parent = Q_NULLPTR);
-    inline QString name() const { return QString::fromStdString(_environement->name()); }
-    inline Real latitude() const { return _environement->latitude(); }
-    inline Real longitude() const { return _environement->longitude(); }
-    inline Real  altitude() const { return _environement->altitude(); }
-    inline int beaconsCount() const { return _environement->beacons_size(); }
 
-    QBeacon addBeacon();
+
+
+    inline QString name() const { return QString::fromStdString(_environement->name()); }
+    inline Real length() const { return _environement->length(); }
+    inline Real width() const { return _environement->width(); }
+    inline Real height() const { return _environement->height(); }
+    inline int beaconsCount() const { return _environement->beacons_size(); }
     bool    removeBeacon(const QBeacon& beaconAt);
+    QBeacon addBeacon();
     QBeacon beaconAt(int index);
 
+    void setLength(Real value) { _environement->set_length(value); }
+    void setWidth(Real value) { _environement->set_width(value); }
+    void setHeight(Real value) { _environement->set_height(value); }
 public:
     bool loadEnvironementFromFile(const QString& filename = QString());
     bool saveEnvironementInFile(const QString& filename = QString()) const;
 private:
     explicit QEnvironement(QObject *parent = 0);
     ~QEnvironement();
+    static constexpr Real DefaultWidth{10.0};
+    static constexpr Real DefaultHeight{3.0};
+    static constexpr Real DefaultLength{10.0};
     static QEnvironement*   _instance;
     Environement*           _environement{new Environement};
     QMap<QUuid, QBeacon>    _wrappedBeacons;

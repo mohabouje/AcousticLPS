@@ -26,6 +26,14 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
     tableList()->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tableList()->setShowGrid(false);
 
+    qDebug() << QEnvironement::instance()->width()
+             << QEnvironement::instance()->length()
+             << QEnvironement::instance()->height();
+
+    ui->widthValue->setValue(QEnvironement::instance()->width());
+    ui->lengthValue->setValue(QEnvironement::instance()->length());
+    ui->heightValue->setValue(QEnvironement::instance()->height());
+
 
     connect(ui->addButton, &QToolButton::released, [&]() {
         const QString name = ui->beaconName->text();
@@ -36,9 +44,14 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
 
         const QBeacon beacon = QEnvironement::instance()->addBeacon();
         beacon->setName(name);
+        beacon->setPosition(Position({ui->xValue->value(),
+                                      ui->yValue->value(),
+                                      ui->zValue->value()}));
         filterModel()->invalidate();
         ui->beaconName->clear();
-        ui->beaconPosition->clear();
+        ui->xValue->setValue(0);
+        ui->yValue->setValue(0);
+        ui->zValue->setValue(0);
         ui->beaconName->setFocus();
     });
 
@@ -48,6 +61,20 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
         ui->downButton->setEnabled(current.isValid());
     });
 
+    connect(ui->heightValue, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value){
+        QEnvironement::instance()->setHeight(value);
+        ui->zValue->setMaximum(value);
+    });
+
+    connect(ui->widthValue, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value){
+        QEnvironement::instance()->setWidth(value);
+        ui->xValue->setMaximum(value);
+    });
+
+    connect(ui->lengthValue, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value){
+        QEnvironement::instance()->setLength(value);
+        ui->yValue->setMaximum(value);
+    });
 }
 
 QEnvironementEditor::~QEnvironementEditor() {

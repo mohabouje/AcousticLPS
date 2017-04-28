@@ -16,10 +16,12 @@ QEnvironement *QEnvironement::instance(QObject *parent) {
 
 QEnvironement::QEnvironement(QObject *parent) : QObject(parent) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
+    qDebug() << DefaultHeight << DefaultWidth << DefaultWidth;
+    _environement->set_width(DefaultWidth);
+    _environement->set_height(DefaultHeight);
+    _environement->set_length(DefaultLength);
 
-    _environement->set_width(100);
-    _environement->set_height(100);
-    _environement->set_length(100);
+    qDebug() << width() << height() << length();
 }
 
 QEnvironement::~QEnvironement() {
