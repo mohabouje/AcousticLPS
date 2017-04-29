@@ -56,16 +56,15 @@ BeaconsChart::BeaconsChart(QWidget* parent) : QwtPlot(parent) {
 
 void BeaconsChart::beaconSelected(const QBeacon &beacon) {
     _beacon = beacon;
-    repaintEnvironement();
+    repaintBeacons();
 }
 
 void BeaconsChart::updateEnvironement() {
     setAxisScale(QwtPlot::xBottom, 0, QEnvironementInstance->width());
     setAxisScale(QwtPlot::yLeft, 0, QEnvironementInstance->width());
-    repaintEnvironement();
 }
 
-void BeaconsChart::repaintEnvironement() {
+void BeaconsChart::repaintBeacons() {
     const Size N = QEnvironementInstance->beaconsCount();
     QVector<Real> xEnabled, yEnabled, xDisabled, yDisabled, xSelected, ySelected;
     for (Size i=0; i<N; i++) {

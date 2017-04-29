@@ -23,6 +23,7 @@ private:
     void loadUi();
     void saveUi();
     void invalidate();
+    void simulateMeasures();
 };
 
 #endif // MAINWINDOW_H

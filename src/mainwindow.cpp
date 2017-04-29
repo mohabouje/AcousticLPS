@@ -22,12 +22,12 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     ui->setupUi(this);
-
-
     initUi();
     loadUi();
+    simulateMeasures();
+}
 
-
+void MainWindow::simulateMeasures() {
     const Size N = QEnvironementInstance->beaconsCount();
     QVector<QMeasure> measures(N);
     for (Size i=0; i<N; i++) {
@@ -114,7 +114,7 @@ void MainWindow::initUi() {
     connect(ui->beaconsPanel, &BeaconsPanel::beaconSelected, ui->routesChart, &RoutesChart::beaconSelected);
     connect(ui->beaconsPanel, &BeaconsPanel::beaconEdited, [&](const QBeacon& beacon){
         Q_UNUSED(beacon);
-        ui->routesChart->repaintEnvironement();
+        ui->routesChart->repaintBeacons();
     });
 }
 

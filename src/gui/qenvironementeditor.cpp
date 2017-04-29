@@ -17,7 +17,8 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
 
 void QEnvironementEditor::initUi() {
     ui->beaconsPanel->showHeader(false);
-    ui->beaconsChart->repaintEnvironement();
+    ui->beaconsChart->updateEnvironement();
+    ui->beaconsChart->repaintBeacons();
 
     ui->widthValue->setValue(QEnvironementInstance->width());
     ui->lengthValue->setValue(QEnvironementInstance->length());
@@ -59,12 +60,12 @@ void QEnvironementEditor::initUi() {
         ui->yValue->setValue(0);
         ui->zValue->setValue(0);
         ui->beaconsPanel->invalidate();
-        ui->beaconsChart->repaintEnvironement();
+        ui->beaconsChart->repaintBeacons();
     });
 
     connect(ui->beaconsPanel, &BeaconsPanel::beaconEdited, [&](const QBeacon& beacon){
         Q_UNUSED(beacon);
-        ui->beaconsChart->repaintEnvironement();
+        ui->beaconsChart->repaintBeacons();
     });
 
     connect(ui->beaconsPanel, &BeaconsPanel::beaconSelected, ui->beaconsChart, &BeaconsChart::beaconSelected);
