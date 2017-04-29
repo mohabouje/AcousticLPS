@@ -1,6 +1,7 @@
 #include "mathutil.h"
 #include <sigpack/sigpack.h>
-
+#include <random>
+#include <iostream>
 #include <QDebug>
 Real MathUtil::soundPropagationVelocity(Real temperatureCelcius) {
     static const Real gamma = 1.40;
@@ -31,13 +32,22 @@ Vector MathUtil::window(MathUtil::SupportedWindow window, Size size) {
     return vect;
 }
 
-QwtData MathUtil::hiperbolicChart(const Position& center, Real radius, Real width, Size points) {
-    const Real residual = radius * radius - center(0) * center(0);
-    QwtData chart(points);
-    chart.xData = arma::linspace(0.0, std::min(2.0 * radius, width), points);
-    for (Size i=0; i<points; i++) {
-        const Real x = chart.xData(i);
-        chart.yData(i) = center(1) - std::sqrt(residual - x*x + 2*x*center(0));
+QwtData MathUtil::hiperbolicChart(const Position& center, Real radius, Size size) {
+    const Real x0 = center(0);
+    const Real y0 = center(1);
+    const Real residual = radius * radius - x0 * x0;
+
+    const Size halfSize = size / 2;
+    const Vector xPoints = arma::linspace(x0-radius, x0+radius, halfSize);
+    QwtData chart(size);
+    for (Size i=0; i<size; i++) {
+        if (i < halfSize) {
+            chart.yData(i) = y0 - std::sqrt(residual - xPoints(i)*xPoints(i) + 2*xPoints(i)*x0);
+            chart.xData(i) = xPoints(i);
+        } else {
+            chart.yData(i) = y0 + std::sqrt(residual - xPoints(i-halfSize)*xPoints(i-halfSize) + 2*xPoints(i-halfSize)*x0);
+            chart.xData(i) = xPoints(i-halfSize);
+        }
     }
     return chart;
 }
@@ -49,4 +59,14 @@ Vector MathUtil::quadraticEquationSolver(Real a, Real b, Real c) {
     solutions(0) = (-b + d) / (2.0 * a);
     solutions(1) = (-b - d) / (2.0 * a);
     return solutions;
+}
+
+Vector MathUtil::rand(Real min, Real max, Size number) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<Real> distr(min, max);
+    Vector random(number);
+    Real* pointer = random.memptr();
+    std::generate(pointer, pointer + number, [&](){ return distr(gen); });
+    return random;
 }

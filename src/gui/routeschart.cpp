@@ -1,6 +1,8 @@
 #include "routeschart.h"
 #include <model/qenvironement.h>
 #include <math/mathutil.h>
+#include <qwt_symbol.h>
+
 RoutesChart::RoutesChart(QWidget* parent) : BeaconsChart(parent) {
     _grid->enableXMin(true);
     _grid->enableYMin(true);
@@ -36,14 +38,19 @@ void RoutesChart::updateEnvironement() {
         const QBeacon beacon = QEnvironementInstance->beaconAt(i);
         if (beacon->isEnabled()) {
             QwtPlotCurve* curve = new QwtPlotCurve;
-            curve->setStyle(QwtPlotCurve::Lines);
+            curve->setStyle(QwtPlotCurve::NoCurve);
             curve->attach(this);
+            QwtSymbol* selectedSymbol = new QwtSymbol;
+            selectedSymbol->setStyle(QwtSymbol::Cross);
+            selectedSymbol->setBrush(QBrush(Qt::red));
+            curve->setSymbol(selectedSymbol);
+
             _trilaterationCurves.insert(beacon, curve);
             beacons.insert(beacon);
         }
     }
     _trilateration->setBeacons(beacons);
-    repaintEnvironement();
+    replot();
 }
 
 void RoutesChart::showBeacons(bool showBeacons) {
@@ -74,9 +81,8 @@ void RoutesChart::flushTrilaterationCurves(){
 
 void RoutesChart::traceHyperbolic(const QMeasure &measure) {
     const QBeacon beacon = measure.getBeacon();
-    const Real width = QEnvironementInstance->width();
     if (_trilaterationCurves.contains(beacon)) {
-        QwtData data = MathUtil::hiperbolicChart(beacon->position(), measure.getMeasure(), width, 200);
+        QwtData data = MathUtil::hiperbolicChart(beacon->position(), measure.getMeasure(), 200);
         _trilaterationCurves[beacon]->setSamples(data.x(), data.y(), data.size());
     }
 }

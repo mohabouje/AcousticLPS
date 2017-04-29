@@ -16,6 +16,9 @@ int main(int argc, char *argv[]) {
 
     MainWindow w;
     w.show();
+
+    /*const Position point = {2,5,0};
+    Gui::plot(MathUtil::hiperbolicChart(point, 2, 200));*/
     return a.exec();
 }
 #endif

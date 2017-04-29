@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "config.h"
 
+#include <math/mathutil.h>
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
 
@@ -25,6 +26,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initUi();
     loadUi();
+
+
+    const Size N = QEnvironementInstance->beaconsCount();
+    QVector<QMeasure> measures(N);
+    for (Size i=0; i<N; i++) {        const QBeacon& beacon = QEnvironementInstance->beaconAt(i);
+        const QMeasure measure = QMeasure::createMeasure(beacon, 4.0, 0.0);
+        measures[i] = measure;
+    }
+
+    ui->routesChart->updateEnvironement();
+    ui->routesChart->plotRoute(measures);
 }
 
 MainWindow::~MainWindow()
