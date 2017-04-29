@@ -1,8 +1,10 @@
 HEADERS += \
-    $$PWD/qtrilateration.h \
+    $$PWD/trilateration.h \
+    $$PWD/mathutil.h
 
 SOURCES += \
-    $$PWD/qtrilateration.cpp \
+    $$PWD/trilateration.cpp \
+    $$PWD/mathutil.cpp
 
 testing {
     SOURCES += $$PWD/test/qbeacontest.cpp \

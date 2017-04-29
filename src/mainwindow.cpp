@@ -2,13 +2,15 @@
 #include "ui_mainwindow.h"
 #include "config.h"
 
-
+#include <math/mathutil.h>
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
+
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -18,6 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
     if (!loaded) {
         qWarning() << "Error: we could not restore the last saved environement";
     }
+
+   qDebug() << MathUtil::soundPropagationVelocity(30.);
+   qDebug() << MathUtil::soundPropagationVelocity(40.);
+   qDebug() << MathUtil::soundPropagationVelocity(50.);
 
     ui->setupUi(this);
     initUi();

@@ -7,14 +7,14 @@
 #include <QSet>
 #include <QVector>
 
-class QTrilateration  {
+class Trilateration  {
 public:
     enum Error { NoError = 0, EmptyMeasures, EmptyBeacons, NotEnoughtMeasure, NotSolution, Unknown };
     enum CartesianCoordinates { AxisX = 0, AxisY, AxisZ, AxisCount };
     enum Algorithm { LinearLeastSquares = 0, NonLinearLeastSquares };
     static constexpr int MinimumRequiredMeasures{4};
 
-    QTrilateration();
+    Trilateration();
     inline Position  estimatedPosition() const { return _estimatedPosition; }
     inline const QSet<QBeacon> beacons() const { return _beacons; }
     inline const QVector<QMeasure> measures() const { return _measures; }
@@ -30,8 +30,8 @@ private:
 
     bool removeMeasuresFromUnknownBeacon();
     bool removeDuplicatedMeasures();
-    QTrilateration::Error solveNonLinearLeastSquares();
-    QTrilateration::Error solveLinearLeastSquares();
+    Trilateration::Error solveNonLinearLeastSquares();
+    Trilateration::Error solveLinearLeastSquares();
 };
 
 #endif // QTRILATERATION_H

@@ -1,16 +1,16 @@
-#include "qtrilateration.h"
+#include "trilateration.h"
 #include <QDebug>
-QTrilateration::QTrilateration()
+Trilateration::Trilateration()
 {
 
 }
 
-void QTrilateration::clear() {
+void Trilateration::clear() {
     _beacons.clear();
     _measures.clear();
 }
 
-QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorithm algorithm) {
+Trilateration::Error Trilateration::calculatePosition(Trilateration::Algorithm algorithm) {
     if (_beacons.isEmpty()) return EmptyBeacons;
     if (_measures.isEmpty()) return EmptyMeasures;
 
@@ -27,7 +27,7 @@ QTrilateration::Error QTrilateration::calculatePosition(QTrilateration::Algorith
 }
 
 
-QTrilateration::Error QTrilateration::solveLinearLeastSquares() {
+Trilateration::Error Trilateration::solveLinearLeastSquares() {
     const int measureCount = _measures.size();
     if (measureCount < MinimumRequiredMeasures) {
         qWarning() << "Not enought measures to use this algorithm.";
@@ -62,18 +62,18 @@ QTrilateration::Error QTrilateration::solveLinearLeastSquares() {
     return findSolution ? NoError : NotSolution;
 }
 
-QTrilateration::Error QTrilateration::solveNonLinearLeastSquares() {
+Trilateration::Error Trilateration::solveNonLinearLeastSquares() {
     return NoError;
 }
 
 
 
 
-void QTrilateration::setBeacons(const QSet<QBeacon> &beacons) {
+void Trilateration::setBeacons(const QSet<QBeacon> &beacons) {
     _beacons = beacons;
 }
 
-bool QTrilateration::setMeasures(const QVector<QMeasure> &measures) {
+bool Trilateration::setMeasures(const QVector<QMeasure> &measures) {
     _measures = measures;
     const bool removed = removeMeasuresFromUnknownBeacon();
     const bool duplicated = removeDuplicatedMeasures();
@@ -81,7 +81,7 @@ bool QTrilateration::setMeasures(const QVector<QMeasure> &measures) {
 }
 
 
-bool QTrilateration::removeMeasuresFromUnknownBeacon() {
+bool Trilateration::removeMeasuresFromUnknownBeacon() {
     auto iterator = std::remove_if(_measures.begin(), _measures.end(), [&](const QMeasure& measure){
         const QBeacon beacon = measure.getBeacon();
         return !_beacons.contains(beacon);
@@ -92,7 +92,7 @@ bool QTrilateration::removeMeasuresFromUnknownBeacon() {
 }
 
 
-bool QTrilateration::removeDuplicatedMeasures() {
+bool Trilateration::removeDuplicatedMeasures() {
     bool duplicated = false;
     foreach (const QBeacon& beacon, _beacons) {
         double distance = 0.0, rssi = 0.0;
