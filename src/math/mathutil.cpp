@@ -31,9 +31,9 @@ Vector MathUtil::window(MathUtil::SupportedWindow window, Size size) {
     return vect;
 }
 
-ChartData MathUtil::hiperbolicChart(const Position& center, Real radius, Real width, Size points) {
+QwtData MathUtil::hiperbolicChart(const Position& center, Real radius, Real width, Size points) {
     const Real residual = radius * radius - center(0) * center(0);
-    ChartData chart(points);
+    QwtData chart(points);
     chart.xData = arma::linspace(0.0, std::min(2.0 * radius, width), points);
     for (Size i=0; i<points; i++) {
         const Real x = chart.xData(i);

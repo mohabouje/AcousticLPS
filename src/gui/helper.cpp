@@ -6,13 +6,13 @@
 
 void Gui::plot(const Vector &y) {
     const Size N = y.size();
-    ChartData data(N);
+    QwtData data(N);
     data.yData = y;
     data.xData = arma::linspace(0, N, N);
     plot(data);
 }
 
-void Gui::plot(ChartData data) {
+void Gui::plot(QwtData data) {
     QwtPlot *myPlot = new QwtPlot(NULL);
     QwtPlotCurve *curve1 = new QwtPlotCurve("Curve 1");
     curve1->setSamples(data.x(), data.y(), data.size());

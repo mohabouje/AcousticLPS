@@ -12,6 +12,7 @@ public:
 public slots:
     virtual void beaconSelected(const QBeacon& beacon);
     virtual void clear();
+    virtual void updateEnvironement();
     virtual void repaintEnvironement();
     void showAxis(bool state);
 private:

@@ -9,8 +9,7 @@
 #include <QLabel>
 #include <QEvent>
 
-BeaconsChart::BeaconsChart(QWidget* parent) : QwtPlot(parent)
-{
+BeaconsChart::BeaconsChart(QWidget* parent) : QwtPlot(parent) {
 
     QwtSymbol* disabledSymbol = new QwtSymbol;
     disabledSymbol->setStyle(QwtSymbol::Ellipse);
@@ -65,6 +64,10 @@ void BeaconsChart::clear() {
     _enabledBeacons->setSamples(QVector<double>(), QVector<double>());
     _selectedBeacons->setSamples(QVector<double>(), QVector<double>());
     replot();
+}
+
+void BeaconsChart::updateEnvironement() {
+    repaintEnvironement();
 }
 
 void BeaconsChart::repaintEnvironement() {

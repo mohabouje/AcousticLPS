@@ -19,7 +19,7 @@ namespace Gui {
         return uuid.contains(validator);
     }
     void plot(const Vector &y);
-    void plot(ChartData data);
+    void plot(QwtData data);
 }
 
 #endif // HELPER_H

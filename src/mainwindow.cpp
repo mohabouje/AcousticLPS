@@ -49,17 +49,15 @@ void MainWindow::initUi() {
     ui->mainToolBar->addWidget(searchLineEdit);
     ui->routesChart->showAxis(false);
 
-    connect(ui->actionHideBeacons, &QAction::toggled, [&](bool state) {
-        ui->routesChart->showBeacons(!state);
-    });
-
+    connect(ui->actionShowBeacons, &QAction::toggled, ui->routesChart, &RoutesChart::showBeacons);
     connect(ui->actionShowGrid, &QAction::toggled, ui->routesChart, &RoutesChart::showGrid);
+    connect(ui->actionShowGrid, &QAction::toggled, ui->routesChart, &RoutesChart::showTrilateration);
 
     connect(ui->actionEnvironement, &QAction::triggered, [&](bool) {
         QEnvironementEditor editor;
         editor.exec();
         ui->beaconsPanel->invalidate();
-        ui->routesChart->repaintEnvironement();
+        ui->routesChart->updateEnvironement();
     });
 
     connect(ui->actionOpen, &QAction::triggered, [&](bool) {
@@ -119,6 +117,9 @@ void MainWindow::loadUi() {
     ui->horizontalSplitter->restoreState(
                 settings.value("hSplitter", ui->horizontalSplitter->saveState())
                 .toByteArray());
+    ui->actionShowBeacons->setChecked(settings.value("showBeacons", true).toBool());
+    ui->actionShowGrid->setChecked(settings.value("showGrid", true).toBool());
+    ui->actionShowTrilateration->setChecked(settings.value("showTrilateration", true).toBool());
     settings.endGroup();
 }
 
@@ -129,6 +130,9 @@ void MainWindow::saveUi() {
     settings.setValue("state", saveState());
     settings.setValue("vSplitter", ui->verticalSplitter->saveState());
     settings.setValue("hSplitter", ui->horizontalSplitter->saveState());
+    settings.setValue("showBeacons", ui->actionShowBeacons->isChecked());
+    settings.setValue("showGrid", ui->actionShowGrid->isChecked());
+    settings.setValue("showTrilateration", ui->actionShowTrilateration->isChecked());
     settings.endGroup();
     settings.sync();
 }

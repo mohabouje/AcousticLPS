@@ -125,12 +125,13 @@
    </widget>
    <widget class="QMenu" name="menuPosition">
     <property name="title">
-     <string>System</string>
+     <string>View</string>
     </property>
-    <addaction name="actionHideBeacons"/>
-    <addaction name="actionTrack"/>
-    <addaction name="actionEstimate"/>
+    <addaction name="actionShowBeacons"/>
+    <addaction name="actionShowTrilateration"/>
     <addaction name="actionShowGrid"/>
+    <addaction name="separator"/>
+    <addaction name="actionTrack"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -151,9 +152,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionHideBeacons"/>
-   <addaction name="actionShowGrid"/>
-   <addaction name="actionEstimate"/>
+   <addaction name="actionShowBeacons"/>
+   <addaction name="actionShowTrilateration"/>
    <addaction name="actionTrack"/>
    <addaction name="separator"/>
    <addaction name="actionPreferences"/>
@@ -281,13 +281,19 @@
     <string>Share</string>
    </property>
   </action>
-  <action name="actionEstimate">
+  <action name="actionShowTrilateration">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/resources/icons/placeholder.png</normaloff>:/resources/icons/placeholder.png</iconset>
    </property>
    <property name="text">
-    <string>Estimate</string>
+    <string>Show Trilateration</string>
    </property>
   </action>
   <action name="actionEnvironement">
@@ -299,19 +305,22 @@
     <string>Edit Environement</string>
    </property>
   </action>
-  <action name="actionHideBeacons">
+  <action name="actionShowBeacons">
    <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
     <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="images.qrc">
-     <normaloff>:/resources/icons/hide.png</normaloff>:/resources/icons/hide.png</iconset>
+     <normaloff>:/resources/icons/wifi-1.png</normaloff>:/resources/icons/wifi-1.png</iconset>
    </property>
    <property name="text">
-    <string>Hide Beacons</string>
+    <string>Show Beacons</string>
    </property>
    <property name="toolTip">
-    <string>Hide Beacons</string>
+    <string>Show Beacons</string>
    </property>
   </action>
   <action name="actionShowGrid">
@@ -323,7 +332,7 @@
    </property>
    <property name="icon">
     <iconset resource="images.qrc">
-     <normaloff>:/resources/icons/albums.png</normaloff>:/resources/icons/albums.png</iconset>
+     <normaloff>:/resources/icons/grid.png</normaloff>:/resources/icons/grid.png</iconset>
    </property>
    <property name="text">
     <string>Show Grid</string>

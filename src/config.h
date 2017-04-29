@@ -19,8 +19,8 @@ using Complex = arma::cx_vec;
 using Matrix = arma::mat;
 using Position = arma::vec::fixed<3>;
 
-struct ChartData {
-    ChartData(Size size) {
+struct QwtData {
+    QwtData(Size size) {
         xData = Vector(size);
         yData = Vector(size);
     }

@@ -438,5 +438,6 @@
         <file>resources/icons/arrow-down.png</file>
         <file>resources/icons/arrow-up.png</file>
         <file>resources/icons/satellite.png</file>
+        <file>resources/icons/grid.png</file>
     </qresource>
 </RCC>
