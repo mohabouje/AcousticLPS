@@ -66,10 +66,9 @@ void BeaconsChart::updateEnvironement() {
 }
 
 void BeaconsChart::repaintEnvironement() {
-    const int N = QEnvironementInstance->beaconsCount();
-    QVector<double> xEnabled, yEnabled, xDisabled, yDisabled, xSelected, ySelected;
-    QPolygonF points;
-    for (int i=0; i<N; i++) {
+    const Size N = QEnvironementInstance->beaconsCount();
+    QVector<Real> xEnabled, yEnabled, xDisabled, yDisabled, xSelected, ySelected;
+    for (Size i=0; i<N; i++) {
         const QBeacon beacon = QEnvironementInstance->beaconAt(i);
         const Position point = beacon->position();
         if (beacon == _beacon) {

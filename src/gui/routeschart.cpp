@@ -18,7 +18,6 @@ RoutesChart::RoutesChart(QWidget* parent) : BeaconsChart(parent) {
     _trilaterationCurve->attach(this);
 
     updateEnvironement();
-    repaintEnvironement();
 }
 
 void RoutesChart::estimateRoute(const QVector<QMeasure> &measures) {
