@@ -37,6 +37,9 @@ FORMS    += mainwindow.ui
 RESOURCES += \
     images.qrc
 
+DEFINES += ARMA_DONT_USE_WRAPPER
+DEFINES += HAVE_FFTW
+
 
 # Using Armadillo + OpenBlas for ALgebra operation
 # How to install?  => http://www.uio.no/studier/emner/matnat/fys/FYS4411/v13/guides/installing-armadillo/
@@ -52,11 +55,15 @@ CONFIG += qwt
 LIBS += -lprotobuf
 QMAKE_CFLAGS += protobuf
 
+# Using FFTW library
+LIBS += -lfftw3
+
 # Include de different submodules
 include("./math/math.pri")
 include("./gui/gui.pri")
 include("./model/model.pri")
 include("./util/util.pri")
+include("./sigpack/sigpack.pri")
 
 
 

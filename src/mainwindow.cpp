@@ -6,6 +6,8 @@
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
 
+#include <sigpack/sigpack.h>
+
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>

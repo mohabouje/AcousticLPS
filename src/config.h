@@ -1,7 +1,6 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define ARMA_DONT_USE_WRAPPER
 #include <armadillo>
 
 #define APP_NAME            "Acoustic LPS"
