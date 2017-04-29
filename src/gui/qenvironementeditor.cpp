@@ -17,8 +17,10 @@ QEnvironementEditor::QEnvironementEditor(QWidget *parent) :
 
 void QEnvironementEditor::initUi() {
 
+    ui->beaconsPanel->showHeader(false);
     ui->beaconsChart->setAxisScale(QwtPlot::xBottom, 0, QEnvironementInstance->width());
     ui->beaconsChart->setAxisScale(QwtPlot::yLeft, 0, QEnvironementInstance->width());
+    ui->beaconsChart->repaintEnvironement();
 
     ui->widthValue->setValue(QEnvironementInstance->width());
     ui->lengthValue->setValue(QEnvironementInstance->length());

@@ -106,6 +106,7 @@
     </property>
     <addaction name="separator"/>
     <addaction name="actionEnvironement"/>
+    <addaction name="separator"/>
     <addaction name="actionPreferences"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -298,7 +299,7 @@
      <normaloff>:/resources/icons/edit.png</normaloff>:/resources/icons/edit.png</iconset>
    </property>
    <property name="text">
-    <string>Environement</string>
+    <string>Edit Environement</string>
    </property>
   </action>
  </widget>

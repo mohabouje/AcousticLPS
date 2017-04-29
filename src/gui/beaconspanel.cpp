@@ -63,3 +63,7 @@ BeaconsPanel::~BeaconsPanel()
 void BeaconsPanel::invalidate() {
     filterModel()->invalidate();
 }
+
+void BeaconsPanel::showHeader(bool show) {
+    ui->frame->setVisible(show);
+}

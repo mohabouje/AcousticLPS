@@ -22,6 +22,7 @@ public:
     inline BeaconFilterModel* filterModel() const { return _filterModel; }
 public slots:
     void invalidate();
+    void showHeader(bool show);
 signals:
     void beaconEdited(const QBeacon &beacon);
 private:

@@ -15,16 +15,14 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
-private slots:
-    void initUi();
-    void loadUi();
-    void saveUi();
-    void invalidate();
 protected slots:
     void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 private:
     Ui::MainWindow *ui;
+    void initUi();
+    void loadUi();
+    void saveUi();
+    void invalidate();
 };
 
 #endif // MAINWINDOW_H
