@@ -31,4 +31,22 @@ Vector MathUtil::window(MathUtil::SupportedWindow window, Size size) {
     return vect;
 }
 
+ChartData MathUtil::hiperbolicChart(const Position& center, Real radius, Real width, Size points) {
+    const Real residual = radius * radius - center(0) * center(0);
+    ChartData chart(points);
+    chart.xData = arma::linspace(0.0, std::min(2.0 * radius, width), points);
+    for (Size i=0; i<points; i++) {
+        const Real x = chart.xData(i);
+        chart.yData(i) = center(1) - std::sqrt(residual - x*x + 2*x*center(0));
+    }
+    return chart;
+}
 
+
+Vector MathUtil::quadraticEquationSolver(Real a, Real b, Real c) {
+    static arma::vec::fixed<2> solutions;
+    const Real d = std::sqrt(b*b - 4.0*a*c);
+    solutions(0) = (-b + d) / (2.0 * a);
+    solutions(1) = (-b - d) / (2.0 * a);
+    return solutions;
+}

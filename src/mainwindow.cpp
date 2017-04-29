@@ -5,7 +5,6 @@
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
 
-
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -22,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     ui->setupUi(this);
+
+
     initUi();
     loadUi();
 }

@@ -3,6 +3,9 @@
 #else
 #include "config.h"
 #include "mainwindow.h"
+
+#include <gui/helper.h>
+#include <math/mathutil.h>
 #include <QApplication>
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
