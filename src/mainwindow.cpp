@@ -76,6 +76,23 @@ void MainWindow::initUi() {
 
     connect(ui->actionQuit, SIGNAL(triggered(bool)), this, SLOT(close()));
 
+
+    QWidget *spacerWidget = new QWidget(this);
+    spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    spacerWidget->setVisible(true);
+    ui->mainToolBar->addWidget(spacerWidget);
+
+    QLineEdit* searchLineEdit = new QLineEdit(this);
+    searchLineEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+    searchLineEdit->setPlaceholderText("Type to filter...");
+    searchLineEdit->setMaximumHeight(ui->mainToolBar->height() * 0.95);
+    searchLineEdit->setMinimumWidth(150);
+    connect(searchLineEdit, &QLineEdit::textChanged, [&](const QString& text) {
+        ui->beaconsPanel->filterModel()->setFilterName(text);
+    });
+
+    ui->mainToolBar->addWidget(searchLineEdit);
+
 }
 
 void MainWindow::loadUi() {

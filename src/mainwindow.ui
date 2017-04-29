@@ -152,6 +152,9 @@
    <addaction name="actionPreferences"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="styleSheet">
+    <string notr="true">QToolBar { padding: 5; }</string>
+   </property>
    <property name="movable">
     <bool>false</bool>
    </property>

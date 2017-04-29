@@ -11,8 +11,8 @@ void BeaconFilterModel::setSort(const BeaconFilterModel::SortType &Sort) {
     invalidate();
 }
 
-void BeaconFilterModel::setNameFilter(const QString &nameFilter) {
-    _nameFilter = nameFilter;
+void BeaconFilterModel::setFilterName(const QString &nameFilter) {
+    _filterName = nameFilter;
     invalidate();
 }
 
@@ -22,7 +22,7 @@ bool BeaconFilterModel::filterAcceptsRow(int source_row, const QModelIndex &sour
     const QVariant data =  index.data(Qt::UserRole);
     if (data.canConvert<QBeacon>()) {
         const QBeacon beacon = data.value<QBeacon>();
-        return beacon->name().contains(_nameFilter);
+        return beacon->name().contains(_filterName);
     }
     return false;
 }

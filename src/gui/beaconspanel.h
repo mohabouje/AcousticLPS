@@ -18,6 +18,8 @@ class BeaconsPanel : public QWidget
 public:
     explicit BeaconsPanel(QWidget *parent = 0);
     ~BeaconsPanel();
+    inline BeaconListModel*   sourceModel() const { return _sourceModel; }
+    inline BeaconFilterModel* filterModel() const { return _filterModel; }
 public slots:
     void invalidate();
 signals:
@@ -26,9 +28,6 @@ private:
     Ui::BeaconsPanel *ui;
     BeaconListModel*    _sourceModel;
     BeaconFilterModel*  _filterModel;
-
-    inline BeaconListModel*   sourceModel() const { return _sourceModel; }
-    inline BeaconFilterModel* filterModel() const { return _filterModel; }
 };
 
 #endif // BEACONSPANEL_H
