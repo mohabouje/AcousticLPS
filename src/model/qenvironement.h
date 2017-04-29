@@ -15,7 +15,7 @@ public:
     inline Real length() const { return _environement->length(); }
     inline Real width() const { return _environement->width(); }
     inline Real height() const { return _environement->height(); }
-    inline int beaconsCount() const { return _environement->beacons_size(); }
+    inline Size beaconsCount() const { return _environement->beacons_size(); }
     bool    removeBeacon(const QBeacon& beaconAt);
     QBeacon addBeacon();
     QBeacon beaconAt(int index);

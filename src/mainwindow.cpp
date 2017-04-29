@@ -6,8 +6,6 @@
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
 
-#include <sigpack/sigpack.h>
-
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -22,10 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
     if (!loaded) {
         qWarning() << "Error: we could not restore the last saved environement";
     }
-
-   qDebug() << MathUtil::soundPropagationVelocity(30.);
-   qDebug() << MathUtil::soundPropagationVelocity(40.);
-   qDebug() << MathUtil::soundPropagationVelocity(50.);
 
     ui->setupUi(this);
     initUi();

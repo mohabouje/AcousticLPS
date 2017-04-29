@@ -1,7 +1,6 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <armadillo>
 
 #define APP_NAME            "Acoustic LPS"
 #define APP_VERSION         "0.0"
@@ -12,16 +11,12 @@
 #define ENVIRONEMENT_FILENAME "environement" ENVIRONEMENT_FORMAT
 
 
-#ifdef DOUBLE_PRECISION
-
-
-#else
-static constexpr int CoordinatesCount{3};
-using Real = float;
-using Vector = arma::fvec;
-using Matrix = arma::fmat;
-using Position = arma::vec::fixed<CoordinatesCount>;
-#endif
+#include <armadillo>
+using Real = double;
+using Size = arma::uword;
+using Vector = arma::vec;
+using Matrix = arma::mat;
+using Position = arma::vec::fixed<3>;
 
 
 
