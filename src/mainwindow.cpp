@@ -36,7 +36,7 @@ void MainWindow::simulateMeasures() {
         measures[i] = measure;
     }
 
-    ui->routesChart->estimateRoute(measures);
+    ui->trilaterationChart->setMeasures(measures);
 }
 
 MainWindow::~MainWindow()
@@ -59,17 +59,19 @@ void MainWindow::initUi() {
         ui->beaconsPanel->filterModel()->setFilterName(text);
     });
     ui->mainToolBar->addWidget(searchLineEdit);
-    ui->routesChart->showAxis(false);
+    ui->trilaterationChart->showAxis(false);
 
-    connect(ui->actionShowBeacons, &QAction::toggled, ui->routesChart, &RoutesChart::showBeacons);
-    connect(ui->actionShowGrid, &QAction::toggled, ui->routesChart, &RoutesChart::showGrid);
-    connect(ui->actionShowTrilateration, &QAction::toggled, ui->routesChart, &RoutesChart::showTrilateration);
+    connect(ui->actionShowBeacons, &QAction::toggled, ui->trilaterationChart, &TrilaterationChart::showBeacons);
+    connect(ui->actionShowGrid, &QAction::toggled, ui->trilaterationChart, &TrilaterationChart::showGrid);
+    connect(ui->actionShowTrilateration, &QAction::toggled, ui->trilaterationChart, &TrilaterationChart::showTrilateration);
 
     connect(ui->actionEnvironement, &QAction::triggered, [&](bool) {
         QEnvironementEditor editor;
         editor.exec();
         ui->beaconsPanel->invalidate();
-        ui->routesChart->updateEnvironement();
+        ui->trilaterationChart->updateEnvironement();
+        ui->trilaterationChart->repaintBeacons();
+        ui->trilaterationChart->repaintTrilateration();
     });
 
     connect(ui->actionOpen, &QAction::triggered, [&](bool) {
@@ -111,10 +113,11 @@ void MainWindow::initUi() {
     });
 
     connect(ui->actionQuit, SIGNAL(triggered(bool)), this, SLOT(close()));
-    connect(ui->beaconsPanel, &BeaconsPanel::beaconSelected, ui->routesChart, &RoutesChart::beaconSelected);
+    connect(ui->beaconsPanel, &BeaconsPanel::beaconSelected, ui->trilaterationChart, &TrilaterationChart::beaconSelected);
     connect(ui->beaconsPanel, &BeaconsPanel::beaconEdited, [&](const QBeacon& beacon){
         Q_UNUSED(beacon);
-        ui->routesChart->repaintBeacons();
+        ui->trilaterationChart->repaintBeacons();
+        ui->trilaterationChart->repaintTrilateration();
     });
 }
 

@@ -11,7 +11,7 @@ HEADERS += \
     $$PWD/helper.h \
     $$PWD/qenvironementeditor.h \
     $$PWD/beaconschart.h \
-    $$PWD/routeschart.h
+    $$PWD/trilaterationchart.h
 
 SOURCES += \
     $$PWD/beaconspanel.cpp \
@@ -21,4 +21,4 @@ SOURCES += \
     $$PWD/helper.cpp \
     $$PWD/qenvironementeditor.cpp \
     $$PWD/beaconschart.cpp \
-    $$PWD/routeschart.cpp
+    $$PWD/trilaterationchart.cpp

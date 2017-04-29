@@ -68,7 +68,7 @@
           <property name="handleWidth">
            <number>1</number>
           </property>
-          <widget class="RoutesChart" name="routesChart" native="true">
+          <widget class="TrilaterationChart" name="trilaterationChart" native="true">
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -354,9 +354,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>RoutesChart</class>
+   <class>TrilaterationChart</class>
    <extends>QWidget</extends>
-   <header>gui/routeschart.h</header>
+   <header>gui/trilaterationchart.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

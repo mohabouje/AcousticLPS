@@ -1,21 +1,23 @@
 #ifndef ROUTESCHART_H
 #define ROUTESCHART_H
-#include <config.h>
-#include <math/trilateration.h>
 #include "beaconschart.h"
+
+#include <math/trilateration.h>
+
 #include <qwt_plot_grid.h>
-class RoutesChart : public BeaconsChart {
+class TrilaterationChart : public BeaconsChart {
     Q_OBJECT
 public:
-    explicit RoutesChart(QWidget* parent = Q_NULLPTR);
+    explicit TrilaterationChart(QWidget* parent = Q_NULLPTR);
 public slots:
-    void estimateRoute(const QVector<QMeasure>& measures);
+    virtual void setMeasures(const QVector<QMeasure>& measures);
+    virtual void repaintTrilateration();
     void showGrid(bool);
     void showTrilateration(bool);
 private:
+    QVector<QMeasure>               _measures;
     QwtPlotGrid*                    _grid{new QwtPlotGrid};
     QwtPlotCurve*                   _trilaterationCurve{new QwtPlotCurve};
-    Trilateration*                  _trilateration{new Trilateration};
 };
 
 #endif // ROUTESCHART_H

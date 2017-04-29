@@ -1,9 +1,9 @@
-#include "routeschart.h"
+#include "trilaterationchart.h"
 #include <model/qenvironement.h>
 #include <math/mathutil.h>
 #include <qwt_symbol.h>
 
-RoutesChart::RoutesChart(QWidget* parent) : BeaconsChart(parent) {
+TrilaterationChart::TrilaterationChart(QWidget* parent) : BeaconsChart(parent) {
     _grid->enableXMin(true);
     _grid->enableYMin(true);
     _grid->setMajorPen(QPen(Qt::black, 0, Qt::DotLine));
@@ -21,7 +21,12 @@ RoutesChart::RoutesChart(QWidget* parent) : BeaconsChart(parent) {
     repaintBeacons();
 }
 
-inline QVector<QMeasure> avoidDisabledBeacons(const QVector<QMeasure> &measures) {
+void TrilaterationChart::setMeasures(const QVector<QMeasure> &measures) {
+    _measures = measures;
+    repaintTrilateration();
+}
+
+static inline QVector<QMeasure> discardMeasuredFromDisabledBeacons(const QVector<QMeasure> &measures) {
     QVector<QMeasure> fixed;
     foreach (const QMeasure& measure, measures) {
         if (measure.getBeacon()->isEnabled()) {
@@ -31,15 +36,9 @@ inline QVector<QMeasure> avoidDisabledBeacons(const QVector<QMeasure> &measures)
     return fixed;
 }
 
-void RoutesChart::estimateRoute(const QVector<QMeasure> &input) {
-    static constexpr Size HyperbolicSize = 200;
-    const QSet<QBeacon>& beacons = QEnvironementInstance->beacons();
-    const QVector<QMeasure> measures = avoidDisabledBeacons(input);
-
-    _trilateration->setBeacons(beacons);
-    _trilateration->setMeasures(measures);
-    _trilateration->calculatePosition();
-
+static constexpr Size HyperbolicSize = 200;
+void TrilaterationChart::repaintTrilateration() {
+    const QVector<QMeasure> measures = discardMeasuredFromDisabledBeacons(_measures);
     const Size N = measures.size();
     const Size total = N * HyperbolicSize;
     QwtData trilaterationData = QwtData(total);
@@ -56,12 +55,12 @@ void RoutesChart::estimateRoute(const QVector<QMeasure> &input) {
 }
 
 
-void RoutesChart::showGrid(bool show) {
+void TrilaterationChart::showGrid(bool show) {
     showChart(_grid, show);
     replot();
 }
 
-void RoutesChart::showTrilateration(bool show) {
+void TrilaterationChart::showTrilateration(bool show) {
     showChart(_trilaterationCurve, show);
     replot();
 }
