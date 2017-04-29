@@ -10,8 +10,10 @@ class BeaconsChart : public QwtPlot {
 public:
     explicit BeaconsChart(QWidget* parent = Q_NULLPTR);
 public slots:
-    void beaconSelected(const QBeacon& beacon);
-    void repaintEnvironement();
+    virtual void beaconSelected(const QBeacon& beacon);
+    virtual void clear();
+    virtual void repaintEnvironement();
+    void showAxis(bool state);
 private:
     QwtPlotCurve*   _enabledBeacons{new QwtPlotCurve()};
     QwtPlotCurve*   _disabledBeacons{new QwtPlotCurve()};

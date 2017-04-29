@@ -33,10 +33,33 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initUi() {
+    QWidget *spacerWidget = new QWidget(this);
+    spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    spacerWidget->setVisible(true);
+    ui->mainToolBar->addWidget(spacerWidget);
+
+    QLineEdit* searchLineEdit = new QLineEdit(this);
+    searchLineEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+    searchLineEdit->setPlaceholderText("Type to filter...");
+    searchLineEdit->setMaximumHeight(ui->mainToolBar->height() * 0.95);
+    searchLineEdit->setMinimumWidth(150);
+    connect(searchLineEdit, &QLineEdit::textChanged, [&](const QString& text) {
+        ui->beaconsPanel->filterModel()->setFilterName(text);
+    });
+    ui->mainToolBar->addWidget(searchLineEdit);
+    ui->routesChart->showAxis(false);
+
+    connect(ui->actionHideBeacons, &QAction::toggled, [&](bool state) {
+        ui->routesChart->showBeacons(!state);
+    });
+
+    connect(ui->actionShowGrid, &QAction::toggled, ui->routesChart, &RoutesChart::showGrid);
+
     connect(ui->actionEnvironement, &QAction::triggered, [&](bool) {
         QEnvironementEditor editor;
         editor.exec();
         ui->beaconsPanel->invalidate();
+        ui->routesChart->repaintEnvironement();
     });
 
     connect(ui->actionOpen, &QAction::triggered, [&](bool) {
@@ -78,24 +101,11 @@ void MainWindow::initUi() {
     });
 
     connect(ui->actionQuit, SIGNAL(triggered(bool)), this, SLOT(close()));
-
-
-    QWidget *spacerWidget = new QWidget(this);
-    spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    spacerWidget->setVisible(true);
-    ui->mainToolBar->addWidget(spacerWidget);
-
-    QLineEdit* searchLineEdit = new QLineEdit(this);
-    searchLineEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
-    searchLineEdit->setPlaceholderText("Type to filter...");
-    searchLineEdit->setMaximumHeight(ui->mainToolBar->height() * 0.95);
-    searchLineEdit->setMinimumWidth(150);
-    connect(searchLineEdit, &QLineEdit::textChanged, [&](const QString& text) {
-        ui->beaconsPanel->filterModel()->setFilterName(text);
+    connect(ui->beaconsPanel, &BeaconsPanel::beaconSelected, ui->routesChart, &RoutesChart::beaconSelected);
+    connect(ui->beaconsPanel, &BeaconsPanel::beaconEdited, [&](const QBeacon& beacon){
+        Q_UNUSED(beacon);
+        ui->routesChart->repaintEnvironement();
     });
-
-    ui->mainToolBar->addWidget(searchLineEdit);
-
 }
 
 void MainWindow::loadUi() {

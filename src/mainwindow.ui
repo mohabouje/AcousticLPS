@@ -68,7 +68,11 @@
           <property name="handleWidth">
            <number>1</number>
           </property>
-          <widget class="QWidget" name="containerPanel" native="true"/>
+          <widget class="RoutesChart" name="routesChart" native="true">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+          </widget>
           <widget class="TerminalPanel" name="terminalPanel" native="true"/>
          </widget>
         </item>
@@ -123,9 +127,10 @@
     <property name="title">
      <string>System</string>
     </property>
-    <addaction name="actionCenter"/>
+    <addaction name="actionHideBeacons"/>
     <addaction name="actionTrack"/>
     <addaction name="actionEstimate"/>
+    <addaction name="actionShowGrid"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -146,7 +151,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionCenter"/>
+   <addaction name="actionHideBeacons"/>
+   <addaction name="actionShowGrid"/>
    <addaction name="actionEstimate"/>
    <addaction name="actionTrack"/>
    <addaction name="separator"/>
@@ -257,15 +263,6 @@
     <string>Print</string>
    </property>
   </action>
-  <action name="actionCenter">
-   <property name="icon">
-    <iconset resource="images.qrc">
-     <normaloff>:/resources/icons/target.png</normaloff>:/resources/icons/target.png</iconset>
-   </property>
-   <property name="text">
-    <string>Center</string>
-   </property>
-  </action>
   <action name="actionTrack">
    <property name="icon">
     <iconset resource="images.qrc">
@@ -302,6 +299,36 @@
     <string>Edit Environement</string>
    </property>
   </action>
+  <action name="actionHideBeacons">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/resources/icons/hide.png</normaloff>:/resources/icons/hide.png</iconset>
+   </property>
+   <property name="text">
+    <string>Hide Beacons</string>
+   </property>
+   <property name="toolTip">
+    <string>Hide Beacons</string>
+   </property>
+  </action>
+  <action name="actionShowGrid">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/resources/icons/albums.png</normaloff>:/resources/icons/albums.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show Grid</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -315,6 +342,12 @@
    <class>TerminalPanel</class>
    <extends>QWidget</extends>
    <header>gui/terminalpanel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RoutesChart</class>
+   <extends>QWidget</extends>
+   <header>gui/routeschart.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

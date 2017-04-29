@@ -4,7 +4,7 @@
 
 #include <qwt_symbol.h>
 #include <qwt_picker_machine.h>
-
+#include <qwt_scale_widget.h>
 #include <QDebug>
 #include <QLabel>
 #include <QEvent>
@@ -50,11 +50,21 @@ BeaconsChart::BeaconsChart(QWidget* parent) : QwtPlot(parent)
 
     setAxisAutoScale(QwtPlot::xBottom, false);
     setAxisAutoScale(QwtPlot::yLeft, false);
+
+    setAxisScale(QwtPlot::xBottom, 0, QEnvironementInstance->width());
+    setAxisScale(QwtPlot::yLeft, 0, QEnvironementInstance->width());
 }
 
 void BeaconsChart::beaconSelected(const QBeacon &beacon) {
     _beacon = beacon;
     repaintEnvironement();
+}
+
+void BeaconsChart::clear() {
+    _disabledBeacons->setSamples(QVector<double>(), QVector<double>());
+    _enabledBeacons->setSamples(QVector<double>(), QVector<double>());
+    _selectedBeacons->setSamples(QVector<double>(), QVector<double>());
+    replot();
 }
 
 void BeaconsChart::repaintEnvironement() {
@@ -79,6 +89,11 @@ void BeaconsChart::repaintEnvironement() {
     _disabledBeacons->setSamples(xDisabled, yDisabled);
     _selectedBeacons->setSamples(xSelected, ySelected);
     replot();
+}
+
+void BeaconsChart::showAxis(bool state) {
+    enableAxis(QwtPlot::xBottom, state);
+    enableAxis(QwtPlot::yLeft, state);
 }
 
 
