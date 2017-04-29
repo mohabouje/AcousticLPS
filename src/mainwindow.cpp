@@ -30,13 +30,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     const Size N = QEnvironementInstance->beaconsCount();
     QVector<QMeasure> measures(N);
-    for (Size i=0; i<N; i++) {        const QBeacon& beacon = QEnvironementInstance->beaconAt(i);
+    for (Size i=0; i<N; i++) {
+        const QBeacon& beacon = QEnvironementInstance->beaconAt(i);
         const QMeasure measure = QMeasure::createMeasure(beacon, 4.0, 0.0);
         measures[i] = measure;
     }
 
-    ui->routesChart->updateEnvironement();
-    ui->routesChart->plotRoute(measures);
+    ui->routesChart->estimateRoute(measures);
 }
 
 MainWindow::~MainWindow()
@@ -63,7 +63,7 @@ void MainWindow::initUi() {
 
     connect(ui->actionShowBeacons, &QAction::toggled, ui->routesChart, &RoutesChart::showBeacons);
     connect(ui->actionShowGrid, &QAction::toggled, ui->routesChart, &RoutesChart::showGrid);
-    connect(ui->actionShowGrid, &QAction::toggled, ui->routesChart, &RoutesChart::showTrilateration);
+    connect(ui->actionShowTrilateration, &QAction::toggled, ui->routesChart, &RoutesChart::showTrilateration);
 
     connect(ui->actionEnvironement, &QAction::triggered, [&](bool) {
         QEnvironementEditor editor;

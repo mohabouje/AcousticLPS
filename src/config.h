@@ -24,9 +24,13 @@ struct QwtData {
         xData = Vector(size);
         yData = Vector(size);
     }
-    inline const double* x() { return xData.memptr(); }
-    inline const double* y() { return yData.memptr(); }
-    inline Size size() { return xData.size(); }
+    void reset() {
+        xData.reset();
+        yData.reset();
+    }
+    inline const double* x() const { return xData.memptr(); }
+    inline const double* y() const { return yData.memptr(); }
+    inline Size size() const { return xData.size(); }
     Vector xData;
     Vector yData;
 };

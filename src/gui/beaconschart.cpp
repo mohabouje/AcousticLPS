@@ -59,14 +59,9 @@ void BeaconsChart::beaconSelected(const QBeacon &beacon) {
     repaintEnvironement();
 }
 
-void BeaconsChart::clear() {
-    _disabledBeacons->setSamples(QVector<double>(), QVector<double>());
-    _enabledBeacons->setSamples(QVector<double>(), QVector<double>());
-    _selectedBeacons->setSamples(QVector<double>(), QVector<double>());
-    replot();
-}
-
 void BeaconsChart::updateEnvironement() {
+    setAxisScale(QwtPlot::xBottom, 0, QEnvironementInstance->width());
+    setAxisScale(QwtPlot::yLeft, 0, QEnvironementInstance->width());
     repaintEnvironement();
 }
 
@@ -94,12 +89,25 @@ void BeaconsChart::repaintEnvironement() {
     replot();
 }
 
+void BeaconsChart::showBeacons(bool show) {
+    showChart(_enabledBeacons, show);
+    showChart(_disabledBeacons, show);
+    showChart(_selectedBeacons, show);
+    replot();
+}
+
 void BeaconsChart::showAxis(bool state) {
     enableAxis(QwtPlot::xBottom, state);
     enableAxis(QwtPlot::yLeft, state);
 }
 
-
+void BeaconsChart::showChart(QwtPlotItem *curve, bool state) {
+    if (state) {
+        curve->attach(this);
+    } else {
+        curve->detach();
+    }
+}
 
 BeaconPicker::BeaconPicker(int xAxis, int yAxis, RubberBand rubberBand, DisplayMode trackerMode, QWidget* canvas)
     : QwtPlotPicker(xAxis, yAxis, rubberBand, trackerMode, canvas)

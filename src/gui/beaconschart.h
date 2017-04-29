@@ -11,10 +11,12 @@ public:
     explicit BeaconsChart(QWidget* parent = Q_NULLPTR);
 public slots:
     virtual void beaconSelected(const QBeacon& beacon);
-    virtual void clear();
     virtual void updateEnvironement();
     virtual void repaintEnvironement();
-    void showAxis(bool state);
+    void showBeacons(bool);
+    void showAxis(bool);
+protected:
+    void showChart(QwtPlotItem*, bool);
 private:
     QwtPlotCurve*   _enabledBeacons{new QwtPlotCurve()};
     QwtPlotCurve*   _disabledBeacons{new QwtPlotCurve()};

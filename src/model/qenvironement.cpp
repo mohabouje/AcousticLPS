@@ -51,6 +51,7 @@ QBeacon QEnvironement::beaconAt(int index) {
     }
     const QBeacon shared(new BeaconWrapper(beacon));
     _wrappedBeacons.insert(uuid, shared);
+    _beacons.insert(shared);
     return shared;
 }
 
@@ -96,5 +97,7 @@ bool QEnvironement::saveEnvironementInFile(const QString &filename) const {
     }
     return false;
 }
+
+
 
 

@@ -10,79 +10,46 @@ RoutesChart::RoutesChart(QWidget* parent) : BeaconsChart(parent) {
     _grid->setMinorPen(QPen(Qt::gray, 0 , Qt::DotLine));
     _grid->attach(this);
 
+    QwtSymbol* selectedSymbol = new QwtSymbol;
+    selectedSymbol->setStyle(QwtSymbol::Ellipse);
+    selectedSymbol->setBrush(QBrush(Qt::red));
+    _trilaterationCurve->setStyle(QwtPlotCurve::NoCurve);
+    _trilaterationCurve->setSymbol(selectedSymbol);
+    _trilaterationCurve->attach(this);
+
     updateEnvironement();
     repaintEnvironement();
 }
 
-void RoutesChart::plotRoute(const QVector<QMeasure> &measures) {
+void RoutesChart::estimateRoute(const QVector<QMeasure> &measures) {
+    _trilateration->setBeacons(QEnvironementInstance->beacons());
     _trilateration->setMeasures(measures);
-    foreach (const QMeasure& measure, measures) {
-        traceHyperbolic(measure);
-    }
-    replot();
-}
+    _trilateration->calculatePosition();
 
-void RoutesChart::repaintEnvironement() {
-    if (_showBeacons) {
-        BeaconsChart::repaintEnvironement();
-    } else {
-        BeaconsChart::clear();
-    }
-}
-
-void RoutesChart::updateEnvironement() {
-    flushTrilaterationCurves();
-    const Size N = QEnvironementInstance->beaconsCount();
-    QSet<QBeacon> beacons;
+    static constexpr Size HyperbolicSize = 200;
+    const Size N = measures.size();
+    const Size total = N * HyperbolicSize;
+    QwtData trilaterationData = QwtData(total);
     for (Size i=0; i<N; i++) {
-        const QBeacon beacon = QEnvironementInstance->beaconAt(i);
-        if (beacon->isEnabled()) {
-            QwtPlotCurve* curve = new QwtPlotCurve;
-            curve->setStyle(QwtPlotCurve::NoCurve);
-            curve->attach(this);
-            QwtSymbol* selectedSymbol = new QwtSymbol;
-            selectedSymbol->setStyle(QwtSymbol::Cross);
-            selectedSymbol->setBrush(QBrush(Qt::red));
-            curve->setSymbol(selectedSymbol);
-
-            _trilaterationCurves.insert(beacon, curve);
-            beacons.insert(beacon);
+        const QBeacon& beacon = measures[i].getBeacon();
+        const QwtData huyperbolic = MathUtil::hiperbolicChart(beacon->position(), measures[i].getMeasure(), HyperbolicSize);
+        for (Size j=0; j<HyperbolicSize; j++) {
+            trilaterationData.xData(i*HyperbolicSize + j) = huyperbolic.xData(j);
+            trilaterationData.yData(i*HyperbolicSize + j) = huyperbolic.yData(j);
         }
     }
-    _trilateration->setBeacons(beacons);
+    _trilaterationCurve->setSamples(trilaterationData.x(), trilaterationData.y(), trilaterationData.size());
     replot();
 }
 
-void RoutesChart::showBeacons(bool showBeacons) {
-    _showBeacons = showBeacons;
-    repaintEnvironement();
-}
 
 void RoutesChart::showGrid(bool show) {
-    if (show) {
-        _grid->attach(this);
-    } else {
-        _grid->detach();
-    }
+    showChart(_grid, show);
     replot();
 }
 
-void RoutesChart::showTrilateration(bool showTrilateration) {
-    _showTrilateration = showTrilateration;
+void RoutesChart::showTrilateration(bool show) {
+    showChart(_trilaterationCurve, show);
+    replot();
 }
 
-void RoutesChart::flushTrilaterationCurves(){
-    for (QHash<QBeacon, QwtPlotCurve*>::iterator it = _trilaterationCurves.begin();
-             it != _trilaterationCurves.end(); it++) {
-        it.value()->detach();
-    }
-    _trilaterationCurves.clear();
-}
-
-void RoutesChart::traceHyperbolic(const QMeasure &measure) {
-    const QBeacon beacon = measure.getBeacon();
-    if (_trilaterationCurves.contains(beacon)) {
-        QwtData data = MathUtil::hiperbolicChart(beacon->position(), measure.getMeasure(), 200);
-        _trilaterationCurves[beacon]->setSamples(data.x(), data.y(), data.size());
-    }
-}

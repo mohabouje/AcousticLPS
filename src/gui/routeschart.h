@@ -1,6 +1,6 @@
 #ifndef ROUTESCHART_H
 #define ROUTESCHART_H
-
+#include <config.h>
 #include <math/trilateration.h>
 #include "beaconschart.h"
 #include <qwt_plot_grid.h>
@@ -9,20 +9,12 @@ class RoutesChart : public BeaconsChart {
 public:
     explicit RoutesChart(QWidget* parent = Q_NULLPTR);
 public slots:
-    void plotRoute(const QVector<QMeasure>& measures);
-    void repaintEnvironement() override;
-    void updateEnvironement() override;
-    void showBeacons(bool);
+    void estimateRoute(const QVector<QMeasure>& measures);
     void showGrid(bool);
     void showTrilateration(bool);
-private slots:
-    void flushTrilaterationCurves();
-    void traceHyperbolic(const QMeasure& measure);
 private:
-    bool                            _showBeacons{true};
-    bool                            _showTrilateration{true};
     QwtPlotGrid*                    _grid{new QwtPlotGrid};
-    QHash<QBeacon, QwtPlotCurve*>   _trilaterationCurves;
+    QwtPlotCurve*                   _trilaterationCurve{new QwtPlotCurve};
     Trilateration*                  _trilateration{new Trilateration};
 };
 
