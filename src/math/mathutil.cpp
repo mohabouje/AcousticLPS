@@ -1,5 +1,7 @@
 #include "mathutil.h"
 #include <sigpack/sigpack.h>
+
+#include <QDebug>
 Real MathUtil::soundPropagationVelocity(Real temperatureCelcius) {
     static const Real gamma = 1.40;
     static const Real M = 28.9645e-3;
@@ -9,20 +11,24 @@ Real MathUtil::soundPropagationVelocity(Real temperatureCelcius) {
 }
 
 Vector MathUtil::window(MathUtil::SupportedWindow window, Size size) {
+    Vector vect;
     switch (window) {
     case HammingWindow:
-        return sp::hamming(size);
+        vect = sp::hamming(size);
     case HannWindow:
-        return sp::hann(size);
+        vect = sp::hann(size);
     case HanningWindow:
-        return sp::hanning(size);
+        vect = sp::hanning(size);
     case  BlackmanWindow:
-        return sp::blackman(size);
+        vect = sp::blackman(size);
     case  FlattopWindow:
-        return sp::flattopwin(size);
+        vect = sp::flattopwin(size);
     case TriangWindow:
-        return sp::triang(size);
+        vect = sp::triang(size);
     default:
-        return sp::hamming(size);
+        vect = sp::hamming(size);
     }
+    return vect;
 }
+
+

@@ -15,6 +15,7 @@
 using Real = double;
 using Size = arma::uword;
 using Vector = arma::vec;
+using Complex = arma::cx_vec;
 using Matrix = arma::mat;
 using Position = arma::vec::fixed<3>;
 

@@ -18,6 +18,7 @@ namespace Gui {
         static const QRegExp validator("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}");
         return uuid.contains(validator);
     }
+    void plot(const Vector &y);
 }
 
 #endif // HELPER_H

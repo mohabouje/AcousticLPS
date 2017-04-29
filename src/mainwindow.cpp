@@ -2,9 +2,9 @@
 #include "ui_mainwindow.h"
 #include "config.h"
 
-#include <math/mathutil.h>
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
+
 
 #include <QDebug>
 #include <QFileDialog>
