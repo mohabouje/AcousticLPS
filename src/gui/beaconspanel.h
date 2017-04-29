@@ -25,6 +25,7 @@ public slots:
     void showHeader(bool show);
 signals:
     void beaconEdited(const QBeacon &beacon);
+    void beaconSelected(const QBeacon& beacon);
 private:
     Ui::BeaconsPanel *ui;
     BeaconListModel*    _sourceModel;

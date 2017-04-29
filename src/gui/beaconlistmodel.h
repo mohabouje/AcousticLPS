@@ -8,9 +8,9 @@ class BeaconListModel : public QAbstractTableModel
 public:
     explicit BeaconListModel(QObject *parent = 0);
     enum Columns { StateColumn = 0, SNRColumn,  NameColumn, ColumnSize };
+    int rowCount(const QModelIndex& = QModelIndex()) const Q_DECL_OVERRIDE;
+    inline int columnCount(const QModelIndex& = QModelIndex()) const Q_DECL_OVERRIDE { return ColumnSize; }
 protected:
-    inline int columnCount(const QModelIndex&) const Q_DECL_OVERRIDE { return ColumnSize; }
-    int rowCount(const QModelIndex&) const Q_DECL_OVERRIDE;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
     QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
 };

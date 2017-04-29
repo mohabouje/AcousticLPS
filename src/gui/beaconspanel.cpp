@@ -26,6 +26,7 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     ui->tableView->setShowGrid(false);
     ui->tableView->setSortingEnabled(true);
+    ui->tableView->selectionModel()->clearCurrentIndex();
 
     connect(ui->tableView, &QTableView::customContextMenuRequested, [&](const QPoint& point) {
         const QModelIndex index = ui->tableView->indexAt(point);
@@ -44,6 +45,14 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
                 filterModel()->invalidate();
             });
             menu.exec(ui->tableView->viewport()->mapToGlobal(point));
+        }
+    });
+
+    connect(ui->tableView->selectionModel(), &QItemSelectionModel::currentChanged, [&](const QModelIndex& current, const QModelIndex& previous) {
+        Q_UNUSED(previous);
+        const QBeacon beacon = Gui::qBeaconFromQModelIndex(current);
+        if (beacon) {
+            emit beaconSelected(beacon);
         }
     });
 

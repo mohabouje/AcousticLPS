@@ -31,14 +31,13 @@ QBeacon QEnvironement::addBeacon() {
     Code* code = beacon->mutable_code();
     code->set_type(Code::Gold);
     code->set_order(10);
-
     return beaconAt(beacon->id());
 }
 
 bool QEnvironement::removeBeacon(const QBeacon &beacon) {
     if (beacon) {
         Beacon* pointer = qSharedPointerDynamicCast<BeaconWrapper>(beacon)->pointer();
-        // remove;
+        Q_UNUSED(pointer);
         return true;
     }
     return false;

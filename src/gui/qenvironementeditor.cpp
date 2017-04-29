@@ -69,6 +69,8 @@ void QEnvironementEditor::initUi() {
         Q_UNUSED(beacon);
         ui->beaconsChart->repaintEnvironement();
     });
+
+    connect(ui->beaconsPanel, &BeaconsPanel::beaconSelected, ui->beaconsChart, &BeaconsChart::beaconSelected);
 }
 
 
