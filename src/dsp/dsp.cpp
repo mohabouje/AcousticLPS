@@ -11,7 +11,8 @@ Real DSP::Acoustic::soundPropagationVelocity(Real temperatureCelcius) {
     const Real T = 273.15 + temperatureCelcius;
     return std::sqrt(factor * T);
 }
-
+/*
+#include <sigpack/sigpack.h>
 Vector DSP::Windowing::window(DSP::Windowing::SupportedWindow window, Size size) {
     Vector vect;
     switch (window) {
@@ -32,7 +33,7 @@ Vector DSP::Windowing::window(DSP::Windowing::SupportedWindow window, Size size)
     }
     return vect;
 }
-
+*/
 QwtData DSP::hiperbolicChart(const Position& center, Real radius, Size size) {
     const Real x0 = center(0);
     const Real y0 = center(1);

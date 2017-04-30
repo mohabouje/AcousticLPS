@@ -1,4 +1,6 @@
 #include "generalizedcrosscorrelation.h"
+#include <sigpack/sigpack.h>
+
 using namespace DSP;
 GeneralizedCrossCorrelation::GeneralizedCrossCorrelation(Algorithm algo) : _algorithm(algo) {
 

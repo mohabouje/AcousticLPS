@@ -1,5 +1,4 @@
 #include "config.h"
-#include <sigpack/sigpack.h>
 namespace DSP {
     QwtData hiperbolicChart(const Position& center, Real width, Size points);
     Vector rand(Real min, Real max, Size number);
@@ -7,7 +6,7 @@ namespace DSP {
 
     namespace Windowing {
         enum SupportedWindow { HammingWindow = 0, HannWindow, HanningWindow, BlackmanWindow, FlattopWindow, TriangWindow};
-        Vector window(SupportedWindow window, Size size);
+       // Vector window(SupportedWindow window, Size size);
     }
 
     namespace Acoustic {
