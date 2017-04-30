@@ -59,7 +59,7 @@ QMAKE_CFLAGS += protobuf
 LIBS += -lfftw3
 
 # Include de different submodules
-include("./math/math.pri")
+include("./dsp/dsp.pri")
 include("./gui/gui.pri")
 include("./model/model.pri")
 include("./util/util.pri")

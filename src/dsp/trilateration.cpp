@@ -1,5 +1,6 @@
 #include "trilateration.h"
 #include <QDebug>
+using namespace DSP;
 Trilateration::Trilateration()
 {
 

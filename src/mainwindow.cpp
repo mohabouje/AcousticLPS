@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "config.h"
 
-#include <math/mathutil.h>
+#include <model/qmeasure.h>
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
 

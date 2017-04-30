@@ -2,8 +2,7 @@
 #define ROUTESCHART_H
 #include "beaconschart.h"
 
-#include <math/trilateration.h>
-
+#include <model/qmeasure.h>
 #include <qwt_plot_grid.h>
 class TrilaterationChart : public BeaconsChart {
     Q_OBJECT

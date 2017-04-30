@@ -1,9 +1,10 @@
-#include "mathutil.h"
+#include "dsp.h"
 #include <sigpack/sigpack.h>
 #include <random>
 #include <iostream>
 #include <QDebug>
-Real MathUtil::soundPropagationVelocity(Real temperatureCelcius) {
+
+Real DSP::soundPropagationVelocity(Real temperatureCelcius) {
     static const Real gamma = 1.40;
     static const Real M = 28.9645e-3;
     static const Real factor = gamma *  arma::fdatum::R / M;
@@ -11,7 +12,7 @@ Real MathUtil::soundPropagationVelocity(Real temperatureCelcius) {
     return std::sqrt(factor * T);
 }
 
-Vector MathUtil::window(MathUtil::SupportedWindow window, Size size) {
+Vector DSP::window(DSP::SupportedWindow window, Size size) {
     Vector vect;
     switch (window) {
     case HammingWindow:
@@ -32,7 +33,7 @@ Vector MathUtil::window(MathUtil::SupportedWindow window, Size size) {
     return vect;
 }
 
-QwtData MathUtil::hiperbolicChart(const Position& center, Real radius, Size size) {
+QwtData DSP::hiperbolicChart(const Position& center, Real radius, Size size) {
     const Real x0 = center(0);
     const Real y0 = center(1);
     const Real residual = radius * radius - x0 * x0;
@@ -53,7 +54,7 @@ QwtData MathUtil::hiperbolicChart(const Position& center, Real radius, Size size
 }
 
 
-Vector MathUtil::quadraticEquationSolver(Real a, Real b, Real c) {
+Vector DSP::quadraticEquationSolver(Real a, Real b, Real c) {
     static arma::vec::fixed<2> solutions;
     const Real d = std::sqrt(b*b - 4.0*a*c);
     solutions(0) = (-b + d) / (2.0 * a);
@@ -61,7 +62,7 @@ Vector MathUtil::quadraticEquationSolver(Real a, Real b, Real c) {
     return solutions;
 }
 
-Vector MathUtil::rand(Real min, Real max, Size number) {
+Vector DSP::rand(Real min, Real max, Size number) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<Real> distr(min, max);

@@ -1,5 +1,5 @@
 #include "config.h"
-namespace MathUtil {
+namespace DSP {
     enum SupportedWindow { HammingWindow = 0, HannWindow, HanningWindow, BlackmanWindow, FlattopWindow, TriangWindow};
     QwtData hiperbolicChart(const Position& center, Real width, Size points);
     Vector quadraticEquationSolver(Real a, Real b, Real c);
