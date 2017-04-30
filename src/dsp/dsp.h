@@ -6,5 +6,10 @@ namespace DSP {
     Real soundPropagationVelocity(Real temperatureCelcius);
     Vector rand(Real min, Real max, Size number);
     Vector window(SupportedWindow window, Size size);
+
+    namespace Parameter {
+        Real energy(const Vector& data);
+        Real power(const Vector& data);
+    }
 }
 

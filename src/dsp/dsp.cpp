@@ -2,6 +2,7 @@
 #include <sigpack/sigpack.h>
 #include <random>
 #include <iostream>
+#include <numeric>
 #include <QDebug>
 
 Real DSP::soundPropagationVelocity(Real temperatureCelcius) {
@@ -70,4 +71,14 @@ Vector DSP::rand(Real min, Real max, Size number) {
     Real* pointer = random.memptr();
     std::generate(pointer, pointer + number, [&](){ return distr(gen); });
     return random;
+}
+
+Real DSP::Parameter::energy(const Vector &data) {
+    return  std::inner_product(data.begin(), data.end(), data.begin(), static_cast<Real>(0.0));
+}
+
+
+
+Real DSP::Parameter::power(const Vector &data) {
+    return energy(data) / static_cast<Real>(data.size());
 }
