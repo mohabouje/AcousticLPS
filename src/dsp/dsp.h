@@ -1,4 +1,5 @@
 #include "config.h"
+#include <sigpack/sigpack.h>
 namespace DSP {
     QwtData hiperbolicChart(const Position& center, Real width, Size points);
     Vector rand(Real min, Real max, Size number);

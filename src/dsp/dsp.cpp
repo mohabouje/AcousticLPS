@@ -1,5 +1,4 @@
 #include "dsp.h"
-#include <sigpack/sigpack.h>
 #include <random>
 #include <iostream>
 #include <numeric>

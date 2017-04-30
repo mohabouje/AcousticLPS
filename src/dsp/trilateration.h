@@ -1,12 +1,12 @@
 #ifndef QTRILATERATION_H
 #define QTRILATERATION_H
 
+#include "dsp.h"
 #include <model/qbeacon.h>
 #include <model/qmeasure.h>
 
 #include <QSet>
 #include <QVector>
-
 namespace DSP {
     class Trilateration  {
     public:

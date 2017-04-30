@@ -1,6 +1,6 @@
 #ifndef GENERALIZEDCROSSCORRELATION_H
 #define GENERALIZEDCROSSCORRELATION_H
-#include "config.h"
+#include "dsp.h"
 namespace DSP {
     class GeneralizedCrossCorrelation {
     public:
