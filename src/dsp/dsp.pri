@@ -1,10 +1,12 @@
 HEADERS += \
     $$PWD/trilateration.h \
-    $$PWD/dsp.h
+    $$PWD/dsp.h \
+    $$PWD/generalizedcrosscorrelation.h
 
 SOURCES += \
     $$PWD/trilateration.cpp \
-    $$PWD/dsp.cpp
+    $$PWD/dsp.cpp \
+    $$PWD/generalizedcrosscorrelation.cpp
 
 testing {
     SOURCES += $$PWD/test/qbeacontest.cpp \
