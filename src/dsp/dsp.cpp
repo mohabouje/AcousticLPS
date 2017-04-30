@@ -5,7 +5,7 @@
 #include <numeric>
 #include <QDebug>
 
-Real DSP::soundPropagationVelocity(Real temperatureCelcius) {
+Real DSP::Acoustic::soundPropagationVelocity(Real temperatureCelcius) {
     static const Real gamma = 1.40;
     static const Real M = 28.9645e-3;
     static const Real factor = gamma *  arma::fdatum::R / M;
@@ -13,7 +13,7 @@ Real DSP::soundPropagationVelocity(Real temperatureCelcius) {
     return std::sqrt(factor * T);
 }
 
-Vector DSP::window(DSP::SupportedWindow window, Size size) {
+Vector DSP::Windowing::window(DSP::Windowing::SupportedWindow window, Size size) {
     Vector vect;
     switch (window) {
     case HammingWindow:
@@ -55,13 +55,6 @@ QwtData DSP::hiperbolicChart(const Position& center, Real radius, Size size) {
 }
 
 
-Vector DSP::quadraticEquationSolver(Real a, Real b, Real c) {
-    static arma::vec::fixed<2> solutions;
-    const Real d = std::sqrt(b*b - 4.0*a*c);
-    solutions(0) = (-b + d) / (2.0 * a);
-    solutions(1) = (-b - d) / (2.0 * a);
-    return solutions;
-}
 
 Vector DSP::rand(Real min, Real max, Size number) {
     std::random_device rd;
