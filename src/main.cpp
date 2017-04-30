@@ -34,6 +34,11 @@ int main(int argc, char *argv[]) {
 
    /*Gui::plot(vect);
     Gui::plot(delayed);*/
+
+    arma::arma_version ver;
+    std::cout << "ARMA version: "<< ver.as_string() << std::endl;
+
+
     Gui::plot(GCC.compute(vect, vect));
     Gui::plot(GCC.compute(vect, vect, DSP::GeneralizedCrossCorrelation::Phat));
 
