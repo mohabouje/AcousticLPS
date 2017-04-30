@@ -75,3 +75,15 @@ Real DSP::Parameter::energy(const Vector &data) {
 Real DSP::Parameter::power(const Vector &data) {
     return energy(data) / static_cast<Real>(data.size());
 }
+
+Size DSP::Parameter::nextPow2(int x) {
+    if (x < 0)
+        return 0;
+    --x;
+    x |= x >> 1;
+    x |= x >> 2;
+    x |= x >> 4;
+    x |= x >> 8;
+    x |= x >> 16;
+    return x+1;
+}

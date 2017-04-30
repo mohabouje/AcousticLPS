@@ -1,6 +1,6 @@
 #include "generalizedcrosscorrelation.h"
 #include <sigpack/sigpack.h>
-
+#include <QDebug>
 using namespace DSP;
 GeneralizedCrossCorrelation::GeneralizedCrossCorrelation(Algorithm algo) : _algorithm(algo) {
 
@@ -9,26 +9,35 @@ GeneralizedCrossCorrelation::GeneralizedCrossCorrelation(Algorithm algo) : _algo
 Vector GeneralizedCrossCorrelation::compute(const Vector &original, const Vector &delayed, Algorithm algoritm) {
     switch (algoritm) {
     case Standard:
-        return arma::cor(original, delayed);
+        return computeStandard(original, delayed);
     case Phat:
         return computePhat(original, delayed);
     case MaximumLikelihood:
         return computeMaximumLikelihood(original, delayed);
     default:
-        return arma::cor(original, delayed);
+        return computeStandard(original, delayed);
     }
 
 }
 
+Vector GeneralizedCrossCorrelation::delay(const Vector &vector, Size delay) {
+    sp::Delay<Real> op = sp::Delay<Real>(delay);
+    return op.delay(vector);
+}
+
+Vector GeneralizedCrossCorrelation::computeStandard(const Vector &original, const Vector &delayed) {
+    const Size fftSize = static_cast<Size>(Parameter::nextPow2(2*original.size()-1));
+    const Complex X = arma::fft(original, fftSize);
+    const Complex Y = arma::fft(delayed, fftSize);
+    return arma::real(arma::ifft(X % arma::conj(Y)));
+}
+
 Vector GeneralizedCrossCorrelation::computePhat(const Vector &original, const Vector &delayed) {
-    static const Size MinSize = 1024;
-    const Size nSamples = std::max(original.size(), MinSize);
-    const Complex X = arma::fft(original, nSamples);
-    const Complex Y = arma::fft(delayed, nSamples);
-    const Complex Cxy = X * arma::conj(Y);
-    Complex R = Cxy / arma::abs(Cxy);
-    sp::FFTW tmp = sp::FFTW(MinSize);
-    return tmp.ifft(R);
+    const Size fftSize = static_cast<Size>(Parameter::nextPow2(2*original.size()-1));
+    const Complex X = arma::fft(original, fftSize);
+    const Complex Y = arma::fft(delayed, fftSize);
+    const Complex Cxy = X % arma::conj(Y);
+    return arma::real(arma::ifft(Cxy / arma::abs(Cxy)));
 }
 
 Vector GeneralizedCrossCorrelation::computeMaximumLikelihood(const Vector &original, const Vector &delayed) {
