@@ -11,32 +11,41 @@ public:
     static inline uint defaultOutputDeviceCount() { return Pa_GetDefaultOutputDevice(); }
     static inline uint deviceCount(){ return Pa_GetDeviceCount(); }
     static inline QString deviceName(uint index)  { return Pa_GetDeviceInfo(index)->name; }
+    static inline Real defaultDeviceSampleRate(PaDeviceIndex index) { return Pa_GetDeviceInfo(index)->defaultSampleRate; }
+    static inline bool isInputDevice(PaDeviceIndex index) { return Pa_GetDeviceInfo(index)->maxInputChannels > 0; }
 
+    inline bool isRunning() const { return Pa_IsStreamActive(_dataStream); }
+    inline bool isInitialized() const { return _isInitialized; }
+    inline PaHostApiIndex currentHostApi() const { return _currentHostApi; }
+    inline PaDeviceIndex currentDevice() const { return _inputDeviceParam.device;  }
 
-    inline uint currentHostApi() const { return _currentHostApi; }
-    inline uint currentDevice() const { return _currentDevice;  }
     inline uint frameLength() const { return _frameLength; }
     inline Real sampleRate() const { return _sampleRate; }
-    inline Real latency() const { return _latency; }
+    inline Real latency() const { return Pa_GetDeviceInfo(currentDevice())->defaultLowInputLatency; }
+    inline PaError isSampleRateSupported(Real sampleRate) const { return  Pa_IsFormatSupported(&_inputDeviceParam, &_outputDeviceParam, sampleRate); }
+
+    bool setCurrentDevice(PaDeviceIndex index);
+    bool setSampleRate(Real sampleRate);
+    bool setFrameLength(uint frameLength);
+
+public slots:
+    bool record();
+    bool stop();
 protected:
     virtual PaStreamCallbackResult  bufferReady(const void*,void *, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags);
 private:
-    PaTime          _latency;
-    PaHostApiIndex  _currentHostApi;
-    PaDeviceIndex   _currentDevice;
-    Real            _sampleRate;
-    uint            _frameLength;
-    bool            _isRunning;
+    PaStream*           _dataStream;
+    PaHostApiIndex      _currentHostApi;
+    PaStreamParameters  _inputDeviceParam;
+    PaStreamParameters  _outputDeviceParam;
+    Real                _sampleRate{44100.0};
+    uint                _frameLength{1024};
+    bool                _isInitialized{false};
 
-    static PaStreamCallbackResult PortAudioCallback(const void *inputBuffer,
-                                void *outputBuffer,
-                                unsigned long framesPerBuffer,
-                                const PaStreamCallbackTimeInfo* timeInfo,
-                                PaStreamCallbackFlags statusFlags,
-                                void *userData)
-    {
-      return ((QPortAudioRecorder*)userData)->bufferReady(inputBuffer, outputBuffer, framesPerBuffer, timeInfo, statusFlags);
-    }
+    static int PortAudioCallback(const void*, void*, unsigned long, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags, void*);
+    bool initialize();
+    bool restartDevice(PaDeviceIndex index, Real sampleRate);
+
 };
 
 #endif // QPORTAUDIO_H
