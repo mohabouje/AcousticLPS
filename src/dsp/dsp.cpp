@@ -12,7 +12,6 @@ Real DSP::Acoustic::soundPropagationVelocity(Real temperatureCelcius) {
     return std::sqrt(factor * T);
 }
 /*
-#include <sigpack/sigpack.h>
 Vector DSP::Windowing::window(DSP::Windowing::SupportedWindow window, Size size) {
     Vector vect;
     switch (window) {
@@ -86,4 +85,18 @@ Size DSP::Parameter::nextPow2(int x) {
     x |= x >> 8;
     x |= x >> 16;
     return x+1;
+}
+
+Vector DSP::Timming::delay(const Vector &original, uint sampleRate, Real time) {
+    const uint samples = sampleRate * time;
+    return delay(original, samples);
+}
+
+Vector DSP::Timming::delay(const Vector &original, uint delay) {
+    const uint size = original.size();
+    Vector tmp(size, arma::fill::randn);
+    for (uint i = delay; i<size; i++) {
+        tmp[i] = original[i-delay];
+    }
+    return tmp;
 }

@@ -43,12 +43,12 @@ DEFINES += HAVE_FFTW
 
 # Using Armadillo + OpenBlas for ALgebra operation
 # How to install?  => http://www.uio.no/studier/emner/matnat/fys/FYS4411/v13/guides/installing-armadillo/
-LIBS += -llapack -lblas -larmadillo
+LIBS += -larmadillo -llapack -lblas
 
 # Using QWT to mathematical graphics.
-LIBS += -L$$PWD/../../../../../../usr/local/qwt-6.1.3/lib/ -lqwt
-INCLUDEPATH += $$PWD/../../../../../../usr/local/qwt-6.1.3/include
-DEPENDPATH += $$PWD/../../../../../../usr/local/qwt-6.1.3/include
+LIBS += -L/usr/local/qwt-6.1.3/lib/ -lqwt
+INCLUDEPATH += /usr/local/qwt-6.1.3/include
+DEPENDPATH += /usr/local/qwt-6.1.3/include
 CONFIG += qwt
 
 # Using protocol buffers to export/import configurations.
@@ -63,7 +63,6 @@ include("./dsp/dsp.pri")
 include("./gui/gui.pri")
 include("./model/model.pri")
 include("./util/util.pri")
-include("./sigpack/sigpack.pri")
 
 
 

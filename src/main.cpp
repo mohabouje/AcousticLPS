@@ -27,8 +27,7 @@ int main(int argc, char *argv[]) {
         vect(i) = 5 * sin(2*arma::datum::pi*F0/Fs*i);
     }
 
-    DSP::GeneralizedCrossCorrelation GCC;
-    const Vector delayed = GCC.delay(vect, Fs*0.5);
+    const Vector delayed = DSP::Timming::delay(vect, Fs, 0.5);
 
     //Gui::plot(spectral);
 
@@ -38,7 +37,7 @@ int main(int argc, char *argv[]) {
     arma::arma_version ver;
     std::cout << "ARMA version: "<< ver.as_string() << std::endl;
 
-
+    DSP::GeneralizedCrossCorrelation GCC;
     Gui::plot(GCC.compute(vect, vect));
     Gui::plot(GCC.compute(vect, delayed, DSP::GeneralizedCrossCorrelation::Phat));
 
