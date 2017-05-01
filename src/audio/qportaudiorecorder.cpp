@@ -23,13 +23,27 @@ bool QPortAudioRecorder::setFrameLength(uint frameLength) {
     return true;
 }
 
+QAudioFormat QPortAudioRecorder::audioFormat() const {
+    QAudioFormat format;
+    format.setByteOrder(QAudioFormat::BigEndian);
+    format.setSampleRate(_sampleRate);
+    format.setSampleType(QAudioFormat::Float);
+    format.setSampleSize(sizeof(float) * 8);
+    format.setChannelCount(Mono);
+    return format;
+}
+
 bool QPortAudioRecorder::record() {
     const PaError err = Pa_StartStream(_dataStream);
     if ( err != paNoError ) {
         qWarning() << "PortAudio error: %s\n" << Pa_GetErrorText(err);
         return false;
     }
-    return isRunning();
+    const bool recording = isRunning();
+    if (recording) {
+        emit onRecondingStarted();
+    }
+    return recording;
 }
 
 bool QPortAudioRecorder::stop() {
@@ -44,14 +58,22 @@ bool QPortAudioRecorder::stop() {
             qWarning() << "PortAudio error: %s\n" << Pa_GetErrorText(err);
             return false;
         }
-        return true;
+        const bool stoped = !isRunning();
+        if (stoped) {
+            emit onRecondingStoped();
+        }
+        return stoped;
     }
     return true;
 }
 
 
-PaStreamCallbackResult QPortAudioRecorder::bufferReady(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *timeInfo, PaStreamCallbackFlags statusFlags)
-{
+PaStreamCallbackResult QPortAudioRecorder::bufferReady(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *timeInfo, PaStreamCallbackFlags statusFlags) const {
+    Q_UNUSED(outputBuffer);
+    const float *input = static_cast<const float*>(inputBuffer);
+    const QByteArray array = QByteArray::fromRawData(reinterpret_cast<const char*>(input), framesPerBuffer*sizeof(float));
+    const QAudioBuffer buffer(array, audioFormat(), timeInfo->inputBufferAdcTime);
+    emit onBufferReady(buffer, statusFlags);
     return paContinue;
 }
 
@@ -66,14 +88,14 @@ bool QPortAudioRecorder::initialize() {
 }
 
 bool QPortAudioRecorder::restartDevice(PaDeviceIndex index, Real sampleRate) {
-    _outputDeviceParam.channelCount = 2;
+    _outputDeviceParam.channelCount = Stereo;
     _outputDeviceParam.device = Pa_GetDefaultOutputDevice();
     _outputDeviceParam.sampleFormat = paFloat32;
     _outputDeviceParam.suggestedLatency = latency();
     _outputDeviceParam.hostApiSpecificStreamInfo = NULL;
 
 
-    _inputDeviceParam.channelCount = 1;
+    _inputDeviceParam.channelCount = Mono;
     _inputDeviceParam.device = index;
     _inputDeviceParam.sampleFormat = paFloat32;
     _inputDeviceParam.suggestedLatency = latency();

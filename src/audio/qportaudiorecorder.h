@@ -1,12 +1,17 @@
 #ifndef QPORTAUDIO_H
 #define QPORTAUDIO_H
 #include "config.h"
+
+#include <util/singleton.h>
 #include <portaudio.h>
 #include <QObject>
-class QPortAudioRecorder : public QObject
-{
+#include <QAudioFormat>
+#include <QAudioBuffer>
+class QPortAudioRecorder : public QObject {
+    Q_OBJECT
 public:
     explicit QPortAudioRecorder(QObject* parent = Q_NULLPTR);
+    enum ChannelCount { Mono = 1, Stereo = 2 };
     static inline uint defaultInputDeviceCount() { return Pa_GetDefaultInputDevice(); }
     static inline uint defaultOutputDeviceCount() { return Pa_GetDefaultOutputDevice(); }
     static inline uint deviceCount(){ return Pa_GetDeviceCount(); }
@@ -14,6 +19,7 @@ public:
     static inline Real defaultDeviceSampleRate(PaDeviceIndex index) { return Pa_GetDeviceInfo(index)->defaultSampleRate; }
     static inline bool isInputDevice(PaDeviceIndex index) { return Pa_GetDeviceInfo(index)->maxInputChannels > 0; }
 
+    inline double currentStreamTimestamp() const { return Pa_GetStreamTime(_dataStream); }
     inline bool isRunning() const { return Pa_IsStreamActive(_dataStream); }
     inline bool isInitialized() const { return _isInitialized; }
     inline int currentDevice() const { return _inputDeviceParam.device;  }
@@ -25,11 +31,16 @@ public:
     bool setSampleRate(Real sampleRate);
     bool setFrameLength(uint frameLength);
 
+    QAudioFormat audioFormat() const;
 public slots:
     bool record();
     bool stop();
+signals:
+    void onBufferReady(const QAudioBuffer&, PaStreamCallbackFlags) const;
+    void onRecondingStarted() const;
+    void onRecondingStoped() const;
 protected:
-    virtual PaStreamCallbackResult  bufferReady(const void*,void *, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags);
+    virtual PaStreamCallbackResult  bufferReady(const void*,void *, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags) const;
 private:
     PaStream*           _dataStream;
     PaStreamParameters  _inputDeviceParam;
@@ -42,7 +53,7 @@ private:
     bool initialize();
     bool restartDevice(PaDeviceIndex index, Real sampleRate);
     inline PaError isSampleRateSupported(Real sampleRate) const { return  Pa_IsFormatSupported(&_inputDeviceParam, &_outputDeviceParam, sampleRate); }
-
 };
+#define QPortAudioRecorderInstance Singleton<QPortAudioRecorder>::instance()
 
 #endif // QPORTAUDIO_H
