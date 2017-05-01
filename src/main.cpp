@@ -5,11 +5,11 @@
 #include "mainwindow.h"
 
 #include <gui/helper.h>
-#include <QApplication>
 #include <dsp/generalizedcrosscorrelation.h>
 #include <QDebug>
+#include <QApplication>
 
-#define TEST_SOURCE 1
+#define TEST_SOURCE 0
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
@@ -29,10 +29,6 @@ int main(int argc, char *argv[]) {
 
     const Vector delayed = DSP::Timming::delay(vect, Fs, 0.5);
 
-    //Gui::plot(spectral);
-
-   /*Gui::plot(vect);
-    Gui::plot(delayed);*/
 
     arma::arma_version ver;
     std::cout << "ARMA version: "<< ver.as_string() << std::endl;
@@ -41,7 +37,7 @@ int main(int argc, char *argv[]) {
     Gui::plot(GCC.compute(vect, vect));
     Gui::plot(GCC.compute(vect, delayed, DSP::GeneralizedCrossCorrelation::Phat));
 
-#elif
+#else
     MainWindow w;
     w.show();
 #endif

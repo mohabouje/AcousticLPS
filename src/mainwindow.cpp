@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "config.h"
 
+#include <audio/qportaudiorecorder.h>
 #include <model/qmeasure.h>
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
@@ -25,6 +26,24 @@ MainWindow::MainWindow(QWidget *parent) :
     initUi();
     loadUi();
     simulateMeasures();
+
+    QPortAudioRecorderInstance;
+    if (QPortAudioRecorderInstance->isInitialized()) {
+        QObject::connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onBufferReady, [](const QAudioBuffer& buffer, PaStreamCallbackFlags) {
+            qDebug() << "Recording " <<  buffer.sampleCount();
+        });
+        QObject::connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onRecondingStarted, []() {
+            qDebug() << "Recording started";
+        });
+
+        QObject::connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onError, [](PaError code, const QString& error) {
+            qDebug() << "Error " << code << ": " << error;
+        });
+        QPortAudioRecorderInstance->record();
+    } else {
+        qDebug() << "Coult not initialize the audio recorder";
+    }
+
 }
 
 void MainWindow::simulateMeasures() {

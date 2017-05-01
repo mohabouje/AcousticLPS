@@ -25,7 +25,7 @@ public:
     inline int currentDevice() const { return _inputDeviceParam.device;  }
     inline uint frameLength() const { return _frameLength; }
     inline Real sampleRate() const { return _sampleRate; }
-    inline Real latency() const { return Pa_GetDeviceInfo(currentDevice())->defaultLowInputLatency; }
+    inline Real latency() const { return _inputDeviceParam.suggestedLatency; }
 
     bool setCurrentDevice(PaDeviceIndex index);
     bool setSampleRate(Real sampleRate);
@@ -37,6 +37,7 @@ public slots:
     bool stop();
 signals:
     void onBufferReady(const QAudioBuffer&, PaStreamCallbackFlags) const;
+    void onError(PaError, const QString&) const;
     void onRecondingStarted() const;
     void onRecondingStoped() const;
 protected:

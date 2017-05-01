@@ -30,13 +30,14 @@ QAudioFormat QPortAudioRecorder::audioFormat() const {
     format.setSampleType(QAudioFormat::Float);
     format.setSampleSize(sizeof(float) * 8);
     format.setChannelCount(Mono);
+    format.setCodec("audio/pcm");
     return format;
 }
 
 bool QPortAudioRecorder::record() {
     const PaError err = Pa_StartStream(_dataStream);
     if ( err != paNoError ) {
-        qWarning() << "PortAudio error: %s\n" << Pa_GetErrorText(err);
+        emit onError(err, Pa_GetErrorText(err));
         return false;
     }
     const bool recording = isRunning();
@@ -50,12 +51,12 @@ bool QPortAudioRecorder::stop() {
     if (isRunning()) {
         PaError err = Pa_AbortStream(_dataStream);
         if ( err != paNoError ) {
-            qWarning() << "PortAudio error: %s\n" << Pa_GetErrorText(err);
+            emit onError(err, Pa_GetErrorText(err));
             return false;
         }
         err = Pa_CloseStream(_dataStream);
         if ( err != paNoError ) {
-            qWarning() << "PortAudio error: %s\n" << Pa_GetErrorText(err);
+            emit onError(err, Pa_GetErrorText(err));
             return false;
         }
         const bool stoped = !isRunning();
@@ -81,7 +82,7 @@ bool QPortAudioRecorder::initialize() {
      PaError err = Pa_Initialize();
      _isInitialized = (err == paNoError);
      if( err != paNoError ) {
-         qWarning() << "PortAudio error: %s\n" << Pa_GetErrorText(err);
+         emit onError(err, Pa_GetErrorText(err));
          return false;
      }
      return restartDevice(Pa_GetDefaultInputDevice(), defaultDeviceSampleRate(Pa_GetDefaultInputDevice()));
@@ -91,21 +92,21 @@ bool QPortAudioRecorder::restartDevice(PaDeviceIndex index, Real sampleRate) {
     _outputDeviceParam.channelCount = Stereo;
     _outputDeviceParam.device = Pa_GetDefaultOutputDevice();
     _outputDeviceParam.sampleFormat = paFloat32;
-    _outputDeviceParam.suggestedLatency = latency();
+    _outputDeviceParam.suggestedLatency = Pa_GetDeviceInfo(_outputDeviceParam.device)->defaultLowInputLatency;
     _outputDeviceParam.hostApiSpecificStreamInfo = NULL;
 
 
     _inputDeviceParam.channelCount = Mono;
     _inputDeviceParam.device = index;
     _inputDeviceParam.sampleFormat = paFloat32;
-    _inputDeviceParam.suggestedLatency = latency();
+    _inputDeviceParam.suggestedLatency = Pa_GetDeviceInfo(index)->defaultLowInputLatency;
     _inputDeviceParam.hostApiSpecificStreamInfo = NULL;
 
     _sampleRate = sampleRate;
 
     const PaError err = Pa_OpenStream(&_dataStream, &_inputDeviceParam, NULL, _sampleRate, _frameLength, paClipOff, &QPortAudioRecorder::PortAudioCallback, this);
     if( err != paNoError ) {
-         qWarning() << "PortAudio error: %s\n" << Pa_GetErrorText(err);
+         emit onError(err, Pa_GetErrorText(err));
          return false;
     }
     return true;
