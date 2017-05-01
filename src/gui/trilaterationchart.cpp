@@ -1,5 +1,6 @@
 #include "trilaterationchart.h"
-#include <dsp/dsp.h>
+#include "helper.h"
+
 #include <model/qenvironement.h>
 #include <qwt_symbol.h>
 
@@ -44,7 +45,7 @@ void TrilaterationChart::repaintTrilateration() {
     QwtData trilaterationData = QwtData(total);
     for (Size i=0; i<N; i++) {
         const QBeacon& beacon = measures[i].getBeacon();
-        const QwtData hyperbolic = DSP::hiperbolicChart(beacon->position(), measures[i].getMeasure(), HyperbolicSize);
+        const QwtData hyperbolic = Gui::hiperbolicChart(beacon->position(), measures[i].getMeasure(), HyperbolicSize);
         for (Size j=0; j<HyperbolicSize; j++) {
             trilaterationData.xData(i*HyperbolicSize + j) = hyperbolic.xData(j);
             trilaterationData.yData(i*HyperbolicSize + j) = hyperbolic.yData(j);

@@ -33,37 +33,8 @@ Vector DSP::Windowing::window(DSP::Windowing::SupportedWindow window, Size size)
     return vect;
 }
 */
-QwtData DSP::hiperbolicChart(const Position& center, Real radius, Size size) {
-    const Real x0 = center(0);
-    const Real y0 = center(1);
-    const Real residual = radius * radius - x0 * x0;
-
-    const Size halfSize = size / 2;
-    const Vector xPoints = arma::linspace(x0-radius, x0+radius, halfSize);
-    QwtData chart(size);
-    for (Size i=0; i<size; i++) {
-        if (i < halfSize) {
-            chart.yData(i) = y0 - std::sqrt(residual - xPoints(i)*xPoints(i) + 2*xPoints(i)*x0);
-            chart.xData(i) = xPoints(i);
-        } else {
-            chart.yData(i) = y0 + std::sqrt(residual - xPoints(i-halfSize)*xPoints(i-halfSize) + 2*xPoints(i-halfSize)*x0);
-            chart.xData(i) = xPoints(i-halfSize);
-        }
-    }
-    return chart;
-}
 
 
-
-Vector DSP::rand(Real min, Real max, Size number) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<Real> distr(min, max);
-    Vector random(number);
-    Real* pointer = random.memptr();
-    std::generate(pointer, pointer + number, [&](){ return distr(gen); });
-    return random;
-}
 
 Real DSP::Parameter::energy(const Vector &data) {
     return  std::inner_product(data.begin(), data.end(), data.begin(), static_cast<Real>(0.0));

@@ -1,8 +1,5 @@
 #include "config.h"
 namespace DSP {
-    QwtData hiperbolicChart(const Position& center, Real width, Size points);
-    Vector rand(Real min, Real max, Size number);
-
     namespace Timming {
         Vector delay(const Vector &original, uint sampleRate, Real time);
         Vector delay(const Vector& original, uint delay);
