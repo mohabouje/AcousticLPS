@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
         QObject::connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onError, [](PaError code, const QString& error) {
             qDebug() << "Error " << code << ": " << error;
         });
-        QPortAudioRecorderInstance->record();
+        //QPortAudioRecorderInstance->record();
     } else {
         qDebug() << "Coult not initialize the audio recorder";
     }
