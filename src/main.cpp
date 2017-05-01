@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 
 
     Gui::plot(GCC.compute(vect, vect));
-    Gui::plot(GCC.compute(vect, vect, DSP::GeneralizedCrossCorrelation::Phat));
+    Gui::plot(GCC.compute(vect, delayed, DSP::GeneralizedCrossCorrelation::Phat));
 
 #elif
     MainWindow w;
