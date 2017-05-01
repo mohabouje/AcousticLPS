@@ -1,9 +1,9 @@
 #ifndef DATAMODEL_H
 #define DATAMODEL_H
 #include "qbeacon.h"
+
 #include <util/singleton.h>
 #include <model/model.pb.h>
-
 #include <QMap>
 #include <QObject>
 #include <QSet>
