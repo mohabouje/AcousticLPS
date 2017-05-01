@@ -16,13 +16,10 @@ public:
 
     inline bool isRunning() const { return Pa_IsStreamActive(_dataStream); }
     inline bool isInitialized() const { return _isInitialized; }
-    inline PaHostApiIndex currentHostApi() const { return _currentHostApi; }
-    inline PaDeviceIndex currentDevice() const { return _inputDeviceParam.device;  }
-
+    inline int currentDevice() const { return _inputDeviceParam.device;  }
     inline uint frameLength() const { return _frameLength; }
     inline Real sampleRate() const { return _sampleRate; }
     inline Real latency() const { return Pa_GetDeviceInfo(currentDevice())->defaultLowInputLatency; }
-    inline PaError isSampleRateSupported(Real sampleRate) const { return  Pa_IsFormatSupported(&_inputDeviceParam, &_outputDeviceParam, sampleRate); }
 
     bool setCurrentDevice(PaDeviceIndex index);
     bool setSampleRate(Real sampleRate);
@@ -35,7 +32,6 @@ protected:
     virtual PaStreamCallbackResult  bufferReady(const void*,void *, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags);
 private:
     PaStream*           _dataStream;
-    PaHostApiIndex      _currentHostApi;
     PaStreamParameters  _inputDeviceParam;
     PaStreamParameters  _outputDeviceParam;
     Real                _sampleRate{44100.0};
@@ -45,6 +41,7 @@ private:
     static int PortAudioCallback(const void*, void*, unsigned long, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags, void*);
     bool initialize();
     bool restartDevice(PaDeviceIndex index, Real sampleRate);
+    inline PaError isSampleRateSupported(Real sampleRate) const { return  Pa_IsFormatSupported(&_inputDeviceParam, &_outputDeviceParam, sampleRate); }
 
 };
 

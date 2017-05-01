@@ -66,8 +66,6 @@ bool QPortAudioRecorder::initialize() {
 }
 
 bool QPortAudioRecorder::restartDevice(PaDeviceIndex index, Real sampleRate) {
-    _currentHostApi = Pa_GetDefaultHostApi();
-
     _outputDeviceParam.channelCount = 2;
     _outputDeviceParam.device = Pa_GetDefaultOutputDevice();
     _outputDeviceParam.sampleFormat = paFloat32;
