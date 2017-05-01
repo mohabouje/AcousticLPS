@@ -30,7 +30,9 @@ SOURCES += main.cpp \
         mainwindow.cpp \
 
 HEADERS  += mainwindow.h \
-    config.h
+    config.h \
+    util/call_once.h \
+    util/singleton.h
 
 FORMS    += mainwindow.ui
 
@@ -58,11 +60,14 @@ QMAKE_CFLAGS += protobuf
 # Using FFTW library
 LIBS += -lfftw3
 
+# Using PortAudio to record audio from the input device.
+LIBS += -lportaudio
+
 # Include de different submodules
 include("./dsp/dsp.pri")
 include("./gui/gui.pri")
 include("./model/model.pri")
-include("./util/util.pri")
+include("./audio/audio.pri")
 
 
 
