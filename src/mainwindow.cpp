@@ -6,6 +6,7 @@
 #include <model/qmeasure.h>
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
+#include <gui/helper.h>
 
 #include <QDebug>
 #include <QFileDialog>
@@ -16,7 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
+    QPortAudioRecorderInstance;
+    QEnvironementInstance;
     const bool loaded = QEnvironementInstance->loadEnvironementFromFile();
     if (!loaded) {
         qWarning() << "Error: we could not restore the last saved environement";
@@ -26,23 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     initUi();
     loadUi();
     simulateMeasures();
-
-    QPortAudioRecorderInstance;
-    if (QPortAudioRecorderInstance->isInitialized()) {
-        QObject::connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onBufferReady, [](const QAudioBuffer& buffer, PaStreamCallbackFlags) {
-            qDebug() << "Recording " <<  buffer.sampleCount();
-        });
-        QObject::connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onRecondingStarted, []() {
-            qDebug() << "Recording started";
-        });
-
-        QObject::connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onError, [](PaError code, const QString& error) {
-            qDebug() << "Error " << code << ": " << error;
-        });
-        //QPortAudioRecorderInstance->record();
-    } else {
-        qDebug() << "Coult not initialize the audio recorder";
-    }
 
 }
 
@@ -137,6 +122,23 @@ void MainWindow::initUi() {
         Q_UNUSED(beacon);
         ui->trilaterationChart->repaintBeacons();
         ui->trilaterationChart->repaintTrilateration();
+    });
+
+    connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onRecondingStarted, [&]() {
+        ui->actionMicrophone->setIcon(MICRO_OFF_ICON);
+    });
+    connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onRecondingStoped, [&]() {
+        ui->actionMicrophone->setIcon(MICRO_ON_ICON);
+    });
+    connect(ui->actionMicrophone, &QAction::triggered, [&](bool) {
+        if (QPortAudioRecorderInstance->isInitialized()) {
+            const bool recording = QPortAudioRecorderInstance->isRunning();
+            if (recording) {
+                QPortAudioRecorderInstance->stop();
+            } else {
+                QPortAudioRecorderInstance->record();
+            }
+        }
     });
 }
 

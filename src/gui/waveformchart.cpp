@@ -20,7 +20,7 @@ void WaveFormChart::setBufferSize(Real sampleRate, Real secs) {
 }
 
 void WaveFormChart::insert(const Real* data, uint size) {
-    std::copy(_data.xData.begin() + size, _data.xData.end(), _data.xData.begin());
-    std::copy(_data.xData.end() - size, _data.xData.end(), data);
+    //std::copy(_data.xData.begin() + size, _data.xData.end(), _data.xData.begin());
+    //std::copy(_data.xData.end() - size, _data.xData.end(), data);
     this->replot();
 }

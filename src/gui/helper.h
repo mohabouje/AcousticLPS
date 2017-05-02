@@ -6,6 +6,9 @@
 #include <QModelIndex>
 #include <QIcon>
 
+#define MICRO_OFF_ICON  QIcon(":/resources/icons/microphone-mute.png")
+#define MICRO_ON_ICON   QIcon(":/resources/icons/microphone-normal.png")
+
 #define SIGNAL_OFF_ICON QIcon(":/resources/icons/antenna_off.png")
 #define SIGNAL_ON_ICON QIcon(":/resources/icons/antenna_on.png")
 namespace Gui {

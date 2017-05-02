@@ -439,5 +439,7 @@
         <file>resources/icons/arrow-up.png</file>
         <file>resources/icons/satellite.png</file>
         <file>resources/icons/grid.png</file>
+        <file>resources/icons/microphone-mute.png</file>
+        <file>resources/icons/microphone-normal.png</file>
     </qresource>
 </RCC>
