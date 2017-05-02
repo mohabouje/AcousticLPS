@@ -1,5 +1,5 @@
 #include "waveformchart.h"
-
+#include <QDebug>
 WaveFormChart::WaveFormChart(QWidget *parent) : QwtPlot(parent)
 {
     _waveForm->setStyle(QwtPlotCurve::Lines);
@@ -12,15 +12,25 @@ WaveFormChart::WaveFormChart(QWidget *parent) : QwtPlot(parent)
 
 void WaveFormChart::setBufferSize(Real sampleRate, Real secs) {
     const uint size = std::floor(sampleRate * secs);
-    _data = QwtData(size);
-    _data.xData = arma::linspace(0, secs, size);
-    _waveForm->setRawSamples(_data.x(), _data.y(), _data.size());
+    _xData = QVector<double>(size, 0);
+    _yData = QVector<double>(size, 0);
+
+    const Vector xValues = arma::linspace(0, secs, size);
+    for (uint i=0; i<size; i++) {
+        _xData[i] = xValues[i];
+    }
+
+    _waveForm->setRawSamples(_xData.data(), _yData.data(), size);
     setAxisScale(QwtPlot::xBottom, 0.0, secs);
 
 }
 
-void WaveFormChart::insert(const Real* data, uint size) {
-    //std::copy(_data.xData.begin() + size, _data.xData.end(), _data.xData.begin());
-    //std::copy(_data.xData.end() - size, _data.xData.end(), data);
+void WaveFormChart::insert(const float* data, uint size) {
+    std::copy(_yData.begin() + size, _yData.end(), _yData.begin());
+    const uint end = _yData.size();
+    const uint start = end - size;
+    for (uint i=start; i<end; i++) {
+        _yData[i] = static_cast<double>(data[i-start]);
+    }
     this->replot();
 }

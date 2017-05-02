@@ -26,7 +26,7 @@ public:
     inline uint frameLength() const { return _frameLength; }
     inline Real sampleRate() const { return _sampleRate; }
     inline Real latency() const { return _inputDeviceParam.suggestedLatency; }
-
+    inline float* buffer() const { return _buffer; }
     bool setCurrentDevice(PaDeviceIndex index);
     bool setSampleRate(Real sampleRate);
     bool setFrameLength(uint frameLength);
@@ -36,12 +36,12 @@ public slots:
     bool record();
     bool stop();
 signals:
-    void onBufferReady(const QAudioBuffer&, PaStreamCallbackFlags) const;
+    void onBufferReady(float*, uint size) const;
     void onError(PaError, const QString&) const;
     void onRecondingStarted() const;
     void onRecondingStoped() const;
 protected:
-    virtual PaStreamCallbackResult  bufferReady(const void*,void *, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags) const;
+    virtual PaStreamCallbackResult  bufferReady(const void*,void *, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags) ;
 private:
     PaStream*           _dataStream;
     PaStreamParameters  _inputDeviceParam;
@@ -49,7 +49,7 @@ private:
     Real                _sampleRate{44100.0};
     uint                _frameLength{1024};
     bool                _isInitialized{false};
-
+    float*              _buffer;
     static int PortAudioCallback(const void*, void*, unsigned long, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags, void*);
     bool initialize();
     bool restartDevice(PaDeviceIndex index, Real sampleRate);

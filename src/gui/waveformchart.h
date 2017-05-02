@@ -12,11 +12,12 @@ class WaveFormChart : public QwtPlot
 public:
     explicit WaveFormChart(QWidget *parent = 0);
     void setBufferSize(Real sampleRate, Real secs);
-    void insert(const Real* data, uint size);
+    void insert(const float* data, uint size);
 
 private:
     QwtPlotCurve*                 _waveForm{new QwtPlotCurve()};
-    QwtData                       _data{QwtData(0)};
+    QVector<double>               _xData;
+    QVector<double>               _yData;
 };
 
 #endif // WAVEFORMCHART_H

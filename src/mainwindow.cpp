@@ -49,6 +49,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initUi() {
+    ui->waveFormChart->setBufferSize(QPortAudioRecorderInstance->sampleRate(), 10.0);
     QWidget *spacerWidget = new QWidget(this);
     spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     spacerWidget->setVisible(true);
@@ -130,6 +131,10 @@ void MainWindow::initUi() {
     connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onRecondingStoped, [&]() {
         ui->actionMicrophone->setIcon(MICRO_ON_ICON);
     });
+
+    connect(QPortAudioRecorderInstance, SIGNAL(onBufferReady(float*,uint)),
+            this, SLOT(bufferReady(float*,uint)), Qt::QueuedConnection);
+
     connect(ui->actionMicrophone, &QAction::triggered, [&](bool) {
         if (QPortAudioRecorderInstance->isInitialized()) {
             const bool recording = QPortAudioRecorderInstance->isRunning();
@@ -140,6 +145,11 @@ void MainWindow::initUi() {
             }
         }
     });
+}
+
+void MainWindow::bufferReady(float* buffer, uint size) {
+    ui->waveFormChart->insert(buffer, size);
+    //delete buffer;
 }
 
 void MainWindow::loadUi() {

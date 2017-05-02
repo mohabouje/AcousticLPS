@@ -69,12 +69,11 @@ bool QPortAudioRecorder::stop() {
 }
 
 
-PaStreamCallbackResult QPortAudioRecorder::bufferReady(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *timeInfo, PaStreamCallbackFlags statusFlags) const {
+PaStreamCallbackResult QPortAudioRecorder::bufferReady(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *timeInfo, PaStreamCallbackFlags statusFlags) {
     Q_UNUSED(outputBuffer);
-    const float *input = static_cast<const float*>(inputBuffer);
-    const QByteArray array = QByteArray::fromRawData(reinterpret_cast<const char*>(input), framesPerBuffer*sizeof(float));
-    const QAudioBuffer buffer(array, audioFormat(), timeInfo->inputBufferAdcTime);
-    emit onBufferReady(buffer, statusFlags);
+    Q_UNUSED(timeInfo);
+    Q_UNUSED(statusFlags);
+    emit onBufferReady((float*)(inputBuffer), framesPerBuffer);
     return paContinue;
 }
 
@@ -103,7 +102,7 @@ bool QPortAudioRecorder::restartDevice(PaDeviceIndex index, Real sampleRate) {
     _inputDeviceParam.hostApiSpecificStreamInfo = NULL;
 
     _sampleRate = sampleRate;
-
+    _frameLength = 0.2 * sampleRate;
     const PaError err = Pa_OpenStream(&_dataStream, &_inputDeviceParam, NULL, _sampleRate, _frameLength, paClipOff, &QPortAudioRecorder::PortAudioCallback, this);
     if( err != paNoError ) {
          emit onError(err, Pa_GetErrorText(err));

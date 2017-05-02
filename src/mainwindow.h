@@ -3,7 +3,6 @@
 
 #include <QLineEdit>
 #include <QMainWindow>
-
 namespace Ui {
 class MainWindow;
 }
@@ -24,6 +23,8 @@ private:
     void saveUi();
     void invalidate();
     void simulateMeasures();
+private slots:
+    void bufferReady(float *buffer, uint size);
 };
 
 #endif // MAINWINDOW_H
