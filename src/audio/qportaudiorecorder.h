@@ -37,7 +37,7 @@ public slots:
     bool stop();
 signals:
     void onBufferReady(float*, uint size) const;
-    void onError(PaError, const QString&) const;
+    void onError(int, const QString&) const;
     void onRecondingStarted() const;
     void onRecondingStoped() const;
 protected:

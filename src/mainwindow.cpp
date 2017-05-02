@@ -131,6 +131,9 @@ void MainWindow::initUi() {
     connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onRecondingStoped, [&]() {
         ui->actionMicrophone->setIcon(MICRO_ON_ICON);
     });
+    connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onError, [&](int code, const QString& error){
+       qDebug() << "ERROR CODE " << code << ": " << error;
+    });
 
     connect(QPortAudioRecorderInstance, SIGNAL(onBufferReady(float*,uint)),
             this, SLOT(bufferReady(float*,uint)), Qt::QueuedConnection);

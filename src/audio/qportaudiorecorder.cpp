@@ -35,6 +35,10 @@ QAudioFormat QPortAudioRecorder::audioFormat() const {
 }
 
 bool QPortAudioRecorder::record() {
+    if (isRunning()) {
+        return true;
+    }
+
     const PaError err = Pa_StartStream(_dataStream);
     if ( err != paNoError ) {
         emit onError(err, Pa_GetErrorText(err));
@@ -49,12 +53,7 @@ bool QPortAudioRecorder::record() {
 
 bool QPortAudioRecorder::stop() {
     if (isRunning()) {
-        PaError err = Pa_AbortStream(_dataStream);
-        if ( err != paNoError ) {
-            emit onError(err, Pa_GetErrorText(err));
-            return false;
-        }
-        err = Pa_CloseStream(_dataStream);
+        PaError err = Pa_StopStream(_dataStream);
         if ( err != paNoError ) {
             emit onError(err, Pa_GetErrorText(err));
             return false;
@@ -102,7 +101,7 @@ bool QPortAudioRecorder::restartDevice(PaDeviceIndex index, Real sampleRate) {
     _inputDeviceParam.hostApiSpecificStreamInfo = NULL;
 
     _sampleRate = sampleRate;
-    _frameLength = 0.2 * sampleRate;
+    _frameLength = 0.1 * sampleRate;
     const PaError err = Pa_OpenStream(&_dataStream, &_inputDeviceParam, NULL, _sampleRate, _frameLength, paClipOff, &QPortAudioRecorder::PortAudioCallback, this);
     if( err != paNoError ) {
          emit onError(err, Pa_GetErrorText(err));
