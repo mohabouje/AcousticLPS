@@ -63,7 +63,7 @@ QMAKE_CFLAGS += protobuf
 LIBS += -lfftw3
 
 # Using PortAudio to record audio from the input device.
-LIBS += -lportaudio
+LIBS += -lportaudio -lsndfile
 
 # Include de different submodules
 include("./dsp/dsp.pri")
