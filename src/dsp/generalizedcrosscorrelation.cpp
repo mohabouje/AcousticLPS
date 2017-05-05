@@ -15,12 +15,12 @@ Vector GeneralizedCrossCorrelation::compute(const Vector &original, const Vector
 }
 
 Vector GeneralizedCrossCorrelation::computeStandard(const Vector &original, const Vector &delayed) {
-    const Size fftSize = static_cast<Size>(Parameter::nextPow2(2*original.size()-1));
+    const Size fftSize = static_cast<Size>(Math::nextPow2(2*original.size()-1));
     return arma::real(arma::ifft(arma::fft(original, fftSize) % arma::conj(arma::fft(delayed, fftSize))));
 }
 
 Vector GeneralizedCrossCorrelation::computePhat(const Vector &original, const Vector &delayed) {
-    const Size fftSize = static_cast<Size>(Parameter::nextPow2(2*original.size()-1));
+    const Size fftSize = static_cast<Size>(Math::nextPow2(2*original.size()-1));
     Complex Cxy = arma::fft(original, fftSize) % arma::conj(arma::fft(delayed, fftSize));
     return arma::real(arma::ifft(-Cxy / arma::abs(Cxy)));
 }

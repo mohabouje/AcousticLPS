@@ -11,7 +11,7 @@ WaveFormChart::WaveFormChart(QWidget *parent) : QwtPlot(parent)
 }
 
 void WaveFormChart::setBufferSize(Real sampleRate, Real secs) {
-    const uint size = std::floor(sampleRate * secs);
+    const uint size = std::floor(sampleRate * secs / DownSampleFactor);
     _xData = QVector<double>(size, 0);
     _yData = QVector<double>(size, 0);
 
@@ -25,12 +25,15 @@ void WaveFormChart::setBufferSize(Real sampleRate, Real secs) {
 
 }
 
+
 void WaveFormChart::insert(const float* data, uint size) {
-    std::copy(_yData.begin() + size, _yData.end(), _yData.begin());
-    const uint end = _yData.size();
-    const uint start = end - size;
-    for (uint i=start; i<end; i++) {
-        _yData[i] = static_cast<double>(data[i-start]);
+    const uint N = std::floor(1.0 * size / DownSampleFactor);
+    QVector<double> tmp(N);
+    for (Size n=0; n<N; n++) {
+        tmp[n] = data[n*DownSampleFactor];
     }
-    this->replot();
+
+    std::copy(_yData.begin() + N, _yData.end(), _yData.begin());
+    std::copy(tmp.begin(), tmp.end(), _yData.end() - N);
+    replot();
 }

@@ -18,6 +18,7 @@ private:
     QwtPlotCurve*                 _waveForm{new QwtPlotCurve()};
     QVector<double>               _xData;
     QVector<double>               _yData;
+    static constexpr uint        DownSampleFactor{10};
 };
 
 #endif // WAVEFORMCHART_H

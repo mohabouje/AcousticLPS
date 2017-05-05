@@ -15,8 +15,9 @@ namespace DSP {
 
     }
 
-    namespace Parameter {
+    namespace Math {
         Size nextPow2(int value);
+        Real sinc( Real x );
         Real energy(const Vector& data);
         Real power(const Vector& data);
     }

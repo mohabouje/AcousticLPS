@@ -36,17 +36,17 @@ Vector DSP::Windowing::window(DSP::Windowing::SupportedWindow window, Size size)
 
 
 
-Real DSP::Parameter::energy(const Vector &data) {
+Real DSP::Math::energy(const Vector &data) {
     return  std::inner_product(data.begin(), data.end(), data.begin(), static_cast<Real>(0.0));
 }
 
 
 
-Real DSP::Parameter::power(const Vector &data) {
+Real DSP::Math::power(const Vector &data) {
     return energy(data) / static_cast<Real>(data.size());
 }
 
-Size DSP::Parameter::nextPow2(int x) {
+Size DSP::Math::nextPow2(int x) {
     if (x < 0)
         return 0;
     --x;
@@ -71,3 +71,4 @@ Vector DSP::Timming::delay(const Vector &original, uint delay) {
     }
     return tmp;
 }
+
