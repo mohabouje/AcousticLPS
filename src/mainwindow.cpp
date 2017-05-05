@@ -157,9 +157,6 @@ void MainWindow::loadUi() {
     settings.beginGroup("UI");
     restoreGeometry(settings.value("geometry", saveGeometry()).toByteArray());
     restoreState(settings.value("state", saveState()).toByteArray());
-    ui->verticalSplitter->restoreState(
-                settings.value("vSplitter", ui->verticalSplitter->saveState())
-                .toByteArray());
     ui->horizontalSplitter->restoreState(
                 settings.value("hSplitter", ui->horizontalSplitter->saveState())
                 .toByteArray());
@@ -174,7 +171,6 @@ void MainWindow::saveUi() {
     settings.beginGroup("UI");
     settings.setValue("geometry", saveGeometry());
     settings.setValue("state", saveState());
-    settings.setValue("vSplitter", ui->verticalSplitter->saveState());
     settings.setValue("hSplitter", ui->horizontalSplitter->saveState());
     settings.setValue("showBeacons", ui->actionShowBeacons->isChecked());
     settings.setValue("showGrid", ui->actionShowGrid->isChecked());
