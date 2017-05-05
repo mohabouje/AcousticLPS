@@ -1,7 +1,7 @@
 HEADERS += \
     $$PWD/qportaudiorecorder.h \
-    $$PWD/circularbuffer.h
+    $$PWD/qportaudiodevice.h
 
 SOURCES += \
     $$PWD/qportaudiorecorder.cpp \
-    $$PWD/circularbuffer.cpp
+    $$PWD/qportaudiodevice.cpp

@@ -135,8 +135,8 @@ void MainWindow::initUi() {
        qDebug() << "ERROR CODE " << code << ": " << error;
     });
 
-    connect(QPortAudioRecorderInstance, SIGNAL(onBufferReady(float*,uint)),
-            this, SLOT(bufferReady(float*,uint)), Qt::QueuedConnection);
+    connect(QPortAudioRecorderInstance, SIGNAL(onBufferReady(float*,unsigned long)),
+            this, SLOT(bufferReady(float*,unsigned long)), Qt::QueuedConnection);
 
     connect(ui->actionMicrophone, &QAction::triggered, [&](bool) {
         if (QPortAudioRecorderInstance->isInitialized()) {
@@ -150,7 +150,7 @@ void MainWindow::initUi() {
     });
 }
 
-void MainWindow::bufferReady(float* buffer, uint size) {
+void MainWindow::bufferReady(float* buffer, unsigned long size) {
     ui->waveFormChart->insert(buffer, size);
     //delete buffer;
 }

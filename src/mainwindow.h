@@ -24,7 +24,7 @@ private:
     void invalidate();
     void simulateMeasures();
 private slots:
-    void bufferReady(float *buffer, uint size);
+    void bufferReady(float *buffer, unsigned long size);
 };
 
 #endif // MAINWINDOW_H
