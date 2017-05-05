@@ -1,5 +1,5 @@
 #include "waveformchart.h"
-#include <QDebug>
+#include "config.h"
 WaveFormChart::WaveFormChart(QWidget *parent) : QwtPlot(parent)
 {
     _waveForm->setStyle(QwtPlotCurve::Lines);
@@ -10,19 +10,15 @@ WaveFormChart::WaveFormChart(QWidget *parent) : QwtPlot(parent)
     enableAxis(QwtPlot::yLeft, false);
 }
 
-void WaveFormChart::setBufferSize(Real sampleRate, Real secs) {
+void WaveFormChart::setBufferSize(double sampleRate, double secs) {
+    setAxisScale(QwtPlot::xBottom, 0.0, secs);
     const uint size = std::floor(sampleRate * secs / DownSampleFactor);
     _xData = QVector<double>(size, 0);
     _yData = QVector<double>(size, 0);
 
-    const Vector xValues = arma::linspace(0, secs, size);
-    for (uint i=0; i<size; i++) {
-        _xData[i] = xValues[i];
-    }
-
+    const arma::vec xValues = arma::linspace(0, secs, size);
+    std::copy(xValues.begin(), xValues.end(), _xData.begin());
     _waveForm->setRawSamples(_xData.data(), _yData.data(), size);
-    setAxisScale(QwtPlot::xBottom, 0.0, secs);
-
 }
 
 
