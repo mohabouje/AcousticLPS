@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    QPortAudioRecorderInstance;
+    Recorder;
     QEnvironementInstance;
     const bool loaded = QEnvironementInstance->loadEnvironementFromFile();
     if (!loaded) {
@@ -49,7 +49,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initUi() {
-    ui->waveFormChart->setBufferSize(QPortAudioRecorderInstance->sampleRate(), 10.0);
+    ui->waveFormChart->setBufferSize(Recorder->sampleRate(), 10.0);
     QWidget *spacerWidget = new QWidget(this);
     spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     spacerWidget->setVisible(true);
@@ -125,26 +125,23 @@ void MainWindow::initUi() {
         ui->trilaterationChart->repaintTrilateration();
     });
 
-    connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onRecondingStarted, [&]() {
+    connect(Recorder, &QPortAudioRecorder::onRecorderStarted, [&]() {
         ui->actionMicrophone->setIcon(MICRO_OFF_ICON);
     });
-    connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onRecondingStoped, [&]() {
+    connect(Recorder, &QPortAudioRecorder::onReconderStopped, [&]() {
         ui->actionMicrophone->setIcon(MICRO_ON_ICON);
     });
-    connect(QPortAudioRecorderInstance, &QPortAudioRecorder::onError, [&](int code, const QString& error){
-       qDebug() << "ERROR CODE " << code << ": " << error;
-    });
 
-    connect(QPortAudioRecorderInstance, SIGNAL(onBufferReady(float*,unsigned long)),
+    connect(Recorder, SIGNAL(onBufferReady(float*,unsigned long)),
             this, SLOT(bufferReady(float*,unsigned long)), Qt::QueuedConnection);
 
     connect(ui->actionMicrophone, &QAction::triggered, [&](bool) {
-        if (QPortAudioRecorderInstance->isInitialized()) {
-            const bool recording = QPortAudioRecorderInstance->isRunning();
+        if (Recorder->isInitialized()) {
+            const bool recording = Recorder->isRunning();
             if (recording) {
-                QPortAudioRecorderInstance->stop();
+                Recorder->stop();
             } else {
-                QPortAudioRecorderInstance->record();
+                Recorder->start();
             }
         }
     });

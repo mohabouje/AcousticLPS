@@ -1,16 +1,16 @@
-#ifndef QPORTAUDIO_H
-#define QPORTAUDIO_H
+#ifndef QPORTAUDIOPLAYER_H
+#define QPORTAUDIOPLAYER_H
 
 #include <util/singleton.h>
 #include "qportaudiodevice.h"
-class QPortAudioRecorder : public QPortAudioDevice {
+class QPortAudioPlayer : public QPortAudioDevice {
     Q_OBJECT
 public:
-    explicit QPortAudioRecorder(QObject* parent = Q_NULLPTR);
+    explicit QPortAudioPlayer(QObject* parent = Q_NULLPTR);
     bool initialize();
 signals:
-    void onRecorderStarted() const;
-    void onReconderStopped() const;
+    void onPlayerStarted() const;
+    void onPlayerStopped() const;
 public slots:
     bool setCurrentDevice(PaDeviceIndex index);
     bool start();
@@ -19,6 +19,5 @@ private:
     virtual PaStreamCallbackResult  bufferReady(const void*,void *, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags) ;
     bool restartDevice(PaDeviceIndex index, double sampleRate, unsigned long frameLength);
 };
-#define Recorder Singleton<QPortAudioRecorder>::instance()
-
-#endif // QPORTAUDIO_H
+#define Player Singleton<QPortAudioPlayer>::instance()
+#endif // QPORTAUDIOPLAYER_H

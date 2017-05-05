@@ -1,17 +1,16 @@
-#include "qportaudiorecorder.h"
-#include <QDebug>
-QPortAudioRecorder::QPortAudioRecorder(QObject *parent) : QPortAudioDevice(parent) {
+#include "qportaudioplayer.h"
+QPortAudioPlayer::QPortAudioPlayer(QObject *parent) : QPortAudioDevice(parent) {
     initialize();
 }
 
-bool QPortAudioRecorder::setCurrentDevice(PaDeviceIndex index) {
+bool QPortAudioPlayer::setCurrentDevice(PaDeviceIndex index) {
     if (index < Pa_GetDeviceCount() && isInputDevice(index)) {
         return restartDevice(index, sampleRate(), frameLength());
     }
     return false;
 }
 
-bool QPortAudioRecorder::start() {
+bool QPortAudioPlayer::start() {
     if (isRunning()) {
         return true;
     }
@@ -23,12 +22,12 @@ bool QPortAudioRecorder::start() {
     }
     const bool recording = isRunning();
     if (recording) {
-        emit onRecorderStarted();
+        emit onPlayerStarted();
     }
     return recording;
 }
 
-bool QPortAudioRecorder::stop() {
+bool QPortAudioPlayer::stop() {
     if (isRunning()) {
         PaError err = Pa_StopStream(_dataStream);
         if ( err != paNoError ) {
@@ -37,7 +36,7 @@ bool QPortAudioRecorder::stop() {
         }
         const bool stoped = !isRunning();
         if (stoped) {
-            emit onReconderStopped();
+            emit onPlayerStopped();
         }
         return stoped;
     }
@@ -45,49 +44,48 @@ bool QPortAudioRecorder::stop() {
 }
 
 
-PaStreamCallbackResult QPortAudioRecorder::bufferReady(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *timeInfo, PaStreamCallbackFlags statusFlags) {
-    Q_UNUSED(outputBuffer);
+PaStreamCallbackResult QPortAudioPlayer::bufferReady(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo *timeInfo, PaStreamCallbackFlags statusFlags) {
+    Q_UNUSED(inputBuffer);
     Q_UNUSED(timeInfo);
     Q_UNUSED(statusFlags);
-    emit onBufferReady((float*)(inputBuffer), framesPerBuffer);
+    emit onBufferReady((float*)(outputBuffer), framesPerBuffer);
     return paContinue;
 }
 
-bool QPortAudioRecorder::initialize() {
+bool QPortAudioPlayer::initialize() {
     PaError err = Pa_Initialize();
     _isInitialized = (err == paNoError);
     if( err != paNoError ) {
         emit onError(err, Pa_GetErrorText(err));
     }
 
-    const double sr = defaultDeviceSampleRate(Pa_GetDefaultInputDevice());
+    const double sr = defaultDeviceSampleRate(Pa_GetDefaultOutputDevice());
     const unsigned int fl = 0.1 * sr;
     return _isInitialized  && restartDevice(Pa_GetDefaultInputDevice(), sr, fl);
 }
 
 
-bool QPortAudioRecorder::restartDevice(PaDeviceIndex index, double sampleRate, unsigned long frameLength) {
+bool QPortAudioPlayer::restartDevice(PaDeviceIndex index, double sampleRate, unsigned long frameLength) {
     _outputDeviceParam.channelCount = Stereo;
-    _outputDeviceParam.device = Pa_GetDefaultOutputDevice();
+    _outputDeviceParam.device = index;
     _outputDeviceParam.sampleFormat = paFloat32;
     _outputDeviceParam.suggestedLatency = Pa_GetDeviceInfo(_outputDeviceParam.device)->defaultLowInputLatency;
     _outputDeviceParam.hostApiSpecificStreamInfo = NULL;
 
 
     _inputDeviceParam.channelCount = Mono;
-    _inputDeviceParam.device = index;
+    _inputDeviceParam.device = Pa_GetDefaultInputDevice();
     _inputDeviceParam.sampleFormat = paFloat32;
-    _inputDeviceParam.suggestedLatency = Pa_GetDeviceInfo(index)->defaultLowInputLatency;
+    _inputDeviceParam.suggestedLatency = Pa_GetDeviceInfo(_inputDeviceParam.device)->defaultLowInputLatency;
     _inputDeviceParam.hostApiSpecificStreamInfo = NULL;
 
     _sampleRate = sampleRate;
     _frameLength = frameLength;
-    const PaError err = Pa_OpenStream(&_dataStream, &_inputDeviceParam, NULL, _sampleRate, _frameLength, paClipOff, &QPortAudioRecorder::PortAudioCallback, this);
+    const PaError err = Pa_OpenStream(&_dataStream, &_outputDeviceParam, NULL, _sampleRate, _frameLength, paClipOff, &QPortAudioPlayer::PortAudioCallback, this);
     if( err != paNoError ) {
          emit onError(err, Pa_GetErrorText(err));
          return false;
     }
     return true;
 }
-
 
