@@ -11,7 +11,7 @@ bool QPortAudioRecorder::setCurrentDevice(PaDeviceIndex index) {
     return false;
 }
 
-bool QPortAudioRecorder::start() {
+bool QPortAudioRecorder::record() {
     if (isRunning()) {
         return true;
     }

@@ -10,16 +10,23 @@ bool QPortAudioPlayer::setCurrentDevice(PaDeviceIndex index) {
     return false;
 }
 
-bool QPortAudioPlayer::start() {
+bool QPortAudioPlayer::play(float* buffer, unsigned int size) {
     if (isRunning()) {
         return true;
     }
 
-    const PaError err = Pa_StartStream(_dataStream);
+    PaError err = Pa_StartStream(_dataStream);
     if ( err != paNoError ) {
         emit onError(err, Pa_GetErrorText(err));
         return false;
     }
+
+    err = Pa_WriteStream(_dataStream, buffer, size);
+    if ( err != paNoError ) {
+        emit onError(err, Pa_GetErrorText(err));
+        return false;
+    }
+
     const bool recording = isRunning();
     if (recording) {
         emit onPlayerStarted();

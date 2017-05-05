@@ -141,7 +141,7 @@ void MainWindow::initUi() {
             if (recording) {
                 Recorder->stop();
             } else {
-                Recorder->start();
+                Recorder->record();
             }
         }
     });

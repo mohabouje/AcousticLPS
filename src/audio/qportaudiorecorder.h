@@ -13,7 +13,7 @@ signals:
     void onReconderStopped() const;
 public slots:
     bool setCurrentDevice(PaDeviceIndex index);
-    bool start();
+    bool record();
     bool stop();
 private:
     virtual PaStreamCallbackResult  bufferReady(const void*,void *, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo*, PaStreamCallbackFlags) ;

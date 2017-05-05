@@ -24,7 +24,6 @@ public:
     inline double latency() const { return _inputDeviceParam.suggestedLatency; }
 public slots:
     virtual bool setCurrentDevice(PaDeviceIndex index) = 0;
-    virtual bool start() = 0;
     virtual bool stop() = 0;
     bool setSampleRate(double sampleRate);
     bool setFrameLength(unsigned long frameLength);
