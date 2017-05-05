@@ -1,3 +1,8 @@
 [submodule "src/dependencies/catch"]
 	path = src/dependencies/catch
 	url = https://github.com/philsquared/Catch.git
+
+
+[submodule "src/dependencies/DSPFilters"]
+	path = src/dependencies/DSPFilters
+	url = https://github.com/vinniefalco/DSPFilters.git
