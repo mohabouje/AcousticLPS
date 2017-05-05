@@ -28,11 +28,13 @@ testing {
 
 SOURCES += main.cpp \
         mainwindow.cpp \
+    util/getRSS.cpp
 
 HEADERS  += mainwindow.h \
     config.h \
     util/call_once.h \
-    util/singleton.h
+    util/singleton.h \
+    util/getRSS.h
 
 FORMS    += mainwindow.ui
 
