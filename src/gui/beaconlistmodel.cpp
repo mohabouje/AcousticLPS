@@ -7,7 +7,7 @@ BeaconListModel::BeaconListModel(QObject *parent) : QAbstractTableModel(parent) 
 }
 
 int BeaconListModel::rowCount(const QModelIndex &) const {
-    return QEnvironementInstance->beaconsCount();
+    return Environement->beaconsCount();
 }
 
 QVariant BeaconListModel::headerData(int section, Qt::Orientation orientation, int role) const {
@@ -33,7 +33,7 @@ QVariant BeaconListModel::data(const QModelIndex &index, int role) const {
     }
 
     const int row = index.row();
-    if (row >= QEnvironementInstance->beaconsCount() || row < 0) {
+    if (row >= Environement->beaconsCount() || row < 0) {
         return QVariant();
     }
 
@@ -42,7 +42,7 @@ QVariant BeaconListModel::data(const QModelIndex &index, int role) const {
     }
 
     const int column = index.column();
-    const QBeacon beacon = QEnvironementInstance->beaconAt(row);
+    const QBeacon beacon = Environement->beaconAt(row);
     if (column == StateColumn && role == Qt::DecorationRole) {
         return QVariant::fromValue<QIcon>(beacon->isEnabled() ? SIGNAL_ON_ICON : SIGNAL_OFF_ICON);
     } else if (column == SNRColumn && role == Qt::DisplayRole) {

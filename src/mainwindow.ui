@@ -155,6 +155,7 @@
    <addaction name="separator"/>
    <addaction name="actionPreferences"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="images.qrc">

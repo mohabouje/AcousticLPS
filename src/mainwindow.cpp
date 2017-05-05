@@ -3,6 +3,7 @@
 #include "config.h"
 
 #include <audio/qportaudiorecorder.h>
+#include <audio/qportaudioplayer.h>
 #include <model/qmeasure.h>
 #include <model/qenvironement.h>
 #include <gui/qenvironementeditor.h>
@@ -18,8 +19,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     Recorder;
-    QEnvironementInstance;
-    const bool loaded = QEnvironementInstance->loadEnvironementFromFile();
+    Player;
+    Environement;
+
+    const bool loaded = Environement->loadEnvironementFromFile();
     if (!loaded) {
         qWarning() << "Error: we could not restore the last saved environement";
     }
@@ -32,10 +35,10 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 void MainWindow::simulateMeasures() {
-    const Size N = QEnvironementInstance->beaconsCount();
+    const Size N = Environement->beaconsCount();
     QVector<QMeasure> measures(N);
     for (Size i=0; i<N; i++) {
-        const QBeacon& beacon = QEnvironementInstance->beaconAt(i);
+        const QBeacon& beacon = Environement->beaconAt(i);
         const QMeasure measure = QMeasure::createMeasure(beacon, 4.0, 0.0);
         measures[i] = measure;
     }
@@ -86,7 +89,7 @@ void MainWindow::initUi() {
             const QString fileName = QFileDialog::getOpenFileName(this,
                     tr("Open Environement File"), "", QString("Environement (*%1)").arg(ENVIRONEMENT_FORMAT));
             if (!fileName.isEmpty()) {
-                if (!QEnvironementInstance->loadEnvironementFromFile(fileName)) {
+                if (!Environement->loadEnvironementFromFile(fileName)) {
                     QMessageBox::information(this, tr("Unable to open file"), "The file is corrupted");
                 }
             }
@@ -101,7 +104,7 @@ void MainWindow::initUi() {
             fileName += ENVIRONEMENT_FORMAT;
 
         if (!fileName.isEmpty()) {
-            if (!QEnvironementInstance->saveEnvironementInFile(fileName)) {
+            if (!Environement->saveEnvironementInFile(fileName)) {
                 QMessageBox::information(this, tr("Unable to open file"), "The file is corrupted");
             }
         }
@@ -111,8 +114,8 @@ void MainWindow::initUi() {
         const QMessageBox::StandardButton result = QMessageBox::question(this, "Create a new environement", "Do you want to discard the current environement & create a new one? "
                                                                 "All changes not saved previously will be lost.");
         if (result == QMessageBox::Yes) {
-            QEnvironementInstance->clear();
-            QEnvironementInstance->saveEnvironementInFile();
+            Environement->clear();
+            Environement->saveEnvironementInFile();
             invalidate();
         }
     });
@@ -184,7 +187,7 @@ void MainWindow::invalidate() {
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
-    if (!QEnvironementInstance->saveEnvironementInFile()) {
+    if (!Environement->saveEnvironementInFile()) {
         qWarning() << "Error: could not save the current data model";
     }
     saveUi();

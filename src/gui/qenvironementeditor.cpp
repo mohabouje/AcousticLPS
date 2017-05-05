@@ -20,24 +20,24 @@ void QEnvironementEditor::initUi() {
     ui->beaconsChart->updateEnvironement();
     ui->beaconsChart->repaintBeacons();
 
-    ui->widthValue->setValue(QEnvironementInstance->width());
-    ui->lengthValue->setValue(QEnvironementInstance->length());
-    ui->heightValue->setValue(QEnvironementInstance->height());
+    ui->widthValue->setValue(Environement->width());
+    ui->lengthValue->setValue(Environement->length());
+    ui->heightValue->setValue(Environement->height());
 
     connect(ui->heightValue, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value){
-        QEnvironementInstance->setHeight(value);
+        Environement->setHeight(value);
         ui->zValue->setMaximum(value);
     });
 
     connect(ui->widthValue, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value){
-        QEnvironementInstance->setWidth(value);
+        Environement->setWidth(value);
         ui->xValue->setMaximum(value);
         ui->beaconsChart->setAxisScale(QwtPlot::xBottom, 0, value);
         ui->beaconsChart->replot();
     });
 
     connect(ui->lengthValue, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value){
-        QEnvironementInstance->setLength(value);
+        Environement->setLength(value);
         ui->yValue->setMaximum(value);
         ui->beaconsChart->setAxisScale(QwtPlot::yLeft, 0, value);
         ui->beaconsChart->replot();
@@ -50,7 +50,7 @@ void QEnvironementEditor::initUi() {
             return;
         }
 
-        const QBeacon beacon = QEnvironementInstance->addBeacon();
+        const QBeacon beacon = Environement->addBeacon();
         beacon->setName(name);
         beacon->setPosition(Position({ui->xValue->value(),
                                       ui->yValue->value(),

@@ -38,5 +38,5 @@ private:
     QSet<QBeacon>           _beacons;
     QMap<QUuid, QBeacon>    _wrappedBeacons;
 };
-#define QEnvironementInstance Singleton<QEnvironement>::instance()
+#define Environement Singleton<QEnvironement>::instance()
 #endif // DATAMODEL_H

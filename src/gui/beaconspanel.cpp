@@ -40,7 +40,7 @@ BeaconsPanel::BeaconsPanel(QWidget *parent) :
                 filterModel()->invalidate();
             });
             menu.addAction(tr("Remove"), [&, beacon]() {
-                QEnvironementInstance->removeBeacon(beacon);
+                Environement->removeBeacon(beacon);
                 emit beaconEdited(beacon);
                 filterModel()->invalidate();
             });

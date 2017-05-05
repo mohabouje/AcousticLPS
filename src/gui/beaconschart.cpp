@@ -50,8 +50,8 @@ BeaconsChart::BeaconsChart(QWidget* parent) : QwtPlot(parent) {
     setAxisAutoScale(QwtPlot::xBottom, false);
     setAxisAutoScale(QwtPlot::yLeft, false);
 
-    setAxisScale(QwtPlot::xBottom, 0, QEnvironementInstance->width());
-    setAxisScale(QwtPlot::yLeft, 0, QEnvironementInstance->width());
+    setAxisScale(QwtPlot::xBottom, 0, Environement->width());
+    setAxisScale(QwtPlot::yLeft, 0, Environement->width());
 }
 
 void BeaconsChart::beaconSelected(const QBeacon &beacon) {
@@ -60,15 +60,15 @@ void BeaconsChart::beaconSelected(const QBeacon &beacon) {
 }
 
 void BeaconsChart::updateEnvironement() {
-    setAxisScale(QwtPlot::xBottom, 0, QEnvironementInstance->width());
-    setAxisScale(QwtPlot::yLeft, 0, QEnvironementInstance->width());
+    setAxisScale(QwtPlot::xBottom, 0, Environement->width());
+    setAxisScale(QwtPlot::yLeft, 0, Environement->width());
 }
 
 void BeaconsChart::repaintBeacons() {
-    const Size N = QEnvironementInstance->beaconsCount();
+    const Size N = Environement->beaconsCount();
     QVector<Real> xEnabled, yEnabled, xDisabled, yDisabled, xSelected, ySelected;
     for (Size i=0; i<N; i++) {
-        const QBeacon beacon = QEnvironementInstance->beaconAt(i);
+        const QBeacon beacon = Environement->beaconAt(i);
         const Position point = beacon->position();
         if (beacon == _beacon) {
             xSelected.append(point(0));
