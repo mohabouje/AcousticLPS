@@ -52,17 +52,23 @@ void TrilaterationChart::repaintTrilateration() {
         }
     }
     _trilaterationCurve->setSamples(trilaterationData.x(), trilaterationData.y(), trilaterationData.size());
-    replot();
+    if (isVisible()) {
+        replot();
+    }
 }
 
 
 void TrilaterationChart::showGrid(bool show) {
     showChart(_grid, show);
-    replot();
+    if (isVisible()) {
+        replot();
+    }
 }
 
 void TrilaterationChart::showTrilateration(bool show) {
     showChart(_trilaterationCurve, show);
-    replot();
+    if (isVisible()) {
+        replot();
+    }
 }
 

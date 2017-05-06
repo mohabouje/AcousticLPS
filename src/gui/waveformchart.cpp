@@ -8,6 +8,9 @@ WaveFormChart::WaveFormChart(QWidget *parent) : QwtPlot(parent)
     setAxisScale(QwtPlot::yLeft, -1.0, 1.0);
     enableAxis(QwtPlot::xBottom, false);
     enableAxis(QwtPlot::yLeft, false);
+
+    QFrame* frame = qobject_cast<QFrame*>(canvas());
+    frame->setFrameStyle(QFrame::StyledPanel);
 }
 
 void WaveFormChart::setBufferSize(double sampleRate, double secs) {

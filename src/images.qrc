@@ -441,5 +441,7 @@
         <file>resources/icons/grid.png</file>
         <file>resources/icons/microphone-mute.png</file>
         <file>resources/icons/microphone-normal.png</file>
+        <file>resources/icons/correlation.png</file>
+        <file>resources/icons/spectrogram.png</file>
     </qresource>
 </RCC>

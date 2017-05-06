@@ -52,6 +52,23 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initUi() {
+
+    QActionGroup* group = new QActionGroup(this);
+    group->addAction(ui->actionTrack);
+    group->addAction(ui->actionCorrelation);
+    group->addAction(ui->actionSpectrogram);
+    connect(group, &QActionGroup::triggered, [&](QAction* action) {
+        if (action == ui->actionTrack) {
+            ui->stackedWidget->setCurrentWidget(ui->trilaterationChart);
+        } else if (action == ui->actionCorrelation) {
+            ui->stackedWidget->setCurrentWidget(ui->correlationChart);
+        } else if (action == ui->actionSpectrogram) {
+            ui->stackedWidget->setCurrentWidget(ui->spectrogramChart);
+        }
+    });
+
+    ui->bottomToolbar->addWidget(ui->waveFormChart);
+
     QWidget *spacerWidget = new QWidget(this);
     spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     spacerWidget->setVisible(true);
@@ -167,9 +184,6 @@ void MainWindow::loadUi() {
     settings.beginGroup("UI");
     restoreGeometry(settings.value("geometry", saveGeometry()).toByteArray());
     restoreState(settings.value("state", saveState()).toByteArray());
-    ui->horizontalSplitter->restoreState(
-                settings.value("hSplitter", ui->horizontalSplitter->saveState())
-                .toByteArray());
     ui->actionShowBeacons->setChecked(settings.value("showBeacons", true).toBool());
     ui->actionShowGrid->setChecked(settings.value("showGrid", true).toBool());
     ui->actionShowTrilateration->setChecked(settings.value("showTrilateration", true).toBool());
@@ -181,7 +195,6 @@ void MainWindow::saveUi() {
     settings.beginGroup("UI");
     settings.setValue("geometry", saveGeometry());
     settings.setValue("state", saveState());
-    settings.setValue("hSplitter", ui->horizontalSplitter->saveState());
     settings.setValue("showBeacons", ui->actionShowBeacons->isChecked());
     settings.setValue("showGrid", ui->actionShowGrid->isChecked());
     settings.setValue("showTrilateration", ui->actionShowTrilateration->isChecked());

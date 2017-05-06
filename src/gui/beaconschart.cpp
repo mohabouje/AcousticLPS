@@ -52,6 +52,9 @@ BeaconsChart::BeaconsChart(QWidget* parent) : QwtPlot(parent) {
 
     setAxisScale(QwtPlot::xBottom, 0, Environement->width());
     setAxisScale(QwtPlot::yLeft, 0, Environement->width());
+
+    QFrame* frame = qobject_cast<QFrame*>(canvas());
+    frame->setFrameStyle(QFrame::StyledPanel);
 }
 
 void BeaconsChart::beaconSelected(const QBeacon &beacon) {
@@ -84,14 +87,18 @@ void BeaconsChart::repaintBeacons() {
     _enabledBeacons->setSamples(xEnabled, yEnabled);
     _disabledBeacons->setSamples(xDisabled, yDisabled);
     _selectedBeacons->setSamples(xSelected, ySelected);
-    replot();
+    if (isVisible()) {
+        replot();
+    }
 }
 
 void BeaconsChart::showBeacons(bool show) {
     showChart(_enabledBeacons, show);
     showChart(_disabledBeacons, show);
     showChart(_selectedBeacons, show);
-    replot();
+    if (isVisible()) {
+        replot();
+    }
 }
 
 void BeaconsChart::showAxis(bool state) {

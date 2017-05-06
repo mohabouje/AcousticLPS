@@ -35,82 +35,45 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QSplitter" name="horizontalSplitter">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <widget class="BeaconsPanel" name="beaconsPanel" native="true"/>
-      <widget class="QWidget" name="container" native="true">
-       <layout class="QGridLayout" name="gridLayout">
-        <property name="leftMargin">
-         <number>0</number>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="BeaconsPanel" name="beaconsPanel" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-        <property name="topMargin">
-         <number>0</number>
+        <property name="maximumSize">
+         <size>
+          <width>250</width>
+          <height>16777215</height>
+         </size>
         </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <item row="0" column="0">
-         <widget class="QTabWidget" name="tabWidget">
-          <property name="styleSheet">
-           <string notr="true">QTabWidget::pane { /* The tab widget frame */
-    border-top: 2px solid #C2C7CB;
-    position: absolute;
-    top: -0.5em;
-	background-color: transparent;
-	padding: 20px;
-}
-
-
-</string>
-          </property>
-          <property name="tabPosition">
-           <enum>QTabWidget::East</enum>
-          </property>
-          <property name="tabShape">
-           <enum>QTabWidget::Rounded</enum>
-          </property>
-          <property name="currentIndex">
-           <number>1</number>
-          </property>
-          <widget class="TrilaterationChart" name="trilaterationChart">
-           <attribute name="icon">
-            <iconset resource="images.qrc">
-             <normaloff>:/resources/icons/route.png</normaloff>:/resources/icons/route.png</iconset>
-           </attribute>
-           <attribute name="title">
-            <string/>
-           </attribute>
-          </widget>
-          <widget class="CorrelationChart" name="correlationChart">
-           <attribute name="icon">
-            <iconset resource="images.qrc">
-             <normaloff>:/resources/icons/bar-chart.png</normaloff>:/resources/icons/bar-chart.png</iconset>
-           </attribute>
-           <attribute name="title">
-            <string/>
-           </attribute>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+       </widget>
+      </item>
+      <item>
+       <widget class="QStackedWidget" name="stackedWidget">
+        <widget class="TrilaterationChart" name="trilaterationChart"/>
+        <widget class="CorrelationChart" name="correlationChart"/>
+        <widget class="QWidget" name="spectrogramChart"/>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <widget class="WaveFormChart" name="waveFormChart" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
       </property>
       <property name="maximumSize">
        <size>
@@ -170,16 +133,25 @@
     <property name="title">
      <string>View</string>
     </property>
+    <addaction name="separator"/>
     <addaction name="actionShowBeacons"/>
     <addaction name="actionShowTrilateration"/>
     <addaction name="actionShowGrid"/>
     <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuDSP">
+    <property name="title">
+     <string>DSP</string>
+    </property>
     <addaction name="actionTrack"/>
+    <addaction name="actionCorrelation"/>
+    <addaction name="actionSpectrogram"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuPosition"/>
    <addaction name="menuHelp"/>
+   <addaction name="menuDSP"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="styleSheet">
@@ -190,9 +162,12 @@
    </property>
    <property name="iconSize">
     <size>
-     <width>24</width>
-     <height>24</height>
+     <width>22</width>
+     <height>22</height>
     </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -204,16 +179,62 @@
    <addaction name="actionSave"/>
    <addaction name="actionEnvironement"/>
    <addaction name="separator"/>
-   <addaction name="actionPlay"/>
-   <addaction name="actionMicrophone"/>
    <addaction name="separator"/>
    <addaction name="actionShowBeacons"/>
    <addaction name="actionShowTrilateration"/>
-   <addaction name="actionTrack"/>
    <addaction name="separator"/>
    <addaction name="actionPreferences"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="leftToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>22</width>
+     <height>22</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>RightToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionTrack"/>
+   <addaction name="actionCorrelation"/>
+   <addaction name="actionSpectrogram"/>
+  </widget>
+  <widget class="QToolBar" name="bottomToolbar">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>22</width>
+     <height>22</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
+   <property name="floatable">
+    <bool>true</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionMicrophone"/>
+  </widget>
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="images.qrc">
@@ -296,12 +317,18 @@
    </property>
   </action>
   <action name="actionTrack">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="images.qrc">
      <normaloff>:/resources/icons/route.png</normaloff>:/resources/icons/route.png</iconset>
    </property>
    <property name="text">
-    <string>Trace Route</string>
+    <string>Route</string>
    </property>
   </action>
   <action name="actionShare">
@@ -386,6 +413,30 @@
    </property>
    <property name="text">
     <string>Play</string>
+   </property>
+  </action>
+  <action name="actionCorrelation">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/resources/icons/correlation.png</normaloff>:/resources/icons/correlation.png</iconset>
+   </property>
+   <property name="text">
+    <string>Correlation</string>
+   </property>
+  </action>
+  <action name="actionSpectrogram">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/resources/icons/spectrogram.png</normaloff>:/resources/icons/spectrogram.png</iconset>
+   </property>
+   <property name="text">
+    <string>Spectrogram</string>
    </property>
   </action>
  </widget>
