@@ -55,7 +55,7 @@
       <item>
        <widget class="QStackedWidget" name="stackedWidget">
         <widget class="TrilaterationChart" name="trilaterationChart"/>
-        <widget class="CorrelationChart" name="correlationChart"/>
+        <widget class="AutoCorrelationChart" name="correlationChart"/>
         <widget class="SpectrogramChart" name="spectrogramChart"/>
        </widget>
       </item>
@@ -461,15 +461,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>CorrelationChart</class>
-   <extends>QWidget</extends>
-   <header>gui/correlationchart.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>SpectrogramChart</class>
    <extends>QWidget</extends>
    <header>gui/spectrogramchart.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AutoCorrelationChart</class>
+   <extends>QWidget</extends>
+   <header>gui/autocorrelationchart.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
