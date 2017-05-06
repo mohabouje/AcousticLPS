@@ -22,7 +22,7 @@ void WaveFormChart::setBufferSize(double sampleRate, double secs) {
 }
 
 
-void WaveFormChart::insert(const float* data, uint size) {
+void WaveFormChart::setData(const float* data, uint size) {
     const uint N = std::floor(1.0 * size / DownSampleFactor);
     QVector<double> tmp(N);
     for (Size n=0; n<N; n++) {

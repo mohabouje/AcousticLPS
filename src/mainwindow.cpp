@@ -52,7 +52,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initUi() {
-    ui->waveFormChart->setBufferSize(Recorder->sampleRate(), 10.0);
     QWidget *spacerWidget = new QWidget(this);
     spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     spacerWidget->setVisible(true);
@@ -128,6 +127,14 @@ void MainWindow::initUi() {
         ui->trilaterationChart->repaintTrilateration();
     });
 
+    const Real sampleRate = Recorder->sampleRate();
+    const Real bufferTime = 0.1;
+    Recorder->setFrameLength(bufferTime * sampleRate);
+
+
+    ui->waveFormChart->setBufferSize(sampleRate, 10.0);
+    ui->correlationChart->setBufferSize(sampleRate, bufferTime);
+
     connect(Recorder, &QPortAudioRecorder::onRecorderStarted, [&]() {
         ui->actionMicrophone->setIcon(MICRO_OFF_ICON);
     });
@@ -151,8 +158,8 @@ void MainWindow::initUi() {
 }
 
 void MainWindow::bufferReady(float* buffer, unsigned long size) {
-    ui->waveFormChart->insert(buffer, size);
-    //delete buffer;
+    ui->waveFormChart->setData(buffer, size);
+    ui->correlationChart->setData(buffer, size);
 }
 
 void MainWindow::loadUi() {

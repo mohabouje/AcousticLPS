@@ -71,4 +71,3 @@ Vector DSP::Timming::delay(const Vector &original, uint delay) {
     }
     return tmp;
 }
-

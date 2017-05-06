@@ -10,7 +10,8 @@ HEADERS += \
     $$PWD/qenvironementeditor.h \
     $$PWD/beaconschart.h \
     $$PWD/trilaterationchart.h \
-    $$PWD/waveformchart.h
+    $$PWD/waveformchart.h \
+    $$PWD/correlationchart.h
 
 SOURCES += \
     $$PWD/beaconspanel.cpp \
@@ -20,4 +21,5 @@ SOURCES += \
     $$PWD/qenvironementeditor.cpp \
     $$PWD/beaconschart.cpp \
     $$PWD/trilaterationchart.cpp \
-    $$PWD/waveformchart.cpp
+    $$PWD/waveformchart.cpp \
+    $$PWD/correlationchart.cpp
