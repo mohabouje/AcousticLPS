@@ -8,6 +8,7 @@ class WaveFormChart : public QwtPlot
     Q_OBJECT
 public:
     explicit WaveFormChart(QWidget *parent = 0);
+    ~WaveFormChart();
     virtual void setBufferSize(double sampleRate, double secs);
     virtual void setData(float* data, uint size);
 protected:

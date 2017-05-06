@@ -15,6 +15,7 @@ QEnvironement::QEnvironement() {
 
 QEnvironement::~QEnvironement() {
     clear();
+    delete _environement;
 }
 
 

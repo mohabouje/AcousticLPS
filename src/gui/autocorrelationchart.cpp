@@ -15,7 +15,7 @@ AutoCorrelationChart::AutoCorrelationChart(QWidget *parent) : WaveFormChart(pare
     grid->setMinorPen(QPen(Qt::gray, 0 , Qt::DotLine));
     grid->attach(this);
 
-    _waveForm->setPen(* new QPen(Qt::red, 2, Qt::SolidLine));
+    _waveForm->setPen(QPen(Qt::red, 2, Qt::SolidLine));
 
     QFrame* frame = qobject_cast<QFrame*>(canvas());
     frame->setFrameStyle(QFrame::StyledPanel);

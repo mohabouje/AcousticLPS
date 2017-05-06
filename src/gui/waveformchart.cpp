@@ -13,6 +13,10 @@ WaveFormChart::WaveFormChart(QWidget *parent) : QwtPlot(parent)
     frame->setFrameStyle(QFrame::StyledPanel);
 }
 
+WaveFormChart::~WaveFormChart() {
+    delete _waveForm;
+}
+
 void WaveFormChart::setBufferSize(double sampleRate, double secs) {
     setAxisScale(QwtPlot::xBottom, 0.0, secs);
     _data.size = std::floor(sampleRate * secs / DownSampleFactor);
