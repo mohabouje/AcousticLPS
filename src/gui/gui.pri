@@ -11,7 +11,8 @@ HEADERS += \
     $$PWD/beaconschart.h \
     $$PWD/trilaterationchart.h \
     $$PWD/waveformchart.h \
-    $$PWD/correlationchart.h
+    $$PWD/correlationchart.h \
+    $$PWD/spectrogramchart.h
 
 SOURCES += \
     $$PWD/beaconspanel.cpp \
@@ -22,4 +23,5 @@ SOURCES += \
     $$PWD/beaconschart.cpp \
     $$PWD/trilaterationchart.cpp \
     $$PWD/waveformchart.cpp \
-    $$PWD/correlationchart.cpp
+    $$PWD/correlationchart.cpp \
+    $$PWD/spectrogramchart.cpp

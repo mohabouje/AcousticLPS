@@ -151,6 +151,7 @@ void MainWindow::initUi() {
 
     ui->waveFormChart->setBufferSize(sampleRate, 10.0);
     ui->correlationChart->setBufferSize(sampleRate, bufferTime);
+    ui->spectrogramChart->setBufferSize(sampleRate, bufferTime);
 
     connect(Recorder, &QPortAudioRecorder::onRecorderStarted, [&]() {
         ui->actionMicrophone->setIcon(MICRO_OFF_ICON);
@@ -177,6 +178,7 @@ void MainWindow::initUi() {
 void MainWindow::bufferReady(float* buffer, unsigned long size) {
     ui->waveFormChart->setData(buffer, size);
     ui->correlationChart->setData(buffer, size);
+    ui->spectrogramChart->setData(buffer, size);
 }
 
 void MainWindow::loadUi() {

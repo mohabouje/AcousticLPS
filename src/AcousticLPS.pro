@@ -61,6 +61,7 @@ QMAKE_CFLAGS += protobuf
 
 # Using FFTW library
 LIBS += -lfftw3
+LIBS += -lfftw3f
 
 # Using PortAudio to record audio from the input device.
 LIBS += -lportaudio -lsndfile
