@@ -7,6 +7,7 @@
 class SpectrogramChart  : public WaveFormChart {
 public:
     explicit SpectrogramChart(QWidget* parent = Q_NULLPTR);
+    ~SpectrogramChart();
 public slots:
     void setData(float *data, uint size);
     void setBufferSize(double sampleRate, double secs);

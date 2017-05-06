@@ -10,6 +10,7 @@ class AutoCorrelationChart : public WaveFormChart
     Q_OBJECT
 public:
     explicit AutoCorrelationChart(QWidget *parent = 0);
+    ~AutoCorrelationChart();
 public slots:
     void setData(float *data, uint size);
     void setBufferSize(double sampleRate, double secs);
@@ -20,8 +21,8 @@ private:
     uint                        _fftSize;
     fftwf_plan                  _fftPlan;
     fftwf_plan                  _ifftPlan;
-    std::complex<float>*        _tmp;
-    std::complex<float>*        _fft;
+    fftwf_complex*              _tmp;
+    fftwf_complex*              _fft;
 };
 
 #endif // CORRELATIONCHART_H

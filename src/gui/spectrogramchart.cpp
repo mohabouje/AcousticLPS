@@ -22,6 +22,12 @@ SpectrogramChart::SpectrogramChart(QWidget* parent) : WaveFormChart(parent)
     plotLayout()->setAlignCanvasToScales( true );
 }
 
+SpectrogramChart::~SpectrogramChart() {
+   delete[] _input;
+   delete[] _fft;
+   fftwf_destroy_plan(_fftPlan);
+}
+
 void SpectrogramChart::setData(float *data, uint size) {
     std::memcpy(_input, data, size);
 
@@ -38,7 +44,7 @@ void SpectrogramChart::setBufferSize(double sampleRate, double secs) {
     _inputSize = static_cast<uint>(sampleRate * secs);
     _fftSize = static_cast<Size>(DSP::Math::nextPow2(_inputSize));
 
-    _fft = new std::complex<float>[_fftSize];
+    _fft = new std::complex<float>[_fftSize]{std::complex<float>(0.,0.)};
     _input = new float[_fftSize]{0};
 
     _data.size = _fftSize / 2 + 1;

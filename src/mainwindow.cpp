@@ -10,6 +10,7 @@
 #include <gui/helper.h>
 
 #include <QDebug>
+#include <QElapsedTimer>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSettings>
@@ -177,8 +178,13 @@ void MainWindow::initUi() {
 
 void MainWindow::bufferReady(float* buffer, unsigned long size) {
     ui->waveFormChart->setData(buffer, size);
+    QElapsedTimer timer;
+    timer.start();
     ui->correlationChart->setData(buffer, size);
+    qDebug() << "Correlation " << timer.nsecsElapsed();
+    timer.restart();
     ui->spectrogramChart->setData(buffer, size);
+    qDebug() << "Spectrogram " << timer.nsecsElapsed();
 }
 
 void MainWindow::loadUi() {

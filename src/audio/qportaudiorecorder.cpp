@@ -54,7 +54,7 @@ PaStreamCallbackResult QPortAudioRecorder::bufferReady(const void *inputBuffer, 
 }
 
 bool QPortAudioRecorder::initialize() {
-    PaError err = Pa_Initialize();
+    const PaError err = Pa_Initialize();
     _isInitialized = (err == paNoError);
     if( err != paNoError ) {
         emit onError(err, Pa_GetErrorText(err));

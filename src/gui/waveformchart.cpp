@@ -14,6 +14,8 @@ WaveFormChart::WaveFormChart(QWidget *parent) : QwtPlot(parent)
 }
 
 WaveFormChart::~WaveFormChart() {
+    delete[] _data.x;
+    delete[] _data.y;
     delete _waveForm;
 }
 
@@ -38,6 +40,6 @@ void WaveFormChart::setData(float* data, uint size) {
 
     std::copy(_data.y + N, _data.y + _data.size, _data.y);
     std::copy(tmp, tmp + N, _data.y + _data.size - N);
-    delete (tmp);
+    delete[] tmp;
     replot();
 }
