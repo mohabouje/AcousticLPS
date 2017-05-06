@@ -21,8 +21,7 @@ private:
     uint                        _fftSize;
     fftwf_plan                  _fftPlan;
     fftwf_plan                  _ifftPlan;
-    fftwf_complex*              _tmp;
-    fftwf_complex*              _fft;
+    std::complex<float>*        _fft;
 };
 
 #endif // CORRELATIONCHART_H
