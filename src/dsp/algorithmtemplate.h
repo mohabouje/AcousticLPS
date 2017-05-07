@@ -1,23 +1,30 @@
 #ifndef ALGORITHMTEMPLATE_H
 #define ALGORITHMTEMPLATE_H
 
-
-#include <QtCore>
+#include <complex>
+using f_real      = float;
+using f_complex   = std::complex<float>;
+using uint        = unsigned int;
 class AlgorithmTemplate {
 public:
     AlgorithmTemplate() {}
-    virtual void setInput(const float* data, uint size) = 0;
-    virtual bool compute() = 0;
+    ~AlgorithmTemplate() {
+        delete[] _input;
+        delete[] _output;
+    }
 
-    inline float* input() const { return _input; }
+    virtual void setBufferSize(f_real sampleRate, f_real bufferTime) = 0;
+    virtual bool compute(const f_real* data, uint size) = 0;
+
+    inline f_real* input() const { return _input; }
     inline uint   inputSize() const { return _inputSize; }
-    inline float* output() const { return _output; }
+    inline f_real* output() const { return _output; }
     inline uint   outputSize() const { return _outputSize; }
 protected:
     uint            _inputSize;
     uint            _outputSize;
-    float*          _input;
-    float*          _output;
+    f_real*          _input;
+    f_real*          _output;
 };
 
 #endif // ALGORITHMTEMPLATE_H

@@ -18,46 +18,21 @@ AutoCorrelationChart::AutoCorrelationChart(QWidget *parent) : WaveFormChart(pare
     _waveForm->setPen(QPen(Qt::red, 2, Qt::SolidLine));
 }
 
-AutoCorrelationChart::~AutoCorrelationChart() {
-   delete[] _input;
-   delete[] _autocor;
-   delete[] _fft;
-   fftwf_destroy_plan(_fftPlan);
-   fftwf_destroy_plan(_ifftPlan);
-}
 
 void AutoCorrelationChart::setData(float *data, uint size) {
-    std::memcpy(_input, data, size);
-
-    fftwf_execute(_fftPlan);
-    for (uint i = 0;  i< _fftSize; i++) {
-        _fft[i] = _fft[i] * std::conj(_fft[i]);
-    }
-    fftwf_execute(_ifftPlan);
-
-    float _max = *std::max_element(_autocor, _autocor + _data.size);
-    for (uint i=0; i<_data.size; i++) {
-        _data.y[i] = _autocor[i] / _max;
-    }
-
+    _autocor.compute(data, size);
+    std::copy(_autocor.output(), _autocor.output() + _autocor.outputSize(), _data.y);
     replot();
 }
 
 void AutoCorrelationChart::setBufferSize(double sampleRate, double secs) {
-    _inputSize = static_cast<uint>(sampleRate * secs);
-    _fftSize = static_cast<uint>(2 * _inputSize - 1);
+    _autocor.setBufferSize(sampleRate, secs);
 
-    _fft = new std::complex<float>[_fftSize];
-    _input = new float[_fftSize]{0};
-    _autocor = new float[_fftSize]{0};
-
-    _data.size = _inputSize / 4;
+    _data.size = _autocor.outputSize();
     _data.x = new double[_data.size]{0};
     _data.y = new double[_data.size]{0};
 
     _waveForm->setRawSamples(_data.x, _data.y, _data.size);
-    _fftPlan = fftwf_plan_dft_r2c_1d(_fftSize, _input, reinterpret_cast<fftwf_complex*>(_fft), FFTW_ESTIMATE);
-    _ifftPlan = fftwf_plan_dft_c2r_1d(_fftSize, reinterpret_cast<fftwf_complex*>(_fft), _autocor, FFTW_ESTIMATE);
     setAxisScale(QwtPlot::xBottom, 0.0, M_PI);
     const arma::vec xValues = arma::linspace(0, M_PI, _data.size);
     std::copy(xValues.begin(), xValues.end(), _data.x);
