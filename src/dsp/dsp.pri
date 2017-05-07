@@ -24,7 +24,8 @@ HEADERS += \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/include/DspFilters/SmoothedFilter.h \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/include/DspFilters/State.h \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/include/DspFilters/Types.h \
-    $$PWD/../dependencies/DSPFilters/shared/DSPFilters/include/DspFilters/Utilities.h
+    $$PWD/../dependencies/DSPFilters/shared/DSPFilters/include/DspFilters/Utilities.h \
+    $$PWD/algorithmtemplate.h
 
 SOURCES += \
     $$PWD/trilateration.cpp \
@@ -46,7 +47,8 @@ SOURCES += \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/source/PoleFilter.cpp \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/source/RBJ.cpp \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/source/RootFinder.cpp \
-    $$PWD/../dependencies/DSPFilters/shared/DSPFilters/source/State.cpp
+    $$PWD/../dependencies/DSPFilters/shared/DSPFilters/source/State.cpp \
+    $$PWD/algorithmtemplate.cpp
 
 INCLUDEPATH += $$PWD/../dependencies/DSPFilters/shared/DSPFilters/include/
 
