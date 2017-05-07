@@ -26,7 +26,8 @@ HEADERS += \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/include/DspFilters/Types.h \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/include/DspFilters/Utilities.h \
     $$PWD/algorithmtemplate.h \
-    $$PWD/autocorrelation.h
+    $$PWD/autocorrelation.h \
+    $$PWD/powerspectraldensity.h
 
 SOURCES += \
     $$PWD/trilateration.cpp \
@@ -50,7 +51,8 @@ SOURCES += \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/source/RootFinder.cpp \
     $$PWD/../dependencies/DSPFilters/shared/DSPFilters/source/State.cpp \
     $$PWD/algorithmtemplate.cpp \
-    $$PWD/autocorrelation.cpp
+    $$PWD/autocorrelation.cpp \
+    $$PWD/powerspectraldensity.cpp
 
 INCLUDEPATH += $$PWD/../dependencies/DSPFilters/shared/DSPFilters/include/
 

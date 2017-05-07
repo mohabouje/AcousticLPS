@@ -1,20 +1,8 @@
 #include "autocorrelationchart.h"
-#include <dsp/dsp.h>
-#include <qwt_scale_widget.h>
-#include <qwt_plot_layout.h>
-#include <qwt_plot_grid.h>
 #include <qwt_plot_curve.h>
 AutoCorrelationChart::AutoCorrelationChart(QWidget *parent) : WaveFormChart(parent)
 {
     setAxisScale(QwtPlot::yLeft, -1, 1);
-
-    QwtPlotGrid* grid = new QwtPlotGrid();
-    grid->enableXMin(true);
-    grid->enableYMin(true);
-    grid->setMajorPen(QPen(Qt::black, 0, Qt::DotLine));
-    grid->setMinorPen(QPen(Qt::gray, 0 , Qt::DotLine));
-    grid->attach(this);
-
     _waveForm->setPen(QPen(Qt::red, 2, Qt::SolidLine));
 }
 
