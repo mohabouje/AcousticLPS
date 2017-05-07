@@ -1,16 +1,26 @@
 #include "waveformchart.h"
 #include "config.h"
+#include <qwt_painter.h>
+#include <qwt_plot_layout.h>
+#include <qwt_plot_curve.h>
 WaveFormChart::WaveFormChart(QWidget *parent) : QwtPlot(parent)
 {
+    _waveForm = new QwtPlotCurve();
     _waveForm->setStyle(QwtPlotCurve::Lines);
     _waveForm->attach(this);
 
+    setAutoReplot(false);
     setAxisScale(QwtPlot::yLeft, -1.0, 1.0);
     enableAxis(QwtPlot::xBottom, false);
     enableAxis(QwtPlot::yLeft, false);
 
+
+
+    QwtPainter::setPolylineSplitting(true);
+
     QFrame* frame = qobject_cast<QFrame*>(canvas());
     frame->setFrameStyle(QFrame::StyledPanel);
+    plotLayout()->setAlignCanvasToScales( true );
 }
 
 WaveFormChart::~WaveFormChart() {

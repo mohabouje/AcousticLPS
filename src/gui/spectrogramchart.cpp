@@ -3,6 +3,7 @@
 #include <dsp/dsp.h>
 #include <qwt_plot_layout.h>
 #include <qwt_plot_grid.h>
+#include <qwt_plot_curve.h>
 SpectrogramChart::SpectrogramChart(QWidget* parent) : WaveFormChart(parent)
 {
 
@@ -16,10 +17,6 @@ SpectrogramChart::SpectrogramChart(QWidget* parent) : WaveFormChart(parent)
     grid->attach(this);
 
     _waveForm->setPen(QPen(Qt::red, 2, Qt::SolidLine));
-
-    QFrame* frame = qobject_cast<QFrame*>(canvas());
-    frame->setFrameStyle(QFrame::StyledPanel);
-    plotLayout()->setAlignCanvasToScales( true );
 }
 
 SpectrogramChart::~SpectrogramChart() {

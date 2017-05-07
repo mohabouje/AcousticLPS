@@ -2,7 +2,7 @@
 #define WAVEFORMCHART_H
 #include "config.h"
 #include <qwt_plot.h>
-#include <qwt_plot_curve.h>
+class QwtPlotCurve;
 class WaveFormChart : public QwtPlot
 {
     Q_OBJECT
@@ -12,7 +12,7 @@ public:
     virtual void setBufferSize(double sampleRate, double secs);
     virtual void setData(float* data, uint size);
 protected:
-    QwtPlotCurve*               _waveForm{new QwtPlotCurve()};
+    QwtPlotCurve*               _waveForm;
     Plot                        _data;
     static constexpr uint       DownSampleFactor{20};
 };

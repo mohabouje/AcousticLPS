@@ -177,12 +177,16 @@ void MainWindow::initUi() {
 }
 
 void MainWindow::bufferReady(float* buffer, unsigned long size) {
+    static qlonglong elapsed = 0;
+    static int retries = 0;
     QElapsedTimer timer;
     timer.start();
     ui->waveFormChart->setData(buffer, size);
     ui->correlationChart->setData(buffer, size);
     ui->spectrogramChart->setData(buffer, size);
-    qDebug() << "Elapsed " << timer.nsecsElapsed();
+    elapsed += timer.nsecsElapsed();
+    retries++;
+    qDebug() << "Elapsed " << elapsed/retries;
 }
 
 void MainWindow::loadUi() {

@@ -3,7 +3,7 @@
 #include <qwt_scale_widget.h>
 #include <qwt_plot_layout.h>
 #include <qwt_plot_grid.h>
-#include <QDebug>
+#include <qwt_plot_curve.h>
 AutoCorrelationChart::AutoCorrelationChart(QWidget *parent) : WaveFormChart(parent)
 {
     setAxisScale(QwtPlot::yLeft, -1, 1);
@@ -16,10 +16,6 @@ AutoCorrelationChart::AutoCorrelationChart(QWidget *parent) : WaveFormChart(pare
     grid->attach(this);
 
     _waveForm->setPen(QPen(Qt::red, 2, Qt::SolidLine));
-
-    QFrame* frame = qobject_cast<QFrame*>(canvas());
-    frame->setFrameStyle(QFrame::StyledPanel);
-    plotLayout()->setAlignCanvasToScales( true );
 }
 
 AutoCorrelationChart::~AutoCorrelationChart() {
