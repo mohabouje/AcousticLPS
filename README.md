@@ -1,3 +1,10 @@
+![releases](https://img.shields.io/github/tag/mohabouje/AcousticLPS.svg)
+![issues](https://img.shields.io/github/issues/mohabouje/AcousticLPS.svg)
+![license](https://img.shields.io/github/license/mohabouje/AcousticLPS.svg)
+![built](https://img.shields.io/badge/built%20with-Qt/C++-6f62ba.svg)
+
+***
+
 Acoustic LPS  - Server
 ===================
 
